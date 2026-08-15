@@ -1,0 +1,20 @@
+{
+  "menus": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3301",
+      "name": "Main Menu",
+      "author": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-15T14:30:00+07:00",
+      "updatedAt": "2026-08-15T16:17:00+07:00",
+      "items": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e3401", "label": "XE ĐẠP", "href": "#bikes", "hasDropdown": true, "parentId": null, "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3402", "label": "PHỤ KIỆN", "href": "#accessories", "hasDropdown": true, "parentId": null, "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3403", "label": "KHUYẾN MÃI", "href": "#promotions", "highlight": true, "parentId": null, "order": 3 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3404", "label": "SỰ KIỆN", "href": "#events", "parentId": null, "order": 4 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3405", "label": "DỊCH VỤ", "href": "#services", "parentId": null, "order": 5 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3406", "label": "BLOG", "href": "#blog", "parentId": null, "order": 6 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3407", "label": "CỬA HÀNG", "href": "#stores", "parentId": null, "order": 7 }
+      ]
+    }
+  ]
+}
