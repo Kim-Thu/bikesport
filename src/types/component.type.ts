@@ -1,7 +1,6 @@
 export type ComponentName =
   | "promotion"
   | "button"
-  | "icon"
   | "logo"
   | "search-form"
   | "contact"
