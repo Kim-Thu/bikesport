@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e1111",
+      "fullName": "Nguyen Kim Thu",
+      "firstName": "Thu",
+      "lastName": "Nguyen Kim",
+      "displayName": "Kim Thu",
+      "email": "",
+      "phone": "",
+      "role": "administrator",
+      "status": "active",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-15T14:30:00+07:00",
+      "updatedAt": "2026-08-15T16:27:00+07:00"
+    }
+  ]
+}
