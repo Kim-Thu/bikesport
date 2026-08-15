@@ -3,7 +3,7 @@
 **Trạng thái:** Active Draft  
 **Nhánh:** `docs/T001-requirements-20260815-0955`
 
-Bộ tài liệu này được tổ chức để một BA, PO, PM, Developer/Architect, Tester hoặc agent có thể cùng làm việc trên một nguồn sự thật chung. Không tài liệu nào được đứng riêng: requirement phải trace xuống schema/API, task và test evidence.
+Bộ tài liệu này được tổ chức để BA, PO, PM, Developer/Architect, Tester hoặc agent cùng làm việc trên một nguồn sự thật chung. Requirement phải trace được xuống decision, schema/API, task, test và evidence.
 
 ## 1. Cấu trúc tài liệu
 
@@ -11,7 +11,9 @@ Bộ tài liệu này được tổ chức để một BA, PO, PM, Developer/Arc
 
 - `project-charter.md`: mục tiêu dự án, governance, Definition of Ready/Done.
 - `product-backlog.md`: capability backlog, priority, MVP gate và acceptance outcome.
-- `decision-log.md`: nguồn duy nhất cho quyết định ownership/architecture/schema/integration đang mở hoặc đã phê duyệt.
+- `decision-log.md`: nguồn duy nhất cho quyết định ownership/architecture/schema/integration.
+- `roadmap-status.md`: phase roadmap, critical path, milestone gate và project health.
+- `documentation-audit.md`: audit độ đầy đủ/nhất quán của toàn bộ tài liệu và danh sách defect còn mở.
 
 ### `01-business/` - BA business layer
 
@@ -20,7 +22,7 @@ Bộ tài liệu này được tổ chức để một BA, PO, PM, Developer/Arc
 ### `02-functional/` - BA functional layer
 
 - `FRD.md`: functional requirement theo domain.
-- `use-cases-core.md`: use case Product, Inventory, Reservation, Order, Pricing, Warranty, Authorization; mỗi use case link task và test.
+- `use-cases-core.md`: Product, Inventory, Reservation, Order, Pricing, Warranty, Authorization; mỗi use case link schema/task/test.
 
 ### `03-system/` - Software requirements
 
@@ -33,7 +35,7 @@ Bộ tài liệu này được tổ chức để một BA, PO, PM, Developer/Arc
 
 ### `04-integration/`
 
-- `INT-Odoo-Commerce.md`: integration boundary Odoo - Commerce. Contract chi tiết tiếp tục được khóa theo `DEC-*`/`INT-*` task.
+- `INT-Odoo-Commerce.md`: integration boundary Odoo - Commerce. Contract chi tiết được khóa theo `DEC-*`/`INT-*` task.
 
 ### `05-process-flows/`
 
@@ -71,7 +73,7 @@ flowchart LR
     A --> B --> C --> D --> E --> F --> G --> H --> I
 ```
 
-Không được tự bỏ qua một layer đang là dependency của task.
+Không được bỏ qua một layer đang là dependency của task.
 
 ## 3. Khi agent nhận task
 
@@ -93,15 +95,15 @@ Sau khi làm xong phải cập nhật `Status` và `Evidence`. Không có eviden
 
 - Không tạo collection/table/model/field mới ngoài baseline.
 - Không đổi type/relation/index tùy ý.
-- Nếu thật sự cần thay schema: tạo `DATA-CHG-xxx`, cập nhật baseline trước, mô tả migration/backward compatibility và cập nhật task/test liên quan.
+- Nếu cần thay schema: tạo `DATA-CHG-xxx`, cập nhật baseline trước, mô tả migration/backward compatibility và cập nhật task/test liên quan.
 
 ## 5. Trạng thái thực tế hiện tại
 
 - Requirements: Draft/Review.
-- Database schema baseline: đã có canonical draft; ownership của một số field/domain còn chờ `DEC-*`.
+- Database schema baseline: đã có canonical draft; một số writer/SoR còn chờ `DEC-*`.
 - Odoo/Backend/CMS/Storefront implementation: chưa triển khai trong repository này.
 - Security verification: chưa có evidence.
-- Performance verification: chưa có target/evidence đầy đủ.
+- Performance verification: chưa có measurable target/evidence đầy đủ.
 - Role/permission matrix: chưa chốt.
 - Order System of Record: chưa chốt.
 - Pricing/Promotion authority: chưa chốt.
