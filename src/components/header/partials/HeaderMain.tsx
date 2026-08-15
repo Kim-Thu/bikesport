@@ -1,7 +1,7 @@
 import { Column } from "@/components/layout/Column";
 import { Container } from "@/components/layout/Container";
 import { Row } from "@/components/layout/Row";
-import { renderComponent } from "@/components/component.registry";
+import { renderComponent } from "@/lib/component.registry";
 import type { HeaderPartialProps } from "@/interfaces/header.interface";
 
 export function HeaderMain({ region }: HeaderPartialProps) {
