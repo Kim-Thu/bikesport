@@ -1,3 +1,6 @@
+import { Column } from "@/components/layout/Column";
+import { Container } from "@/components/layout/Container";
+import { Row } from "@/components/layout/Row";
 import type { HeaderTemplateProps } from "@/interfaces/header.interface";
 import { DefaultHeaderTemplate } from "./DefaultHeaderTemplate";
 
@@ -12,7 +15,13 @@ export function Template({ template, settings }: HeaderTemplateProps) {
 
   return (
     <header id="home" className="w-full border-b border-gray-200 bg-white">
-      <HeaderTemplate settings={settings} />
+      <Container className="max-w-none px-0">
+        <Row className="flex-col items-stretch">
+          <Column className="w-full">
+            <HeaderTemplate settings={settings} />
+          </Column>
+        </Row>
+      </Container>
     </header>
   );
 }
