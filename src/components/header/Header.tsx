@@ -1,8 +1,20 @@
 import type { HeaderProps } from "@/interfaces/header.interface";
-import { Template } from "./templates/Template";
+import { DefaultTemplate } from "./templates/DefaultTemplate";
+
+const templates = {
+  default: DefaultTemplate,
+} as const;
 
 export function Header({ settings }: HeaderProps) {
   if (!settings?.template || !settings.payload?.length) return null;
 
-  return <Template template={settings.template} settings={settings} />;
+  const Template = templates[settings.template as keyof typeof templates];
+
+  if (!Template) return null;
+
+  return (
+    <header id="home" className="w-full border-b border-gray-200 bg-white">
+      <Template settings={settings} />
+    </header>
+  );
 }

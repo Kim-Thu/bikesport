@@ -22,11 +22,6 @@ export interface HeaderProps {
 }
 
 export interface HeaderTemplateProps {
-  template: HeaderTemplateName;
-  settings: HeaderSettings;
-}
-
-export interface HeaderTemplateViewProps {
   settings: HeaderSettings;
 }
 
