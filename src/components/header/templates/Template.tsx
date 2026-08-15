@@ -10,5 +10,9 @@ export function Template({ template, settings }: HeaderTemplateProps) {
 
   if (!HeaderTemplate) return null;
 
-  return <HeaderTemplate settings={settings} />;
+  return (
+    <header id="home" className="w-full border-b border-gray-200 bg-white">
+      <HeaderTemplate settings={settings} />
+    </header>
+  );
 }
