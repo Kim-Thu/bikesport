@@ -3,7 +3,7 @@
   "name": "Header",
   "author": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-15T14:54:00+07:00",
+  "updatedAt": "2026-08-15T15:58:00+07:00",
   "template": "default",
   "payload": [
     {
@@ -39,7 +39,14 @@
           "columns": [
             {
               "items": [
-                { "component": "menu-button" },
+                {
+                  "component": "button",
+                  "props": {
+                    "variant": "icon",
+                    "icon": "menu",
+                    "aria-label": "Mở menu"
+                  }
+                },
                 {
                   "component": "logo",
                   "props": {
