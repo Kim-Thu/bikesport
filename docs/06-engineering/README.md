@@ -1,27 +1,65 @@
-# Engineering Planning
+# BikeSport Engineering Execution Documents
 
-Phần này chỉ giữ các tài liệu phục vụ trực tiếp việc triển khai BikeSport.
+**Trạng thái:** Draft  
+**Phạm vi:** theo dõi việc triển khai BikeSport và giữ kiến trúc giữa các agent nhất quán.
 
-## Tài liệu
+## Tài liệu chính
 
 | File | Dùng để làm gì |
 | --- | --- |
-| `project-task-board.md` | Chia phase/task thật cho Odoo, Backend, CMS, Storefront, Security, Performance và E2E; theo dõi dependency, status và evidence |
-| `database-architecture.md` | Vẽ logical schema MongoDB + Odoo/PostgreSQL, quan hệ entity, cross-database identifiers và data flow |
-| `storefront-design-system.md` | Xác định token architecture, component inventory, state matrix và task DS/SF liên quan |
+| `project-task-board.md` | Danh sách task thật theo phase/subsystem, dependency, status, Done condition và evidence |
+| `database-architecture.md` | **Canonical database schema**: từng MongoDB collection, từng Odoo model/PostgreSQL table, field, type, index, relation và cross-database mapping |
+| `storefront-design-system.md` | Design token, component contract và task Design System/Storefront |
 
-## Cách dùng
+## Quy tắc bắt buộc
 
-1. Trước khi giao việc cho agent, lấy đúng task ID từ `project-task-board.md`.
-2. Agent không được bắt đầu task đang `BLOCKED`.
-3. Sau khi hoàn thành, cập nhật `Status` và `Evidence` của task.
-4. Task đụng schema phải kiểm tra `database-architecture.md` và data ownership trước.
-5. Task Storefront phải dùng token/component contract trong `storefront-design-system.md`.
+### Khi nhận task
+
+Agent phải đọc `project-task-board.md`, tìm đúng task ID và dependency của task đó.
+
+Nếu task chạm Product, Category, Inventory, Pricing, Promotion, Cart, Order, Store, Warranty, Sync hoặc Odoo model thì **phải đọc `database-architecture.md` trước khi code**.
+
+### Database schema
+
+`database-architecture.md` là schema baseline canonical của project.
+
+Agent **không được**:
+
+- tự tạo collection MongoDB khác tên;
+- tự tạo bảng/model Odoo khác tên;
+- tự thêm root field vào document;
+- đổi type/nullability/index/relationship;
+- tự tách một collection thành nhiều collection;
+- tạo duplicate representation của cùng entity để tiện task hiện tại.
+
+Nếu schema hiện tại không đủ, phải tạo task `DATA-CHG-xxx`, sửa schema baseline trước, sau đó mới implement.
+
+### Theo dõi hoàn thành
+
+Một task chỉ được `DONE` khi có evidence tương ứng trong task board: commit, test result, benchmark, screenshot hoặc tài liệu quyết định tùy loại task.
+
+Không được coi việc "đã viết code" là đủ nếu Done condition còn test/integration/security/performance chưa đạt.
+
+## Luồng làm việc
+
+```mermaid
+flowchart LR
+    TASK[project-task-board.md] --> READ{Task chạm data?}
+    READ -- Có --> DB[database-architecture.md]
+    READ -- Không --> IMPL[Implement]
+    DB --> IMPL
+    IMPL --> TEST[Test / Verify]
+    TEST --> EVIDENCE[Update Evidence]
+    EVIDENCE --> STATUS[Update Task Status]
+
+    DB --> CHANGE{Schema thiếu?}
+    CHANGE -- Có --> DCHG[Create DATA-CHG-xxx]
+    DCHG --> DB
+```
 
 ## Trạng thái hiện tại
 
-- Code implementation: chưa bắt đầu.
-- Security: chưa kiểm chứng.
-- Performance: chưa kiểm chứng.
-- Database physical schema: chưa khóa vì còn các quyết định `DEC-001` đến `DEC-010`.
-- Design token values: chưa khóa vì chưa có design/brand input.
+- Task board: đã chia task theo subsystem và phase, đang ở Draft/Review.
+- Database schema: đã có canonical draft với exact collection/table/field/index; các quyết định ownership còn phải chốt qua `DEC-*`.
+- Storefront Design System: đang Draft, token value chưa chốt.
+- Implementation: chưa bắt đầu trong repository này.
