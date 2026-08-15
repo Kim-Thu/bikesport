@@ -3,7 +3,12 @@
   "name": "Header",
   "author": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-15T15:58:00+07:00",
+  "updatedAt": "2026-08-15T16:00:00+07:00",
+  "siteTitle": "BikeSport",
+  "tagLine": "",
+  "logo": "/bikesport-logo.svg",
+  "showSiteTitle": false,
+  "showTagLine": false,
   "template": "default",
   "payload": [
     {
@@ -50,8 +55,6 @@
                 {
                   "component": "logo",
                   "props": {
-                    "src": "/bikesport-logo.svg",
-                    "alt": "BikeSport",
                     "href": "#home"
                   }
                 }
