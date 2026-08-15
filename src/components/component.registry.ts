@@ -1,4 +1,4 @@
-import type { ElementType } from "react";
+import { createElement, type ElementType } from "react";
 import { Account } from "@/components/account/Account";
 import { MiniCart } from "@/components/cart/MiniCart";
 import { Contact } from "@/components/contact/Contact";
@@ -7,7 +7,7 @@ import { MenuButton } from "@/components/menu/MenuButton";
 import { NavMenu } from "@/components/navigation/NavMenu";
 import { Promotion } from "@/components/promotion/Promotion";
 import { SearchForm } from "@/components/search/SearchForm";
-import type { ComponentName } from "@/types/component.type";
+import type { ComponentItem } from "@/interfaces/component.interface";
 
 export const COMPONENT_REGISTRY: Record<string, ElementType> = {
   promotion: Promotion,
@@ -20,6 +20,14 @@ export const COMPONENT_REGISTRY: Record<string, ElementType> = {
   "nav-menu": NavMenu,
 };
 
-export function getComponent(name: ComponentName) {
-  return COMPONENT_REGISTRY[name];
+export function renderComponent(item: ComponentItem, index: number) {
+  if (item.enabled === false) return null;
+
+  const Component = COMPONENT_REGISTRY[item.component];
+  if (!Component) return null;
+
+  return createElement(Component, {
+    key: `${item.component}-${index}`,
+    ...(item.props ?? {}),
+  });
 }
