@@ -1,135 +1,139 @@
 {
   "_id": "66bf4e8c9f2a4d7b8c1e3201",
-  "name": "Header",
   "author": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-15T16:00:00+07:00",
-  "siteTitle": "BikeSport",
-  "tagLine": "",
-  "logo": "/bikesport-logo.svg",
-  "showSiteTitle": false,
-  "showTagLine": false,
-  "template": "default",
-  "payload": [
-    {
-      "slot": "top",
-      "enabled": true,
-      "rows": [
-        {
-          "columns": [
-            {
-              "grow": true,
-              "items": [
-                {
-                  "component": "promotion",
-                  "enabled": true,
-                  "props": {
-                    "type": "text",
-                    "content": "ƯU ĐÃI MÙA HÈ - GIẢM ĐẾN 30% + QUÀ TẶNG HẤP DẪN",
-                    "href": "#promotions",
-                    "ctaLabel": "Xem chi tiết"
+  "updatedAt": "2026-08-15T16:05:00+07:00",
+  "site": {
+    "siteTitle": "BikeSport",
+    "tagLine": "",
+    "logo": "/bikesport-logo.svg",
+    "showSiteTitle": false,
+    "showTagLine": false
+  },
+  "header": {
+    "name": "Header",
+    "template": "default",
+    "payload": [
+      {
+        "slot": "top",
+        "enabled": true,
+        "rows": [
+          {
+            "columns": [
+              {
+                "grow": true,
+                "items": [
+                  {
+                    "component": "promotion",
+                    "enabled": true,
+                    "props": {
+                      "type": "text",
+                      "content": "ƯU ĐÃI MÙA HÈ - GIẢM ĐẾN 30% + QUÀ TẶNG HẤP DẪN",
+                      "href": "#promotions",
+                      "ctaLabel": "Xem chi tiết"
+                    }
                   }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slot": "main",
-      "enabled": true,
-      "rows": [
-        {
-          "columns": [
-            {
-              "items": [
-                {
-                  "component": "button",
-                  "props": {
-                    "variant": "icon",
-                    "icon": "menu",
-                    "aria-label": "Mở menu"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "main",
+        "enabled": true,
+        "rows": [
+          {
+            "columns": [
+              {
+                "items": [
+                  {
+                    "component": "button",
+                    "props": {
+                      "variant": "icon",
+                      "icon": "menu",
+                      "aria-label": "Mở menu"
+                    }
+                  },
+                  {
+                    "component": "logo",
+                    "props": {
+                      "href": "#home"
+                    }
                   }
-                },
-                {
-                  "component": "logo",
-                  "props": {
-                    "href": "#home"
+                ]
+              },
+              {
+                "grow": true,
+                "items": [
+                  {
+                    "component": "search-form",
+                    "props": {
+                      "placeholder": "Tìm kiếm xe đạp, phụ kiện..."
+                    }
                   }
-                }
-              ]
-            },
-            {
-              "grow": true,
-              "items": [
-                {
-                  "component": "search-form",
-                  "props": {
-                    "placeholder": "Tìm kiếm xe đạp, phụ kiện..."
+                ]
+              },
+              {
+                "items": [
+                  {
+                    "component": "contact",
+                    "props": {
+                      "label": "Hotline",
+                      "value": "1900 633 022",
+                      "href": "tel:1900633022"
+                    }
+                  },
+                  {
+                    "component": "account",
+                    "props": {
+                      "label": "Tài khoản",
+                      "href": "#account"
+                    }
+                  },
+                  {
+                    "component": "mini-cart",
+                    "props": {
+                      "label": "Giỏ hàng",
+                      "href": "#cart",
+                      "count": 2
+                    }
                   }
-                }
-              ]
-            },
-            {
-              "items": [
-                {
-                  "component": "contact",
-                  "props": {
-                    "label": "Hotline",
-                    "value": "1900 633 022",
-                    "href": "tel:1900633022"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "bottom",
+        "enabled": true,
+        "rows": [
+          {
+            "columns": [
+              {
+                "grow": true,
+                "items": [
+                  {
+                    "component": "nav-menu",
+                    "props": {
+                      "items": [
+                        { "label": "XE ĐẠP", "href": "#bikes", "hasDropdown": true },
+                        { "label": "PHỤ KIỆN", "href": "#accessories", "hasDropdown": true },
+                        { "label": "KHUYẾN MÃI", "href": "#promotions", "highlight": true },
+                        { "label": "SỰ KIỆN", "href": "#events" },
+                        { "label": "DỊCH VỤ", "href": "#services" },
+                        { "label": "BLOG", "href": "#blog" },
+                        { "label": "CỬA HÀNG", "href": "#stores" }
+                      ]
+                    }
                   }
-                },
-                {
-                  "component": "account",
-                  "props": {
-                    "label": "Tài khoản",
-                    "href": "#account"
-                  }
-                },
-                {
-                  "component": "mini-cart",
-                  "props": {
-                    "label": "Giỏ hàng",
-                    "href": "#cart",
-                    "count": 2
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "slot": "bottom",
-      "enabled": true,
-      "rows": [
-        {
-          "columns": [
-            {
-              "grow": true,
-              "items": [
-                {
-                  "component": "nav-menu",
-                  "props": {
-                    "items": [
-                      { "label": "XE ĐẠP", "href": "#bikes", "hasDropdown": true },
-                      { "label": "PHỤ KIỆN", "href": "#accessories", "hasDropdown": true },
-                      { "label": "KHUYẾN MÃI", "href": "#promotions", "highlight": true },
-                      { "label": "SỰ KIỆN", "href": "#events" },
-                      { "label": "DỊCH VỤ", "href": "#services" },
-                      { "label": "BLOG", "href": "#blog" },
-                      { "label": "CỬA HÀNG", "href": "#stores" }
-                    ]
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
