@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
 
@@ -12,10 +13,10 @@ export function NavMenu({ items = [] }: NavMenuProps) {
 
           return (
             <li key={`${item.label}-${index}`}>
-              <a href={item.href || "#"} className={`inline-flex min-h-12 items-center gap-1 text-xs font-bold tracking-wide ${item.highlight ? "text-red-500" : "text-gray-900"}`}>
+              <Link href={item.href || "/"} className={`inline-flex min-h-12 items-center gap-1 text-xs font-bold tracking-wide ${item.highlight ? "text-red-500" : "text-gray-900"}`}>
                 <span>{item.label}</span>
                 {item.hasDropdown ? <ChevronDown aria-hidden="true" size={13} strokeWidth={2} /> : null}
-              </a>
+              </Link>
             </li>
           );
         })}
