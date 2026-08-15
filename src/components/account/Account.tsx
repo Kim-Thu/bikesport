@@ -1,9 +1,5 @@
 import { UserRound } from "lucide-react";
-
-interface AccountProps {
-  label?: string;
-  href?: string;
-}
+import type { AccountProps } from "@/interfaces/account.interface";
 
 export function Account({ label = "Tài khoản", href = "#account" }: AccountProps) {
   return (

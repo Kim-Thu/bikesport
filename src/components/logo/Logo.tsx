@@ -1,10 +1,5 @@
 import Image from "next/image";
-
-interface LogoProps {
-  src?: string;
-  alt?: string;
-  href?: string;
-}
+import type { LogoProps } from "@/interfaces/logo.interface";
 
 export function Logo({ src = "/bikesport-logo.svg", alt = "Logo", href = "#home" }: LogoProps) {
   if (!src) return null;

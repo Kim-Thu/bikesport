@@ -1,13 +1,8 @@
 import { Column } from "@/components/layout/Column";
 import { Container } from "@/components/layout/Container";
 import { Row } from "@/components/layout/Row";
-import type { HeaderSlot } from "../interfaces/header.interface";
-import { ComponentRenderer } from "./ComponentRenderer";
-
-interface RegionRendererProps {
-  region: HeaderSlot;
-  rowClassName?: string;
-}
+import { ComponentRenderer } from "@/components/ComponentRenderer";
+import type { RegionRendererProps } from "@/interfaces/region-renderer.interface";
 
 export function RegionRenderer({ region, rowClassName = "gap-4" }: RegionRendererProps) {
   if (region.enabled === false || !region.rows?.length) return null;

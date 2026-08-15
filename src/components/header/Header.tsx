@@ -1,4 +1,4 @@
-import type { HeaderProps } from "./interfaces/header.interface";
+import type { HeaderProps } from "@/interfaces/header.interface";
 import { Template } from "./templates/Template";
 
 export function Header({ settings }: HeaderProps) {

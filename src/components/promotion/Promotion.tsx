@@ -1,14 +1,6 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-
-interface PromotionProps {
-  type?: "text" | "image";
-  content?: string;
-  src?: string;
-  alt?: string;
-  href?: string;
-  ctaLabel?: string;
-}
+import type { PromotionProps } from "@/interfaces/promotion.interface";
 
 export function Promotion({ type = "text", content, src, alt = "Promotion", href, ctaLabel }: PromotionProps) {
   if (type === "image") {

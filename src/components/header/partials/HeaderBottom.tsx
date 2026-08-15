@@ -1,11 +1,7 @@
-import type { HeaderSlot } from "../interfaces/header.interface";
-import { RegionRenderer } from "../components/RegionRenderer";
+import { RegionRenderer } from "@/components/RegionRenderer";
+import type { HeaderPartialProps } from "@/interfaces/header.interface";
 
-interface HeaderBottomProps {
-  region?: HeaderSlot;
-}
-
-export function HeaderBottom({ region }: HeaderBottomProps) {
+export function HeaderBottom({ region }: HeaderPartialProps) {
   if (!region || region.enabled === false) return null;
 
   return (

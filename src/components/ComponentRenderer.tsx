@@ -1,16 +1,12 @@
-import type { HeaderItem } from "../interfaces/header.interface";
-import { Account } from "./Account";
-import { Contact } from "./Contact";
-import { Logo } from "./Logo";
-import { MenuButton } from "./MenuButton";
-import { MiniCart } from "./MiniCart";
-import { NavMenu } from "./NavMenu";
-import { Promotion } from "./Promotion";
-import { SearchForm } from "./SearchForm";
-
-interface ComponentRendererProps {
-  item: HeaderItem;
-}
+import type { ComponentRendererProps } from "@/interfaces/component-renderer.interface";
+import { Account } from "@/components/account/Account";
+import { Contact } from "@/components/contact/Contact";
+import { Logo } from "@/components/logo/Logo";
+import { MenuButton } from "@/components/menu/MenuButton";
+import { MiniCart } from "@/components/cart/MiniCart";
+import { NavMenu } from "@/components/navigation/NavMenu";
+import { Promotion } from "@/components/promotion/Promotion";
+import { SearchForm } from "@/components/search/SearchForm";
 
 export function ComponentRenderer({ item }: ComponentRendererProps) {
   if (item.enabled === false) return null;

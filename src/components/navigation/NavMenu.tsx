@@ -1,15 +1,5 @@
 import { ChevronDown } from "lucide-react";
-
-interface NavMenuItem {
-  label?: string;
-  href?: string;
-  hasDropdown?: boolean;
-  highlight?: boolean;
-}
-
-interface NavMenuProps {
-  items?: NavMenuItem[];
-}
+import type { NavMenuProps } from "@/interfaces/navigation.interface";
 
 export function NavMenu({ items = [] }: NavMenuProps) {
   if (!items.length) return null;

@@ -1,10 +1,5 @@
 import { ShoppingCart } from "lucide-react";
-
-interface MiniCartProps {
-  label?: string;
-  href?: string;
-  count?: number;
-}
+import type { MiniCartProps } from "@/interfaces/cart.interface";
 
 export function MiniCart({ label = "Giỏ hàng", href = "#cart", count = 0 }: MiniCartProps) {
   return (

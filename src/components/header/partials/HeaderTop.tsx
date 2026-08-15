@@ -1,11 +1,7 @@
-import type { HeaderSlot } from "../interfaces/header.interface";
-import { RegionRenderer } from "../components/RegionRenderer";
+import { RegionRenderer } from "@/components/RegionRenderer";
+import type { HeaderPartialProps } from "@/interfaces/header.interface";
 
-interface HeaderTopProps {
-  region?: HeaderSlot;
-}
-
-export function HeaderTop({ region }: HeaderTopProps) {
+export function HeaderTop({ region }: HeaderPartialProps) {
   if (!region || region.enabled === false) return null;
 
   return (

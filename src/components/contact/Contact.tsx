@@ -1,10 +1,5 @@
 import { Phone } from "lucide-react";
-
-interface ContactProps {
-  label?: string;
-  value?: string;
-  href?: string;
-}
+import type { ContactProps } from "@/interfaces/contact.interface";
 
 export function Contact({ label = "Hotline", value, href }: ContactProps) {
   if (!value) return null;
