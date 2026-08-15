@@ -3,9 +3,10 @@
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3301",
       "name": "Main Menu",
-      "author": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-15T14:30:00+07:00",
-      "updatedAt": "2026-08-15T16:17:00+07:00",
+      "updatedAt": "2026-08-15T16:27:00+07:00",
       "items": [
         { "_id": "66bf4e8c9f2a4d7b8c1e3401", "label": "XE ĐẠP", "href": "#bikes", "hasDropdown": true, "parentId": null, "order": 1 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3402", "label": "PHỤ KIỆN", "href": "#accessories", "hasDropdown": true, "parentId": null, "order": 2 },
