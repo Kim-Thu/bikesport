@@ -1,215 +1,316 @@
-# Storefront Design System
+# BikeSport Storefront Design System
 
-**Trạng thái:** Draft  
-**Mục tiêu:** tạo một contract UI chung để mọi agent phát triển Storefront dùng cùng ngôn ngữ thiết kế, không tự hard-code style hoặc tạo component pattern riêng cho từng màn hình.
+**Trạng thái:** Draft - structure defined, visual values chưa có nguồn để khóa.  
+**Task liên quan:** `DS-001` đến `DS-005` trong `project-task-board.md`.
 
-## 1. Phạm vi
+## 1. Mục tiêu
 
-Design system của Storefront bao gồm:
+Storefront phải có một nguồn token dùng chung. Page/feature agent không được tự tạo màu, spacing, font-size, radius hoặc breakpoint riêng trong từng màn hình.
 
-- design tokens;
-- typography;
-- spacing/layout;
-- color semantics;
-- radius/elevation;
-- motion;
-- responsive behavior;
-- primitive components;
-- reusable UI components;
-- interaction states;
-- accessibility states;
-- content/state conventions như loading, empty, error, disabled.
-
-Tài liệu này chưa khóa framework UI hoặc giá trị token cụ thể vì chưa có nguồn xác nhận.
-
-## 2. Token architecture
-
-Token nên chia thành ba lớp để tránh component dùng trực tiếp giá trị thô.
+Design System của BikeSport gồm 3 lớp:
 
 ```mermaid
-flowchart TD
-    P[Primitive Tokens]
-    S[Semantic Tokens]
-    C[Component Tokens]
-    UI[Storefront Components]
-
-    P --> S
-    S --> C
-    C --> UI
+flowchart LR
+    P[Primitive Tokens] --> S[Semantic Tokens]
+    S --> C[Component Tokens]
+    C --> UI[Storefront Components]
+    UI --> PAGE[Pages / Features]
 ```
 
-### Layer 1 - Primitive tokens
+## 2. Cấu trúc file dự kiến
 
-Các giá trị cơ bản chưa mang ý nghĩa UI cụ thể:
-
-- color palette;
-- font family;
-- font size/line height/weight;
-- spacing scale;
-- radius scale;
-- shadow/elevation scale;
-- breakpoint scale;
-- motion duration/easing.
-
-Ví dụ naming đề xuất, chưa phải giá trị đã chốt:
+Khi Storefront repository được khởi tạo, token nên nằm trong một vùng duy nhất:
 
 ```text
-color.neutral.*
+storefront/
+  src/
+    design-system/
+      tokens/
+        primitive.tokens.*
+        semantic.tokens.*
+        component.tokens.*
+      components/
+        Button/
+        Input/
+        Select/
+        ProductCard/
+        Price/
+        StockStatus/
+        PromotionBadge/
+        QuantitySelector/
+      layouts/
+        Container/
+        Grid/
+        Stack/
+        Section/
+```
+
+Dấu `*` vì format cuối cùng (JSON/TS/CSS variables/tool-generated) chưa được chốt. Agent không được tự tạo thêm một bộ token thứ hai ở page folder.
+
+## 3. Primitive tokens bắt buộc
+
+Đây là các giá trị gốc. **Giá trị cụ thể chưa được tự bịa khi chưa có design/brand input.**
+
+```text
 color.brand.*
-space.*
+color.neutral.*
+color.red.*
+color.green.*
+color.yellow.*
+
+font.family.body
+font.family.heading
 font.size.*
 font.weight.*
+font.lineHeight.*
+
+space.*
 radius.*
 shadow.*
 breakpoint.*
 motion.duration.*
+motion.easing.*
 ```
 
-### Layer 2 - Semantic tokens
+### Task DS-001
 
-Semantic token mô tả vai trò thay vì màu/số cụ thể:
+Chốt naming + format + source of truth cho token.
+
+### Task DS-002
+
+Điền giá trị thật cho:
+
+- brand palette;
+- neutral palette;
+- typography;
+- spacing scale;
+- radius;
+- shadow;
+- breakpoint;
+- motion.
+
+Task chỉ được `DONE` khi giá trị có nguồn từ design/brand decision.
+
+## 4. Semantic tokens Storefront phải có
+
+Component/page dùng semantic token trước, không gọi primitive trực tiếp nếu semantic đã tồn tại.
+
+### Surface
 
 ```text
-surface.default
+surface.page
+surface.section
+surface.card
 surface.subtle
 surface.inverse
+surface.overlay
+```
+
+### Text
+
+```text
 text.primary
 text.secondary
+text.muted
+text.inverse
 text.disabled
+text.link
+text.price
+text.priceOriginal
+```
+
+### Border
+
+```text
 border.default
+border.subtle
 border.strong
-action.primary.background
+border.focus
+border.error
+```
+
+### Actions
+
+```text
+action.primary.bg
 action.primary.text
-feedback.success
-feedback.warning
-feedback.error
+action.primary.hover
+action.primary.disabled
+
+action.secondary.bg
+action.secondary.text
+action.secondary.border
+action.secondary.hover
+```
+
+### Commerce states
+
+```text
+stock.inStock.text
+stock.lowStock.text
+stock.outOfStock.text
+
+promotion.badge.bg
+promotion.badge.text
+
+price.current.text
+price.original.text
+price.discount.text
+```
+
+### Feedback
+
+```text
+feedback.success.bg
+feedback.success.text
+feedback.warning.bg
+feedback.warning.text
+feedback.error.bg
+feedback.error.text
+feedback.info.bg
+feedback.info.text
 focus.ring
 ```
 
-Component không nên gọi trực tiếp `color.brand.500` nếu ý nghĩa thực tế là `action.primary.background`.
+## 5. Component tokens
 
-### Layer 3 - Component tokens
+Chỉ tạo khi semantic token chưa đủ mô tả component.
 
-Chỉ tạo khi một component thực sự cần contract riêng, ví dụ:
+### Button
 
 ```text
-button.primary.background.default
-button.primary.background.hover
-button.primary.text.default
-card.product.radius
-card.product.spacing
+button.height.sm
+button.height.md
+button.height.lg
+button.paddingX.sm
+button.paddingX.md
+button.paddingX.lg
+button.radius
+```
+
+Màu button dùng `action.primary.*` / `action.secondary.*`, không cần copy thành một bộ màu khác nếu không có lý do.
+
+### Input
+
+```text
+input.height
+input.paddingX
+input.radius
+input.border.default
 input.border.focus
+input.border.error
+input.text
+input.placeholder
 ```
 
-Không tạo component token nếu semantic token đã đủ.
+### ProductCard
 
-## 3. Component hierarchy
+```text
+productCard.radius
+productCard.gap
+productCard.imageRatio
+productCard.padding
+productCard.titleLines
+```
 
-Đề xuất chia component theo trách nhiệm:
+### Commerce components
 
-| Nhóm | Ví dụ |
+```text
+price.gap
+promotionBadge.radius
+promotionBadge.paddingX
+stockStatus.gap
+quantitySelector.height
+quantitySelector.buttonSize
+```
+
+## 6. Component inventory cần build
+
+### Foundation - DS-003
+
+- Button
+- Link
+- Input
+- Textarea
+- Select
+- Checkbox
+- Radio
+- Icon
+- Badge
+- Skeleton
+- Spinner
+- Alert
+- EmptyState
+
+### Layout - DS-004
+
+- Container
+- Stack
+- Inline
+- Grid
+- Section
+- Divider
+
+### Commerce - DS-005
+
+- ProductCard
+- ProductImageGallery
+- Price
+- PromotionBadge
+- StockStatus
+- VariantSelector
+- QuantitySelector
+- CartLineItem
+- OrderSummary
+- StoreAvailability
+
+## 7. Component state matrix
+
+| Component | Default | Hover | Focus-visible | Disabled | Loading | Error/Invalid | Selected |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Button | Required | Required | Required | Required | Required | - | - |
+| Input | Required | Optional | Required | Required | - | Required | - |
+| Select | Required | Optional | Required | Required | - | Required | Required |
+| Checkbox/Radio | Required | Optional | Required | Required | - | Required khi form cần | Required |
+| VariantSelector | Required | Required | Required | Required | - | Required khi unavailable | Required |
+| QuantitySelector | Required | Required | Required | Required | Optional | Required khi vượt giới hạn | - |
+
+Task DS-003/005 không được `DONE` nếu thiếu state bắt buộc.
+
+## 8. Page nào dùng component nào
+
+| Storefront task | Component chính |
 | --- | --- |
-| Primitive | Button, Input, Select, Checkbox, Radio, Icon, Text |
-| Layout | Container, Stack, Grid, Section |
-| Feedback | Alert, Toast, Skeleton, Spinner, EmptyState |
-| Commerce | ProductCard, Price, PromotionBadge, StockStatus, QuantitySelector |
-| Navigation | Header, Breadcrumb, Pagination, Tabs |
-| Form/Checkout | FormField, AddressForm, ShippingOption, PaymentOption |
+| `SF-002` Product Listing | Container, Grid, ProductCard, Price, StockStatus, PromotionBadge |
+| `SF-003` Product Detail | ProductImageGallery, Price, VariantSelector, StockStatus, QuantitySelector, Button |
+| `SF-004` Store | StoreAvailability, Card/List, Button/Link |
+| `SF-005` Cart | CartLineItem, QuantitySelector, Price, OrderSummary |
+| `SF-006` Checkout | Input, Select, Radio, Checkbox, OrderSummary, Button, Alert |
+| `SF-007` Order Status | Badge/Status, Price, OrderSummary, Alert |
 
-Tên cụ thể có thể thay đổi khi implementation stack được chốt.
+Nếu agent cần component mới, thêm task `DS-*` hoặc mở rộng task hiện tại có ghi rõ scope; không tạo local component trùng chức năng mà không cập nhật design system.
 
-## 4. State contract
+## 9. Responsive tokens
 
-Mỗi interactive component phải xác định các state áp dụng:
+Breakpoint values chưa được chốt, nhưng contract phải có một bộ duy nhất:
 
-- default;
-- hover;
-- focus-visible;
-- active/pressed;
-- disabled;
-- loading;
-- error/invalid khi có;
-- selected/checked khi có.
-
-Agent không được bỏ focus state chỉ vì mockup không vẽ riêng.
-
-## 5. Responsive contract
-
-Trước khi page/component được coi là hoàn thành cần xác định:
-
-- container behavior;
-- grid behavior;
-- breakpoint behavior;
-- content priority khi màn hình hẹp;
-- image/media ratio;
-- overflow/long text behavior;
-- touch target khi áp dụng.
-
-Breakpoint cụ thể hiện là `TBD`; agent không được tự coi breakpoint riêng của một page là chuẩn toàn hệ thống.
-
-## 6. Storefront page contract
-
-Mỗi page nên dùng lại các foundation sau thay vì tự dựng riêng:
-
-```mermaid
-flowchart TD
-    TOKENS[Design Tokens]
-    PRIMITIVES[Primitives]
-    COMPS[Reusable Components]
-    PATTERNS[Commerce Patterns]
-    PAGE[Page]
-
-    TOKENS --> PRIMITIVES
-    PRIMITIVES --> COMPS
-    COMPS --> PATTERNS
-    PATTERNS --> PAGE
+```text
+breakpoint.sm
+breakpoint.md
+breakpoint.lg
+breakpoint.xl
 ```
 
-Ví dụ Product Detail không nên tự định nghĩa lại button, price style, stock status hoặc spacing nếu các contract đó đã tồn tại.
+Các page `SF-*` không được tự định nghĩa breakpoint khác ngoài bộ này khi DS-002 đã hoàn tất.
 
-## 7. Token source of truth
+## 10. Status tracking
 
-Cần chốt một nơi duy nhất làm nguồn token chính. Hiện trạng: **TBD**.
-
-Khi implementation được quyết định, source of truth phải đáp ứng:
-
-- token được version control;
-- component sử dụng token thay vì copy giá trị;
-- thay đổi token có thể trace;
-- không duy trì hai bộ token độc lập không có cơ chế sync;
-- có mapping rõ giữa design artifact và code nếu dùng công cụ thiết kế ngoài repository.
-
-## 8. Design System quality gate
-
-| ID | Điều kiện | Evidence | Status |
+| ID | Hạng mục | Status | Evidence |
 | --- | --- | --- | --- |
-| DS-GATE-001 | Không hard-code visual value ngoài trường hợp được phê duyệt | Code review/static check TBD | Blocked |
-| DS-GATE-002 | Component dùng semantic token phù hợp | Component review | Blocked |
-| DS-GATE-003 | Interactive component có state cần thiết | Story/component test TBD | Blocked |
-| DS-GATE-004 | Page dùng reusable component khi contract đã tồn tại | Review | Blocked |
-| DS-GATE-005 | Responsive behavior được kiểm chứng | Visual/device test TBD | Blocked |
-| DS-GATE-006 | Accessibility state được kiểm chứng | Accessibility evidence TBD | Blocked |
+| DS-001 | Token architecture/naming/format | `BLOCKED` | Chưa có decision về format/source |
+| DS-002 | Giá trị token thực tế | `BLOCKED` | Chưa có design/brand input |
+| DS-003 | Foundation components | `BLOCKED` | Chờ DS-001/002 |
+| DS-004 | Layout primitives | `BLOCKED` | Chờ DS-001/002 |
+| DS-005 | Commerce components | `BLOCKED` | Chờ DS-003 + Backend contracts |
 
-## 9. Task rule cho Storefront agent
-
-Khi agent gặp giá trị/style chưa có trong design system:
-
-1. Kiểm tra semantic token hiện có.
-2. Nếu không có, xác định đây là thiếu token hay ngoại lệ của component.
-3. Không tự thêm giá trị hard-code vào page rồi bỏ qua design system.
-4. Nếu cần token mới, tạo task `DS-xxx` hoặc cập nhật design-system contract trong cùng change nếu task cho phép.
-5. Ghi ảnh hưởng tới component/page đang dùng token đó.
-
-## 10. Các quyết định còn mở
-
-- Visual direction/brand palette.
-- Typography family và scale.
-- Spacing scale.
-- Breakpoints.
-- Radius/elevation system.
-- Light/dark theme có thuộc scope hay không.
-- Framework/component library nếu có.
-- Token source of truth và định dạng lưu token.
-- Tooling kiểm tra hard-coded values.
-
-Các mục trên chưa được xác nhận nên không được xem là requirement đã chốt.
+Khi implementation bắt đầu, trạng thái trong bảng này và `project-task-board.md` phải được cập nhật cùng nhau.
