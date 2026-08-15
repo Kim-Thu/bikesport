@@ -1,5 +1,5 @@
 import { Header } from "@/components/header/Header";
-import type { HeaderSettings } from "@/components/header/interfaces/header.interface";
+import type { HeaderSettings } from "@/interfaces/header.interface";
 import headerSettings from "@/data/wp-settings.json";
 
 export default function Home() {
