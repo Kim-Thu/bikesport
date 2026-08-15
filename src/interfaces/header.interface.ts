@@ -8,11 +8,7 @@ export interface HeaderSlot {
 }
 
 export interface HeaderSettings {
-  _id: string;
   name: string;
-  author: string;
-  createdAt: string;
-  updatedAt: string;
   template: HeaderTemplateName;
   payload: HeaderSlot[];
 }
