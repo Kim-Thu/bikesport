@@ -14,13 +14,13 @@ export function Promotion({ type = "text", content, src, alt = "Promotion", href
   if (!content) return null;
 
   return (
-    <div className="flex min-h-9 items-center justify-center gap-3 text-center text-xs text-white max-sm:text-promotion-mobile">
-      {icon ? <Icon src={icon} className="h-4 w-4 text-white max-sm:h-3.5 max-sm:w-3.5" /> : null}
+    <div className="flex min-h-9 items-center justify-center gap-3 text-center text-sm text-white max-sm:text-xs">
+      {icon ? <Icon src={icon} className="h-3.5 w-3.5 text-white max-sm:h-3 max-sm:w-3" /> : null}
       <strong>{content}</strong>
       {href && ctaLabel ? (
         <Link href={href} className="inline-flex items-center gap-1 border-l border-white/40 pl-4 max-sm:hidden">
           {ctaLabel}
-          <Icon name="arrow-right" className="h-3.5 w-3.5" />
+          <Icon name="arrow-right" className="h-3 w-3" />
         </Link>
       ) : null}
     </div>
