@@ -7,6 +7,8 @@
       "order": 1,
       "name": "Storefront Hero Demo 1",
       "status": "active",
+      "variant": "promo-left",
+      "overlay": { "variant": "blue-left" },
       "eyebrow": "CHINH PHỤC MỌI CUNG ĐƯỜNG",
       "title": "GIẢM ĐẾN",
       "titleHighlight": "20%",
@@ -29,7 +31,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T17:07:00+07:00",
-      "updatedAt": "2026-08-16T19:01:00+07:00"
+      "updatedAt": "2026-08-16T19:15:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3a02",
@@ -38,29 +40,20 @@
       "order": 2,
       "name": "Storefront Hero Demo 2",
       "status": "active",
+      "variant": "centered",
       "eyebrow": "ƯU ĐÃI DÀNH CHO MÙA HÈ",
       "title": "TIẾT KIỆM ĐẾN",
       "titleHighlight": "10%",
       "description": "KÈM VOUCHER CHO SẢN PHẨM ÁP DỤNG",
       "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3716",
-      "features": [
-        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3717", "title": "Trả góp 0%", "description": "Lãi suất" },
-        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3721", "title": "Bảo hành", "description": "Chính hãng" },
-        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3715", "title": "Miễn phí", "description": "Giao hàng" }
-      ],
       "actions": [
         { "label": "XEM SẢN PHẨM", "href": "#products", "variant": "primary" },
         { "label": "XEM ƯU ĐÃI", "href": "#promotions", "variant": "outline" }
       ],
-      "promotionCards": [
-        { "label": "FLASH SALE", "description": "Kết thúc sau", "promotionId": "66bf4e8c9f2a4d7b8c1e3901", "icon": "tag" },
-        { "label": "VOUCHER", "description": "Giảm thêm", "promotionId": "66bf4e8c9f2a4d7b8c1e3902", "icon": "badge-percent" },
-        { "label": "QUÀ TẶNG", "description": "Ưu đãi kèm sản phẩm", "promotionId": "66bf4e8c9f2a4d7b8c1e3904", "icon": "gift" }
-      ],
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T17:50:00+07:00",
-      "updatedAt": "2026-08-16T19:01:00+07:00"
+      "updatedAt": "2026-08-16T19:15:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3a03",
@@ -69,29 +62,12 @@
       "order": 3,
       "name": "Storefront Hero Demo 3",
       "status": "active",
-      "eyebrow": "ĐỒNG HÀNH TRÊN MỌI HÀNH TRÌNH",
-      "title": "QUÀ TẶNG",
-      "titleHighlight": "HẤP DẪN",
-      "description": "ÁP DỤNG CHO SẢN PHẨM TRONG CHƯƠNG TRÌNH",
+      "variant": "image-only",
       "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3716",
-      "features": [
-        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3717", "title": "Trả góp 0%", "description": "Lãi suất" },
-        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3721", "title": "Bảo hành", "description": "Chính hãng" },
-        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3715", "title": "Miễn phí", "description": "Giao hàng" }
-      ],
-      "actions": [
-        { "label": "KHÁM PHÁ NGAY", "href": "#products", "variant": "primary" },
-        { "label": "THỂ LỆ", "href": "#promotions", "variant": "outline" }
-      ],
-      "promotionCards": [
-        { "label": "FLASH SALE", "description": "Kết thúc sau", "promotionId": "66bf4e8c9f2a4d7b8c1e3901", "icon": "tag" },
-        { "label": "VOUCHER", "description": "Giảm thêm", "promotionId": "66bf4e8c9f2a4d7b8c1e3902", "icon": "badge-percent" },
-        { "label": "QUÀ TẶNG", "description": "Ưu đãi kèm sản phẩm", "promotionId": "66bf4e8c9f2a4d7b8c1e3904", "icon": "gift" }
-      ],
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T17:50:00+07:00",
-      "updatedAt": "2026-08-16T19:01:00+07:00"
+      "updatedAt": "2026-08-16T19:15:00+07:00"
     }
   ]
 }
