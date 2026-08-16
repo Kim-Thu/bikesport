@@ -3,7 +3,7 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T14:03:00+07:00",
+  "updatedAt": "2026-08-16T14:38:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
@@ -156,5 +156,34 @@
         ]
       }
     ]
+  },
+  "footer": {
+    "name": "Footer",
+    "template": "default",
+    "description": "BikeSport - đồng hành cùng cộng đồng yêu xe đạp với sản phẩm, phụ kiện và dịch vụ phù hợp cho nhiều nhu cầu di chuyển và luyện tập.",
+    "menuIds": [
+      "66bf4e8c9f2a4d7b8c1e3501",
+      "66bf4e8c9f2a4d7b8c1e3502",
+      "66bf4e8c9f2a4d7b8c1e3503"
+    ],
+    "assets": [
+      {
+        "label": "Phương thức thanh toán",
+        "src": "/uploads/images/footer-payment-methods.png",
+        "alt": "Phương thức thanh toán BikeSport",
+        "width": 220,
+        "height": 40,
+        "enabled": false
+      },
+      {
+        "label": "Đã thông báo Bộ Công Thương",
+        "src": "/uploads/images/bo-cong-thuong.png",
+        "alt": "Đã thông báo Bộ Công Thương",
+        "width": 160,
+        "height": 60,
+        "enabled": false
+      }
+    ],
+    "copyright": "© 2026 BikeSport. All rights reserved."
   }
 }
