@@ -13,13 +13,13 @@ export function MediaFooterTemplate({ title, href, mediaId, className }: CardPro
         className,
       )}
     >
-      <div className="flex min-h-28 flex-1 items-center justify-center bg-white p-3 sm:min-h-32 lg:min-h-36">
+      <div className="aspect-4/3 w-full overflow-hidden bg-white p-3">
         <MediaImage
           mediaId={mediaId}
           alt={title}
           width={320}
-          height={220}
-          className="h-24 w-full object-contain transition-transform duration-300 group-hover:scale-105 sm:h-28 lg:h-32"
+          height={240}
+          className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
