@@ -1,0 +1,17 @@
+{
+  "categories": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3c01",
+      "type": "banner",
+      "name": "Storefront Hero",
+      "slug": "storefront-hero",
+      "description": "Banner hero dùng cho storefront",
+      "parentId": null,
+      "status": "active",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T19:01:00+07:00",
+      "updatedAt": "2026-08-16T19:01:00+07:00"
+    }
+  ]
+}
