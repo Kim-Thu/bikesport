@@ -3,7 +3,7 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T15:22:00+07:00",
+  "updatedAt": "2026-08-16T15:25:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
@@ -184,7 +184,7 @@
   "footer": {
     "name": "Footer",
     "template": "default",
-    "description": "Hệ thống bán lẻ xe đạp và phụ kiện thể thao BikeSport.",
+    "description": "Hệ thống bán lẻ xe đạp và phụ kiện thể thao uy tín hàng đầu Việt Nam.",
     "menuIds": [
       "66bf4e8c9f2a4d7b8c1e3501",
       "66bf4e8c9f2a4d7b8c1e3503",
