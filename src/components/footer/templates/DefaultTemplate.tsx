@@ -6,7 +6,7 @@ export function DefaultTemplate({ settings }: FooterTemplateProps) {
   return (
     <footer className="border-t border-gray-200 bg-white">
       <FooterMain settings={settings} />
-      <FooterBottom settings={settings} />
+      <FooterBottom />
     </footer>
   );
 }
