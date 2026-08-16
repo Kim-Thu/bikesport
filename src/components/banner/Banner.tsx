@@ -55,7 +55,7 @@ function BannerSlide({ banner }: { banner: BannerRecord }) {
         height={820}
         priority={banner.order === 1}
         sizes="100vw"
-        className="absolute inset-0 h-full w-full object-cover object-center lg:object-contain lg:object-right"
+        className="absolute inset-0 h-full w-full object-cover object-center lg:object-right"
       />
 
       <div
