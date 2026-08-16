@@ -22,6 +22,8 @@ export interface BannerPromotionCard {
 
 export interface BannerRecord {
   _id: string;
+  groupId?: string;
+  order?: number;
   name: string;
   status: BannerStatus;
   eyebrow?: string;
