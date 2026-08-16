@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { CLink } from "@/components/link/CLink";
 import { CList } from "@/components/list/CList";
-import { Social } from "@/components/social/Social";
+import { Column } from "@/components/layout/Column";
+import { Row } from "@/components/layout/Row";
 import wpOption from "@/data/wp-option.json";
 
 export function CompanyInfo() {
@@ -32,7 +33,10 @@ export function CompanyInfo() {
           key: "email",
           content: (
             <span>
-              Email: <CLink href={contact.email.href || `mailto:${contact.email.value}`} className="hover:text-blue-600">{contact.email.value}</CLink>
+              Email:{" "}
+              <CLink href={contact.email.href || `mailto:${contact.email.value}`} className="hover:text-blue-600">
+                {contact.email.value}
+              </CLink>
             </span>
           ),
         }
@@ -42,32 +46,45 @@ export function CompanyInfo() {
           key: "hotline",
           content: (
             <span>
-              {contact.hotline.label}: <CLink href={contact.hotline.href || `tel:${contact.hotline.value.replace(/\s+/g, "")}`} className="font-semibold text-gray-900 hover:text-blue-600">{contact.hotline.value}</CLink>
+              {contact.hotline.label}:{" "}
+              <CLink
+                href={contact.hotline.href || `tel:${contact.hotline.value.replace(/\s+/g, "")}`}
+                className="font-semibold text-gray-900 hover:text-blue-600"
+              >
+                {contact.hotline.value}
+              </CLink>
             </span>
           ),
         }
       : null,
   ].filter(Boolean) as { key: string; content: React.ReactNode }[];
 
+  if (!infoItems.length && !verificationAssets.length) return null;
+
   return (
-    <div className="space-y-4">
-      <CList items={infoItems} className="space-y-2 text-sm leading-6 text-gray-600" />
-      <Social />
+    <Row className="flex-col items-stretch gap-5 border-t border-gray-100 pt-5 sm:flex-row sm:items-start">
+      {infoItems.length ? (
+        <Column grow className="w-full">
+          <CList items={infoItems} className="space-y-2 text-sm leading-6 text-gray-600" />
+        </Column>
+      ) : null}
 
       {verificationAssets.length ? (
-        <div className="flex flex-wrap items-center gap-3 pt-1">
-          {verificationAssets.map((asset) => (
-            <Image
-              key={asset.src}
-              src={asset.src}
-              alt={asset.alt}
-              width={asset.width}
-              height={asset.height}
-              className="h-auto max-h-12 w-auto object-contain"
-            />
-          ))}
-        </div>
+        <Column className="w-full sm:w-auto sm:min-w-40">
+          <div className="flex flex-wrap items-center gap-3 sm:justify-end">
+            {verificationAssets.map((asset) => (
+              <Image
+                key={asset.src}
+                src={asset.src}
+                alt={asset.alt}
+                width={asset.width}
+                height={asset.height}
+                className="h-auto max-h-12 w-auto object-contain"
+              />
+            ))}
+          </div>
+        </Column>
       ) : null}
-    </div>
+    </Row>
   );
 }
