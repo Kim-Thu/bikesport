@@ -15,7 +15,7 @@ export function FlashSaleTemplate({
   return (
     <div className={cn("flex flex-wrap items-center gap-4 rounded-lg bg-red-500 p-4", className)}>
       <div className="flex shrink-0 items-center gap-2 text-white">
-        <Icon name="badge-percent" className="h-6 w-6" strokeWidth={2} />
+        <Icon name="flame" className="h-6 w-6" strokeWidth={2} />
         <Heading level={2} className="text-lg font-bold uppercase sm:text-xl">
           {title}
         </Heading>
