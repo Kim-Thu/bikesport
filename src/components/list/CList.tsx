@@ -1,4 +1,5 @@
 import type { CListProps } from "@/interfaces/list.interface";
+import { cn } from "@/lib/classname.utils";
 
 export function CList({ items, ordered = false, className = "", itemClassName = "" }: CListProps) {
   const List = ordered ? "ol" : "ul";
@@ -6,9 +7,9 @@ export function CList({ items, ordered = false, className = "", itemClassName = 
   if (!items.length) return null;
 
   return (
-    <List className={className}>
+    <List className={cn(className)}>
       {items.map((item) => (
-        <li key={item.key} className={`${itemClassName} ${item.className ?? ""}`.trim()}>
+        <li key={item.key} className={cn(itemClassName, item.className)}>
           {item.content}
         </li>
       ))}
