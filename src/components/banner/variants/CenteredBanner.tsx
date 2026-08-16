@@ -13,10 +13,10 @@ export function CenteredBanner({ banner }: { banner: BannerRecord }) {
   const actions = banner.actions ?? [];
 
   return (
-    <div className="relative flex min-h-88 w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent lg:min-h-125">
+    <div className="relative flex aspect-4/3 w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent sm:aspect-video lg:aspect-[64/15]">
       <BannerBackground banner={banner} />
 
-      <div className="relative z-20 flex min-h-88 w-full items-center justify-center p-5 text-center sm:p-7 lg:min-h-125 lg:p-8">
+      <div className="relative z-20 flex w-full items-center justify-center p-5 text-center sm:p-7 lg:p-8">
         <div className="max-w-3xl">
           {banner.eyebrow ? (
             <p className="mb-3 text-xs font-bold uppercase tracking-wide text-gray-800 sm:text-sm">{banner.eyebrow}</p>
@@ -40,7 +40,7 @@ export function CenteredBanner({ banner }: { banner: BannerRecord }) {
                   key={`${action.label}-${action.href}`}
                   href={action.href}
                   className={cn(
-                    "inline-flex min-h-10 items-center justify-center rounded-md border px-5 text-xs font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
+                    "inline-flex items-center justify-center rounded-md border px-5 py-2.5 text-xs font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
                     ACTION_CLASS[action.variant ?? "primary"],
                   )}
                 >
