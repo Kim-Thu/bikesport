@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { MediaImage } from "@/components/media/MediaImage";
 import paymentData from "@/data/wp-payment.json";
 import type { PaymentMethod, PaymentProps } from "@/interfaces/payment.interface";
 import { cn } from "@/lib/classname.utils";
@@ -22,11 +22,11 @@ export function Payment({ className = "", itemClassName = "", imageClassName = "
           )}
           title={method.label}
         >
-          <Image
-            src={method.logo}
-            alt={method.alt}
-            width={method.width}
-            height={method.height}
+          <MediaImage
+            mediaId={method.mediaId}
+            alt={method.label}
+            width={64}
+            height={40}
             className={cn("h-6 w-auto max-w-16 object-contain", imageClassName)}
           />
         </div>
