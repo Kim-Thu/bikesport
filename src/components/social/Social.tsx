@@ -16,7 +16,7 @@ export function Social() {
           aria-label={item.label}
           className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition hover:border-blue-600 hover:text-blue-600"
         >
-          <Icon src={item.icon} className="h-4 w-4" />
+          <Icon mediaId={item.iconMediaId} className="h-4 w-4" />
         </CLink>
       ))}
     </div>
