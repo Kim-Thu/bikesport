@@ -13,7 +13,7 @@ export function CenteredBanner({ banner }: { banner: BannerRecord }) {
   const actions = banner.actions ?? [];
 
   return (
-    <div className="relative flex aspect-hero-mobile w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent sm:aspect-hero-tablet lg:aspect-hero">
+    <div className="relative flex aspect-hero-mobile w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent sm:aspect-hero-tablet lg:aspect-8/3">
       <BannerBackground banner={banner} />
 
       <div className="relative z-20 flex w-full items-center justify-center p-5 text-center sm:p-7 lg:p-8">
