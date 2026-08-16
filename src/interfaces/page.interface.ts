@@ -4,7 +4,7 @@ import type { PageBlockPayload } from "@/interfaces/page-block.interface";
 
 export type PageStatus = "draft" | "published";
 export type PageSectionStatus = "active" | "inactive";
-export type PageSectionComponent = "banner" | "stack" | "card-grid" | "lead-slider" | "content-aside";
+export type PageSectionComponent = "banner" | "stack" | "card-grid" | "layout" | "content-aside";
 
 export interface PageBoxIconProps {
   icon?: string;
@@ -60,20 +60,29 @@ export interface CardGridSectionPayload extends PageSectionBase {
   };
 }
 
-export interface LeadSliderSectionPayload extends PageSectionBase {
-  component: "lead-slider";
-  props: {
-    leadTemplate: CardTemplate;
-    productTemplate: CardTemplate;
-    trackClassName?: string;
-    slideClassName?: string;
-    limit?: number;
-    sectionClassName?: string;
-    source: {
-      type: "promotion";
-      promotionId: string;
-    };
+export interface LayoutColumnPayload {
+  _id: string;
+  props?: {
+    className?: string;
+    grow?: boolean;
   };
+  blocks: PageBlockPayload[];
+}
+
+export interface LayoutRowPayload {
+  _id: string;
+  props?: {
+    className?: string;
+  };
+  columns: LayoutColumnPayload[];
+}
+
+export interface LayoutSectionPayload extends PageSectionBase {
+  component: "layout";
+  props: {
+    sectionClassName?: string;
+  };
+  rows: LayoutRowPayload[];
 }
 
 export interface ContentAsideSectionPayload extends PageSectionBase {
@@ -92,7 +101,7 @@ export type PageSectionPayload =
   | BannerSectionPayload
   | StackSectionPayload
   | CardGridSectionPayload
-  | LeadSliderSectionPayload
+  | LayoutSectionPayload
   | ContentAsideSectionPayload;
 
 export interface PagePayload {
