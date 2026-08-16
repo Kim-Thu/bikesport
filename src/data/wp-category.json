@@ -97,6 +97,22 @@
       "updatedAt": "2026-08-16T20:42:00+07:00"
     },
     {
+      "_id": "66bf4e8c9f2a4d7b8c1e3c17",
+      "type": "product",
+      "name": "Xe đạp Touring",
+      "slug": "xe-dap-touring",
+      "description": null,
+      "parentId": "66bf4e8c9f2a4d7b8c1e3c02",
+      "mediaId": null,
+      "featured": true,
+      "order": 5,
+      "status": "active",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T04:45:00+07:00",
+      "updatedAt": "2026-08-17T04:45:00+07:00"
+    },
+    {
       "_id": "66bf4e8c9f2a4d7b8c1e3c15",
       "type": "product",
       "name": "Phụ kiện - Linh kiện",
@@ -105,12 +121,12 @@
       "parentId": "66bf4e8c9f2a4d7b8c1e3c03",
       "mediaId": null,
       "featured": true,
-      "order": 5,
+      "order": 6,
       "status": "active",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:42:00+07:00",
-      "updatedAt": "2026-08-16T20:42:00+07:00"
+      "updatedAt": "2026-08-17T04:45:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3c16",
@@ -121,12 +137,12 @@
       "parentId": "66bf4e8c9f2a4d7b8c1e3c03",
       "mediaId": null,
       "featured": true,
-      "order": 6,
+      "order": 7,
       "status": "active",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:42:00+07:00",
-      "updatedAt": "2026-08-16T20:42:00+07:00"
+      "updatedAt": "2026-08-17T04:45:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3d01",
