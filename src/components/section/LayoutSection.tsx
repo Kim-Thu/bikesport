@@ -7,7 +7,7 @@ import type { LayoutSectionPayload } from "@/interfaces/page.interface";
 
 export function LayoutSection({ section }: { section: LayoutSectionPayload }) {
   return (
-    <Section className={section.props.sectionClassName}>
+    <Section template={section.props.sectionTemplate} className={section.props.sectionClassName}>
       <Container>
         {section.rows.map((row) => (
           <Row key={row._id} className={row.props?.className}>
