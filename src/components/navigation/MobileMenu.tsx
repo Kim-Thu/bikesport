@@ -12,11 +12,14 @@ import {
   getRootMenuItems,
   hasMenuChildren,
 } from "@/lib/menu.utils";
+import { useUiStore } from "@/stores/ui.store";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function MobileMenu({ menuId }: NavMenuProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const isOpen = useUiStore((state) => state.isMobileMenuOpen);
+  const openMobileMenu = useUiStore((state) => state.openMobileMenu);
+  const closeMobileMenu = useUiStore((state) => state.closeMobileMenu);
   const [isVisible, setIsVisible] = useState(false);
   const [expandedItemId, setExpandedItemId] = useState<string | null>(null);
   const menu = getMenuById(menuId);
@@ -38,13 +41,13 @@ export function MobileMenu({ menuId }: NavMenuProps) {
     const handleDesktopChange = (event: MediaQueryListEvent) => {
       if (event.matches) {
         setIsVisible(false);
-        setIsOpen(false);
+        closeMobileMenu();
       }
     };
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsVisible(false);
-        window.setTimeout(() => setIsOpen(false), 300);
+        window.setTimeout(closeMobileMenu, 300);
       }
     };
 
@@ -57,14 +60,14 @@ export function MobileMenu({ menuId }: NavMenuProps) {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
     };
-  }, [isOpen]);
+  }, [isOpen, closeMobileMenu]);
 
   if (!rootItems.length) return null;
 
   const closeMenu = () => {
     setIsVisible(false);
     setExpandedItemId(null);
-    window.setTimeout(() => setIsOpen(false), 300);
+    window.setTimeout(closeMobileMenu, 300);
   };
 
   return (
@@ -75,7 +78,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
         aria-label="Mở menu"
         aria-expanded={isOpen}
         aria-controls="mobile-navigation"
-        onClick={() => setIsOpen(true)}
+        onClick={openMobileMenu}
       />
 
       {isOpen ? (
