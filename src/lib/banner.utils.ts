@@ -18,6 +18,10 @@ function isActiveBanner(banner: BannerRecord): boolean {
   return banner.status === "active" && isWithinSchedule(banner);
 }
 
+function sortByOrder(banners: BannerRecord[]): BannerRecord[] {
+  return banners.slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+}
+
 export function getBannerById(bannerId?: string | null): BannerRecord | null {
   if (!bannerId) return null;
   return bannerIndex.get(bannerId) ?? null;
@@ -32,8 +36,17 @@ export function getActiveBannerById(bannerId?: string | null): BannerRecord | nu
 export function getActiveBannersByGroup(groupId?: string | null): BannerRecord[] {
   if (!groupId) return [];
 
-  return bannerData.banners
-    .filter((banner) => banner.groupId === groupId && isActiveBanner(banner))
-    .slice()
-    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  return sortByOrder(
+    bannerData.banners.filter((banner) => banner.groupId === groupId && isActiveBanner(banner)),
+  );
+}
+
+export function getActiveBannersByCategory(categoryId?: string | null): BannerRecord[] {
+  if (!categoryId) return [];
+
+  return sortByOrder(
+    bannerData.banners.filter(
+      (banner) => banner.categoryId === categoryId && isActiveBanner(banner),
+    ),
+  );
 }
