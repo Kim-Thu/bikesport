@@ -24,10 +24,6 @@ export function FooterMain({ settings }: { settings: FooterSettings }) {
             ) : null}
             <Social />
           </div>
-
-          <div className="mt-6">
-            <CompanyInfo />
-          </div>
         </Column>
 
         <Column grow className="w-full">
@@ -54,6 +50,10 @@ export function FooterMain({ settings }: { settings: FooterSettings }) {
           </Row>
         </Column>
       </Row>
+
+      <div className="mt-8 border-t border-gray-100 pt-6 sm:mt-10 sm:pt-8">
+        <CompanyInfo />
+      </div>
     </Container>
   );
 }
