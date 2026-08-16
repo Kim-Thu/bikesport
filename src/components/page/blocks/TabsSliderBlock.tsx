@@ -14,9 +14,10 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
         : { salePrice: null, discountPercentage: null };
 
       return {
-        sku: product.sku,
-        name: product.name,
-        slug: product.slug,
+        _key: product.sku,
+        template: "media-action",
+        title: product.name,
+        href: `/san-pham/${product.slug}`,
         mediaId: getProductPrimaryMediaId(product),
         price: product.price,
         salePrice: pricing.salePrice,
