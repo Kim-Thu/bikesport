@@ -1,3 +1,153 @@
 {
-  "promotions": []
+  "promotions": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3901",
+      "name": "Giảm 20% xe đạp Giant demo",
+      "slug": "giam-20-xe-dap-giant-demo",
+      "status": "active",
+      "priority": 100,
+      "stackable": false,
+      "target": {
+        "type": "product",
+        "productIds": [
+          "66bf4e8c9f2a4d7b8c1e4101",
+          "66bf4e8c9f2a4d7b8c1e4102"
+        ]
+      },
+      "benefits": [
+        {
+          "type": "percentage_discount",
+          "percentage": 20,
+          "maxDiscountAmount": 3000000
+        }
+      ],
+      "startAt": "2026-08-01T00:00:00+07:00",
+      "endAt": "2026-08-31T23:59:59+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T16:54:00+07:00",
+      "updatedAt": "2026-08-16T16:54:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3902",
+      "name": "Giảm 10% và tặng voucher 200K demo",
+      "slug": "giam-10-tang-voucher-200k-demo",
+      "status": "active",
+      "priority": 90,
+      "stackable": true,
+      "target": {
+        "type": "product",
+        "productIds": [
+          "66bf4e8c9f2a4d7b8c1e4103"
+        ]
+      },
+      "conditions": {
+        "minQuantity": 1
+      },
+      "benefits": [
+        {
+          "type": "percentage_discount",
+          "percentage": 10
+        },
+        {
+          "type": "voucher",
+          "code": "BIKE200",
+          "valueType": "fixed",
+          "value": 200000
+        }
+      ],
+      "startAt": "2026-08-01T00:00:00+07:00",
+      "endAt": "2026-08-31T23:59:59+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T16:54:00+07:00",
+      "updatedAt": "2026-08-16T16:54:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3903",
+      "name": "Mua 2 tặng 1 phụ kiện demo",
+      "slug": "mua-2-tang-1-phu-kien-demo",
+      "status": "active",
+      "priority": 80,
+      "stackable": false,
+      "target": {
+        "type": "product",
+        "productIds": [
+          "66bf4e8c9f2a4d7b8c1e4104"
+        ]
+      },
+      "conditions": {
+        "minQuantity": 2
+      },
+      "benefits": [
+        {
+          "type": "buy_x_get_y",
+          "buyProductId": "66bf4e8c9f2a4d7b8c1e4104",
+          "buyQuantity": 2,
+          "getProductId": "66bf4e8c9f2a4d7b8c1e4105",
+          "getQuantity": 1,
+          "getDiscountPercentage": 100
+        }
+      ],
+      "startAt": "2026-08-01T00:00:00+07:00",
+      "endAt": "2026-08-31T23:59:59+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T16:54:00+07:00",
+      "updatedAt": "2026-08-16T16:54:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3904",
+      "name": "Tặng nón bảo hiểm khi mua xe demo",
+      "slug": "tang-non-bao-hiem-khi-mua-xe-demo",
+      "status": "active",
+      "priority": 70,
+      "stackable": true,
+      "target": {
+        "type": "product",
+        "productIds": [
+          "66bf4e8c9f2a4d7b8c1e4106"
+        ]
+      },
+      "benefits": [
+        {
+          "type": "gift",
+          "giftProductId": "66bf4e8c9f2a4d7b8c1e4107",
+          "quantity": 1
+        }
+      ],
+      "startAt": "2026-08-01T00:00:00+07:00",
+      "endAt": "2026-08-31T23:59:59+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T16:54:00+07:00",
+      "updatedAt": "2026-08-16T16:54:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3905",
+      "name": "Miễn phí vận chuyển đơn từ 5 triệu demo",
+      "slug": "mien-phi-van-chuyen-don-tu-5-trieu-demo",
+      "status": "active",
+      "priority": 60,
+      "stackable": true,
+      "target": {
+        "type": "cart"
+      },
+      "conditions": {
+        "minSubtotal": 5000000
+      },
+      "benefits": [
+        {
+          "type": "free_shipping",
+          "maxShippingDiscount": 300000
+        }
+      ],
+      "startAt": "2026-08-01T00:00:00+07:00",
+      "endAt": "2026-08-31T23:59:59+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T16:54:00+07:00",
+      "updatedAt": "2026-08-16T16:54:00+07:00"
+    }
+  ]
 }
