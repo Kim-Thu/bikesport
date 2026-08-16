@@ -1,6 +1,7 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { CategoryType } from "@/interfaces/category.interface";
 import type { PageBlockPayload } from "@/interfaces/page-block.interface";
+import type { SectionTemplate } from "@/interfaces/section.interface";
 
 export type PageStatus = "draft" | "published";
 export type PageSectionStatus = "active" | "inactive";
@@ -80,6 +81,7 @@ export interface LayoutRowPayload {
 export interface LayoutSectionPayload extends PageSectionBase {
   component: "layout";
   props: {
+    sectionTemplate?: SectionTemplate;
     sectionClassName?: string;
   };
   rows: LayoutRowPayload[];
