@@ -1,10 +1,13 @@
 import type { ReactNode } from "react";
 
+export type SectionHeaderTemplate = "default" | "flash-sale";
+
 export interface SectionHeaderProps {
   title: string;
   href?: string;
   actionLabel?: string;
-  template?: "default";
+  template?: SectionHeaderTemplate;
+  countdownAt?: string;
   className?: string;
   children?: ReactNode;
 }
