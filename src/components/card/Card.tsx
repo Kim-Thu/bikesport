@@ -1,18 +1,18 @@
 import type { ReactNode } from "react";
-import { CategoryTemplate } from "@/components/card/templates/CategoryTemplate";
-import { EventTemplate } from "@/components/card/templates/EventTemplate";
-import { ProductTemplate } from "@/components/card/templates/ProductTemplate";
-import { PromotionTemplate } from "@/components/card/templates/PromotionTemplate";
+import { AccentTemplate } from "@/components/card/templates/AccentTemplate";
+import { MediaActionTemplate } from "@/components/card/templates/MediaActionTemplate";
+import { MediaFooterTemplate } from "@/components/card/templates/MediaFooterTemplate";
+import { OverlayTemplate } from "@/components/card/templates/OverlayTemplate";
 import type { CardProps, CardTemplate } from "@/interfaces/card.interface";
 
 const CARD_TEMPLATES: Record<CardTemplate, (props: CardProps) => ReactNode> = {
-  category: CategoryTemplate,
-  event: EventTemplate,
-  product: ProductTemplate,
-  promotion: PromotionTemplate,
+  "media-footer": MediaFooterTemplate,
+  "media-action": MediaActionTemplate,
+  accent: AccentTemplate,
+  overlay: OverlayTemplate,
 };
 
-export function Card({ template = "category", ...props }: CardProps) {
+export function Card({ template = "media-footer", ...props }: CardProps) {
   const Template = CARD_TEMPLATES[template];
 
   return <Template template={template} {...props} />;
