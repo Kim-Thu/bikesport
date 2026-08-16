@@ -33,7 +33,7 @@ export function NavMenu({ menuId }: NavMenuProps) {
               {children.length ? (
                 <MenuChildren
                   items={children}
-                  listClassName="invisible absolute left-0 top-full z-50 min-w-56 list-none border border-gray-100 bg-white p-2 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                  listClassName="invisible absolute left-0 top-full z-50 min-w-56 list-none border border-gray-100 bg-white p-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
                   itemClassName="flex min-h-10 items-center whitespace-nowrap px-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 focus:bg-gray-50 focus:text-blue-600"
                 />
               ) : null}
