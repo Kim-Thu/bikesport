@@ -1,4 +1,5 @@
 import { Card } from "@/components/card/Card";
+import { Carousel } from "@/components/carousel/Carousel";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/section/Section";
 import type { PageSectionPayload } from "@/interfaces/page.interface";
@@ -21,22 +22,26 @@ export function ProductSaleSection({ section }: { section: PageSectionPayload })
             actionLabel={section.props.actionLabel}
           />
 
-          <div className="overflow-x-auto">
-            <div className="grid min-w-max grid-flow-col auto-cols-48 gap-3 sm:auto-cols-52 lg:min-w-0 lg:grid-flow-row lg:grid-cols-5 lg:auto-cols-auto">
-              {products.map((product) => (
-                <Card
-                  key={product._id}
-                  template="product"
-                  title={product.name}
-                  href={`/san-pham/${product.slug}`}
-                  mediaId={getProductPrimaryMediaId(product)}
-                  price={product.price}
-                  salePrice={product.salePrice}
-                  discountPercentage={getProductDiscountPercentage(product)}
-                />
-              ))}
-            </div>
-          </div>
+          <Carousel
+            loop
+            dragFree
+            ariaLabel="Sản phẩm ưu đãi"
+            slideClassName="basis-48 pr-3 sm:basis-52 lg:basis-1/5"
+            dotsClassName="hidden"
+          >
+            {products.map((product) => (
+              <Card
+                key={product._id}
+                template="product"
+                title={product.name}
+                href={`/san-pham/${product.slug}`}
+                mediaId={getProductPrimaryMediaId(product)}
+                price={product.price}
+                salePrice={product.salePrice}
+                discountPercentage={getProductDiscountPercentage(product)}
+              />
+            ))}
+          </Carousel>
         </div>
       </Container>
     </Section>
