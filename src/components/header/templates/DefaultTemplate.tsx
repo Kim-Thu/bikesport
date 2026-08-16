@@ -1,4 +1,5 @@
 import type { HeaderTemplateProps } from "@/interfaces/header.interface";
+import { StickyHeader } from "../StickyHeader";
 import { HeaderBottom } from "../partials/HeaderBottom";
 import { HeaderMain } from "../partials/HeaderMain";
 import { HeaderTop } from "../partials/HeaderTop";
@@ -11,10 +12,10 @@ export function DefaultTemplate({ settings }: HeaderTemplateProps) {
   return (
     <>
       <HeaderTop region={top} />
-      <header id="home" className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white shadow-sm">
+      <StickyHeader>
         <HeaderMain region={main} />
         <HeaderBottom region={bottom} />
-      </header>
+      </StickyHeader>
     </>
   );
 }
