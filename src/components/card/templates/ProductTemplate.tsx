@@ -39,8 +39,9 @@ export function ProductTemplate({
           <Button
             variant="icon"
             icon="cart"
+            iconSize={18}
             aria-label={`Thêm ${title} vào giỏ hàng`}
-            className="shrink-0 rounded-md bg-blue-600 text-white hover:bg-blue-700"
+            className="h-9 w-9 shrink-0 rounded-md bg-blue-600 text-white hover:bg-blue-700"
           />
         </div>
       </div>
