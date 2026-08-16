@@ -23,6 +23,8 @@ export interface CardProps {
   price?: number;
   salePrice?: number | null;
   discountPercentage?: number | null;
+  stockRemaining?: number;
+  stockTotal?: number;
   rating?: number;
   reviewCount?: number;
   actionLabel?: string;
