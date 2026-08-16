@@ -26,7 +26,7 @@ export function Countdown({ endAt }: { endAt: string }) {
     <span
       suppressHydrationWarning
       aria-label={`Còn ${remaining.hours} giờ ${remaining.minutes} phút ${remaining.seconds} giây`}
-      className="font-mono text-sm font-bold tracking-wide text-gray-900"
+      className="font-mono text-lg font-bold tracking-wide text-gray-900 sm:text-xl"
     >
       {format(remaining.hours)} : {format(remaining.minutes)} : {format(remaining.seconds)}
     </span>
