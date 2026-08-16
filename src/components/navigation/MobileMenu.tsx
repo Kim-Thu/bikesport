@@ -1,11 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
 import { Button } from "@/components/button/Button";
 import { Icon } from "@/components/icon/Icon";
 import { Logo } from "@/components/logo/Logo";
-import { MenuChildren } from "@/components/navigation/MenuChildren";
+import { MenuChildren } from "@/components/navigation/partials/MenuChildren";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
 import {
   getChildMenuItems,
@@ -14,6 +12,8 @@ import {
   getRootMenuItems,
   hasMenuChildren,
 } from "@/lib/menu.utils";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export function MobileMenu({ menuId }: NavMenuProps) {
   const [isOpen, setIsOpen] = useState(false);

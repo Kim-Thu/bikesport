@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { Icon } from "@/components/icon/Icon";
-import { MenuChildren } from "@/components/navigation/MenuChildren";
+import { MenuChildren } from "@/components/navigation/partials/MenuChildren";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
 import {
   getChildMenuItems,
@@ -9,6 +8,7 @@ import {
   getRootMenuItems,
   hasMenuChildren,
 } from "@/lib/menu.utils";
+import Link from "next/link";
 
 export function NavMenu({ menuId }: NavMenuProps) {
   const menu = getMenuById(menuId);
