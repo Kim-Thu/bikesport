@@ -49,7 +49,8 @@
           "label": "VOUCHER",
           "description": "Giảm thêm",
           "promotionId": "66bf4e8c9f2a4d7b8c1e3902",
-          "icon": "badge-percent"
+          "icon": "badge-percent",
+          "size": "lg"
         },
         {
           "label": "QUÀ TẶNG",
