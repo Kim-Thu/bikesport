@@ -13,8 +13,16 @@ export function FlashSaleTemplate({
   price,
   salePrice,
   discountPercentage,
+  stockRemaining,
+  stockTotal,
   className,
 }: CardProps) {
+  const hasStockProgress =
+    typeof stockRemaining === "number" && typeof stockTotal === "number" && stockTotal > 0;
+  const stockPercentage = hasStockProgress
+    ? Math.max(0, Math.min(100, Math.round((stockRemaining / stockTotal) * 100)))
+    : 0;
+
   return (
     <article
       className={cn(
@@ -41,6 +49,38 @@ export function FlashSaleTemplate({
         <h3 className="line-clamp-2 text-xs font-semibold text-gray-900 sm:text-sm">
           <CLink href={href}>{title}</CLink>
         </h3>
+
+        {hasStockProgress ? (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between gap-2 text-xs">
+              <span className="font-medium text-red-600">Còn {stockRemaining} sản phẩm</span>
+              <span className="text-gray-500">{stockRemaining}/{stockTotal}</span>
+            </div>
+            <div
+              className="h-2 overflow-hidden rounded-full bg-red-100"
+              role="progressbar"
+              aria-label={`Còn ${stockRemaining} trên ${stockTotal} sản phẩm Flash Sale`}
+              aria-valuemin={0}
+              aria-valuemax={stockTotal}
+              aria-valuenow={stockRemaining}
+            >
+              <div
+                className={cn(
+                  "h-full rounded-full bg-red-500",
+                  stockPercentage >= 75
+                    ? "w-full"
+                    : stockPercentage >= 50
+                      ? "w-3/4"
+                      : stockPercentage >= 25
+                        ? "w-1/2"
+                        : stockPercentage > 0
+                          ? "w-1/4"
+                          : "w-0",
+                )}
+              />
+            </div>
+          </div>
+        ) : null}
 
         <div className="mt-auto flex items-end justify-between gap-2">
           {typeof price === "number" ? <Price price={price} salePrice={salePrice} /> : null}
