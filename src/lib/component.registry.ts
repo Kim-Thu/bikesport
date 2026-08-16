@@ -8,6 +8,7 @@ import { CLink } from "@/components/link/CLink";
 import { Logo } from "@/components/logo/Logo";
 import { MobileMenu } from "@/components/navigation/MobileMenu";
 import { NavMenu } from "@/components/navigation/NavMenu";
+import { Payment } from "@/components/payment/Payment";
 import { Promotion } from "@/components/promotion/Promotion";
 import { SearchForm } from "@/components/search/SearchForm";
 import { Social } from "@/components/social/Social";
@@ -25,6 +26,7 @@ export const COMPONENT_REGISTRY: Record<string, ElementType> = {
   "mini-cart": MiniCart,
   "nav-menu": NavMenu,
   "mobile-menu": MobileMenu,
+  payment: Payment,
   social: Social,
 };
 
