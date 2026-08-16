@@ -42,15 +42,29 @@ export interface CardBlockPayload extends PageBlockBase {
 export interface ProductSliderBlockPayload extends PageBlockBase {
   component: "product-slider";
   props: {
+    title?: string;
+    href?: string;
+    actionLabel?: string;
     template: CardTemplate;
     ariaLabel?: string;
     trackClassName?: string;
     slideClassName?: string;
-    source: {
-      type: "promotion";
-      promotionId: string;
-      limit?: number;
-    };
+    source:
+      | {
+          type: "promotion";
+          promotionId: string;
+          limit?: number;
+        }
+      | {
+          type: "category";
+          categoryId: string;
+          limit?: number;
+        }
+      | {
+          type: "brand";
+          brandId: string;
+          limit?: number;
+        };
   };
 }
 
