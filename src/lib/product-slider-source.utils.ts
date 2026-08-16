@@ -10,12 +10,12 @@ import {
 } from "@/lib/promotion.utils";
 
 export function getProductSliderItems(source: ProductSliderBlockPayload["props"]["source"]): ProductSliderItem[] {
+  const promotion = source.type === "promotion" ? getActivePromotionById(source.promotionId) : null;
   const products =
     source.type === "promotion"
-      ? (() => {
-          const promotion = getActivePromotionById(source.promotionId);
-          return promotion ? getPromotionProducts(promotion, source.limit) : [];
-        })()
+      ? promotion
+        ? getPromotionProducts(promotion, source.limit)
+        : []
       : source.type === "category"
         ? (() => {
             const categoryIds = new Set(getCategoryTreeIds(source.categoryId));
@@ -30,13 +30,12 @@ export function getProductSliderItems(source: ProductSliderBlockPayload["props"]
           })();
 
   return products.map((product) => {
-    const promotion =
-      source.type === "promotion"
-        ? getActivePromotionById(source.promotionId)
-        : getActivePromotionsForSku(product.sku)[0] ?? null;
-    const pricing = promotion
-      ? getPromotionProductPricing(product, promotion)
+    const activePromotion =
+      promotion ?? (source.type === "promotion" ? null : getActivePromotionsForSku(product.sku)[0] ?? null);
+    const pricing = activePromotion
+      ? getPromotionProductPricing(product, activePromotion)
       : { salePrice: null, discountPercentage: null };
+    const inventory = promotion?.inventory?.find((item) => item.sku === product.sku);
 
     return {
       _key: product.sku,
@@ -46,6 +45,8 @@ export function getProductSliderItems(source: ProductSliderBlockPayload["props"]
       price: product.price,
       salePrice: pricing.salePrice,
       discountPercentage: pricing.discountPercentage,
+      stockRemaining: inventory ? Math.min(product.stock, inventory.total) : undefined,
+      stockTotal: inventory?.total,
     };
   });
 }
