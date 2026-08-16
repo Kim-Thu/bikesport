@@ -4,7 +4,7 @@ import type { PageBlockPayload } from "@/interfaces/page-block.interface";
 
 export type PageStatus = "draft" | "published";
 export type PageSectionStatus = "active" | "inactive";
-export type PageSectionComponent = "banner" | "stack" | "card-grid" | "layout" | "content-aside";
+export type PageSectionComponent = "banner" | "stack" | "card-grid" | "layout";
 
 export interface PageBoxIconProps {
   icon?: string;
@@ -85,24 +85,11 @@ export interface LayoutSectionPayload extends PageSectionBase {
   rows: LayoutRowPayload[];
 }
 
-export interface ContentAsideSectionPayload extends PageSectionBase {
-  component: "content-aside";
-  props: {
-    sectionClassName?: string;
-    gridClassName?: string;
-    contentClassName?: string;
-    asideClassName?: string;
-  };
-  content: PageBlockPayload[];
-  aside: PageBlockPayload[];
-}
-
 export type PageSectionPayload =
   | BannerSectionPayload
   | StackSectionPayload
   | CardGridSectionPayload
-  | LayoutSectionPayload
-  | ContentAsideSectionPayload;
+  | LayoutSectionPayload;
 
 export interface PagePayload {
   sections: PageSectionPayload[];
