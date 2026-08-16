@@ -9,6 +9,7 @@ interface CarouselProps {
   children: ReactNode[];
   className?: string;
   viewportClassName?: string;
+  slideClassName?: string;
   dotsClassName?: string;
   ariaLabel?: string;
   loop?: boolean;
@@ -19,6 +20,7 @@ export function Carousel({
   children,
   className,
   viewportClassName,
+  slideClassName,
   dotsClassName,
   ariaLabel = "Carousel",
   loop = false,
@@ -66,7 +68,10 @@ export function Carousel({
       >
         <div className="flex touch-pan-y items-stretch">
           {children.map((child, index) => (
-            <div key={index} className="flex min-w-0 flex-[0_0_100%] self-stretch">
+            <div
+              key={index}
+              className={cn("flex min-w-0 flex-[0_0_100%] self-stretch", slideClassName)}
+            >
               {child}
             </div>
           ))}
