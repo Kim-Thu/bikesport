@@ -1,4 +1,4 @@
-export type CardTemplate = "category" | "product" | "promotion" | "event";
+export type CardTemplate = "media-footer" | "media-action" | "accent" | "overlay";
 
 export interface CardProps {
   title: string;
