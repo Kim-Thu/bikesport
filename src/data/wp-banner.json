@@ -46,7 +46,7 @@
       "title": "TIẾT KIỆM ĐẾN",
       "titleHighlight": "10%",
       "description": "KÈM VOUCHER CHO SẢN PHẨM ÁP DỤNG",
-      "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3716",
+      "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3725",
       "actions": [
         { "label": "XEM SẢN PHẨM", "href": "#products", "variant": "primary" },
         { "label": "XEM ƯU ĐÃI", "href": "#promotions", "variant": "outline" }
@@ -54,7 +54,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T17:50:00+07:00",
-      "updatedAt": "2026-08-16T19:15:00+07:00"
+      "updatedAt": "2026-08-16T19:34:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3a03",
@@ -64,11 +64,11 @@
       "name": "Storefront Hero Demo 3",
       "status": "active",
       "variant": "image-only",
-      "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3716",
+      "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3726",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T17:50:00+07:00",
-      "updatedAt": "2026-08-16T19:15:00+07:00"
+      "updatedAt": "2026-08-16T19:34:00+07:00"
     }
   ]
 }
