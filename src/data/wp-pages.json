@@ -22,7 +22,7 @@
             "order": 2,
             "status": "active",
             "component": "stack",
-            "props": { "variant": "surface", "sectionClassName": "pb-4 sm:pb-6", "rowClassName": "flex-wrap items-stretch" },
+            "props": { "variant": "surface", "sectionClassName": "pt-0 pb-4 sm:pt-0 sm:pb-6", "rowClassName": "flex-wrap items-stretch" },
             "columns": [
               { "_id": "66bf4e8c9f2a4d7b8c1e4211", "component": "box-icon", "props": { "icon": "truck", "title": "Giao hàng toàn quốc", "description": "Nhận hàng trong 2 - 4 ngày", "iconClassName": "text-blue-600" } },
               { "_id": "66bf4e8c9f2a4d7b8c1e4212", "component": "box-icon", "props": { "icon": "package", "title": "Bảo hành chính hãng", "description": "Hỗ trợ bảo hành tận tâm", "iconClassName": "text-blue-600" } },
@@ -41,7 +41,7 @@
               "href": "/danh-muc",
               "actionLabel": "Xem tất cả",
               "template": "media-footer",
-              "sectionClassName": "pb-4 sm:pb-6",
+              "sectionClassName": "pt-0 pb-4 sm:pt-0 sm:pb-6",
               "source": { "type": "category", "categoryType": "product", "limit": 6 }
             }
           },
@@ -215,7 +215,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-17T01:55:00+07:00"
+      "updatedAt": "2026-08-17T01:57:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
@@ -229,7 +229,8 @@
     { "_id": "66bf4e8c9f2a4d7b8c1e4113", "title": "Tra cứu đơn hàng", "slug": "tra-cuu-don-hang", "path": "/tra-cuu-don-hang", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4114", "title": "Câu hỏi thường gặp", "slug": "cau-hoi-thuong-gap", "path": "/cau-hoi-thuong-gap", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4115", "title": "Chính sách bảo hành", "slug": "chinh-sach-bao-hanh", "path": "/chinh-sach-bao-hanh", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
-    { "_id": "66bf4e8c9f2a4d7b8c1e4116", "title": "Chính sách đổi trả", "slug": "chinh-sach-doi-tra", "path": "/chinh-sach-doi-tra", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
+    { "_id": "66bf4e8c9f2a4d7b8c1e4116", "title": "Chính sách đổi trả", "slug": "chinh-sach-doi-tra", "path": "/chinh-sach-doi-tra", "status": "published", "payload": { "sections": [] },
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4117", "title": "Chính sách vận chuyển", "slug": "chinh-sach-van-chuyen", "path": "/chinh-sach-van-chuyen", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4118", "title": "Chính sách bảo mật", "slug": "chinh-sach-bao-mat", "path": "/chinh-sach-bao-mat", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4119", "title": "Tìm cửa hàng", "slug": "tim-cua-hang", "path": "/tim-cua-hang", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
