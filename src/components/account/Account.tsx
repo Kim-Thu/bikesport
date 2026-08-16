@@ -6,9 +6,9 @@ export function Account() {
   const { label, href } = wpOption.account;
 
   return (
-    <Link href={href} className="flex min-w-16 flex-col items-center gap-1 whitespace-nowrap text-xs font-semibold max-lg:min-w-8">
+    <Link href={href} className="flex min-w-8 flex-col items-center gap-1 whitespace-nowrap text-xs font-semibold lg:min-w-16">
       <Icon name="account" size={26} strokeWidth={1.6} />
-      {label ? <span className="max-lg:hidden">{label}</span> : null}
+      {label ? <span className="hidden lg:block">{label}</span> : null}
     </Link>
   );
 }
