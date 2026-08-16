@@ -1,15 +1,16 @@
+import type { CSSProperties } from "react";
 import { InfoCard } from "@/components/card/InfoCard";
 import { Countdown } from "@/components/countdown/Countdown";
 import { FeatureItem } from "@/components/feature/FeatureItem";
 import { Heading } from "@/components/heading/Heading";
 import { Container } from "@/components/layout/Container";
 import { CLink } from "@/components/link/CLink";
-import { MediaImage } from "@/components/media/MediaImage";
 import { Section } from "@/components/section/Section";
 import type { BannerAction, BannerProps } from "@/interfaces/banner.interface";
 import type { PromotionBenefit } from "@/interfaces/promotion.interface";
 import { getActiveBannerById } from "@/lib/banner.utils";
 import { cn } from "@/lib/classname.utils";
+import { getMediaWithFallback } from "@/lib/media.utils";
 import { getActivePromotionById } from "@/lib/promotion.utils";
 
 function formatMoney(value: number) {
@@ -47,22 +48,48 @@ export function Banner({ bannerId }: BannerProps) {
   const features = banner.features ?? [];
   const actions = banner.actions ?? [];
   const promotionCards = banner.promotionCards ?? [];
+  const backgroundMedia = getMediaWithFallback(banner.backgroundMediaId);
+
+  const backgroundStyle: CSSProperties | undefined = backgroundMedia
+    ? {
+        backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 28%, rgba(255,255,255,0.18) 58%, rgba(255,255,255,0) 76%), url("${backgroundMedia.src}")`,
+        backgroundPosition: banner.backgroundPosition ?? "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }
+    : undefined;
 
   return (
     <Section className="py-4 sm:py-6">
       <Container>
-        <div className="relative overflow-hidden rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-slate-100 shadow-sm">
-          <div className="grid gap-6 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,1.35fr)_14rem] lg:items-center lg:gap-4 lg:p-8">
-            <div className="relative z-10 order-1">
-              {banner.eyebrow ? <p className="mb-2 text-xs font-bold uppercase tracking-wide text-gray-800 sm:text-sm">{banner.eyebrow}</p> : null}
-              <Heading level={1} className="text-4xl font-black uppercase leading-none tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">
+        <div
+          className="relative overflow-hidden rounded-xl border border-blue-100 bg-slate-100 shadow-sm"
+          style={backgroundStyle}
+        >
+          <div className="grid gap-6 p-5 sm:p-7 lg:min-h-88 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,1.25fr)_14rem] lg:items-center lg:gap-4 lg:p-8">
+            <div className="relative z-10 order-1 lg:col-start-1">
+              {banner.eyebrow ? (
+                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-gray-800 sm:text-sm">
+                  {banner.eyebrow}
+                </p>
+              ) : null}
+
+              <Heading
+                level={1}
+                className="text-4xl font-black uppercase leading-none tracking-tight text-gray-950 sm:text-5xl lg:text-6xl"
+              >
                 {banner.title}
               </Heading>
-              {banner.description ? <p className="mt-2 text-base font-bold uppercase text-gray-800 sm:text-lg">{banner.description}</p> : null}
+
+              {banner.description ? (
+                <p className="mt-2 text-base font-bold uppercase text-gray-800 sm:text-lg">{banner.description}</p>
+              ) : null}
 
               {features.length ? (
                 <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                  {features.map((feature, index) => <FeatureItem key={`${feature.title}-${index}`} {...feature} />)}
+                  {features.map((feature, index) => (
+                    <FeatureItem key={`${feature.title}-${index}`} {...feature} />
+                  ))}
                 </div>
               ) : null}
 
@@ -84,20 +111,10 @@ export function Banner({ bannerId }: BannerProps) {
               ) : null}
             </div>
 
-            <div className="relative order-2 min-h-56 lg:min-h-80">
-              <MediaImage
-                mediaId={banner.mediaId}
-                alt={banner.title}
-                width={960}
-                height={620}
-                priority
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                className="h-full w-full object-cover object-center lg:absolute lg:inset-0"
-              />
-            </div>
+            <div className="order-2 hidden min-h-56 lg:block" aria-hidden="true" />
 
             {promotionCards.length ? (
-              <div className="order-3 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+              <div className="relative z-10 order-3 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 lg:col-start-3">
                 {promotionCards.map((card) => {
                   const promotion = getActivePromotionById(card.promotionId);
                   if (!promotion) return null;
@@ -109,7 +126,13 @@ export function Banner({ bannerId }: BannerProps) {
                       icon={card.icon}
                       label={card.label}
                       description={card.description}
-                      value={promotion.endAt && card.label === "FLASH SALE" ? <Countdown endAt={promotion.endAt} /> : value}
+                      value={
+                        promotion.endAt && card.label === "FLASH SALE" ? (
+                          <Countdown endAt={promotion.endAt} />
+                        ) : (
+                          value
+                        )
+                      }
                     />
                   );
                 })}
@@ -117,7 +140,10 @@ export function Banner({ bannerId }: BannerProps) {
             ) : null}
           </div>
 
-          <div className="pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5" aria-hidden="true">
+          <div
+            className="pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5"
+            aria-hidden="true"
+          >
             <span className="h-1.5 w-8 rounded-full bg-white shadow" />
             <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
             <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
