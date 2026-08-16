@@ -7,15 +7,15 @@ function PromotionDescription({ description }: { description: string }) {
   const match = description.match(/^(.*?)(\d+%)(.*)$/);
 
   if (!match) {
-    return <span className="text-base font-semibold text-white sm:text-lg">{description}</span>;
+    return <span className="text-sm font-medium text-white sm:text-base">{description}</span>;
   }
 
   const [, before, highlight, after] = match;
 
   return (
-    <span className="text-base font-semibold text-white sm:text-lg">
+    <span className="text-sm font-medium text-white sm:text-base">
       {before}
-      <strong className="text-lg font-black sm:text-xl">{highlight}</strong>
+      <strong className="text-xl font-black sm:text-2xl">{highlight}</strong>
       {after}
     </span>
   );
@@ -32,12 +32,12 @@ export function PromotionTemplate({ title, description, href, actionLabel = "Xem
     >
       <Icon
         name="badge-percent"
-        className="pointer-events-none absolute bottom-3 right-3 h-24 w-24 text-blue-600/20"
+        className="pointer-events-none absolute bottom-3 right-3 h-24 w-24 text-blue-400/20"
         strokeWidth={1.4}
       />
 
-      <div className="relative z-10 border-b border-blue-600/10 pb-4">
-        <span className="text-xl font-bold uppercase sm:text-2xl">{title}</span>
+      <div className="relative z-10 border-b border-white/20 pb-3">
+        <span className="text-base font-bold uppercase sm:text-lg">{title}</span>
       </div>
 
       {description ? (
