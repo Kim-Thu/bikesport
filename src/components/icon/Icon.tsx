@@ -1,6 +1,7 @@
 import { ArrowRight, ChevronDown, Menu, Phone, ShoppingCart, UserRound, X, type LucideIcon } from "lucide-react";
 import type { CSSProperties } from "react";
 import type { IconProps } from "@/interfaces/icon.interface";
+import { cn } from "@/lib/classname.utils";
 
 const ICONS: Record<string, LucideIcon> = {
   menu: Menu,
@@ -27,7 +28,7 @@ export function Icon({ name, src, size = 24, className = "", style, ...props }: 
       ...style,
     };
 
-    return <span aria-hidden="true" className={`inline-block shrink-0 ${className}`.trim()} style={maskStyle} />;
+    return <span aria-hidden="true" className={cn("inline-block shrink-0", className)} style={maskStyle} />;
   }
 
   if (!name) return null;
@@ -35,5 +36,5 @@ export function Icon({ name, src, size = 24, className = "", style, ...props }: 
   const IconComponent = ICONS[name];
   if (!IconComponent) return null;
 
-  return <IconComponent aria-hidden="true" size={size} className={className} style={style} {...props} />;
+  return <IconComponent aria-hidden="true" size={size} className={cn(className)} style={style} {...props} />;
 }
