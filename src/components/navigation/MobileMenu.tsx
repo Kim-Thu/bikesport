@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/button/Button";
 import { Icon } from "@/components/icon/Icon";
@@ -9,10 +9,26 @@ import type { NavMenuData, NavMenuProps } from "@/interfaces/navigation.interfac
 
 export function MobileMenu({ menuId }: NavMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const menu = (menuData.menus as NavMenuData[]).find((item) => item._id === menuId);
   const items = menu?.items ?? [];
 
+  useEffect(() => {
+    if (!isOpen) {
+      setIsVisible(false);
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(() => setIsVisible(true));
+    return () => window.cancelAnimationFrame(frame);
+  }, [isOpen]);
+
   if (!items.length) return null;
+
+  const closeMenu = () => {
+    setIsVisible(false);
+    window.setTimeout(() => setIsOpen(false), 300);
+  };
 
   return (
     <div className="lg:hidden">
@@ -26,16 +42,20 @@ export function MobileMenu({ menuId }: NavMenuProps) {
       />
 
       {isOpen ? (
-        <div className="fixed inset-0 z-50 bg-black/40" role="presentation" onClick={() => setIsOpen(false)}>
+        <div
+          className={`fixed inset-0 z-50 bg-black/40 transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"}`}
+          role="presentation"
+          onClick={closeMenu}
+        >
           <nav
             id="mobile-navigation"
-            className="h-full w-80 max-w-[85vw] overflow-y-auto bg-white p-5 shadow-xl"
+            className={`h-dvh w-screen overflow-y-auto bg-white p-5 transition-transform duration-300 ease-out ${isVisible ? "translate-x-0" : "-translate-x-full"}`}
             aria-label={menu?.name || "Điều hướng di động"}
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-4 flex items-center justify-between">
               <strong className="text-sm font-semibold">{menu?.name || "Menu"}</strong>
-              <Button variant="icon" aria-label="Đóng menu" onClick={() => setIsOpen(false)}>
+              <Button variant="icon" aria-label="Đóng menu" onClick={closeMenu}>
                 <Icon name="close" size={26} strokeWidth={1.8} />
               </Button>
             </div>
@@ -52,7 +72,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
                       <Link
                         href={item.href || "/"}
                         className={`flex min-h-12 items-center justify-between gap-2 text-sm font-semibold ${item.highlight ? "text-red-500" : "text-gray-900"}`}
-                        onClick={() => setIsOpen(false)}
+                        onClick={closeMenu}
                       >
                         <span>{item.label}</span>
                         {item.hasDropdown ? <Icon name="chevron-down" size={16} strokeWidth={2} /> : null}
