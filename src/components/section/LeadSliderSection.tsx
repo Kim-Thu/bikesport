@@ -36,20 +36,24 @@ export function LeadSliderSection({ section }: { section: LeadSliderSectionPaylo
   return (
     <Section className={section.props.sectionClassName}>
       <Container>
-        <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,5fr)]">
-          <Card
-            template={section.props.leadTemplate}
-            title={getPromotionTitle(promotion)}
-            description={getPromotionDescription(promotion)}
-            href={promotion.display?.href ?? `/khuyen-mai/${promotion.slug}`}
-            actionLabel={promotion.display?.actionLabel ?? "Xem tất cả"}
-          />
-          <ProductSlider
-            items={items}
-            template={section.props.productTemplate}
-            ariaLabel={`Sản phẩm ${promotion.name}`}
-            slideClassName={section.props.slideClassName}
-          />
+        <div className="grid gap-3 lg:grid-cols-6">
+          <div className="lg:col-span-1">
+            <Card
+              template={section.props.leadTemplate}
+              title={getPromotionTitle(promotion)}
+              description={getPromotionDescription(promotion)}
+              href={promotion.display?.href ?? `/khuyen-mai/${promotion.slug}`}
+              actionLabel={promotion.display?.actionLabel ?? "Xem tất cả"}
+            />
+          </div>
+          <div className="min-w-0 lg:col-span-5">
+            <ProductSlider
+              items={items}
+              template={section.props.productTemplate}
+              ariaLabel={`Sản phẩm ${promotion.name}`}
+              slideClassName={section.props.slideClassName}
+            />
+          </div>
         </div>
       </Container>
     </Section>
