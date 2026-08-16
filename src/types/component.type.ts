@@ -7,6 +7,7 @@ export type ComponentName =
   | "account"
   | "mini-cart"
   | "nav-menu"
+  | "mobile-menu"
   | string;
 
 export type ComponentProps = Record<string, unknown>;
