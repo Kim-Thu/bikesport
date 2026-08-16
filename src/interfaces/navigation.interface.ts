@@ -21,3 +21,11 @@ export interface NavMenuData {
 export interface NavMenuProps {
   menuId: string;
 }
+
+export interface MenuChildrenProps {
+  items: NavMenuItem[];
+  id?: string;
+  listClassName?: string;
+  itemClassName?: string;
+  onItemClick?: () => void;
+}
