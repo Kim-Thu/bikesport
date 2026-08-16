@@ -3,6 +3,7 @@ import type { CardGridBlockPayload } from "@/interfaces/page-block.interface";
 import { getCategoryById } from "@/lib/category.utils";
 import { getFeaturedEvents } from "@/lib/event.utils";
 import { getLatestPosts } from "@/lib/post.utils";
+import { getFeaturedStores } from "@/lib/store.utils";
 import { getUserById } from "@/lib/user.utils";
 
 export function getCardGridItems(source: CardGridBlockPayload["props"]["source"]): CardProps[] {
@@ -14,6 +15,17 @@ export function getCardGridItems(source: CardGridBlockPayload["props"]["source"]
       publishedAt: post.publishedAt,
       categoryName: post.categoryIds[0] ? getCategoryById(post.categoryIds[0])?.name : undefined,
       authorName: getUserById(post.authorId)?.displayName,
+    }));
+  }
+
+  if (source.type === "store") {
+    return getFeaturedStores(source.limit).map((store) => ({
+      title: store.name,
+      href: `/cua-hang/${store.slug}`,
+      mediaId: store.mediaId,
+      description: store.address,
+      metaItems: [store.phone, store.openingHours].filter((item): item is string => Boolean(item)),
+      actionLabel: "Xem cửa hàng",
     }));
   }
 
