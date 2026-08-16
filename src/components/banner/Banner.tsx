@@ -74,7 +74,8 @@ export function Banner({ bannerId }: BannerProps) {
                 level={1}
                 className="text-4xl font-black uppercase leading-none tracking-tight text-gray-950 sm:text-5xl lg:text-6xl"
               >
-                {banner.title}
+                <span>{banner.title}</span>
+                {banner.titleHighlight ? <span className="ml-2 text-blue-600">{banner.titleHighlight}</span> : null}
               </Heading>
 
               {banner.description ? (
@@ -122,13 +123,8 @@ export function Banner({ bannerId }: BannerProps) {
                       icon={card.icon}
                       label={card.label}
                       description={card.description}
-                      value={
-                        promotion.endAt && card.label === "FLASH SALE" ? (
-                          <Countdown endAt={promotion.endAt} />
-                        ) : (
-                          value
-                        )
-                      }
+                      size={card.size}
+                      value={promotion.endAt && card.label === "FLASH SALE" ? <Countdown endAt={promotion.endAt} /> : value}
                     />
                   );
                 })}
