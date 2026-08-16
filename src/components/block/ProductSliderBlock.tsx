@@ -14,6 +14,8 @@ export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload
           title={block.props.title}
           href={block.props.href}
           actionLabel={block.props.actionLabel}
+          template={block.props.headerTemplate}
+          countdownAt={block.props.countdownAt}
           className="mb-4"
         />
       ) : null}
