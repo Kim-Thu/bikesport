@@ -3,7 +3,7 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T14:38:00+07:00",
+  "updatedAt": "2026-08-16T15:06:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
@@ -11,7 +11,31 @@
     "showSiteTitle": false,
     "showTagLine": false
   },
+  "organization": {
+    "legalName": "Công Ty Cổ Phần Vòng Xanh",
+    "businessRegistration": {
+      "number": "0313891315",
+      "issuedBy": "Sở KH&ĐT TP.HCM",
+      "issuedDate": "17/06/2025"
+    },
+    "headquarters": "100 Hải Thượng Lãn Ông, Phường Chợ Lớn, HCM",
+    "verificationAssets": [
+      {
+        "label": "Đã thông báo Bộ Công Thương",
+        "src": "/uploads/images/bo-cong-thuong.png",
+        "alt": "Đã thông báo Bộ Công Thương",
+        "width": 160,
+        "height": 60,
+        "enabled": false
+      }
+    ]
+  },
   "contact": {
+    "email": {
+      "label": "Email",
+      "value": "info@xedap.vn",
+      "href": "mailto:info@xedap.vn"
+    },
     "hotline": {
       "label": "Hotline",
       "value": "1900 633 022",
@@ -160,11 +184,11 @@
   "footer": {
     "name": "Footer",
     "template": "default",
-    "description": "BikeSport - đồng hành cùng cộng đồng yêu xe đạp với sản phẩm, phụ kiện và dịch vụ phù hợp cho nhiều nhu cầu di chuyển và luyện tập.",
     "menuIds": [
       "66bf4e8c9f2a4d7b8c1e3501",
+      "66bf4e8c9f2a4d7b8c1e3503",
       "66bf4e8c9f2a4d7b8c1e3502",
-      "66bf4e8c9f2a4d7b8c1e3503"
+      "66bf4e8c9f2a4d7b8c1e3504"
     ],
     "assets": [
       {
@@ -173,14 +197,6 @@
         "alt": "Phương thức thanh toán BikeSport",
         "width": 220,
         "height": 40,
-        "enabled": false
-      },
-      {
-        "label": "Đã thông báo Bộ Công Thương",
-        "src": "/uploads/images/bo-cong-thuong.png",
-        "alt": "Đã thông báo Bộ Công Thương",
-        "width": 160,
-        "height": 60,
         "enabled": false
       }
     ],
