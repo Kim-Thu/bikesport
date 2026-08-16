@@ -17,7 +17,7 @@ export function Logo({ href = "/" }: LogoProps) {
           alt={siteTitle || "Logo"}
           width={192}
           height={48}
-          className="h-auto w-48 max-md:w-36"
+          className="h-auto w-36 md:w-48"
           priority
         />
       )}
