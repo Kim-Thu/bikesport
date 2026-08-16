@@ -1,5 +1,6 @@
 import { createElement, type ElementType } from "react";
 import { Account } from "@/components/account/Account";
+import { Announcement } from "@/components/announcement/Announcement";
 import { Button } from "@/components/button/Button";
 import { MiniCart } from "@/components/cart/MiniCart";
 import { Contact } from "@/components/contact/Contact";
@@ -9,13 +10,12 @@ import { Logo } from "@/components/logo/Logo";
 import { MobileMenu } from "@/components/navigation/MobileMenu";
 import { NavMenu } from "@/components/navigation/NavMenu";
 import { Payment } from "@/components/payment/Payment";
-import { Promotion } from "@/components/promotion/Promotion";
 import { SearchForm } from "@/components/search/SearchForm";
 import { Social } from "@/components/social/Social";
 import type { ComponentItem } from "@/interfaces/component.interface";
 
 export const COMPONENT_REGISTRY: Record<string, ElementType> = {
-  promotion: Promotion,
+  announcement: Announcement,
   button: Button,
   icon: Icon,
   link: CLink,
