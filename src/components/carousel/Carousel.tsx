@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import type { PointerEvent, ReactNode, UIEvent } from "react";
+import type { DragEvent, PointerEvent, ReactNode, UIEvent } from "react";
 import { cn } from "@/lib/classname.utils";
 
 interface CarouselProps {
@@ -22,7 +22,8 @@ export function Carousel({
   const viewportRef = useRef<HTMLDivElement>(null);
   const dragStartX = useRef(0);
   const dragStartScrollLeft = useRef(0);
-  const isDragging = useRef(false);
+  const isDraggingRef = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const scrollToIndex = useCallback((index: number, behavior: ScrollBehavior = "smooth") => {
@@ -57,26 +58,30 @@ export function Carousel({
     const viewport = viewportRef.current;
     if (!viewport) return;
 
-    isDragging.current = true;
+    event.preventDefault();
+    isDraggingRef.current = true;
+    setIsDragging(true);
     dragStartX.current = event.clientX;
     dragStartScrollLeft.current = viewport.scrollLeft;
     viewport.setPointerCapture(event.pointerId);
   }, []);
 
   const handlePointerMove = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse" || !isDragging.current) return;
+    if (event.pointerType !== "mouse" || !isDraggingRef.current) return;
 
     const viewport = viewportRef.current;
     if (!viewport) return;
 
+    event.preventDefault();
     const deltaX = event.clientX - dragStartX.current;
     viewport.scrollLeft = dragStartScrollLeft.current - deltaX;
   }, []);
 
   const finishDragging = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse" || !isDragging.current) return;
+    if (event.pointerType !== "mouse" || !isDraggingRef.current) return;
 
-    isDragging.current = false;
+    isDraggingRef.current = false;
+    setIsDragging(false);
 
     const viewport = viewportRef.current;
     if (!viewport) return;
@@ -95,12 +100,19 @@ export function Carousel({
     scrollToIndex(nextIndex);
   }, [children.length, scrollToIndex]);
 
+  const preventNativeDrag = useCallback((event: DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  }, []);
+
   return (
     <div className={cn("relative", className)} role="region" aria-label={ariaLabel}>
       <div
         ref={viewportRef}
         className={cn(
-          "cursor-grab touch-auto select-none overflow-x-auto overscroll-x-contain scroll-smooth snap-x snap-mandatory active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+          "touch-auto select-none overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+          isDragging
+            ? "cursor-grabbing scroll-auto snap-none"
+            : "cursor-grab scroll-smooth snap-x snap-mandatory",
           viewportClassName,
         )}
         onScroll={handleScroll}
@@ -108,6 +120,7 @@ export function Carousel({
         onPointerMove={handlePointerMove}
         onPointerUp={finishDragging}
         onPointerCancel={finishDragging}
+        onDragStart={preventNativeDrag}
       >
         <div className="flex">
           {children.map((child, index) => (
