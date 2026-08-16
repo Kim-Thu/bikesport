@@ -38,6 +38,7 @@ export function ProductSaleSection({ section }: { section: PageSectionPayload })
           <Carousel
             loop
             dragFree
+            showArrows
             ariaLabel={`Sản phẩm ${promotion.name}`}
             slideClassName="basis-48 pr-3 sm:basis-52 lg:basis-1/5"
             dotsClassName="hidden"
