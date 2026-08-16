@@ -41,6 +41,7 @@
       "name": "Storefront Hero Demo 2",
       "status": "active",
       "variant": "centered",
+      "overlay": { "variant": "blue-center" },
       "eyebrow": "ƯU ĐÃI DÀNH CHO MÙA HÈ",
       "title": "TIẾT KIỆM ĐẾN",
       "titleHighlight": "10%",
