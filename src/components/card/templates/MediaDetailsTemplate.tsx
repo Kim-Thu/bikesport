@@ -1,3 +1,4 @@
+import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
 import { MediaImage } from "@/components/media/MediaImage";
 import type { CardProps } from "@/interfaces/card.interface";
@@ -32,15 +33,18 @@ export function MediaDetailsTemplate({
       </CLink>
 
       <div className="flex flex-1 flex-col gap-4 p-4">
-        <div className="space-y-2">
+        <div className="space-y-3">
           <CLink href={href} className="text-sm font-semibold text-gray-950">
             {title}
           </CLink>
           {description ? <p className="text-xs text-gray-600">{description}</p> : null}
           {metaItems?.length ? (
-            <div className="space-y-1 text-xs text-gray-500">
+            <div className="space-y-2 text-xs text-gray-500">
               {metaItems.map((item) => (
-                <div key={item}>{item}</div>
+                <div key={`${item.icon ?? "meta"}-${item.text}`} className="flex items-start gap-2">
+                  <Icon name={item.icon} className="mt-0.5 h-4 w-4 shrink-0 text-blue-600" />
+                  <span>{item.text}</span>
+                </div>
               ))}
             </div>
           ) : null}
