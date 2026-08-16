@@ -1,4 +1,4 @@
-export type CardTemplate = "media-footer" | "media-action" | "accent" | "overlay";
+export type CardTemplate = "media-footer" | "media-action" | "media-meta" | "accent" | "overlay";
 
 export interface CardProps {
   title: string;
@@ -14,6 +14,7 @@ export interface CardProps {
   reviewCount?: number;
   actionLabel?: string;
   startAt?: string;
+  publishedAt?: string;
   location?: string;
   attendees?: number;
 }
