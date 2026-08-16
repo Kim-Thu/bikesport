@@ -15,8 +15,8 @@ export function Price({ price, salePrice, className }: PriceProps) {
 
   return (
     <div className={cn("flex flex-col", className)}>
-      <span className="text-sm font-bold text-red-500">{formatPrice(hasSale ? salePrice : price)}</span>
-      {hasSale ? <span className="text-xs text-gray-400 line-through">{formatPrice(price)}</span> : null}
+      <span className="text-base font-bold text-red-500 sm:text-lg">{formatPrice(hasSale ? salePrice : price)}</span>
+      {hasSale ? <span className="text-sm text-gray-400 line-through">{formatPrice(price)}</span> : null}
     </div>
   );
 }
