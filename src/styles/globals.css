@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --text-promotion-mobile: 0.625rem;
+  --text-promotion-mobile--line-height: 1.15;
+}
+
 @layer base {
   * {
     @apply box-border;
