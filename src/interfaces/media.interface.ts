@@ -9,14 +9,13 @@ export interface MediaItem {
   alt?: string;
   width?: number;
   height?: number;
-}
-
-export interface MediaLibrary {
-  _id: string;
   createdBy: string;
   updatedBy: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface MediaLibrary {
   media: MediaItem[];
 }
 
