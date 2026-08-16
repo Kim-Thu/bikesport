@@ -3,7 +3,7 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T16:37:00+07:00",
+  "updatedAt": "2026-08-16T16:49:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
@@ -105,10 +105,10 @@
                 "grow": true,
                 "items": [
                   {
-                    "component": "promotion",
+                    "component": "announcement",
                     "enabled": true,
                     "props": {
-                      "promotionId": "66bf4e8c9f2a4d7b8c1e3801"
+                      "announcementId": "66bf4e8c9f2a4d7b8c1e3901"
                     }
                   }
                 ]
