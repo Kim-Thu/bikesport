@@ -117,6 +117,7 @@ function BannerSlide({ banner }: { banner: BannerRecord }) {
                   icon={card.icon}
                   label={card.label}
                   description={card.description}
+                  valueClassName={card.label === "VOUCHER" ? "text-lg sm:text-xl" : undefined}
                   value={promotion.endAt && card.label === "FLASH SALE" ? <Countdown endAt={promotion.endAt} /> : value}
                 />
               );
