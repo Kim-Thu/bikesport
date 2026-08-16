@@ -41,24 +41,27 @@ export function Carousel({
     skipSnaps: false,
   });
   const [activeIndex, setActiveIndex] = useState(0);
+  const [canScroll, setCanScroll] = useState(false);
 
-  const syncSelectedIndex = useCallback(() => {
+  const syncCarouselState = useCallback(() => {
     if (!emblaApi) return;
+
     setActiveIndex(emblaApi.selectedScrollSnap());
+    setCanScroll(emblaApi.scrollSnapList().length > 1);
   }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
 
-    syncSelectedIndex();
-    emblaApi.on("select", syncSelectedIndex);
-    emblaApi.on("reInit", syncSelectedIndex);
+    syncCarouselState();
+    emblaApi.on("select", syncCarouselState);
+    emblaApi.on("reInit", syncCarouselState);
 
     return () => {
-      emblaApi.off("select", syncSelectedIndex);
-      emblaApi.off("reInit", syncSelectedIndex);
+      emblaApi.off("select", syncCarouselState);
+      emblaApi.off("reInit", syncCarouselState);
     };
-  }, [emblaApi, syncSelectedIndex]);
+  }, [emblaApi, syncCarouselState]);
 
   const scrollToIndex = useCallback(
     (index: number) => {
@@ -79,7 +82,11 @@ export function Carousel({
     <div className={cn("relative", className)} role="region" aria-label={ariaLabel}>
       <div
         ref={emblaRef}
-        className={cn("cursor-grab overflow-hidden active:cursor-grabbing", viewportClassName)}
+        className={cn(
+          "overflow-hidden",
+          canScroll && "cursor-grab active:cursor-grabbing",
+          viewportClassName,
+        )}
       >
         <div className={cn("flex touch-pan-y items-stretch", trackClassName)}>
           {children.map((child, index) => (
@@ -93,7 +100,7 @@ export function Carousel({
         </div>
       </div>
 
-      {showArrows && children.length > 1 ? (
+      {showArrows && canScroll ? (
         <div className={cn("pointer-events-none absolute inset-y-0 left-0 right-0 z-30 flex items-center justify-between", arrowsClassName)}>
           <button
             type="button"
@@ -114,7 +121,7 @@ export function Carousel({
         </div>
       ) : null}
 
-      {children.length > 1 ? (
+      {canScroll ? (
         <div
           className={cn(
             "absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2",
@@ -122,7 +129,7 @@ export function Carousel({
           )}
           aria-label="Chọn slide"
         >
-          {children.map((_, index) => {
+          {emblaApi?.scrollSnapList().map((_, index) => {
             const isActive = activeIndex === index;
 
             return (
