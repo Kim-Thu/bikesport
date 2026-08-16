@@ -3,6 +3,7 @@ import { Button } from "@/components/button/Button";
 import { CLink } from "@/components/link/CLink";
 import { MediaImage } from "@/components/media/MediaImage";
 import { Price } from "@/components/price/Price";
+import { Rating } from "@/components/rating/Rating";
 import type { CardProps } from "@/interfaces/card.interface";
 import { cn } from "@/lib/classname.utils";
 
@@ -13,6 +14,8 @@ export function MediaActionTemplate({
   price,
   salePrice,
   discountPercentage,
+  rating,
+  reviewCount,
   className,
 }: CardProps) {
   return (
@@ -36,6 +39,7 @@ export function MediaActionTemplate({
         <CLink href={href} className="line-clamp-2 text-xs font-semibold text-gray-900 sm:text-sm">
           {title}
         </CLink>
+        {typeof rating === "number" && rating > 0 ? <Rating value={rating} count={reviewCount} /> : null}
         <div className="mt-auto flex items-end justify-between gap-2">
           {typeof price === "number" ? <Price price={price} salePrice={salePrice} /> : null}
           <Button
