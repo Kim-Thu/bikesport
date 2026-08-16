@@ -63,7 +63,7 @@ export function Banner({ bannerId }: BannerProps) {
     <Section className="py-4 sm:py-6">
       <Container>
         <div
-          className="relative overflow-hidden rounded-xl border border-blue-100 bg-slate-100 shadow-sm"
+          className="relative overflow-hidden rounded-xl border border-blue-100 bg-slate-100"
           style={backgroundStyle}
         >
           <div className="grid gap-6 p-5 sm:p-7 lg:min-h-88 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,1.25fr)_14rem] lg:items-center lg:gap-4 lg:p-8">
@@ -144,7 +144,7 @@ export function Banner({ bannerId }: BannerProps) {
             className="pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5"
             aria-hidden="true"
           >
-            <span className="h-1.5 w-8 rounded-full bg-white shadow" />
+            <span className="h-1.5 w-8 rounded-full bg-white" />
             <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
             <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
           </div>
