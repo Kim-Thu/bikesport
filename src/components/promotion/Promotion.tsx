@@ -2,8 +2,22 @@ import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
 import { MediaImage } from "@/components/media/MediaImage";
 import type { PromotionProps } from "@/interfaces/promotion.interface";
+import { getActivePromotionById } from "@/lib/promotion.utils";
 
-export function Promotion({ type = "text", content, mediaId, alt = "Promotion", href, ctaLabel, iconMediaId }: PromotionProps) {
+export function Promotion({ promotionId }: PromotionProps) {
+  const promotion = getActivePromotionById(promotionId);
+  if (!promotion) return null;
+
+  const {
+    type,
+    content,
+    mediaId,
+    alt = "Promotion",
+    href,
+    ctaLabel,
+    iconMediaId,
+  } = promotion;
+
   if (type === "image") {
     if (!mediaId) return null;
 
