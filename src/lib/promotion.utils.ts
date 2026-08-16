@@ -1,12 +1,19 @@
 import wpPromotion from "@/data/wp-promotion.json";
-import type { PromotionData, PromotionRecord } from "@/interfaces/promotion.interface";
+import wpProducts from "@/data/wp-products.json";
+import type {
+  PercentageDiscountBenefit,
+  PromotionData,
+  PromotionRecord,
+} from "@/interfaces/promotion.interface";
+import type { ProductRecord } from "@/interfaces/product.interface";
 
 const promotionData = wpPromotion as PromotionData;
+const products = wpProducts.products as ProductRecord[];
 const promotionIndex = new Map<string, PromotionRecord>(
   promotionData.promotions.map((promotion) => [promotion._id, promotion]),
 );
 
-function isPromotionActive(promotion: PromotionRecord, now: Date = new Date()): boolean {
+export function isPromotionActive(promotion: PromotionRecord, now: Date = new Date()): boolean {
   if (promotion.status !== "active") return false;
 
   const timestamp = now.getTime();
@@ -32,17 +39,158 @@ export function getActivePromotionById(
   return promotion && isPromotionActive(promotion, now) ? promotion : null;
 }
 
+function getPercentageBenefit(promotion: PromotionRecord): PercentageDiscountBenefit | null {
+  return (
+    promotion.benefits.find(
+      (benefit): benefit is PercentageDiscountBenefit => benefit.type === "percentage_discount",
+    ) ?? null
+  );
+}
+
+function hasTargetSelectors(promotion: PromotionRecord): boolean {
+  const target = promotion.target;
+  return Boolean(
+    target.skus?.length ||
+      target.categoryIds?.length ||
+      target.tagIds?.length ||
+      target.brandIds?.length,
+  );
+}
+
+function matchesTarget(product: ProductRecord, promotion: PromotionRecord): boolean {
+  const target = promotion.target;
+  if (target.type === "cart") return false;
+  if (target.excludeSkus?.includes(product.sku)) return false;
+
+  const selectors: boolean[] = [];
+
+  if (target.skus?.length) selectors.push(target.skus.includes(product.sku));
+  if (target.categoryIds?.length) {
+    selectors.push(product.categoryIds.some((categoryId) => target.categoryIds?.includes(categoryId)));
+  }
+  if (target.tagIds?.length) {
+    selectors.push(product.tagIds.some((tagId) => target.tagIds?.includes(tagId)));
+  }
+  if (target.brandIds?.length) {
+    selectors.push(Boolean(product.brandId && target.brandIds.includes(product.brandId)));
+  }
+
+  if (!selectors.length) return true;
+  return target.match === "all" ? selectors.every(Boolean) : selectors.some(Boolean);
+}
+
+function getIntrinsicDiscountPercentage(product: ProductRecord): number | null {
+  if (!product.salePrice || product.salePrice >= product.price) return null;
+  return Math.round(((product.price - product.salePrice) / product.price) * 100);
+}
+
+function sortPromotionProducts(items: ProductRecord[], promotion: PromotionRecord): ProductRecord[] {
+  const skuOrder = promotion.target.skus ?? [];
+
+  return [...items].sort((a, b) => {
+    if (skuOrder.length) {
+      const aIndex = skuOrder.indexOf(a.sku);
+      const bIndex = skuOrder.indexOf(b.sku);
+      if (aIndex !== bIndex) {
+        if (aIndex === -1) return 1;
+        if (bIndex === -1) return -1;
+        return aIndex - bIndex;
+      }
+    }
+
+    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+  });
+}
+
+export function getPromotionProducts(promotion: PromotionRecord, limit?: number): ProductRecord[] {
+  const publishedProducts = products.filter((product) => product.status === "published");
+  let matchedProducts: ProductRecord[];
+
+  if (hasTargetSelectors(promotion)) {
+    matchedProducts = publishedProducts.filter((product) => matchesTarget(product, promotion));
+  } else {
+    const percentage = getPercentageBenefit(promotion)?.percentage;
+    matchedProducts = publishedProducts.filter((product) => {
+      if (typeof percentage !== "number") return true;
+      return getIntrinsicDiscountPercentage(product) === percentage;
+    });
+  }
+
+  const sortedProducts = sortPromotionProducts(matchedProducts, promotion);
+  return typeof limit === "number" ? sortedProducts.slice(0, limit) : sortedProducts;
+}
+
+export function getPromotionTitle(promotion: PromotionRecord): string {
+  if (promotion.display?.title) return promotion.display.title;
+
+  const sourceDate = promotion.startAt ? new Date(promotion.startAt) : new Date();
+  const month = sourceDate.getMonth() + 1;
+  return `Ưu đãi tháng ${month}`;
+}
+
+function formatMoney(value: number): string {
+  return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(value) + "đ";
+}
+
+export function getPromotionDescription(promotion: PromotionRecord): string | undefined {
+  const descriptions = promotion.benefits.map((benefit) => {
+    switch (benefit.type) {
+      case "percentage_discount":
+        return `Giảm đến ${benefit.percentage}%`;
+      case "fixed_discount":
+        return `Giảm ${formatMoney(benefit.amount)}`;
+      case "voucher":
+        return benefit.valueType === "percentage"
+          ? `Voucher ${benefit.value}%`
+          : `Voucher ${formatMoney(benefit.value)}`;
+      case "buy_x_get_y":
+        return `Mua ${benefit.buyQuantity} tặng ${benefit.getQuantity}`;
+      case "gift":
+        return `Tặng ${benefit.quantity} sản phẩm`;
+      case "free_shipping":
+        return "Miễn phí vận chuyển";
+    }
+  });
+
+  return descriptions.filter(Boolean).join(" + ") || undefined;
+}
+
+export function getPromotionProductPricing(product: ProductRecord, promotion: PromotionRecord) {
+  const percentageBenefit = getPercentageBenefit(promotion);
+  if (percentageBenefit) {
+    const rawDiscount = Math.round((product.price * percentageBenefit.percentage) / 100);
+    const discount = percentageBenefit.maxDiscountAmount
+      ? Math.min(rawDiscount, percentageBenefit.maxDiscountAmount)
+      : rawDiscount;
+
+    return {
+      salePrice: Math.max(0, product.price - discount),
+      discountPercentage: percentageBenefit.percentage,
+    };
+  }
+
+  const fixedDiscount = promotion.benefits.find((benefit) => benefit.type === "fixed_discount");
+  if (fixedDiscount?.type === "fixed_discount") {
+    return {
+      salePrice: Math.max(0, product.price - fixedDiscount.amount),
+      discountPercentage: null,
+    };
+  }
+
+  return {
+    salePrice: product.salePrice,
+    discountPercentage: getIntrinsicDiscountPercentage(product),
+  };
+}
+
 export function getActivePromotionsForProduct(
   productId: string,
   now: Date = new Date(),
 ): PromotionRecord[] {
-  return promotionData.promotions
-    .filter((promotion) => {
-      if (!isPromotionActive(promotion, now)) return false;
-      if (promotion.target.excludeProductIds?.includes(productId)) return false;
+  const product = products.find((item) => item._id === productId);
+  if (!product) return [];
 
-      if (promotion.target.type === "cart") return true;
-      return promotion.target.productIds?.includes(productId) ?? false;
-    })
+  return promotionData.promotions
+    .filter((promotion) => isPromotionActive(promotion, now) && matchesTarget(product, promotion))
     .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
 }
