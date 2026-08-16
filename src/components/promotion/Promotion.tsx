@@ -14,8 +14,8 @@ export function Promotion({ type = "text", content, src, alt = "Promotion", href
   if (!content) return null;
 
   return (
-    <div className="flex min-h-9 items-center justify-center gap-3 text-center text-xs text-white">
-      {icon ? <Icon src={icon} size={16} className="text-white" /> : null}
+    <div className="flex min-h-9 items-center justify-center gap-3 text-center text-xs text-white max-sm:text-[10px] max-sm:leading-tight">
+      {icon ? <Icon src={icon} size={16} className="text-white max-sm:h-3.5 max-sm:w-3.5" /> : null}
       <strong>{content}</strong>
       {href && ctaLabel ? (
         <Link href={href} className="inline-flex items-center gap-1 border-l border-white/40 pl-4 max-sm:hidden">
