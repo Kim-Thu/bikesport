@@ -190,6 +190,11 @@
         "href": "/khuyen-mai/flash-sale-17-18-08-2026",
         "actionLabel": "Xem tất cả"
       },
+      "inventory": [
+        { "sku": "GIANT-ATX-610-2024", "total": 20 },
+        { "sku": "TREK-MARLIN-5-2024", "total": 15 },
+        { "sku": "SHIMANO-RC100", "total": 30 }
+      ],
       "startAt": "2026-08-17T00:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
