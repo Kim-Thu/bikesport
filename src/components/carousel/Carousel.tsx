@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { Icon } from "@/components/icon/Icon";
 import { cn } from "@/lib/classname.utils";
 
 interface CarouselProps {
@@ -11,9 +12,11 @@ interface CarouselProps {
   viewportClassName?: string;
   slideClassName?: string;
   dotsClassName?: string;
+  arrowsClassName?: string;
   ariaLabel?: string;
   loop?: boolean;
   dragFree?: boolean;
+  showArrows?: boolean;
 }
 
 export function Carousel({
@@ -22,9 +25,11 @@ export function Carousel({
   viewportClassName,
   slideClassName,
   dotsClassName,
+  arrowsClassName,
   ariaLabel = "Carousel",
   loop = false,
   dragFree = false,
+  showArrows = false,
 }: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop,
@@ -60,6 +65,14 @@ export function Carousel({
     [emblaApi],
   );
 
+  const scrollPrev = useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
+
   return (
     <div className={cn("relative", className)} role="region" aria-label={ariaLabel}>
       <div
@@ -77,6 +90,27 @@ export function Carousel({
           ))}
         </div>
       </div>
+
+      {showArrows && children.length > 1 ? (
+        <div className={cn("pointer-events-none absolute inset-y-0 left-0 right-0 z-30 flex items-center justify-between", arrowsClassName)}>
+          <button
+            type="button"
+            className="pointer-events-auto ml-2 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 hover:border-blue-200 hover:text-blue-600"
+            aria-label="Sản phẩm trước"
+            onClick={scrollPrev}
+          >
+            <Icon name="chevron-left" size={18} strokeWidth={2} />
+          </button>
+          <button
+            type="button"
+            className="pointer-events-auto mr-2 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 hover:border-blue-200 hover:text-blue-600"
+            aria-label="Sản phẩm tiếp theo"
+            onClick={scrollNext}
+          >
+            <Icon name="chevron-right" size={18} strokeWidth={2} />
+          </button>
+        </div>
+      ) : null}
 
       {children.length > 1 ? (
         <div
