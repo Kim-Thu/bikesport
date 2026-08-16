@@ -17,7 +17,9 @@
       "attributeValues": [
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] },
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4402", "optionIds": ["66bf4e8c9f2a4d7b8c1e4422", "66bf4e8c9f2a4d7b8c1e4423"] }
-      ]
+      ],
+      "createdAt": "2026-08-10T09:00:00+07:00",
+      "updatedAt": "2026-08-16T21:30:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e4502",
@@ -35,7 +37,9 @@
       "featured": true,
       "attributeValues": [
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] }
-      ]
+      ],
+      "createdAt": "2026-08-11T09:00:00+07:00",
+      "updatedAt": "2026-08-16T21:31:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e4503",
@@ -53,7 +57,9 @@
       "featured": true,
       "attributeValues": [
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4412"] }
-      ]
+      ],
+      "createdAt": "2026-08-12T09:00:00+07:00",
+      "updatedAt": "2026-08-16T21:32:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e4504",
@@ -69,7 +75,9 @@
       "salePrice": 590000,
       "stock": 30,
       "featured": true,
-      "attributeValues": []
+      "attributeValues": [],
+      "createdAt": "2026-08-13T09:00:00+07:00",
+      "updatedAt": "2026-08-16T21:33:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e4505",
@@ -87,7 +95,9 @@
       "featured": true,
       "attributeValues": [
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] }
-      ]
+      ],
+      "createdAt": "2026-08-14T09:00:00+07:00",
+      "updatedAt": "2026-08-16T21:34:00+07:00"
     }
   ]
 }
