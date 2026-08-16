@@ -2,7 +2,7 @@ import type { CategoryType } from "@/interfaces/category.interface";
 
 export type PageStatus = "draft" | "published";
 export type PageSectionStatus = "active" | "inactive";
-export type PageSectionComponent = "banner" | "stack" | "category-grid";
+export type PageSectionComponent = "banner" | "stack" | "category-grid" | "product-sale";
 
 export interface PageBoxIconProps {
   icon?: string;
@@ -24,9 +24,7 @@ export interface BannerSectionPayload {
   order: number;
   status: PageSectionStatus;
   component: "banner";
-  props: {
-    bannerId: string;
-  };
+  props: { bannerId: string };
 }
 
 export interface StackSectionPayload {
@@ -59,7 +57,27 @@ export interface CategoryGridSectionPayload {
   };
 }
 
-export type PageSectionPayload = BannerSectionPayload | StackSectionPayload | CategoryGridSectionPayload;
+export interface ProductSaleSectionPayload {
+  _id: string;
+  name: string;
+  order: number;
+  status: PageSectionStatus;
+  component: "product-sale";
+  props: {
+    title: string;
+    description?: string;
+    href: string;
+    actionLabel?: string;
+    limit?: number;
+    sectionClassName?: string;
+  };
+}
+
+export type PageSectionPayload =
+  | BannerSectionPayload
+  | StackSectionPayload
+  | CategoryGridSectionPayload
+  | ProductSaleSectionPayload;
 
 export interface PagePayload {
   sections: PageSectionPayload[];
