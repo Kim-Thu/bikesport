@@ -1,12 +1,45 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
 
 export type PageBlockStatus = "active" | "inactive";
-export type PageBlockComponent = "tabs-slider" | "card-grid" | "icon-list" | "media-cta" | "inline-form";
+export type PageBlockComponent =
+  | "card"
+  | "product-slider"
+  | "tabs-slider"
+  | "card-grid"
+  | "icon-list"
+  | "media-cta"
+  | "inline-form";
 
 interface PageBlockBase {
   _id: string;
   status: PageBlockStatus;
   component: PageBlockComponent;
+}
+
+export interface CardBlockPayload extends PageBlockBase {
+  component: "card";
+  props: {
+    template: CardTemplate;
+    source: {
+      type: "promotion";
+      promotionId: string;
+    };
+  };
+}
+
+export interface ProductSliderBlockPayload extends PageBlockBase {
+  component: "product-slider";
+  props: {
+    template: CardTemplate;
+    ariaLabel?: string;
+    trackClassName?: string;
+    slideClassName?: string;
+    source: {
+      type: "promotion";
+      promotionId: string;
+      limit?: number;
+    };
+  };
 }
 
 export interface TabsSliderBlockPayload extends PageBlockBase {
@@ -77,6 +110,8 @@ export interface InlineFormBlockPayload extends PageBlockBase {
 }
 
 export type PageBlockPayload =
+  | CardBlockPayload
+  | ProductSliderBlockPayload
   | TabsSliderBlockPayload
   | CardGridBlockPayload
   | IconListBlockPayload
