@@ -53,6 +53,8 @@
             "component": "lead-slider",
             "props": {
               "leadTemplate": "accent",
+              "productTemplate": "media-action",
+              "slideClassName": "basis-48 pr-3 sm:basis-52 lg:basis-1/5",
               "limit": 5,
               "sectionClassName": "pb-4 sm:pb-6",
               "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3901" }
@@ -64,9 +66,7 @@
             "order": 5,
             "status": "active",
             "component": "content-aside",
-            "props": {
-              "sectionClassName": "pb-4 sm:pb-6"
-            },
+            "props": { "sectionClassName": "pb-4 sm:pb-6" },
             "content": [
               {
                 "_id": "66bf4e8c9f2a4d7b8c1e4231",
@@ -76,6 +76,8 @@
                   "title": "Sản phẩm bán chạy",
                   "href": "/san-pham",
                   "actionLabel": "Xem tất cả",
+                  "template": "media-action",
+                  "slideClassName": "basis-48 pr-3 sm:basis-52 lg:basis-1/5",
                   "source": {
                     "type": "best-seller",
                     "limit": 8,
@@ -105,38 +107,23 @@
                 "_id": "66bf4e8c9f2a4d7b8c1e4241",
                 "status": "active",
                 "component": "icon-list",
-                "props": {
-                  "items": [
-                    { "icon": "package", "title": "Cam kết chính hãng 100%", "description": "Hoàn tiền 200% nếu phát hiện hàng giả" },
-                    { "icon": "support", "title": "Hỗ trợ kỹ thuật trọn đời", "description": "Đội ngũ chuyên nghiệp" },
-                    { "icon": "badge-percent", "title": "Ưu đãi độc quyền", "description": "Dành riêng cho thành viên" }
-                  ]
-                }
+                "props": { "items": [
+                  { "icon": "package", "title": "Cam kết chính hãng 100%", "description": "Hoàn tiền 200% nếu phát hiện hàng giả" },
+                  { "icon": "support", "title": "Hỗ trợ kỹ thuật trọn đời", "description": "Đội ngũ chuyên nghiệp" },
+                  { "icon": "badge-percent", "title": "Ưu đãi độc quyền", "description": "Dành riêng cho thành viên" }
+                ] }
               },
               {
                 "_id": "66bf4e8c9f2a4d7b8c1e4242",
                 "status": "active",
                 "component": "media-cta",
-                "props": {
-                  "eyebrow": "Trở thành thành viên",
-                  "title": "Nhận ngay 100K",
-                  "description": "Và nhiều ưu đãi hấp dẫn",
-                  "href": "/dang-ky",
-                  "actionLabel": "Đăng ký ngay",
-                  "mediaId": null
-                }
+                "props": { "eyebrow": "Trở thành thành viên", "title": "Nhận ngay 100K", "description": "Và nhiều ưu đãi hấp dẫn", "href": "/dang-ky", "actionLabel": "Đăng ký ngay", "mediaId": null }
               },
               {
                 "_id": "66bf4e8c9f2a4d7b8c1e4243",
                 "status": "active",
                 "component": "inline-form",
-                "props": {
-                  "title": "Nhận tin khuyến mãi",
-                  "description": "Đừng bỏ lỡ các ưu đãi và thông tin mới nhất từ BikeSport",
-                  "placeholder": "Nhập email của bạn...",
-                  "actionLabel": "Đăng ký",
-                  "inputType": "email"
-                }
+                "props": { "title": "Nhận tin khuyến mãi", "description": "Đừng bỏ lỡ các ưu đãi và thông tin mới nhất từ BikeSport", "placeholder": "Nhập email của bạn...", "actionLabel": "Đăng ký", "inputType": "email" }
               }
             ]
           },
@@ -159,7 +146,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-16T22:37:00+07:00"
+      "updatedAt": "2026-08-16T23:06:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
