@@ -2,44 +2,52 @@
   "promotions": [
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3901",
-      "name": "Giảm 20% xe đạp Giant demo",
-      "slug": "giam-20-xe-dap-giant-demo",
+      "name": "Ưu đãi tháng 8",
+      "slug": "uu-dai-thang-8-2026",
       "status": "active",
       "priority": 100,
       "stackable": false,
       "target": {
         "type": "product",
-        "productIds": [
-          "66bf4e8c9f2a4d7b8c1e4101",
-          "66bf4e8c9f2a4d7b8c1e4102"
+        "match": "any",
+        "skus": [
+          "GIANT-ATX-610-2024",
+          "TWITTER-R10-2024",
+          "FORLIFE-LUX-2024",
+          "COMBO-MU-KINH",
+          "SHIMANO-RC100"
         ]
       },
       "benefits": [
         {
           "type": "percentage_discount",
-          "percentage": 20,
-          "maxDiscountAmount": 3000000
+          "percentage": 30,
+          "maxDiscountAmount": 12000000
         }
       ],
-      "startAt": "2026-08-01T00:00:00+07:00",
-      "endAt": "2026-08-31T23:59:59+07:00",
+      "display": {
+        "href": "/khuyen-mai",
+        "actionLabel": "Xem tất cả",
+        "badgeMediaId": null
+      },
+      "startAt": "2026-08-01T10:00:00+07:00",
+      "endAt": "2026-08-31T22:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
-      "createdAt": "2026-08-16T16:54:00+07:00",
-      "updatedAt": "2026-08-16T16:54:00+07:00"
+      "createdAt": "2026-08-01T09:00:00+07:00",
+      "updatedAt": "2026-08-16T21:45:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3902",
-      "name": "Giảm 10% và tặng voucher 200K demo",
-      "slug": "giam-10-tang-voucher-200k-demo",
+      "name": "Ưu đãi sản phẩm bán chạy",
+      "slug": "uu-dai-san-pham-ban-chay",
       "status": "active",
       "priority": 90,
       "stackable": true,
       "target": {
         "type": "product",
-        "productIds": [
-          "66bf4e8c9f2a4d7b8c1e4103"
-        ]
+        "match": "any",
+        "tagIds": ["66bf4e8c9f2a4d7b8c1e4602"]
       },
       "conditions": {
         "minQuantity": 1
@@ -56,77 +64,82 @@
           "value": 200000
         }
       ],
-      "startAt": "2026-08-01T00:00:00+07:00",
-      "endAt": "2026-08-31T23:59:59+07:00",
+      "display": {
+        "title": "ƯU ĐÃI BÁN CHẠY",
+        "href": "/khuyen-mai",
+        "actionLabel": "Xem tất cả"
+      },
+      "startAt": "2026-08-01T10:00:00+07:00",
+      "endAt": "2026-08-31T22:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
-      "createdAt": "2026-08-16T16:54:00+07:00",
-      "updatedAt": "2026-08-16T16:54:00+07:00"
+      "createdAt": "2026-08-01T09:10:00+07:00",
+      "updatedAt": "2026-08-16T21:45:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3903",
-      "name": "Mua 2 tặng 1 phụ kiện demo",
-      "slug": "mua-2-tang-1-phu-kien-demo",
+      "name": "Ưu đãi xe đạp địa hình",
+      "slug": "uu-dai-xe-dap-dia-hinh",
       "status": "active",
       "priority": 80,
       "stackable": false,
       "target": {
         "type": "product",
-        "productIds": [
-          "66bf4e8c9f2a4d7b8c1e4104"
-        ]
-      },
-      "conditions": {
-        "minQuantity": 2
+        "match": "any",
+        "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c11"]
       },
       "benefits": [
         {
-          "type": "buy_x_get_y",
-          "buyProductId": "66bf4e8c9f2a4d7b8c1e4104",
-          "buyQuantity": 2,
-          "getProductId": "66bf4e8c9f2a4d7b8c1e4105",
-          "getQuantity": 1,
-          "getDiscountPercentage": 100
+          "type": "percentage_discount",
+          "percentage": 15
         }
       ],
-      "startAt": "2026-08-01T00:00:00+07:00",
-      "endAt": "2026-08-31T23:59:59+07:00",
+      "display": {
+        "title": "ƯU ĐÃI XE ĐỊA HÌNH",
+        "href": "/khuyen-mai",
+        "actionLabel": "Xem tất cả"
+      },
+      "startAt": "2026-08-10T10:00:00+07:00",
+      "endAt": "2026-08-25T22:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
-      "createdAt": "2026-08-16T16:54:00+07:00",
-      "updatedAt": "2026-08-16T16:54:00+07:00"
+      "createdAt": "2026-08-10T09:00:00+07:00",
+      "updatedAt": "2026-08-16T21:45:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3904",
-      "name": "Tặng nón bảo hiểm khi mua xe demo",
-      "slug": "tang-non-bao-hiem-khi-mua-xe-demo",
+      "name": "Ưu đãi phụ kiện",
+      "slug": "uu-dai-phu-kien",
       "status": "active",
       "priority": 70,
       "stackable": true,
       "target": {
         "type": "product",
-        "productIds": [
-          "66bf4e8c9f2a4d7b8c1e4106"
-        ]
+        "match": "any",
+        "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c15", "66bf4e8c9f2a4d7b8c1e3c16"]
       },
       "benefits": [
         {
-          "type": "gift",
-          "giftProductId": "66bf4e8c9f2a4d7b8c1e4107",
-          "quantity": 1
+          "type": "fixed_discount",
+          "amount": 200000
         }
       ],
-      "startAt": "2026-08-01T00:00:00+07:00",
-      "endAt": "2026-08-31T23:59:59+07:00",
+      "display": {
+        "title": "ƯU ĐÃI PHỤ KIỆN",
+        "href": "/khuyen-mai",
+        "actionLabel": "Xem tất cả"
+      },
+      "startAt": "2026-08-01T10:00:00+07:00",
+      "endAt": "2026-08-31T22:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
-      "createdAt": "2026-08-16T16:54:00+07:00",
-      "updatedAt": "2026-08-16T16:54:00+07:00"
+      "createdAt": "2026-08-01T09:20:00+07:00",
+      "updatedAt": "2026-08-16T21:45:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3905",
-      "name": "Miễn phí vận chuyển đơn từ 5 triệu demo",
-      "slug": "mien-phi-van-chuyen-don-tu-5-trieu-demo",
+      "name": "Miễn phí vận chuyển đơn từ 5 triệu",
+      "slug": "mien-phi-van-chuyen-don-tu-5-trieu",
       "status": "active",
       "priority": 60,
       "stackable": true,
@@ -142,12 +155,12 @@
           "maxShippingDiscount": 300000
         }
       ],
-      "startAt": "2026-08-01T00:00:00+07:00",
-      "endAt": "2026-08-31T23:59:59+07:00",
+      "startAt": "2026-08-01T10:00:00+07:00",
+      "endAt": "2026-08-31T22:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
-      "createdAt": "2026-08-16T16:54:00+07:00",
-      "updatedAt": "2026-08-16T16:54:00+07:00"
+      "createdAt": "2026-08-01T09:30:00+07:00",
+      "updatedAt": "2026-08-16T21:45:00+07:00"
     }
   ]
 }
