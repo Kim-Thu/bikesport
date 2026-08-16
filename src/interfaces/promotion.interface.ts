@@ -3,9 +3,9 @@ import type { PromotionVariant } from "@/variants/promotion.variant";
 export interface PromotionProps {
   type?: PromotionVariant;
   content?: string;
-  src?: string;
+  mediaId?: string;
   alt?: string;
   href?: string;
   ctaLabel?: string;
-  icon?: string;
+  iconMediaId?: string;
 }
