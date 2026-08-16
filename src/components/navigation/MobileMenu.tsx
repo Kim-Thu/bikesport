@@ -21,7 +21,32 @@ export function MobileMenu({ menuId }: NavMenuProps) {
     }
 
     const frame = window.requestAnimationFrame(() => setIsVisible(true));
-    return () => window.cancelAnimationFrame(frame);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const desktopQuery = window.matchMedia("(min-width: 1024px)");
+    const handleDesktopChange = (event: MediaQueryListEvent) => {
+      if (event.matches) {
+        setIsVisible(false);
+        setIsOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsVisible(false);
+        window.setTimeout(() => setIsOpen(false), 300);
+      }
+    };
+
+    desktopQuery.addEventListener("change", handleDesktopChange);
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      desktopQuery.removeEventListener("change", handleDesktopChange);
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [isOpen]);
 
   if (!items.length) return null;
@@ -50,18 +75,18 @@ export function MobileMenu({ menuId }: NavMenuProps) {
         >
           <nav
             id="mobile-navigation"
-            className={`h-dvh w-screen overflow-y-auto bg-white p-5 transition-transform duration-300 ease-out ${isVisible ? "translate-x-0" : "-translate-x-full"}`}
+            className={`h-screen h-dvh w-full overflow-y-auto overscroll-contain bg-white p-4 transition-transform duration-300 ease-out sm:p-5 ${isVisible ? "translate-x-0" : "-translate-x-full"}`}
             aria-label={menu?.name || "Điều hướng di động"}
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="mb-4 flex items-center justify-between">
+            <div className="sticky top-0 z-10 mb-4 flex items-center justify-between bg-white py-1">
               <Logo href="/" />
               <Button variant="icon" aria-label="Đóng menu" onClick={closeMenu}>
                 <Icon name="close" size={26} strokeWidth={1.8} />
               </Button>
             </div>
 
-            <ul className="m-0 list-none p-0">
+            <ul className="m-0 list-none p-0 pb-6">
               {items
                 .slice()
                 .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
@@ -72,7 +97,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
                     <li key={item._id} className="border-b border-gray-100">
                       <Link
                         href={item.href || "/"}
-                        className={`flex min-h-12 items-center justify-between gap-2 text-sm font-semibold ${item.highlight ? "text-red-500" : "text-gray-900"}`}
+                        className={`flex min-h-12 items-center justify-between gap-2 text-sm font-semibold sm:min-h-14 ${item.highlight ? "text-red-500" : "text-gray-900"}`}
                         onClick={closeMenu}
                       >
                         <span>{item.label}</span>
