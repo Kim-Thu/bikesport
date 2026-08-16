@@ -100,7 +100,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
               const children = childrenByParentId.get(item._id) ?? [];
               const hasDropdown = children.length > 0 || item.hasDropdown === true;
               const isExpanded = expandedItemId === item._id;
-              const itemClass = `flex min-h-12 w-full items-center justify-between gap-2 text-sm font-semibold sm:min-h-14 ${item.highlight ? "text-red-500" : "text-gray-900"}`;
+              const itemClass = `flex w-full items-center justify-between gap-2 py-3 text-sm font-semibold sm:py-4 ${item.highlight ? "text-red-500" : "text-gray-900"}`;
 
               return (
                 <li key={item._id} className="border-b border-gray-100">
@@ -126,7 +126,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
                       id={`mobile-submenu-${item._id}`}
                       items={children}
                       listClassName="m-0 list-none bg-gray-50 p-0"
-                      itemClassName="flex min-h-11 items-center gap-2 px-4 text-sm text-gray-700"
+                      itemClassName="flex items-center gap-2 px-4 py-3 text-sm text-gray-700"
                       onItemClick={closeMenu}
                     />
                   ) : null}
