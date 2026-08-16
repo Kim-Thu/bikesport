@@ -1,3 +1,4 @@
+import { AdsBlock } from "@/components/block/AdsBlock";
 import { CardBlock } from "@/components/block/CardBlock";
 import { CardGridBlock } from "@/components/block/CardGridBlock";
 import { IconListBlock } from "@/components/block/IconListBlock";
@@ -9,6 +10,7 @@ import { TabsSliderBlock } from "@/components/block/TabsSliderBlock";
 import type { PageBlockComponent } from "@/interfaces/page-block.interface";
 
 export const PAGE_BLOCK_COMPONENTS = {
+  ads: AdsBlock,
   card: CardBlock,
   "product-slider": ProductSliderBlock,
   "tabs-slider": TabsSliderBlock,
