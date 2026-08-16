@@ -1,8 +1,8 @@
-import { BannerSection } from "@/components/page/sections/BannerSection";
-import { CardGridSection } from "@/components/page/sections/CardGridSection";
-import { ContentAsideSection } from "@/components/page/sections/ContentAsideSection";
-import { LeadSliderSection } from "@/components/page/sections/LeadSliderSection";
-import { StackSection } from "@/components/page/sections/StackSection";
+import { BannerSection } from "@/components/section/BannerSection";
+import { CardGridSection } from "@/components/section/CardGridSection";
+import { ContentAsideSection } from "@/components/section/ContentAsideSection";
+import { LeadSliderSection } from "@/components/section/LeadSliderSection";
+import { StackSection } from "@/components/section/StackSection";
 import type { PageSectionComponent } from "@/interfaces/page.interface";
 
 export const PAGE_SECTION_COMPONENTS = {
