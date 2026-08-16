@@ -13,10 +13,10 @@ export function CenteredBanner({ banner }: { banner: BannerRecord }) {
   const actions = banner.actions ?? [];
 
   return (
-    <div className="relative flex min-h-88 w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent lg:min-h-hero">
+    <div className="relative flex min-h-88 w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent lg:min-h-125">
       <BannerBackground banner={banner} />
 
-      <div className="relative z-20 flex min-h-88 w-full items-center justify-center p-5 text-center sm:p-7 lg:min-h-hero lg:p-8">
+      <div className="relative z-20 flex min-h-88 w-full items-center justify-center p-5 text-center sm:p-7 lg:min-h-125 lg:p-8">
         <div className="max-w-3xl">
           {banner.eyebrow ? (
             <p className="mb-3 text-xs font-bold uppercase tracking-wide text-gray-800 sm:text-sm">{banner.eyebrow}</p>
