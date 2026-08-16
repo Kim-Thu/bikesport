@@ -37,7 +37,7 @@ export function ProductSaleSection({ section }: { section: PageSectionPayload })
             loop
             dragFree
             ariaLabel={`Sản phẩm ${promotion.name}`}
-            slideClassName="basis-48 pr-3 sm:basis-52 lg:basis-1/5"
+            slideClassName="basis-48 pr-3 sm:basis-52 lg:basis-1/4"
             dotsClassName="hidden"
           >
             {products.map((product) => {
