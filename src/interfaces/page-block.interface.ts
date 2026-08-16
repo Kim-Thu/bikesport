@@ -1,5 +1,4 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
-import type { PageBoxIconProps } from "@/interfaces/page.interface";
 
 export type PageBlockStatus = "active" | "inactive";
 export type PageBlockComponent = "tabs-slider" | "card-grid" | "icon-list" | "media-cta" | "inline-form";
@@ -42,7 +41,12 @@ export interface CardGridBlockPayload extends PageBlockBase {
 export interface IconListBlockPayload extends PageBlockBase {
   component: "icon-list";
   props: {
-    items: PageBoxIconProps[];
+    items: Array<{
+      icon?: string;
+      mediaId?: string;
+      title: string;
+      description?: string;
+    }>;
   };
 }
 
