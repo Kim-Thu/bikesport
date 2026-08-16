@@ -25,5 +25,15 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
     }),
   }));
 
-  return <TabsSlider title={block.props.title} href={block.props.href} actionLabel={block.props.actionLabel} groups={groups} template={block.props.template} slideClassName={block.props.slideClassName} />;
+  return (
+    <TabsSlider
+      title={block.props.title}
+      href={block.props.href}
+      actionLabel={block.props.actionLabel}
+      groups={groups}
+      template={block.props.template}
+      trackClassName={block.props.trackClassName}
+      slideClassName={block.props.slideClassName}
+    />
+  );
 }
