@@ -13,7 +13,7 @@ export function MediaFooterTemplate({ title, href, mediaId, className }: CardPro
         className,
       )}
     >
-      <div className="aspect-4/3 w-full overflow-hidden bg-white p-3">
+      <div className="aspect-card-media w-full overflow-hidden bg-white p-3">
         <MediaImage
           mediaId={mediaId}
           alt={title}
