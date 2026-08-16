@@ -14,6 +14,10 @@ function isWithinSchedule(banner: BannerRecord): boolean {
   return true;
 }
 
+function isActiveBanner(banner: BannerRecord): boolean {
+  return banner.status === "active" && isWithinSchedule(banner);
+}
+
 export function getBannerById(bannerId?: string | null): BannerRecord | null {
   if (!bannerId) return null;
   return bannerIndex.get(bannerId) ?? null;
@@ -21,6 +25,15 @@ export function getBannerById(bannerId?: string | null): BannerRecord | null {
 
 export function getActiveBannerById(bannerId?: string | null): BannerRecord | null {
   const banner = getBannerById(bannerId);
-  if (!banner || banner.status !== "active" || !isWithinSchedule(banner)) return null;
+  if (!banner || !isActiveBanner(banner)) return null;
   return banner;
+}
+
+export function getActiveBannersByGroup(groupId?: string | null): BannerRecord[] {
+  if (!groupId) return [];
+
+  return bannerData.banners
+    .filter((banner) => banner.groupId === groupId && isActiveBanner(banner))
+    .slice()
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 }
