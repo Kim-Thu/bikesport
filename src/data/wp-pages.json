@@ -45,10 +45,7 @@
             "status": "active",
             "component": "product-sale",
             "props": {
-              "title": "Ưu đãi tháng 6",
-              "description": "Giảm đến 30%",
-              "href": "/khuyen-mai",
-              "actionLabel": "Xem tất cả",
+              "promotionId": "66bf4e8c9f2a4d7b8c1e3901",
               "limit": 5,
               "sectionClassName": "pb-4 sm:pb-6"
             }
@@ -72,7 +69,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-16T21:10:00+07:00"
+      "updatedAt": "2026-08-16T21:49:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
