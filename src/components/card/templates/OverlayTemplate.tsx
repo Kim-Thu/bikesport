@@ -18,7 +18,7 @@ export function OverlayTemplate({
 
   return (
     <article className={cn("group relative overflow-hidden rounded-lg border border-gray-100 bg-white", className)}>
-      <CLink href={href} className="relative block aspect-event overflow-hidden">
+      <CLink href={href} className="relative block aspect-video overflow-hidden">
         <MediaImage
           mediaId={mediaId}
           alt={title}
