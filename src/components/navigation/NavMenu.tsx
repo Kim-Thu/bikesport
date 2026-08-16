@@ -1,19 +1,13 @@
 import { Icon } from "@/components/icon/Icon";
 import { MenuChildren } from "@/components/navigation/partials/MenuChildren";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
-import {
-  getChildMenuItems,
-  getMenuById,
-  getMenuHref,
-  getRootMenuItems,
-  hasMenuChildren,
-} from "@/lib/menu.utils";
+import { createMenuIndex, getMenuById, getMenuHref } from "@/lib/menu.utils";
 import Link from "next/link";
 
 export function NavMenu({ menuId }: NavMenuProps) {
   const menu = getMenuById(menuId);
   const items = menu?.items ?? [];
-  const rootItems = getRootMenuItems(items);
+  const { rootItems, childrenByParentId } = createMenuIndex(items);
 
   if (!rootItems.length) return null;
 
@@ -23,8 +17,8 @@ export function NavMenu({ menuId }: NavMenuProps) {
         {rootItems.map((item) => {
           if (!item.label) return null;
 
-          const children = getChildMenuItems(items, item._id);
-          const hasDropdown = hasMenuChildren(items, item);
+          const children = childrenByParentId.get(item._id) ?? [];
+          const hasDropdown = children.length > 0 || item.hasDropdown === true;
 
           return (
             <li key={item._id} className="group relative">
