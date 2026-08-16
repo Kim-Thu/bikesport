@@ -17,9 +17,9 @@ export function MediaActionTemplate({
 }: CardProps) {
   return (
     <article className={cn("group flex h-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white", className)}>
-      <CLink href={href} className="relative block p-3">
+      <CLink href={href} className="relative block p-4">
         {discountPercentage ? (
-          <Badge className="absolute left-3 top-3 z-10">-{discountPercentage}%</Badge>
+          <Badge className="absolute left-4 top-4 z-10">-{discountPercentage}%</Badge>
         ) : null}
         <div className="aspect-product w-full overflow-hidden">
           <MediaImage
@@ -27,12 +27,12 @@ export function MediaActionTemplate({
             alt={title}
             width={320}
             height={240}
-            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
       </CLink>
 
-      <div className="flex flex-1 flex-col gap-2 px-3 pb-3">
+      <div className="flex flex-1 flex-col gap-2 px-4 pb-4">
         <CLink href={href} className="line-clamp-2 text-xs font-semibold text-gray-900 sm:text-sm">
           {title}
         </CLink>
