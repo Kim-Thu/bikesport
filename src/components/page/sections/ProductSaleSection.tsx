@@ -21,6 +21,8 @@ export function ProductSaleSection({ section }: { section: PageSectionPayload })
   const products = getPromotionProducts(promotion, section.props.limit);
   if (!products.length) return null;
 
+  const carouselProducts = products.length <= 5 ? [...products, ...products] : products;
+
   return (
     <Section className={section.props.sectionClassName}>
       <Container>
@@ -37,15 +39,15 @@ export function ProductSaleSection({ section }: { section: PageSectionPayload })
             loop
             dragFree
             ariaLabel={`Sản phẩm ${promotion.name}`}
-            slideClassName="basis-48 pr-3 sm:basis-52 lg:basis-1/4"
+            slideClassName="basis-48 pr-3 sm:basis-52 lg:basis-1/5"
             dotsClassName="hidden"
           >
-            {products.map((product) => {
+            {carouselProducts.map((product, index) => {
               const pricing = getPromotionProductPricing(product, promotion);
 
               return (
                 <Card
-                  key={product.sku}
+                  key={`${product.sku}-${index}`}
                   template="product"
                   title={product.name}
                   href={`/san-pham/${product.slug}`}
