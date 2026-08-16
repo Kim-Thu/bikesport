@@ -21,7 +21,7 @@ export function MembershipCard({
 }: MembershipCardProps) {
   return (
     <Panel className="relative overflow-hidden bg-blue-50 p-4">
-      <div className="relative z-10 max-w-3/5">
+      <div className="relative z-10 w-3/5">
         {eyebrow ? <div className="text-xs font-bold uppercase text-blue-600">{eyebrow}</div> : null}
         <div className="mt-1 text-lg font-black uppercase leading-tight text-blue-700">{title}</div>
         {description ? <div className="mt-2 text-xs leading-relaxed text-gray-600">{description}</div> : null}
