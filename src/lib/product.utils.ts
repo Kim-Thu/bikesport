@@ -1,8 +1,7 @@
 import productData from "@/data/wp-products.json";
 import type { ProductRecord } from "@/interfaces/product.interface";
 import { getCategoryTreeIds } from "@/lib/category.utils";
-import { getProductSalesBySku } from "@/lib/order.utils";
-import { getProductReviewStatsBySku } from "@/lib/review.utils";
+import { getProductSalesStatsBySku } from "@/lib/order.utils";
 
 export function getPublishedProducts() {
   return (productData.products as ProductRecord[]).filter((product) => product.status === "published");
@@ -15,26 +14,23 @@ export function getFeaturedProducts(limit?: number) {
 
 export function getBestSellerProducts(categoryId?: string | null, limit?: number) {
   const categoryIds = categoryId ? new Set(getCategoryTreeIds(categoryId)) : null;
-  const salesBySku = getProductSalesBySku();
-  const reviewStatsBySku = getProductReviewStatsBySku();
+  const salesBySku = getProductSalesStatsBySku();
 
   const products = getPublishedProducts()
     .filter((product) => !categoryIds || product.categoryIds.some((id) => categoryIds.has(id)))
+    .filter((product) => salesBySku.has(product.sku))
     .sort((a, b) => {
-      const aSales = salesBySku.get(a.sku) ?? 0;
-      const bSales = salesBySku.get(b.sku) ?? 0;
-      const aReviews = reviewStatsBySku.get(a.sku);
-      const bReviews = reviewStatsBySku.get(b.sku);
-      const aScore = aSales + (aReviews?.positiveReviewCount ?? 0);
-      const bScore = bSales + (bReviews?.positiveReviewCount ?? 0);
+      const aSales = salesBySku.get(a.sku);
+      const bSales = salesBySku.get(b.sku);
+      const quantityDifference = (bSales?.quantity ?? 0) - (aSales?.quantity ?? 0);
 
-      if (aScore !== bScore) return bScore - aScore;
-      if ((aReviews?.averageRating ?? 0) !== (bReviews?.averageRating ?? 0)) {
-        return (bReviews?.averageRating ?? 0) - (aReviews?.averageRating ?? 0);
-      }
-      if ((aReviews?.reviewCount ?? 0) !== (bReviews?.reviewCount ?? 0)) {
-        return (bReviews?.reviewCount ?? 0) - (aReviews?.reviewCount ?? 0);
-      }
+      if (quantityDifference !== 0) return quantityDifference;
+
+      const purchaseRecencyDifference =
+        new Date(bSales?.lastPurchasedAt ?? 0).getTime() -
+        new Date(aSales?.lastPurchasedAt ?? 0).getTime();
+
+      if (purchaseRecencyDifference !== 0) return purchaseRecencyDifference;
 
       return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
     });
