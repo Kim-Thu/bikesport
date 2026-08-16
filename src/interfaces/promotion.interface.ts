@@ -1,5 +1,6 @@
 export type PromotionStatus = "draft" | "scheduled" | "active" | "expired" | "disabled";
 export type PromotionTargetType = "product" | "category" | "brand" | "cart";
+export type PromotionTargetMatch = "any" | "all";
 export type PromotionBenefitType =
   | "percentage_discount"
   | "fixed_discount"
@@ -10,16 +11,25 @@ export type PromotionBenefitType =
 
 export interface PromotionTarget {
   type: PromotionTargetType;
-  productIds?: string[];
+  match?: PromotionTargetMatch;
+  skus?: string[];
   categoryIds?: string[];
+  tagIds?: string[];
   brandIds?: string[];
-  excludeProductIds?: string[];
+  excludeSkus?: string[];
 }
 
 export interface PromotionCondition {
   minQuantity?: number;
   minSubtotal?: number;
   customerGroupIds?: string[];
+}
+
+export interface PromotionDisplay {
+  title?: string;
+  href?: string;
+  actionLabel?: string;
+  badgeMediaId?: string | null;
 }
 
 export interface PercentageDiscountBenefit {
@@ -79,6 +89,7 @@ export interface PromotionRecord {
   target: PromotionTarget;
   conditions?: PromotionCondition;
   benefits: PromotionBenefit[];
+  display?: PromotionDisplay;
   startAt?: string;
   endAt?: string;
   createdBy: string;
