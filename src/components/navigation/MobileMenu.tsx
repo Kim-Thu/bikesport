@@ -8,7 +8,7 @@ import type { NavMenuProps } from "@/interfaces/navigation.interface";
 import { createMenuIndex, getMenuById, getMenuHref } from "@/lib/menu.utils";
 import { useUiStore } from "@/stores/ui.store";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export function MobileMenu({ menuId }: NavMenuProps) {
   const isOpen = useUiStore((state) => state.isMobileMenuOpen);
@@ -18,7 +18,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
   const [expandedItemId, setExpandedItemId] = useState<string | null>(null);
   const menu = getMenuById(menuId);
   const items = menu?.items ?? [];
-  const { rootItems, childrenByParentId } = createMenuIndex(items);
+  const { rootItems, childrenByParentId } = useMemo(() => createMenuIndex(items), [items]);
 
   useEffect(() => {
     if (!isOpen) {
