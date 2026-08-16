@@ -32,6 +32,11 @@ export interface PromotionDisplay {
   badgeMediaId?: string | null;
 }
 
+export interface PromotionInventoryItem {
+  sku: string;
+  total: number;
+}
+
 export interface PercentageDiscountBenefit {
   type: "percentage_discount";
   percentage: number;
@@ -90,6 +95,7 @@ export interface PromotionRecord {
   conditions?: PromotionCondition;
   benefits: PromotionBenefit[];
   display?: PromotionDisplay;
+  inventory?: PromotionInventoryItem[];
   startAt?: string;
   endAt?: string;
   createdBy: string;
