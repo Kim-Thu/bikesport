@@ -161,6 +161,41 @@
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-01T09:30:00+07:00",
       "updatedAt": "2026-08-16T21:45:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3906",
+      "name": "Flash Sale 17 - 18/08",
+      "slug": "flash-sale-17-18-08-2026",
+      "status": "active",
+      "priority": 120,
+      "stackable": false,
+      "target": {
+        "type": "product",
+        "match": "any",
+        "skus": [
+          "GIANT-ATX-610-2024",
+          "TREK-MARLIN-5-2024",
+          "SHIMANO-RC100"
+        ]
+      },
+      "benefits": [
+        {
+          "type": "percentage_discount",
+          "percentage": 20,
+          "maxDiscountAmount": 5000000
+        }
+      ],
+      "display": {
+        "title": "FLASH SALE",
+        "href": "/khuyen-mai/flash-sale-17-18-08-2026",
+        "actionLabel": "Xem tất cả"
+      },
+      "startAt": "2026-08-17T10:00:00+07:00",
+      "endAt": "2026-08-18T22:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T09:00:00+07:00",
+      "updatedAt": "2026-08-17T09:00:00+07:00"
     }
   ]
 }
