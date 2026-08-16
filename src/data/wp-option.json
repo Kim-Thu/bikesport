@@ -3,11 +3,11 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T15:52:00+07:00",
+  "updatedAt": "2026-08-16T16:21:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
-    "logo": "/bikesport-logo.svg",
+    "logoMediaId": "66bf4e8c9f2a4d7b8c1e3701",
     "showSiteTitle": false,
     "showTagLine": false
   },
@@ -22,10 +22,7 @@
     "verificationAssets": [
       {
         "label": "Đã thông báo Bộ Công Thương",
-        "src": "/uploads/images/placehoder.png",
-        "alt": "Đã thông báo Bộ Công Thương - BikeSport",
-        "width": 160,
-        "height": 60,
+        "mediaId": "66bf4e8c9f2a4d7b8c1e3702",
         "enabled": true
       }
     ]
@@ -45,25 +42,25 @@
       {
         "name": "facebook",
         "label": "Facebook",
-        "icon": "/uploads/images/facebook.svg",
+        "iconMediaId": "66bf4e8c9f2a4d7b8c1e3703",
         "href": "#facebook"
       },
       {
         "name": "instagram",
         "label": "Instagram",
-        "icon": "/uploads/images/instagram.svg",
+        "iconMediaId": "66bf4e8c9f2a4d7b8c1e3704",
         "href": "#instagram"
       },
       {
         "name": "youtube",
         "label": "YouTube",
-        "icon": "/uploads/images/youtube.svg",
+        "iconMediaId": "66bf4e8c9f2a4d7b8c1e3705",
         "href": "#youtube"
       },
       {
         "name": "tiktok",
         "label": "TikTok",
-        "icon": "/uploads/images/tiktok.svg",
+        "iconMediaId": "66bf4e8c9f2a4d7b8c1e3706",
         "href": "#tiktok"
       }
     ]
@@ -94,7 +91,7 @@
                     "enabled": true,
                     "props": {
                       "type": "text",
-                      "icon": "/uploads/images/gift-icon.svg",
+                      "iconMediaId": "66bf4e8c9f2a4d7b8c1e3707",
                       "content": "ƯU ĐÃI MÙA HÈ - GIẢM ĐẾN 30% + QUÀ TẶNG HẤP DẪN",
                       "href": "#promotions",
                       "ctaLabel": "Xem chi tiết"
