@@ -1,7 +1,16 @@
 import type { LinkInfo } from "@/interfaces/link.interface";
 
-const SPECIAL_PROTOCOL_PATTERN = /^(tel:|mailto:|sms:)/i;
-const ABSOLUTE_URL_PATTERN = /^https?:\/\//i;
+const NATIVE_PROTOCOL_PATTERN = /^(tel:|mailto:|sms:)/i;
+const HTTP_PROTOCOL_PATTERN = /^https?:\/\//i;
+const BLOCKED_PROTOCOL_PATTERN = /^[a-z][a-z\d+.-]*:/i;
+
+function createSafeFallback(): LinkInfo {
+  return {
+    href: "#",
+    isExternal: false,
+    useNativeAnchor: false,
+  };
+}
 
 export function getHomeUrl() {
   return (process.env.NEXT_PUBLIC_SITE_URL || "").trim().replace(/\/+$/, "");
@@ -10,7 +19,7 @@ export function getHomeUrl() {
 export function getLinkInfo(href?: string): LinkInfo {
   const normalizedHref = href?.trim() || "#";
 
-  if (SPECIAL_PROTOCOL_PATTERN.test(normalizedHref)) {
+  if (NATIVE_PROTOCOL_PATTERN.test(normalizedHref)) {
     return {
       href: normalizedHref,
       isExternal: false,
@@ -18,7 +27,11 @@ export function getLinkInfo(href?: string): LinkInfo {
     };
   }
 
-  if (!ABSOLUTE_URL_PATTERN.test(normalizedHref)) {
+  if (BLOCKED_PROTOCOL_PATTERN.test(normalizedHref) && !HTTP_PROTOCOL_PATTERN.test(normalizedHref)) {
+    return createSafeFallback();
+  }
+
+  if (!HTTP_PROTOCOL_PATTERN.test(normalizedHref)) {
     return {
       href: normalizedHref,
       isExternal: false,
@@ -39,7 +52,7 @@ export function getLinkInfo(href?: string): LinkInfo {
     }
 
     const siteUrl = new URL(homeUrl);
-    const isInternal = targetUrl.hostname === siteUrl.hostname;
+    const isInternal = targetUrl.origin === siteUrl.origin;
 
     if (isInternal) {
       return {
@@ -55,10 +68,6 @@ export function getLinkInfo(href?: string): LinkInfo {
       useNativeAnchor: true,
     };
   } catch {
-    return {
-      href: normalizedHref,
-      isExternal: false,
-      useNativeAnchor: true,
-    };
+    return createSafeFallback();
   }
 }
