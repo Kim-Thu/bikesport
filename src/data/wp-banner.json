@@ -2,6 +2,7 @@
   "banners": [
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3a01",
+      "categoryId": "66bf4e8c9f2a4d7b8c1e3c01",
       "groupId": "66bf4e8c9f2a4d7b8c1e3b01",
       "order": 1,
       "name": "Storefront Hero Demo 1",
@@ -28,10 +29,11 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T17:07:00+07:00",
-      "updatedAt": "2026-08-16T17:50:00+07:00"
+      "updatedAt": "2026-08-16T19:01:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3a02",
+      "categoryId": "66bf4e8c9f2a4d7b8c1e3c01",
       "groupId": "66bf4e8c9f2a4d7b8c1e3b01",
       "order": 2,
       "name": "Storefront Hero Demo 2",
@@ -58,10 +60,11 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T17:50:00+07:00",
-      "updatedAt": "2026-08-16T17:50:00+07:00"
+      "updatedAt": "2026-08-16T19:01:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3a03",
+      "categoryId": "66bf4e8c9f2a4d7b8c1e3c01",
       "groupId": "66bf4e8c9f2a4d7b8c1e3b01",
       "order": 3,
       "name": "Storefront Hero Demo 3",
@@ -88,7 +91,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T17:50:00+07:00",
-      "updatedAt": "2026-08-16T17:50:00+07:00"
+      "updatedAt": "2026-08-16T19:01:00+07:00"
     }
   ]
 }
