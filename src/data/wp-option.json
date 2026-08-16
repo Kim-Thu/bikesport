@@ -3,7 +3,7 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T15:25:00+07:00",
+  "updatedAt": "2026-08-16T15:37:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
@@ -22,11 +22,11 @@
     "verificationAssets": [
       {
         "label": "Đã thông báo Bộ Công Thương",
-        "src": "/uploads/images/bo-cong-thuong.png",
+        "src": "/uploads/images/placehoder.png",
         "alt": "Đã thông báo Bộ Công Thương - BikeSport",
         "width": 160,
         "height": 60,
-        "enabled": false
+        "enabled": true
       }
     ]
   },
@@ -194,11 +194,11 @@
     "assets": [
       {
         "label": "Phương thức thanh toán",
-        "src": "/uploads/images/footer-payment-methods.png",
+        "src": "/uploads/images/placehoder.png",
         "alt": "Phương thức thanh toán BikeSport",
         "width": 220,
         "height": 40,
-        "enabled": false
+        "enabled": true
       }
     ],
     "copyright": "© 2026 BikeSport. All rights reserved."
