@@ -11,7 +11,8 @@ export interface NavMenuItem {
 export interface NavMenuData {
   _id: string;
   name: string;
-  author: string;
+  createdBy: string;
+  updatedBy: string;
   createdAt: string;
   updatedAt: string;
   items: NavMenuItem[];
