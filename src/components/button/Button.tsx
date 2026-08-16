@@ -3,8 +3,8 @@ import type { ButtonProps } from "@/interfaces/button.interface";
 import { cn } from "@/lib/classname.utils";
 
 const VARIANTS = {
-  default: "inline-flex items-center justify-center",
-  icon: "inline-flex h-10 w-9 items-center justify-center text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
+  default: "inline-flex cursor-pointer items-center justify-center disabled:cursor-not-allowed",
+  icon: "inline-flex h-10 w-9 cursor-pointer items-center justify-center text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:cursor-not-allowed",
 } as const;
 
 export function Button({ variant = "default", icon, iconSize = 30, label, children, className = "", ...props }: ButtonProps) {
