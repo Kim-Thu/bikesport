@@ -3,6 +3,7 @@ export type CardTemplate =
   | "media-action"
   | "media-meta"
   | "media-details"
+  | "flash-sale"
   | "accent"
   | "overlay";
 
