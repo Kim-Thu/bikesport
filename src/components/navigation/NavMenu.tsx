@@ -10,7 +10,7 @@ export function NavMenu({ menuId }: NavMenuProps) {
   if (!items.length) return null;
 
   return (
-    <nav className="overflow-x-auto bg-white" aria-label={menu?.name || "Điều hướng"}>
+    <nav className="hidden overflow-x-auto bg-white lg:block" aria-label={menu?.name || "Điều hướng"}>
       <ul className="flex min-h-12 w-max list-none items-center gap-10 p-0">
         {items
           .slice()
