@@ -11,8 +11,10 @@ export function DefaultTemplate({ settings }: HeaderTemplateProps) {
   return (
     <>
       <HeaderTop region={top} />
-      <HeaderMain region={main} />
-      <HeaderBottom region={bottom} />
+      <div className="sticky top-0 z-40 bg-white shadow-sm">
+        <HeaderMain region={main} />
+        <HeaderBottom region={bottom} />
+      </div>
     </>
   );
 }
