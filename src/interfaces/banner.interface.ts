@@ -1,3 +1,5 @@
+import type { BannerOverlayVariant, BannerVariant } from "@/variants/banner.variant";
+
 export type BannerStatus = "draft" | "scheduled" | "active" | "expired" | "disabled";
 export type BannerActionVariant = "primary" | "outline";
 
@@ -20,6 +22,10 @@ export interface BannerPromotionCard {
   icon?: string;
 }
 
+export interface BannerOverlay {
+  variant: BannerOverlayVariant;
+}
+
 export interface BannerRecord {
   _id: string;
   categoryId: string;
@@ -27,8 +33,10 @@ export interface BannerRecord {
   order?: number;
   name: string;
   status: BannerStatus;
+  variant: BannerVariant;
+  overlay?: BannerOverlay;
   eyebrow?: string;
-  title: string;
+  title?: string;
   titleHighlight?: string;
   description?: string;
   backgroundMediaId?: string;
