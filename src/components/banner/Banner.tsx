@@ -62,8 +62,13 @@ export function Banner({ bannerId }: BannerProps) {
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
 
-          <div className="relative z-10 grid gap-6 p-5 sm:p-7 lg:min-h-88 lg:grid-cols-12 lg:items-center lg:gap-6 lg:p-8">
-            <div className="order-1 lg:col-span-9">
+          <div
+            className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-blue-600/10 via-blue-600/10 to-transparent"
+            aria-hidden="true"
+          />
+
+          <div className="relative z-20 grid gap-6 p-5 sm:p-7 lg:min-h-88 lg:grid-cols-12 lg:items-center lg:gap-6 lg:p-8">
+            <div className="order-1 lg:col-span-10">
               <div className="max-w-xl">
                 {banner.eyebrow ? (
                   <p className="mb-2 text-xs font-bold uppercase tracking-wide text-gray-800 sm:text-sm">
@@ -111,7 +116,7 @@ export function Banner({ bannerId }: BannerProps) {
             </div>
 
             {promotionCards.length ? (
-              <div className="order-2 grid gap-3 sm:grid-cols-3 lg:col-span-3 lg:grid-cols-1">
+              <div className="order-2 grid gap-3 sm:grid-cols-3 lg:col-span-2 lg:grid-cols-1">
                 {promotionCards.map((card) => {
                   const promotion = getActivePromotionById(card.promotionId);
                   if (!promotion) return null;
@@ -133,7 +138,7 @@ export function Banner({ bannerId }: BannerProps) {
           </div>
 
           <div
-            className="pointer-events-none absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5"
+            className="pointer-events-none absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 gap-1.5"
             aria-hidden="true"
           >
             <span className="h-1.5 w-8 rounded-full bg-white" />
