@@ -11,7 +11,7 @@ export function HeaderBottom({ region }: HeaderPartialProps) {
     <div className="bg-white">
       <Container>
         {region.rows.map((row, rowIndex) => (
-          <Row key={row.id || rowIndex} className="gap-2 max-lg:py-2 lg:gap-4">
+          <Row key={row.id || rowIndex} className="gap-2 py-2 lg:gap-4 lg:py-0">
             {row.columns?.map((column, columnIndex) => (
               <Column key={column.id || columnIndex} grow={column.grow} className="flex min-w-0 items-center gap-2 lg:gap-4">
                 {column.items?.map(renderComponent)}
