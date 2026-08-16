@@ -15,7 +15,6 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
 
       return {
         _key: product.sku,
-        template: "media-action",
         title: product.name,
         href: `/san-pham/${product.slug}`,
         mediaId: getProductPrimaryMediaId(product),
@@ -32,6 +31,8 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
       href={block.props.href}
       actionLabel={block.props.actionLabel}
       groups={groups}
+      template={block.props.template}
+      slideClassName={block.props.slideClassName}
     />
   );
 }
