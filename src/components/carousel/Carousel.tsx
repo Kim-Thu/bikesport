@@ -52,7 +52,7 @@ export function Carousel({
   }, [children.length]);
 
   const handlePointerDown = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (event.button !== 0 && event.pointerType === "mouse") return;
+    if (event.pointerType !== "mouse" || event.button !== 0) return;
 
     const viewport = viewportRef.current;
     if (!viewport) return;
@@ -64,7 +64,7 @@ export function Carousel({
   }, []);
 
   const handlePointerMove = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (!isDragging.current) return;
+    if (event.pointerType !== "mouse" || !isDragging.current) return;
 
     const viewport = viewportRef.current;
     if (!viewport) return;
@@ -74,7 +74,7 @@ export function Carousel({
   }, []);
 
   const finishDragging = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (!isDragging.current) return;
+    if (event.pointerType !== "mouse" || !isDragging.current) return;
 
     isDragging.current = false;
 
@@ -100,7 +100,7 @@ export function Carousel({
       <div
         ref={viewportRef}
         className={cn(
-          "cursor-grab touch-pan-y select-none overflow-x-auto overscroll-x-contain scroll-smooth snap-x snap-mandatory active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+          "cursor-grab touch-auto select-none overflow-x-auto overscroll-x-contain scroll-smooth snap-x snap-mandatory active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
           viewportClassName,
         )}
         onScroll={handleScroll}
@@ -108,7 +108,6 @@ export function Carousel({
         onPointerMove={handlePointerMove}
         onPointerUp={finishDragging}
         onPointerCancel={finishDragging}
-        onLostPointerCapture={finishDragging}
       >
         <div className="flex">
           {children.map((child, index) => (
