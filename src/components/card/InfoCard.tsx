@@ -3,7 +3,7 @@ import { Icon } from "@/components/icon/Icon";
 
 export function InfoCard({ icon, label, description, value }: { icon?: string; label: string; description?: string; value?: ReactNode }) {
   return (
-    <div className="flex items-start gap-3 rounded-lg border border-gray-200 bg-white/95 p-3 shadow-sm">
+    <div className="flex items-start gap-3 rounded-lg border border-gray-200 bg-white/95 p-3">
       {icon ? <Icon name={icon} className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" /> : null}
       <div className="min-w-0">
         <div className="text-2xs font-bold uppercase tracking-wide text-gray-900 sm:text-xs">{label}</div>
