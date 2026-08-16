@@ -19,7 +19,8 @@ interface ProductSliderProps {
 export function ProductSlider({ items, ariaLabel }: ProductSliderProps) {
   if (!items.length) return null;
 
-  const slides = items.length <= 5 ? [...items, ...items] : items;
+  const repeatCount = Math.max(1, Math.ceil(10 / items.length));
+  const slides = Array.from({ length: repeatCount }, () => items).flat();
 
   return (
     <Carousel
