@@ -4,14 +4,14 @@ import { Column } from "@/components/layout/Column";
 import { Container } from "@/components/layout/Container";
 import { Row } from "@/components/layout/Row";
 import { Logo } from "@/components/logo/Logo";
+import { CMenu } from "@/components/menu/CMenu";
 import { Social } from "@/components/social/Social";
 import wpOption from "@/data/wp-option.json";
 import type { FooterSettings } from "@/interfaces/footer.interface";
-import { getMenuById, getMenuHref } from "@/lib/menu.utils";
 
 export function FooterMain({ settings }: { settings: FooterSettings }) {
   const hotline = wpOption.contact.hotline;
-  const menus = (settings.menuIds ?? []).map(getMenuById).filter(Boolean);
+  const menuIds = settings.menuIds ?? [];
   const assets = (settings.assets ?? []).filter((asset) => asset.enabled !== false);
 
   return (
@@ -56,33 +56,17 @@ export function FooterMain({ settings }: { settings: FooterSettings }) {
 
         <Column grow className="w-full">
           <Row className="flex-wrap items-start gap-x-8 gap-y-8 sm:gap-x-10 lg:justify-between">
-            {menus.map((menu) => {
-              if (!menu) return null;
-
-              const items = menu.items
-                .filter((item) => !item.parentId)
-                .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-
-              return (
-                <Column key={menu._id} className="w-full sm:w-auto sm:min-w-48 sm:flex-1 lg:min-w-0">
-                  <section>
-                    <h2 className="mb-4 text-sm font-bold uppercase tracking-wide text-gray-900">{menu.name}</h2>
-                    <ul className="space-y-3 text-sm text-gray-600">
-                      {items.map((item) => (
-                        <li key={item._id}>
-                          <CLink
-                            href={getMenuHref(item)}
-                            className="transition hover:text-blue-600 focus:text-blue-600"
-                          >
-                            {item.label}
-                          </CLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                </Column>
-              );
-            })}
+            {menuIds.map((menuId) => (
+              <Column key={menuId} className="w-full sm:w-auto sm:min-w-48 sm:flex-1 lg:min-w-0">
+                <CMenu
+                  menuId={menuId}
+                  headingLevel={2}
+                  headingClassName="mb-4 text-sm font-bold uppercase tracking-wide text-gray-900"
+                  listClassName="space-y-3 text-sm text-gray-600"
+                  linkClassName="transition hover:text-blue-600 focus:text-blue-600"
+                />
+              </Column>
+            ))}
           </Row>
         </Column>
       </Row>
