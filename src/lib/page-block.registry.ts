@@ -1,8 +1,8 @@
-import { CardGridBlock } from "@/components/page/blocks/CardGridBlock";
-import { IconListBlock } from "@/components/page/blocks/IconListBlock";
-import { InlineFormBlock } from "@/components/page/blocks/InlineFormBlock";
-import { MediaCtaBlock } from "@/components/page/blocks/MediaCtaBlock";
-import { TabsSliderBlock } from "@/components/page/blocks/TabsSliderBlock";
+import { CardGridBlock } from "@/components/block/CardGridBlock";
+import { IconListBlock } from "@/components/block/IconListBlock";
+import { InlineFormBlock } from "@/components/block/InlineFormBlock";
+import { MediaCtaBlock } from "@/components/block/MediaCtaBlock";
+import { TabsSliderBlock } from "@/components/block/TabsSliderBlock";
 import type { PageBlockComponent } from "@/interfaces/page-block.interface";
 
 export const PAGE_BLOCK_COMPONENTS = {
