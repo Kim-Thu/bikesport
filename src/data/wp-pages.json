@@ -50,16 +50,48 @@
             "name": "Ưu đãi sản phẩm",
             "order": 4,
             "status": "active",
-            "component": "lead-slider",
-            "props": {
-              "leadTemplate": "accent",
-              "productTemplate": "media-action",
-              "trackClassName": "-ml-4",
-              "slideClassName": "basis-48 pl-4 sm:basis-52 lg:basis-1/5",
-              "limit": 5,
-              "sectionClassName": "pb-4 sm:pb-6",
-              "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3901" }
-            }
+            "component": "layout",
+            "props": { "sectionClassName": "pb-4 sm:pb-6" },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4250",
+                "props": { "className": "items-stretch gap-4" },
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4251",
+                    "props": { "className": "w-full lg:w-1/6" },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4252",
+                        "status": "active",
+                        "component": "card",
+                        "props": {
+                          "template": "accent",
+                          "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3901" }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4253",
+                    "props": { "grow": true, "className": "w-full" },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4254",
+                        "status": "active",
+                        "component": "product-slider",
+                        "props": {
+                          "template": "media-action",
+                          "trackClassName": "-ml-4",
+                          "slideClassName": "basis-48 pl-4 sm:basis-52 lg:basis-1/5",
+                          "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3901", "limit": 5 }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4206",
@@ -148,7 +180,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-16T23:23:00+07:00"
+      "updatedAt": "2026-08-17T00:50:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
