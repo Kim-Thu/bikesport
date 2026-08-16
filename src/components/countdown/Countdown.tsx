@@ -12,7 +12,7 @@ function getRemaining(endAt: string) {
 }
 
 export function Countdown({ endAt }: { endAt: string }) {
-  const [remaining, setRemaining] = useState(() => getRemaining(endAt));
+  const [remaining, setRemaining] = useState<ReturnType<typeof getRemaining> | null>(null);
 
   useEffect(() => {
     const update = () => setRemaining(getRemaining(endAt));
@@ -20,6 +20,10 @@ export function Countdown({ endAt }: { endAt: string }) {
     const timer = window.setInterval(update, 1000);
     return () => window.clearInterval(timer);
   }, [endAt]);
+
+  if (!remaining) {
+    return <span className="font-mono text-sm font-bold tracking-wide text-gray-900" aria-label="Đang tải thời gian còn lại">-- : -- : --</span>;
+  }
 
   const format = (value: number) => String(value).padStart(2, "0");
 
