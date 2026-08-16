@@ -5,7 +5,8 @@
       "name": "Storefront Hero Demo",
       "status": "active",
       "eyebrow": "CHINH PHỤC MỌI CUNG ĐƯỜNG",
-      "title": "GIẢM ĐẾN 20%",
+      "title": "GIẢM ĐẾN",
+      "titleHighlight": "20%",
       "description": "XE ĐẠP THỂ THAO MÙA HÈ",
       "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3716",
       "features": [
@@ -60,7 +61,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T17:07:00+07:00",
-      "updatedAt": "2026-08-16T17:22:00+07:00"
+      "updatedAt": "2026-08-16T17:27:00+07:00"
     }
   ]
 }
