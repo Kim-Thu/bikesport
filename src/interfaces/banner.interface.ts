@@ -28,7 +28,6 @@ export interface BannerRecord {
   title: string;
   description?: string;
   backgroundMediaId?: string;
-  backgroundPosition?: string;
   features?: BannerFeature[];
   actions?: BannerAction[];
   promotionCards?: BannerPromotionCard[];
