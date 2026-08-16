@@ -127,6 +127,54 @@
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:42:00+07:00",
       "updatedAt": "2026-08-16T20:42:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3d01",
+      "type": "post",
+      "name": "Hướng dẫn",
+      "slug": "huong-dan",
+      "description": null,
+      "parentId": null,
+      "mediaId": null,
+      "featured": false,
+      "order": 1,
+      "status": "active",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T02:16:00+07:00",
+      "updatedAt": "2026-08-17T02:16:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3d02",
+      "type": "post",
+      "name": "Bảo dưỡng",
+      "slug": "bao-duong",
+      "description": null,
+      "parentId": null,
+      "mediaId": null,
+      "featured": false,
+      "order": 2,
+      "status": "active",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T02:16:00+07:00",
+      "updatedAt": "2026-08-17T02:16:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3d03",
+      "type": "post",
+      "name": "Khám phá",
+      "slug": "kham-pha",
+      "description": null,
+      "parentId": null,
+      "mediaId": null,
+      "featured": false,
+      "order": 3,
+      "status": "active",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T02:16:00+07:00",
+      "updatedAt": "2026-08-17T02:16:00+07:00"
     }
   ]
 }
