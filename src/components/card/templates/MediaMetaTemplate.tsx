@@ -10,7 +10,9 @@ export function MediaMetaTemplate({
   description,
   publishedAt,
   categoryName,
+  categoryHref,
   authorName,
+  actionLabel,
   className,
 }: CardProps) {
   return (
@@ -20,41 +22,55 @@ export function MediaMetaTemplate({
         className,
       )}
     >
-      <CLink href={href} className="relative block">
-        <div className="aspect-video w-full overflow-hidden">
-          <MediaImage
-            mediaId={mediaId}
-            alt={title}
-            width={480}
-            height={270}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        </div>
-        {categoryName ? (
-          <span className="absolute left-4 top-4 rounded-md bg-white px-2 py-2 text-xs font-medium text-blue-600">
-            {categoryName}
-          </span>
-        ) : null}
-      </CLink>
-
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <CLink href={href} className="line-clamp-2 text-xs font-semibold text-gray-900 sm:text-sm">
-          {title}
+      <div className="relative">
+        <CLink href={href} className="block">
+          <div className="aspect-video w-full overflow-hidden">
+            <MediaImage
+              mediaId={mediaId}
+              alt={title}
+              width={480}
+              height={270}
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
         </CLink>
 
-        <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500">
-          {authorName ? <span>{authorName}</span> : null}
-          {authorName && publishedAt ? <span aria-hidden="true">•</span> : null}
-          {publishedAt ? (
-            <time dateTime={publishedAt}>
-              {new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" }).format(
-                new Date(publishedAt),
-              )}
-            </time>
-          ) : null}
-        </div>
+        {categoryName && categoryHref ? (
+          <CLink
+            href={categoryHref}
+            className="absolute left-4 top-4 rounded-md bg-white px-2 py-2 text-xs font-medium text-blue-600"
+          >
+            {categoryName}
+          </CLink>
+        ) : null}
+      </div>
+
+      <div className="flex flex-1 flex-col gap-2 p-4">
+        <h3 className="line-clamp-2 text-xs font-semibold text-gray-900 sm:text-sm">
+          <CLink href={href}>{title}</CLink>
+        </h3>
 
         {description ? <p className="line-clamp-2 text-xs leading-relaxed text-gray-600">{description}</p> : null}
+
+        <div className="mt-auto flex items-center justify-between gap-4 text-xs">
+          <div className="flex flex-wrap items-center gap-2 text-gray-500">
+            {authorName ? <span>{authorName}</span> : null}
+            {authorName && publishedAt ? <span aria-hidden="true">•</span> : null}
+            {publishedAt ? (
+              <time dateTime={publishedAt}>
+                {new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" }).format(
+                  new Date(publishedAt),
+                )}
+              </time>
+            ) : null}
+          </div>
+
+          {actionLabel ? (
+            <CLink href={href} className="shrink-0 font-semibold text-blue-600">
+              {actionLabel}
+            </CLink>
+          ) : null}
+        </div>
       </div>
     </article>
   );
