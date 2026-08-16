@@ -1,0 +1,46 @@
+{
+  "events": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4701",
+      "title": "Đạp xe khám phá Đà Lạt",
+      "slug": "dap-xe-kham-pha-da-lat",
+      "status": "published",
+      "featured": true,
+      "startAt": "2026-06-15T06:00:00+07:00",
+      "endAt": "2026-06-15T12:00:00+07:00",
+      "location": "Đà Lạt, Lâm Đồng",
+      "attendees": 166,
+      "mediaId": null,
+      "createdAt": "2026-06-01T09:00:00+07:00",
+      "updatedAt": "2026-06-01T09:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4702",
+      "title": "Race to the Top 2026",
+      "slug": "race-to-the-top-2026",
+      "status": "published",
+      "featured": true,
+      "startAt": "2026-06-22T05:30:00+07:00",
+      "endAt": "2026-06-22T11:00:00+07:00",
+      "location": "Tam Đảo, Vĩnh Phúc",
+      "attendees": 246,
+      "mediaId": null,
+      "createdAt": "2026-06-02T09:00:00+07:00",
+      "updatedAt": "2026-06-02T09:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4703",
+      "title": "Charity Ride 2026",
+      "slug": "charity-ride-2026",
+      "status": "published",
+      "featured": true,
+      "startAt": "2026-07-06T06:00:00+07:00",
+      "endAt": "2026-07-06T10:30:00+07:00",
+      "location": "Hà Nội",
+      "attendees": 312,
+      "mediaId": null,
+      "createdAt": "2026-06-03T09:00:00+07:00",
+      "updatedAt": "2026-06-03T09:00:00+07:00"
+    }
+  ]
+}
