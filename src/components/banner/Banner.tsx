@@ -1,0 +1,129 @@
+import { InfoCard } from "@/components/card/InfoCard";
+import { Countdown } from "@/components/countdown/Countdown";
+import { FeatureItem } from "@/components/feature/FeatureItem";
+import { Heading } from "@/components/heading/Heading";
+import { Container } from "@/components/layout/Container";
+import { CLink } from "@/components/link/CLink";
+import { MediaImage } from "@/components/media/MediaImage";
+import { Section } from "@/components/section/Section";
+import type { BannerAction, BannerProps } from "@/interfaces/banner.interface";
+import type { PromotionBenefit } from "@/interfaces/promotion.interface";
+import { getActiveBannerById } from "@/lib/banner.utils";
+import { cn } from "@/lib/classname.utils";
+import { getActivePromotionById } from "@/lib/promotion.utils";
+
+function formatMoney(value: number) {
+  return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(value) + "đ";
+}
+
+function getBenefitValue(benefit?: PromotionBenefit): string | undefined {
+  if (!benefit) return undefined;
+
+  switch (benefit.type) {
+    case "percentage_discount":
+      return `-${benefit.percentage}%`;
+    case "fixed_discount":
+      return `-${formatMoney(benefit.amount)}`;
+    case "voucher":
+      return benefit.valueType === "percentage" ? `-${benefit.value}%` : `-${formatMoney(benefit.value)}`;
+    case "buy_x_get_y":
+      return `Mua ${benefit.buyQuantity} tặng ${benefit.getQuantity}`;
+    case "gift":
+      return `Tặng ${benefit.quantity} sản phẩm`;
+    case "free_shipping":
+      return "Miễn phí giao hàng";
+  }
+}
+
+const ACTION_CLASS: Record<NonNullable<BannerAction["variant"]>, string> = {
+  primary: "border-blue-600 bg-blue-600 text-white hover:bg-blue-700",
+  outline: "border-blue-600 bg-white text-blue-600 hover:bg-blue-50",
+};
+
+export function Banner({ bannerId }: BannerProps) {
+  const banner = getActiveBannerById(bannerId);
+  if (!banner) return null;
+
+  const features = banner.features ?? [];
+  const actions = banner.actions ?? [];
+  const promotionCards = banner.promotionCards ?? [];
+
+  return (
+    <Section className="py-4 sm:py-6">
+      <Container>
+        <div className="relative overflow-hidden rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-slate-100 shadow-sm">
+          <div className="grid gap-6 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,1.35fr)_14rem] lg:items-center lg:gap-4 lg:p-8">
+            <div className="relative z-10 order-1">
+              {banner.eyebrow ? <p className="mb-2 text-xs font-bold uppercase tracking-wide text-gray-800 sm:text-sm">{banner.eyebrow}</p> : null}
+              <Heading level={1} className="text-4xl font-black uppercase leading-none tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">
+                {banner.title}
+              </Heading>
+              {banner.description ? <p className="mt-2 text-base font-bold uppercase text-gray-800 sm:text-lg">{banner.description}</p> : null}
+
+              {features.length ? (
+                <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                  {features.map((feature, index) => <FeatureItem key={`${feature.title}-${index}`} {...feature} />)}
+                </div>
+              ) : null}
+
+              {actions.length ? (
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {actions.map((action) => (
+                    <CLink
+                      key={`${action.label}-${action.href}`}
+                      href={action.href}
+                      className={cn(
+                        "inline-flex min-h-10 items-center justify-center rounded-md border px-5 text-xs font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
+                        ACTION_CLASS[action.variant ?? "primary"],
+                      )}
+                    >
+                      {action.label}
+                    </CLink>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
+            <div className="relative order-2 min-h-56 lg:min-h-80">
+              <MediaImage
+                mediaId={banner.mediaId}
+                alt={banner.title}
+                width={960}
+                height={620}
+                priority
+                sizes="(min-width: 1024px) 45vw, 100vw"
+                className="h-full w-full object-cover object-center lg:absolute lg:inset-0"
+              />
+            </div>
+
+            {promotionCards.length ? (
+              <div className="order-3 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                {promotionCards.map((card) => {
+                  const promotion = getActivePromotionById(card.promotionId);
+                  if (!promotion) return null;
+                  const value = getBenefitValue(promotion.benefits[0]);
+
+                  return (
+                    <InfoCard
+                      key={card.promotionId}
+                      icon={card.icon}
+                      label={card.label}
+                      description={card.description}
+                      value={promotion.endAt && card.label === "FLASH SALE" ? <Countdown endAt={promotion.endAt} /> : value}
+                    />
+                  );
+                })}
+              </div>
+            ) : null}
+          </div>
+
+          <div className="pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5" aria-hidden="true">
+            <span className="h-1.5 w-8 rounded-full bg-white shadow" />
+            <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
+            <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
+          </div>
+        </div>
+      </Container>
+    </Section>
+  );
+}
