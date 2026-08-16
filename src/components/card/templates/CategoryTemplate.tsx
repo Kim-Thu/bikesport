@@ -14,19 +14,13 @@ export function CategoryTemplate({ title, href, mediaId, className }: CardProps)
       )}
     >
       <div className="flex min-h-28 flex-1 items-center justify-center bg-white p-3 sm:min-h-32 lg:min-h-36">
-        {mediaId ? (
-          <MediaImage
-            mediaId={mediaId}
-            alt={title}
-            width={320}
-            height={220}
-            className="h-24 w-full object-contain transition-transform duration-300 group-hover:scale-105 sm:h-28 lg:h-32"
-          />
-        ) : (
-          <div className="flex h-24 w-full items-center justify-center rounded-md bg-white text-xs font-medium text-gray-400 sm:h-28 lg:h-32">
-            {title}
-          </div>
-        )}
+        <MediaImage
+          mediaId={mediaId}
+          alt={title}
+          width={320}
+          height={220}
+          className="h-24 w-full object-contain transition-transform duration-300 group-hover:scale-105 sm:h-28 lg:h-32"
+        />
       </div>
 
       <div className="flex items-center justify-between gap-2 border-t border-gray-100 bg-white px-3 py-2.5">
