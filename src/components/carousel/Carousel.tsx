@@ -64,9 +64,9 @@ export function Carousel({
         ref={emblaRef}
         className={cn("cursor-grab overflow-hidden active:cursor-grabbing", viewportClassName)}
       >
-        <div className="flex touch-pan-y">
+        <div className="flex touch-pan-y items-stretch">
           {children.map((child, index) => (
-            <div key={index} className="min-w-0 flex-[0_0_100%]">
+            <div key={index} className="flex min-w-0 flex-[0_0_100%] self-stretch">
               {child}
             </div>
           ))}
