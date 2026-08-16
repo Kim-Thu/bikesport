@@ -16,7 +16,7 @@ export function FooterMain({ settings }: { settings: FooterSettings }) {
   return (
     <Container className="py-8 sm:py-10 lg:py-12">
       <Row className="flex-col items-stretch gap-8 md:gap-10 xl:flex-row xl:items-start xl:gap-12">
-        <Column className="w-full xl:w-auto xl:basis-[28rem]">
+        <Column className="w-full xl:w-auto xl:basis-112">
           <div className="space-y-4">
             <Logo href="/" />
             {settings.description ? (
