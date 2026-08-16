@@ -1,6 +1,6 @@
 import { Card } from "@/components/card/Card";
-import { Carousel } from "@/components/carousel/Carousel";
 import { Container } from "@/components/layout/Container";
+import { ProductSlider } from "@/components/product/ProductSlider";
 import { Section } from "@/components/section/Section";
 import type { PageSectionPayload } from "@/interfaces/page.interface";
 import { getProductPrimaryMediaId } from "@/lib/product.utils";
@@ -21,7 +21,19 @@ export function ProductSaleSection({ section }: { section: PageSectionPayload })
   const products = getPromotionProducts(promotion, section.props.limit);
   if (!products.length) return null;
 
-  const carouselProducts = products.length <= 5 ? [...products, ...products] : products;
+  const sliderItems = products.map((product) => {
+    const pricing = getPromotionProductPricing(product, promotion);
+
+    return {
+      sku: product.sku,
+      name: product.name,
+      slug: product.slug,
+      mediaId: getProductPrimaryMediaId(product),
+      price: product.price,
+      salePrice: pricing.salePrice,
+      discountPercentage: pricing.discountPercentage,
+    };
+  });
 
   return (
     <Section className={section.props.sectionClassName}>
@@ -35,31 +47,7 @@ export function ProductSaleSection({ section }: { section: PageSectionPayload })
             actionLabel={promotion.display?.actionLabel ?? "Xem tất cả"}
           />
 
-          <Carousel
-            loop
-            dragFree
-            showArrows
-            ariaLabel={`Sản phẩm ${promotion.name}`}
-            slideClassName="basis-48 pr-3 sm:basis-52 lg:basis-1/5"
-            dotsClassName="hidden"
-          >
-            {carouselProducts.map((product, index) => {
-              const pricing = getPromotionProductPricing(product, promotion);
-
-              return (
-                <Card
-                  key={`${product.sku}-${index}`}
-                  template="product"
-                  title={product.name}
-                  href={`/san-pham/${product.slug}`}
-                  mediaId={getProductPrimaryMediaId(product)}
-                  price={product.price}
-                  salePrice={pricing.salePrice}
-                  discountPercentage={pricing.discountPercentage}
-                />
-              );
-            })}
-          </Carousel>
+          <ProductSlider items={sliderItems} ariaLabel={`Sản phẩm ${promotion.name}`} />
         </div>
       </Container>
     </Section>
