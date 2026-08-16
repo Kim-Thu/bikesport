@@ -2,6 +2,7 @@ import type { CardTemplate } from "@/interfaces/card.interface";
 
 export type PageBlockStatus = "active" | "inactive";
 export type PageBlockComponent =
+  | "ads"
   | "card"
   | "product-slider"
   | "tabs-slider"
@@ -15,6 +16,16 @@ interface PageBlockBase {
   _id: string;
   status: PageBlockStatus;
   component: PageBlockComponent;
+}
+
+export interface AdsBlockPayload extends PageBlockBase {
+  component: "ads";
+  props: {
+    source: {
+      type: "ads";
+      placement: string;
+    };
+  };
 }
 
 export interface CardBlockPayload extends PageBlockBase {
@@ -125,6 +136,7 @@ export interface InlineFormBlockPayload extends PageBlockBase {
 }
 
 export type PageBlockPayload =
+  | AdsBlockPayload
   | CardBlockPayload
   | ProductSliderBlockPayload
   | TabsSliderBlockPayload
