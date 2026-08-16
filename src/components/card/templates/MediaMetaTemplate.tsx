@@ -19,8 +19,8 @@ export function MediaMetaTemplate({
         className,
       )}
     >
-      <CLink href={href} className="block p-4 pb-0">
-        <div className="aspect-video w-full overflow-hidden rounded-md">
+      <CLink href={href} className="block">
+        <div className="aspect-video w-full overflow-hidden">
           <MediaImage
             mediaId={mediaId}
             alt={title}
