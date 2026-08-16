@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { Row } from "@/components/layout/Row";
 import { Logo } from "@/components/logo/Logo";
 import { CMenu } from "@/components/menu/CMenu";
+import { Social } from "@/components/social/Social";
 import type { FooterSettings } from "@/interfaces/footer.interface";
 
 export function FooterMain({ settings }: { settings: FooterSettings }) {
@@ -12,9 +13,18 @@ export function FooterMain({ settings }: { settings: FooterSettings }) {
   return (
     <Container className="py-8 sm:py-10 lg:py-12">
       <Row className="flex-col items-stretch gap-8 md:gap-10 xl:flex-row xl:items-start xl:gap-12">
-        <Column className="w-full space-y-5 xl:w-auto xl:basis-96">
-          <Logo href="/" />
-          <CompanyInfo />
+        <Column className="w-full xl:w-auto xl:basis-[28rem]">
+          <div className="space-y-4">
+            <Logo href="/" />
+            {settings.description ? (
+              <p className="max-w-sm text-sm leading-6 text-gray-600">{settings.description}</p>
+            ) : null}
+            <Social />
+          </div>
+
+          <div className="mt-6">
+            <CompanyInfo />
+          </div>
         </Column>
 
         <Column grow className="w-full">
