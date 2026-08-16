@@ -2,7 +2,7 @@ import type { CategoryType } from "@/interfaces/category.interface";
 
 export type PageStatus = "draft" | "published";
 export type PageSectionStatus = "active" | "inactive";
-export type PageSectionComponent = "banner" | "stack" | "category-grid" | "product-sale";
+export type PageSectionComponent = "banner" | "stack" | "category-grid" | "product-sale" | "storefront-showcase";
 
 export interface PageBoxIconProps {
   icon?: string;
@@ -70,11 +70,51 @@ export interface ProductSaleSectionPayload {
   };
 }
 
+export interface StorefrontShowcaseSectionPayload {
+  _id: string;
+  name: string;
+  order: number;
+  status: PageSectionStatus;
+  component: "storefront-showcase";
+  props: {
+    sectionClassName?: string;
+    bestSeller: {
+      title: string;
+      href?: string;
+      actionLabel?: string;
+      limit?: number;
+      tabs: Array<{ label: string; categoryId: string }>;
+    };
+    events: {
+      title: string;
+      href?: string;
+      actionLabel?: string;
+      limit?: number;
+    };
+    benefits: PageBoxIconProps[];
+    membership: {
+      eyebrow?: string;
+      title: string;
+      description?: string;
+      href: string;
+      actionLabel?: string;
+      mediaId?: string | null;
+    };
+    newsletter: {
+      title: string;
+      description?: string;
+      placeholder?: string;
+      actionLabel?: string;
+    };
+  };
+}
+
 export type PageSectionPayload =
   | BannerSectionPayload
   | StackSectionPayload
   | CategoryGridSectionPayload
-  | ProductSaleSectionPayload;
+  | ProductSaleSectionPayload
+  | StorefrontShowcaseSectionPayload;
 
 export interface PagePayload {
   sections: PageSectionPayload[];
