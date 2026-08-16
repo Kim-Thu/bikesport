@@ -1,11 +1,19 @@
 export type NavMenuItemDisplay = "text" | "image" | "image-text";
 
+export interface NavMenuItemSource {
+  type: "brand";
+  featured?: boolean;
+  display?: NavMenuItemDisplay;
+  limit?: number;
+}
+
 export interface NavMenuItem {
   _id: string;
   label?: string;
   href?: string;
   mediaId?: string;
   display?: NavMenuItemDisplay;
+  source?: NavMenuItemSource;
   hasDropdown?: boolean;
   highlight?: boolean;
   parentId?: string | null;
