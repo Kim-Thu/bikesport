@@ -8,13 +8,13 @@ export function ContentAsideSection({ section }: { section: ContentAsideSectionP
   return (
     <Section className={section.props.sectionClassName}>
       <Container>
-        <div className={cn("grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(16rem,1fr)]", section.props.gridClassName)}>
-          <div className={cn("min-w-0 space-y-6", section.props.contentClassName)}>
+        <div className={cn("grid gap-6 lg:grid-cols-4", section.props.gridClassName)}>
+          <div className={cn("min-w-0 space-y-6 lg:col-span-3", section.props.contentClassName)}>
             {section.content.map((block) => (
               <BlockRenderer key={block._id} block={block} />
             ))}
           </div>
-          <aside className={cn("space-y-4", section.props.asideClassName)}>
+          <aside className={cn("space-y-4 lg:col-span-1", section.props.asideClassName)}>
             {section.aside.map((block) => (
               <BlockRenderer key={block._id} block={block} />
             ))}
