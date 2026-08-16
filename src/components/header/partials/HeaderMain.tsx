@@ -14,7 +14,7 @@ export function HeaderMain({ region }: HeaderPartialProps) {
           <Row key={row.id || rowIndex} className="min-h-20 gap-9 max-lg:gap-4 max-md:flex-wrap max-md:gap-3 max-md:py-3">
             {row.columns?.map((column, columnIndex) => {
               const columnClass = columnIndex === 1
-                ? "hidden min-w-0 flex-1 items-center gap-4 lg:flex lg:max-w-3xl"
+                ? "hidden min-w-0 flex-1 items-center gap-4 lg:flex"
                 : columnIndex === 2
                   ? "ml-auto flex shrink-0 items-center gap-4"
                   : "flex shrink-0 items-center gap-4";
