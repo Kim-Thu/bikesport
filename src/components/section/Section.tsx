@@ -1,6 +1,14 @@
-import type { SectionProps } from "@/interfaces/section.interface";
-import { cn } from "@/lib/classname.utils";
+import type { ReactNode } from "react";
+import { DefaultTemplate } from "@/components/section/templates/DefaultTemplate";
+import { FlashSaleTemplate } from "@/components/section/templates/FlashSaleTemplate";
+import type { SectionProps, SectionTemplate } from "@/interfaces/section.interface";
 
-export function Section({ as: Component = "section", children, className = "" }: SectionProps) {
-  return <Component className={cn("py-6 sm:py-8", className)}>{children}</Component>;
+const SECTION_TEMPLATES: Record<SectionTemplate, (props: SectionProps) => ReactNode> = {
+  default: DefaultTemplate,
+  "flash-sale": FlashSaleTemplate,
+};
+
+export function Section({ template = "default", ...props }: SectionProps) {
+  const Template = SECTION_TEMPLATES[template];
+  return <Template template={template} {...props} />;
 }
