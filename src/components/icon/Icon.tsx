@@ -2,6 +2,8 @@ import {
   ArrowRight,
   BadgePercent,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   CircleDollarSign,
   Gift,
   Headphones,
@@ -42,6 +44,8 @@ const ICONS: Record<string, LucideIcon> = {
   support: Headphones,
   "badge-percent": BadgePercent,
   "chevron-down": ChevronDown,
+  "chevron-left": ChevronLeft,
+  "chevron-right": ChevronRight,
   "arrow-right": ArrowRight,
 };
 
