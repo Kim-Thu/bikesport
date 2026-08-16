@@ -1,6 +1,5 @@
 export type BannerStatus = "draft" | "scheduled" | "active" | "expired" | "disabled";
 export type BannerActionVariant = "primary" | "outline";
-export type BannerCardSize = "default" | "lg";
 
 export interface BannerFeature {
   iconMediaId?: string;
@@ -19,7 +18,6 @@ export interface BannerPromotionCard {
   description?: string;
   promotionId: string;
   icon?: string;
-  size?: BannerCardSize;
 }
 
 export interface BannerRecord {
