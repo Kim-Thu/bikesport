@@ -1,25 +1,8 @@
 import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
+import { PromotionDescription } from "@/components/card/parts/PromotionDescription";
 import type { CardProps } from "@/interfaces/card.interface";
 import { cn } from "@/lib/classname.utils";
-
-function PromotionDescription({ description }: { description: string }) {
-  const match = description.match(/^(.*?)(\d+%)(.*)$/);
-
-  if (!match) {
-    return <span className="text-sm font-medium text-white sm:text-base">{description}</span>;
-  }
-
-  const [, before, highlight, after] = match;
-
-  return (
-    <span className="text-sm font-medium text-white sm:text-base">
-      {before}
-      <strong className="text-xl font-black sm:text-2xl">{highlight}</strong>
-      {after}
-    </span>
-  );
-}
 
 export function PromotionTemplate({ title, description, href, actionLabel = "Xem tất cả", className }: CardProps) {
   return (
