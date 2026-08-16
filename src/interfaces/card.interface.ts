@@ -1,4 +1,4 @@
-export type CardTemplate = "category";
+export type CardTemplate = "category" | "product" | "promotion";
 
 export interface CardProps {
   title: string;
@@ -6,4 +6,9 @@ export interface CardProps {
   mediaId?: string | null;
   template?: CardTemplate;
   className?: string;
+  description?: string;
+  price?: number;
+  salePrice?: number | null;
+  discountPercentage?: number | null;
+  actionLabel?: string;
 }
