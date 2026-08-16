@@ -20,7 +20,7 @@ export interface MediaLibrary {
 }
 
 export interface MediaImageProps extends Omit<ImageProps, "src" | "alt" | "width" | "height"> {
-  mediaId: string;
+  mediaId?: string | null;
   alt?: string;
   width?: number;
   height?: number;
