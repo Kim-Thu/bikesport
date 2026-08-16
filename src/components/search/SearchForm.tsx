@@ -1,8 +1,6 @@
-"use client";
-
-import { FormEvent, useState } from "react";
-import { Search } from "lucide-react";
+import { Icon } from "@/components/icon/Icon";
 import type { SearchFormProps } from "@/interfaces/search.interface";
+import { cn } from "@/lib/classname.utils";
 
 const VARIANT_CLASS = {
   default: "flex w-full",
@@ -10,30 +8,35 @@ const VARIANT_CLASS = {
   mobile: "flex w-full lg:hidden",
 } as const;
 
-export function SearchForm({ placeholder = "Tìm kiếm...", variant = "default" }: SearchFormProps) {
-  const [query, setQuery] = useState("");
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-  }
+export function SearchForm({ action = "/search", placeholder = "Tìm kiếm...", variant = "default" }: SearchFormProps) {
+  const inputId = `site-search-${variant}`;
 
   return (
     <form
-      className={`${VARIANT_CLASS[variant]} h-11 min-w-0 overflow-hidden rounded-md border border-gray-300 bg-white`}
+      action={action}
+      method="get"
+      className={cn(
+        VARIANT_CLASS[variant],
+        "h-11 min-w-0 overflow-hidden rounded-md border border-gray-300 bg-white",
+      )}
       role="search"
-      onSubmit={handleSubmit}
     >
-      <label htmlFor={`site-search-${variant}`} className="sr-only">Tìm kiếm</label>
+      <label htmlFor={inputId} className="sr-only">
+        Tìm kiếm
+      </label>
       <input
-        id={`site-search-${variant}`}
+        id={inputId}
+        name="q"
         type="search"
-        value={query}
-        onChange={(event) => setQuery(event.target.value)}
         placeholder={placeholder}
         className="min-w-0 flex-1 border-0 px-4 outline-none placeholder:text-gray-400"
       />
-      <button type="submit" className="inline-flex w-12 items-center justify-center bg-blue-600 text-white" aria-label="Tìm kiếm">
-        <Search aria-hidden="true" size={24} />
+      <button
+        type="submit"
+        className="inline-flex w-12 items-center justify-center bg-blue-600 text-white"
+        aria-label="Tìm kiếm"
+      >
+        <Icon name="search" size={24} />
       </button>
     </form>
   );
