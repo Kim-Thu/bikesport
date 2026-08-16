@@ -1,8 +1,9 @@
+import type { ReactNode } from "react";
 import { DefaultTemplate } from "@/components/section-header/templates/DefaultTemplate";
 import { FlashSaleTemplate } from "@/components/section-header/templates/FlashSaleTemplate";
 import type { SectionHeaderProps, SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 
-const SECTION_HEADER_TEMPLATES: Record<SectionHeaderTemplate, (props: SectionHeaderProps) => React.ReactNode> = {
+const SECTION_HEADER_TEMPLATES: Record<SectionHeaderTemplate, (props: SectionHeaderProps) => ReactNode> = {
   default: DefaultTemplate,
   "flash-sale": FlashSaleTemplate,
 };
