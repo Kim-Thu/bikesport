@@ -4,6 +4,7 @@ import { cn } from "@/lib/classname.utils";
 
 const OVERLAY_CLASS = {
   "blue-left": "w-1/2 bg-gradient-to-r from-blue-200 via-blue-200 via-70% to-transparent",
+  "blue-center": "inset-x-0 bg-gradient-to-r from-transparent via-blue-200/85 to-transparent",
 } as const;
 
 interface BannerBackgroundProps {
