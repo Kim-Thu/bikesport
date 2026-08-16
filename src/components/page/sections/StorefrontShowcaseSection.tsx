@@ -8,11 +8,8 @@ import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import type { PageSectionPayload } from "@/interfaces/page.interface";
 import { getFeaturedEvents } from "@/lib/event.utils";
-import {
-  getBestSellerProducts,
-  getProductDiscountPercentage,
-  getProductPrimaryMediaId,
-} from "@/lib/product.utils";
+import { getBestSellerProducts, getProductPrimaryMediaId } from "@/lib/product.utils";
+import { getActivePromotionsForSku, getPromotionProductPricing } from "@/lib/promotion.utils";
 
 export function StorefrontShowcaseSection({ section }: { section: PageSectionPayload }) {
   if (section.component !== "storefront-showcase") return null;
@@ -20,15 +17,22 @@ export function StorefrontShowcaseSection({ section }: { section: PageSectionPay
   const groups: BestSellerGroup[] = section.props.bestSeller.tabs.map((tab) => ({
     label: tab.label,
     value: tab.categoryId,
-    products: getBestSellerProducts(tab.categoryId, section.props.bestSeller.limit).map((product) => ({
-      sku: product.sku,
-      name: product.name,
-      slug: product.slug,
-      mediaId: getProductPrimaryMediaId(product),
-      price: product.price,
-      salePrice: product.salePrice,
-      discountPercentage: getProductDiscountPercentage(product),
-    })),
+    products: getBestSellerProducts(tab.categoryId, section.props.bestSeller.limit).map((product) => {
+      const activePromotion = getActivePromotionsForSku(product.sku)[0] ?? null;
+      const pricing = activePromotion
+        ? getPromotionProductPricing(product, activePromotion)
+        : { salePrice: null, discountPercentage: null };
+
+      return {
+        sku: product.sku,
+        name: product.name,
+        slug: product.slug,
+        mediaId: getProductPrimaryMediaId(product),
+        price: product.price,
+        salePrice: pricing.salePrice,
+        discountPercentage: pricing.discountPercentage,
+      };
+    }),
   }));
 
   const events = getFeaturedEvents(section.props.events.limit);
