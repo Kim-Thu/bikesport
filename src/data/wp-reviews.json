@@ -1,0 +1,14 @@
+{
+  "reviews": [
+    { "_id": "66bf4e8c9f2a4d7b8c1e5101", "sku": "GIANT-ATX-610-2024", "rating": 5, "status": "approved", "createdAt": "2026-08-02T09:00:00+07:00" },
+    { "_id": "66bf4e8c9f2a4d7b8c1e5102", "sku": "GIANT-ATX-610-2024", "rating": 5, "status": "approved", "createdAt": "2026-08-04T11:20:00+07:00" },
+    { "_id": "66bf4e8c9f2a4d7b8c1e5103", "sku": "TWITTER-R10-2024", "rating": 4, "status": "approved", "createdAt": "2026-08-05T13:15:00+07:00" },
+    { "_id": "66bf4e8c9f2a4d7b8c1e5104", "sku": "FORLIFE-LUX-2024", "rating": 5, "status": "approved", "createdAt": "2026-08-06T10:30:00+07:00" },
+    { "_id": "66bf4e8c9f2a4d7b8c1e5105", "sku": "FORLIFE-LUX-2024", "rating": 4, "status": "approved", "createdAt": "2026-08-08T16:10:00+07:00" },
+    { "_id": "66bf4e8c9f2a4d7b8c1e5106", "sku": "COMBO-MU-KINH", "rating": 5, "status": "approved", "createdAt": "2026-08-09T14:00:00+07:00" },
+    { "_id": "66bf4e8c9f2a4d7b8c1e5107", "sku": "COMBO-MU-KINH", "rating": 5, "status": "approved", "createdAt": "2026-08-10T18:45:00+07:00" },
+    { "_id": "66bf4e8c9f2a4d7b8c1e5108", "sku": "SHIMANO-RC100", "rating": 4, "status": "approved", "createdAt": "2026-08-11T12:25:00+07:00" },
+    { "_id": "66bf4e8c9f2a4d7b8c1e5109", "sku": "SHIMANO-RC100", "rating": 5, "status": "approved", "createdAt": "2026-08-12T08:40:00+07:00" },
+    { "_id": "66bf4e8c9f2a4d7b8c1e5110", "sku": "TWITTER-R10-2024", "rating": 2, "status": "pending", "createdAt": "2026-08-13T19:15:00+07:00" }
+  ]
+}
