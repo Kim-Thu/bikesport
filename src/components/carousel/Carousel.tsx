@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
-import type { DragEvent, PointerEvent, ReactNode, UIEvent } from "react";
+import { useCallback, useEffect, useState } from "react";
+import type { ReactNode } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { cn } from "@/lib/classname.utils";
 
 interface CarouselProps {
@@ -10,9 +11,9 @@ interface CarouselProps {
   viewportClassName?: string;
   dotsClassName?: string;
   ariaLabel?: string;
+  loop?: boolean;
+  dragFree?: boolean;
 }
-
-const DRAG_THRESHOLD_PX = 60;
 
 export function Carousel({
   children,
@@ -20,116 +21,49 @@ export function Carousel({
   viewportClassName,
   dotsClassName,
   ariaLabel = "Carousel",
+  loop = false,
+  dragFree = false,
 }: CarouselProps) {
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const dragStartX = useRef(0);
-  const dragStartScrollLeft = useRef(0);
-  const isDraggingRef = useRef(false);
-  const [isDragging, setIsDragging] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop,
+    dragFree,
+    align: "start",
+    containScroll: "trimSnaps",
+    skipSnaps: false,
+  });
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const scrollToIndex = useCallback((index: number, behavior: ScrollBehavior = "smooth") => {
-    const viewport = viewportRef.current;
-    if (!viewport) return;
+  const syncSelectedIndex = useCallback(() => {
+    if (!emblaApi) return;
+    setActiveIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
 
-    const safeIndex = Math.max(0, Math.min(index, children.length - 1));
+  useEffect(() => {
+    if (!emblaApi) return;
 
-    viewport.scrollTo({
-      left: viewport.clientWidth * safeIndex,
-      behavior,
-    });
+    syncSelectedIndex();
+    emblaApi.on("select", syncSelectedIndex);
+    emblaApi.on("reInit", syncSelectedIndex);
 
-    setActiveIndex(safeIndex);
-  }, [children.length]);
+    return () => {
+      emblaApi.off("select", syncSelectedIndex);
+      emblaApi.off("reInit", syncSelectedIndex);
+    };
+  }, [emblaApi, syncSelectedIndex]);
 
-  const handleScroll = useCallback((event: UIEvent<HTMLDivElement>) => {
-    const viewport = event.currentTarget;
-    if (!viewport.clientWidth) return;
-
-    const nextIndex = Math.max(
-      0,
-      Math.min(children.length - 1, Math.round(viewport.scrollLeft / viewport.clientWidth)),
-    );
-
-    setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
-  }, [children.length]);
-
-  const handlePointerDown = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse" || event.button !== 0) return;
-
-    const viewport = viewportRef.current;
-    if (!viewport) return;
-
-    event.preventDefault();
-    isDraggingRef.current = true;
-    setIsDragging(true);
-    dragStartX.current = event.clientX;
-    dragStartScrollLeft.current = viewport.scrollLeft;
-    viewport.setPointerCapture(event.pointerId);
-  }, []);
-
-  const handlePointerMove = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse" || !isDraggingRef.current) return;
-
-    const viewport = viewportRef.current;
-    if (!viewport) return;
-
-    event.preventDefault();
-    const deltaX = event.clientX - dragStartX.current;
-    viewport.scrollLeft = dragStartScrollLeft.current - deltaX;
-  }, []);
-
-  const finishDragging = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse" || !isDraggingRef.current) return;
-
-    isDraggingRef.current = false;
-    setIsDragging(false);
-
-    const viewport = viewportRef.current;
-    if (!viewport) return;
-
-    if (viewport.hasPointerCapture(event.pointerId)) {
-      viewport.releasePointerCapture(event.pointerId);
-    }
-
-    if (!viewport.clientWidth) return;
-
-    const startIndex = Math.round(dragStartScrollLeft.current / viewport.clientWidth);
-    const dragDistance = event.clientX - dragStartX.current;
-
-    if (Math.abs(dragDistance) >= DRAG_THRESHOLD_PX) {
-      scrollToIndex(startIndex + (dragDistance < 0 ? 1 : -1));
-      return;
-    }
-
-    scrollToIndex(startIndex);
-  }, [scrollToIndex]);
-
-  const preventNativeDrag = useCallback((event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-  }, []);
+  const scrollToIndex = useCallback(
+    (index: number) => {
+      emblaApi?.scrollTo(index);
+    },
+    [emblaApi],
+  );
 
   return (
     <div className={cn("relative", className)} role="region" aria-label={ariaLabel}>
-      <div
-        ref={viewportRef}
-        className={cn(
-          "touch-auto select-none overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-          isDragging
-            ? "cursor-grabbing scroll-auto snap-none"
-            : "cursor-grab scroll-smooth snap-x snap-mandatory",
-          viewportClassName,
-        )}
-        onScroll={handleScroll}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={finishDragging}
-        onPointerCancel={finishDragging}
-        onDragStart={preventNativeDrag}
-      >
-        <div className="flex">
+      <div ref={emblaRef} className={cn("overflow-hidden", viewportClassName)}>
+        <div className="flex touch-pan-y">
           {children.map((child, index) => (
-            <div key={index} className="min-w-full shrink-0 snap-start">
+            <div key={index} className="min-w-0 flex-[0_0_100%]">
               {child}
             </div>
           ))}
