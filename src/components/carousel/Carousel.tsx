@@ -10,6 +10,7 @@ interface CarouselProps {
   children: ReactNode[];
   className?: string;
   viewportClassName?: string;
+  trackClassName?: string;
   slideClassName?: string;
   dotsClassName?: string;
   arrowsClassName?: string;
@@ -23,6 +24,7 @@ export function Carousel({
   children,
   className,
   viewportClassName,
+  trackClassName,
   slideClassName,
   dotsClassName,
   arrowsClassName,
@@ -79,7 +81,7 @@ export function Carousel({
         ref={emblaRef}
         className={cn("cursor-grab overflow-hidden active:cursor-grabbing", viewportClassName)}
       >
-        <div className="flex touch-pan-y items-stretch">
+        <div className={cn("flex touch-pan-y items-stretch", trackClassName)}>
           {children.map((child, index) => (
             <div
               key={index}
