@@ -27,7 +27,8 @@ export interface BannerRecord {
   eyebrow?: string;
   title: string;
   description?: string;
-  mediaId?: string;
+  backgroundMediaId?: string;
+  backgroundPosition?: string;
   features?: BannerFeature[];
   actions?: BannerAction[];
   promotionCards?: BannerPromotionCard[];
