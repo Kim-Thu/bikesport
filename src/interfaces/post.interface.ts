@@ -6,6 +6,7 @@ export interface PostRecord {
   excerpt?: string;
   categoryIds: string[];
   tagIds: string[];
+  authorId: string;
   mediaId?: string | null;
   publishedAt: string;
   createdBy: string;
