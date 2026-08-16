@@ -28,6 +28,7 @@ export interface CardProps {
   startAt?: string;
   publishedAt?: string;
   categoryName?: string;
+  categoryHref?: string;
   authorName?: string;
   location?: string;
   attendees?: number;
