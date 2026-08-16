@@ -18,4 +18,6 @@ export interface ProductRecord {
   stock: number;
   featured?: boolean;
   attributeValues: ProductAttributeValue[];
+  createdAt: string;
+  updatedAt: string;
 }
