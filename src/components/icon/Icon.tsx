@@ -2,6 +2,7 @@ import { ArrowRight, ChevronDown, Menu, Phone, Search, ShoppingCart, UserRound, 
 import type { CSSProperties } from "react";
 import type { IconProps } from "@/interfaces/icon.interface";
 import { cn } from "@/lib/classname.utils";
+import { getMediaUrl } from "@/lib/media.utils";
 
 const ICONS: Record<string, LucideIcon> = {
   menu: Menu,
@@ -14,12 +15,14 @@ const ICONS: Record<string, LucideIcon> = {
   "arrow-right": ArrowRight,
 };
 
-export function Icon({ name, src, size = 24, className = "", style, ...props }: IconProps) {
-  if (src) {
+export function Icon({ name, mediaId, size = 24, className = "", style, ...props }: IconProps) {
+  const mediaUrl = getMediaUrl(mediaId);
+
+  if (mediaUrl) {
     const maskStyle: CSSProperties = {
       backgroundColor: "currentColor",
-      WebkitMaskImage: `url(${src})`,
-      maskImage: `url(${src})`,
+      WebkitMaskImage: `url(${mediaUrl})`,
+      maskImage: `url(${mediaUrl})`,
       WebkitMaskRepeat: "no-repeat",
       maskRepeat: "no-repeat",
       WebkitMaskPosition: "center",
