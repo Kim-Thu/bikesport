@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/button/Button";
 import { Icon } from "@/components/icon/Icon";
+import { Logo } from "@/components/logo/Logo";
 import menuData from "@/data/wp-menu.json";
 import type { NavMenuData, NavMenuProps } from "@/interfaces/navigation.interface";
 
@@ -54,7 +55,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-4 flex items-center justify-between">
-              <strong className="text-sm font-semibold">{menu?.name || "Menu"}</strong>
+              <Logo href="/" />
               <Button variant="icon" aria-label="Đóng menu" onClick={closeMenu}>
                 <Icon name="close" size={26} strokeWidth={1.8} />
               </Button>
