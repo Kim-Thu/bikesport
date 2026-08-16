@@ -1,4 +1,5 @@
-import { ChevronDown, Menu, Phone, ShoppingCart, UserRound, X, type LucideIcon } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, Phone, ShoppingCart, UserRound, X, type LucideIcon } from "lucide-react";
+import type { CSSProperties } from "react";
 import type { IconProps } from "@/interfaces/icon.interface";
 
 const ICONS: Record<string, LucideIcon> = {
@@ -8,12 +9,33 @@ const ICONS: Record<string, LucideIcon> = {
   account: UserRound,
   cart: ShoppingCart,
   "chevron-down": ChevronDown,
+  "arrow-right": ArrowRight,
 };
 
-export function Icon({ name, ...props }: IconProps) {
-  const IconComponent = ICONS[name];
+export function Icon({ name, src, size = 24, className = "", style, ...props }: IconProps) {
+  if (src) {
+    const maskStyle: CSSProperties = {
+      width: size,
+      height: size,
+      backgroundColor: "currentColor",
+      WebkitMaskImage: `url(${src})`,
+      maskImage: `url(${src})`,
+      WebkitMaskRepeat: "no-repeat",
+      maskRepeat: "no-repeat",
+      WebkitMaskPosition: "center",
+      maskPosition: "center",
+      WebkitMaskSize: "contain",
+      maskSize: "contain",
+      ...style,
+    };
 
+    return <span aria-hidden="true" className={`inline-block shrink-0 ${className}`.trim()} style={maskStyle} />;
+  }
+
+  if (!name) return null;
+
+  const IconComponent = ICONS[name];
   if (!IconComponent) return null;
 
-  return <IconComponent aria-hidden="true" {...props} />;
+  return <IconComponent aria-hidden="true" size={size} className={className} style={style} {...props} />;
 }
