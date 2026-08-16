@@ -25,26 +25,34 @@ export function Carousel({
   const isDragging = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const scrollToIndex = useCallback((index: number) => {
+  const scrollToIndex = useCallback((index: number, behavior: ScrollBehavior = "smooth") => {
     const viewport = viewportRef.current;
     if (!viewport) return;
 
+    const safeIndex = Math.max(0, Math.min(index, children.length - 1));
+
     viewport.scrollTo({
-      left: viewport.clientWidth * index,
-      behavior: "smooth",
+      left: viewport.clientWidth * safeIndex,
+      behavior,
     });
-  }, []);
+
+    setActiveIndex(safeIndex);
+  }, [children.length]);
 
   const handleScroll = useCallback((event: UIEvent<HTMLDivElement>) => {
     const viewport = event.currentTarget;
     if (!viewport.clientWidth) return;
 
-    const nextIndex = Math.round(viewport.scrollLeft / viewport.clientWidth);
+    const nextIndex = Math.max(
+      0,
+      Math.min(children.length - 1, Math.round(viewport.scrollLeft / viewport.clientWidth)),
+    );
+
     setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
-  }, []);
+  }, [children.length]);
 
   const handlePointerDown = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "touch") return;
+    if (event.button !== 0 && event.pointerType === "mouse") return;
 
     const viewport = viewportRef.current;
     if (!viewport) return;
@@ -56,7 +64,7 @@ export function Carousel({
   }, []);
 
   const handlePointerMove = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (!isDragging.current || event.pointerType === "touch") return;
+    if (!isDragging.current) return;
 
     const viewport = viewportRef.current;
     if (!viewport) return;
@@ -65,29 +73,42 @@ export function Carousel({
     viewport.scrollLeft = dragStartScrollLeft.current - deltaX;
   }, []);
 
-  const stopDragging = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (!isDragging.current || event.pointerType === "touch") return;
+  const finishDragging = useCallback((event: PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
 
     isDragging.current = false;
+
     const viewport = viewportRef.current;
-    if (viewport?.hasPointerCapture(event.pointerId)) {
+    if (!viewport) return;
+
+    if (viewport.hasPointerCapture(event.pointerId)) {
       viewport.releasePointerCapture(event.pointerId);
     }
-  }, []);
+
+    if (!viewport.clientWidth) return;
+
+    const nextIndex = Math.max(
+      0,
+      Math.min(children.length - 1, Math.round(viewport.scrollLeft / viewport.clientWidth)),
+    );
+
+    scrollToIndex(nextIndex);
+  }, [children.length, scrollToIndex]);
 
   return (
     <div className={cn("relative", className)} role="region" aria-label={ariaLabel}>
       <div
         ref={viewportRef}
         className={cn(
-          "overflow-x-auto overscroll-x-contain scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+          "cursor-grab touch-pan-y select-none overflow-x-auto overscroll-x-contain scroll-smooth snap-x snap-mandatory active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
           viewportClassName,
         )}
         onScroll={handleScroll}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
-        onPointerUp={stopDragging}
-        onPointerCancel={stopDragging}
+        onPointerUp={finishDragging}
+        onPointerCancel={finishDragging}
+        onLostPointerCapture={finishDragging}
       >
         <div className="flex">
           {children.map((child, index) => (
@@ -101,24 +122,33 @@ export function Carousel({
       {children.length > 1 ? (
         <div
           className={cn(
-            "absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1.5",
+            "absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2",
             dotsClassName,
           )}
           aria-label="Chọn slide"
         >
-          {children.map((_, index) => (
-            <button
-              key={index}
-              type="button"
-              className={cn(
-                "h-1.5 rounded-full bg-white/70 transition-[width,opacity]",
-                activeIndex === index ? "w-8 bg-white" : "w-1.5",
-              )}
-              aria-label={`Chuyển đến slide ${index + 1}`}
-              aria-current={activeIndex === index ? "true" : undefined}
-              onClick={() => scrollToIndex(index)}
-            />
-          ))}
+          {children.map((_, index) => {
+            const isActive = activeIndex === index;
+
+            return (
+              <button
+                key={index}
+                type="button"
+                className="flex min-h-8 min-w-8 items-center justify-center rounded-full"
+                aria-label={`Chuyển đến slide ${index + 1}`}
+                aria-current={isActive ? "true" : undefined}
+                onClick={() => scrollToIndex(index)}
+              >
+                <span
+                  className={cn(
+                    "block h-1.5 rounded-full bg-white/70 transition-[width,opacity]",
+                    isActive ? "w-8 bg-white" : "w-1.5",
+                  )}
+                  aria-hidden="true"
+                />
+              </button>
+            );
+          })}
         </div>
       ) : null}
     </div>
