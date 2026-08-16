@@ -25,6 +25,8 @@ export interface CardProps {
   discountPercentage?: number | null;
   stockRemaining?: number;
   stockTotal?: number;
+  promotionBadgeMediaId?: string | null;
+  promotionBadgeAlt?: string;
   rating?: number;
   reviewCount?: number;
   actionLabel?: string;
