@@ -31,16 +31,16 @@ export function ProductSlider({ items, ariaLabel }: ProductSliderProps) {
       slideClassName="basis-48 pr-3 sm:basis-52 lg:basis-1/5"
       dotsClassName="hidden"
     >
-      {slides.map((product, index) => (
+      {slides.map((item, index) => (
         <Card
-          key={`${product.sku}-${index}`}
-          template="product"
-          title={product.name}
-          href={`/san-pham/${product.slug}`}
-          mediaId={product.mediaId}
-          price={product.price}
-          salePrice={product.salePrice}
-          discountPercentage={product.discountPercentage}
+          key={`${item.sku}-${index}`}
+          template="media-action"
+          title={item.name}
+          href={`/san-pham/${item.slug}`}
+          mediaId={item.mediaId}
+          price={item.price}
+          salePrice={item.salePrice}
+          discountPercentage={item.discountPercentage}
         />
       ))}
     </Carousel>
