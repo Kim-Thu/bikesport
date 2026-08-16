@@ -6,6 +6,7 @@ import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
 import { Logo } from "@/components/logo/Logo";
 import { MenuChildren } from "@/components/navigation/partials/MenuChildren";
+import { MenuItemContent } from "@/components/navigation/partials/MenuItemContent";
 import { Social } from "@/components/social/Social";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
 import { createMenuIndex, getMenuById, getMenuHref } from "@/lib/menu.utils";
@@ -94,7 +95,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
         <div className="site-scrollbar min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
           <ul className="m-0 list-none p-0 pb-6">
             {rootItems.map((item) => {
-              if (!item.label) return null;
+              if (!item.label && !item.mediaId) return null;
 
               const children = childrenByParentId.get(item._id) ?? [];
               const hasDropdown = children.length > 0 || item.hasDropdown === true;
@@ -111,12 +112,12 @@ export function MobileMenu({ menuId }: NavMenuProps) {
                       aria-controls={`mobile-submenu-${item._id}`}
                       onClick={() => setExpandedItemId(isExpanded ? null : item._id)}
                     >
-                      <span>{item.label}</span>
+                      <MenuItemContent item={item} />
                       <Icon name="chevron-down" className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} strokeWidth={2} />
                     </button>
                   ) : (
                     <CLink href={getMenuHref(item)} className={itemClass} onClick={closeMenu}>
-                      <span>{item.label}</span>
+                      <MenuItemContent item={item} />
                     </CLink>
                   )}
 
@@ -125,7 +126,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
                       id={`mobile-submenu-${item._id}`}
                       items={children}
                       listClassName="m-0 list-none bg-gray-50 p-0"
-                      itemClassName="flex min-h-11 items-center px-4 text-sm text-gray-700"
+                      itemClassName="flex min-h-11 items-center gap-2 px-4 text-sm text-gray-700"
                       onItemClick={closeMenu}
                     />
                   ) : null}
