@@ -49,8 +49,7 @@
           "label": "VOUCHER",
           "description": "Giảm thêm",
           "promotionId": "66bf4e8c9f2a4d7b8c1e3902",
-          "icon": "badge-percent",
-          "size": "lg"
+          "icon": "badge-percent"
         },
         {
           "label": "QUÀ TẶNG",
@@ -62,7 +61,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T17:07:00+07:00",
-      "updatedAt": "2026-08-16T17:27:00+07:00"
+      "updatedAt": "2026-08-16T17:37:00+07:00"
     }
   ]
 }
