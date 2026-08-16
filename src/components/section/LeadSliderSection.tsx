@@ -36,7 +36,7 @@ export function LeadSliderSection({ section }: { section: LeadSliderSectionPaylo
   return (
     <Section className={section.props.sectionClassName}>
       <Container>
-        <div className="grid gap-3 lg:grid-cols-6">
+        <div className="grid gap-4 lg:grid-cols-6">
           <div className="lg:col-span-1">
             <Card
               template={section.props.leadTemplate}
@@ -51,6 +51,7 @@ export function LeadSliderSection({ section }: { section: LeadSliderSectionPaylo
               items={items}
               template={section.props.productTemplate}
               ariaLabel={`Sản phẩm ${promotion.name}`}
+              trackClassName={section.props.trackClassName}
               slideClassName={section.props.slideClassName}
             />
           </div>
