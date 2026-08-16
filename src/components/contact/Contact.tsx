@@ -7,9 +7,9 @@ export function Contact() {
   if (!value) return null;
 
   return (
-    <a href={href || `tel:${value.replace(/\s+/g, "")}`} className="flex items-center gap-2 whitespace-nowrap max-md:hidden">
+    <a href={href || `tel:${value.replace(/\s+/g, "")}`} className="hidden items-center gap-2 whitespace-nowrap md:flex">
       <Icon name="phone" size={27} strokeWidth={1.7} />
-      <span className="flex flex-col leading-tight max-lg:hidden">
+      <span className="hidden flex-col leading-tight lg:flex">
         <span className="text-xs text-blue-600">{label}</span>
         <strong className="text-sm">{value}</strong>
       </span>
