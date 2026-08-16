@@ -7,10 +7,10 @@ const VARIANTS = {
   icon: "inline-flex h-10 w-9 items-center justify-center text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
 } as const;
 
-export function Button({ variant = "default", icon, label, children, className = "", ...props }: ButtonProps) {
+export function Button({ variant = "default", icon, iconSize = 30, label, children, className = "", ...props }: ButtonProps) {
   return (
     <button type="button" className={cn(VARIANTS[variant], className)} {...props}>
-      {icon ? <Icon name={icon} size={30} strokeWidth={1.7} /> : null}
+      {icon ? <Icon name={icon} size={iconSize} strokeWidth={1.7} /> : null}
       {label ? <span>{label}</span> : null}
       {children}
     </button>
