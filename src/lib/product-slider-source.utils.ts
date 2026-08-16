@@ -16,7 +16,7 @@ import {
 export function getProductSliderItems(source: ProductSliderBlockPayload["props"]["source"]): ProductSliderItem[] {
   const promotion = source.type === "promotion" ? getActivePromotionById(source.promotionId) : null;
 
-  const sourceProducts =
+  const products =
     source.type === "promotion"
       ? promotion
         ? getPromotionProducts(promotion)
@@ -29,13 +29,6 @@ export function getProductSliderItems(source: ProductSliderBlockPayload["props"]
             );
           })()
         : getPublishedProducts().filter((product) => product.brandId === source.brandId);
-
-  const products =
-    source.type === "promotion" && promotion
-      ? sourceProducts.filter(
-          (product) => getActivePromotionsForSku(product.sku)[0]?._id === promotion._id,
-        )
-      : sourceProducts;
 
   const limitedProducts =
     typeof source.limit === "number" ? products.slice(0, source.limit) : products;
