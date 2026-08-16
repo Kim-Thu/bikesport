@@ -1,9 +1,9 @@
+import { BannerBackground } from "@/components/banner/BannerBackground";
 import { InfoCard } from "@/components/card/InfoCard";
 import { Countdown } from "@/components/countdown/Countdown";
 import { FeatureItem } from "@/components/feature/FeatureItem";
 import { Heading } from "@/components/heading/Heading";
 import { CLink } from "@/components/link/CLink";
-import { BannerBackground } from "@/components/banner/BannerBackground";
 import type { BannerAction, BannerRecord } from "@/interfaces/banner.interface";
 import type { PromotionBenefit } from "@/interfaces/promotion.interface";
 import { cn } from "@/lib/classname.utils";
@@ -43,10 +43,10 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
   const promotionCards = banner.promotionCards ?? [];
 
   return (
-    <div className="relative flex min-h-88 w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent lg:min-h-125">
+    <div className="relative flex aspect-4/3 w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent sm:aspect-video lg:aspect-[64/15]">
       <BannerBackground banner={banner} imageClassName="lg:object-right" />
 
-      <div className="relative z-20 grid min-h-88 w-full flex-1 gap-6 p-5 sm:p-7 lg:min-h-125 lg:grid-cols-12 lg:items-stretch lg:gap-6 lg:p-8">
+      <div className="relative z-20 grid w-full flex-1 gap-6 p-5 sm:p-7 lg:grid-cols-12 lg:items-stretch lg:gap-6 lg:p-8">
         <div className="order-1 flex items-center lg:col-span-10">
           <div className="max-w-xl">
             {banner.eyebrow ? (
@@ -77,7 +77,7 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
                     key={`${action.label}-${action.href}`}
                     href={action.href}
                     className={cn(
-                      "inline-flex min-h-10 items-center justify-center rounded-md border px-5 text-xs font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
+                      "inline-flex items-center justify-center rounded-md border px-5 py-2.5 text-xs font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
                       ACTION_CLASS[action.variant ?? "primary"],
                     )}
                   >
