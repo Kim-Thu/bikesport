@@ -14,9 +14,7 @@
             "order": 1,
             "status": "active",
             "component": "banner",
-            "props": {
-              "bannerId": "66bf4e8c9f2a4d7b8c1e3a01"
-            }
+            "props": { "bannerId": "66bf4e8c9f2a4d7b8c1e3a01" }
           },
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4202",
@@ -24,52 +22,12 @@
             "order": 2,
             "status": "active",
             "component": "stack",
-            "props": {
-              "variant": "surface",
-              "sectionClassName": "pb-4 sm:pb-6",
-              "rowClassName": "flex-wrap items-stretch"
-            },
+            "props": { "variant": "surface", "sectionClassName": "pb-4 sm:pb-6", "rowClassName": "flex-wrap items-stretch" },
             "columns": [
-              {
-                "_id": "66bf4e8c9f2a4d7b8c1e4211",
-                "component": "box-icon",
-                "props": {
-                  "icon": "truck",
-                  "title": "Giao hàng toàn quốc",
-                  "description": "Nhận hàng trong 2 - 4 ngày",
-                  "iconClassName": "text-blue-600"
-                }
-              },
-              {
-                "_id": "66bf4e8c9f2a4d7b8c1e4212",
-                "component": "box-icon",
-                "props": {
-                  "icon": "package",
-                  "title": "Bảo hành chính hãng",
-                  "description": "Hỗ trợ bảo hành tận tâm",
-                  "iconClassName": "text-blue-600"
-                }
-              },
-              {
-                "_id": "66bf4e8c9f2a4d7b8c1e4213",
-                "component": "box-icon",
-                "props": {
-                  "icon": "refresh",
-                  "title": "Đổi trả linh hoạt",
-                  "description": "Chính sách đổi trả rõ ràng",
-                  "iconClassName": "text-blue-600"
-                }
-              },
-              {
-                "_id": "66bf4e8c9f2a4d7b8c1e4214",
-                "component": "box-icon",
-                "props": {
-                  "icon": "payment",
-                  "title": "Thanh toán an toàn",
-                  "description": "Nhiều phương thức thanh toán",
-                  "iconClassName": "text-blue-600"
-                }
-              }
+              { "_id": "66bf4e8c9f2a4d7b8c1e4211", "component": "box-icon", "props": { "icon": "truck", "title": "Giao hàng toàn quốc", "description": "Nhận hàng trong 2 - 4 ngày", "iconClassName": "text-blue-600" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4212", "component": "box-icon", "props": { "icon": "package", "title": "Bảo hành chính hãng", "description": "Hỗ trợ bảo hành tận tâm", "iconClassName": "text-blue-600" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4213", "component": "box-icon", "props": { "icon": "refresh", "title": "Đổi trả linh hoạt", "description": "Chính sách đổi trả rõ ràng", "iconClassName": "text-blue-600" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4214", "component": "box-icon", "props": { "icon": "payment", "title": "Thanh toán an toàn", "description": "Nhiều phương thức thanh toán", "iconClassName": "text-blue-600" } }
             ]
           },
           {
@@ -78,12 +36,20 @@
             "order": 3,
             "status": "active",
             "component": "category-grid",
+            "props": { "title": "Danh mục nổi bật", "href": "/danh-muc", "actionLabel": "Xem tất cả", "type": "product", "limit": 6, "sectionClassName": "pb-4 sm:pb-6" }
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4205",
+            "name": "Ưu đãi sản phẩm",
+            "order": 4,
+            "status": "active",
+            "component": "product-sale",
             "props": {
-              "title": "Danh mục nổi bật",
-              "href": "/danh-muc",
+              "title": "Ưu đãi tháng 6",
+              "description": "Giảm đến 30%",
+              "href": "/khuyen-mai",
               "actionLabel": "Xem tất cả",
-              "type": "product",
-              "limit": 6,
+              "limit": 5,
               "sectionClassName": "pb-4 sm:pb-6"
             }
           },
@@ -93,52 +59,12 @@
             "order": 999,
             "status": "active",
             "component": "stack",
-            "props": {
-              "variant": "primary",
-              "sectionClassName": "pb-4 sm:pb-6",
-              "rowClassName": "flex-wrap items-stretch"
-            },
+            "props": { "variant": "primary", "sectionClassName": "pb-4 sm:pb-6", "rowClassName": "flex-wrap items-stretch" },
             "columns": [
-              {
-                "_id": "66bf4e8c9f2a4d7b8c1e4221",
-                "component": "box-icon",
-                "props": {
-                  "icon": "click",
-                  "title": "Đặt hàng dễ dàng",
-                  "description": "Chỉ với vài thao tác đơn giản",
-                  "iconClassName": "text-white"
-                }
-              },
-              {
-                "_id": "66bf4e8c9f2a4d7b8c1e4222",
-                "component": "box-icon",
-                "props": {
-                  "icon": "wrench",
-                  "title": "Lắp ráp chuyên nghiệp",
-                  "description": "Kỹ thuật viên hỗ trợ tận nơi",
-                  "iconClassName": "text-white"
-                }
-              },
-              {
-                "_id": "66bf4e8c9f2a4d7b8c1e4223",
-                "component": "box-icon",
-                "props": {
-                  "icon": "support",
-                  "title": "Tư vấn tận tâm",
-                  "description": "Đồng hành trước và sau mua",
-                  "iconClassName": "text-white"
-                }
-              },
-              {
-                "_id": "66bf4e8c9f2a4d7b8c1e4224",
-                "component": "box-icon",
-                "props": {
-                  "icon": "phone",
-                  "title": "Hỗ trợ nhanh chóng",
-                  "description": "Luôn sẵn sàng khi bạn cần",
-                  "iconClassName": "text-white"
-                }
-              }
+              { "_id": "66bf4e8c9f2a4d7b8c1e4221", "component": "box-icon", "props": { "icon": "click", "title": "Đặt hàng dễ dàng", "description": "Chỉ với vài thao tác đơn giản", "iconClassName": "text-white" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4222", "component": "box-icon", "props": { "icon": "wrench", "title": "Lắp ráp chuyên nghiệp", "description": "Kỹ thuật viên hỗ trợ tận nơi", "iconClassName": "text-white" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4223", "component": "box-icon", "props": { "icon": "support", "title": "Tư vấn tận tâm", "description": "Đồng hành trước và sau mua", "iconClassName": "text-white" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4224", "component": "box-icon", "props": { "icon": "phone", "title": "Hỗ trợ nhanh chóng", "description": "Luôn sẵn sàng khi bạn cần", "iconClassName": "text-white" } }
             ]
           }
         ]
@@ -146,7 +72,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-16T20:53:00+07:00"
+      "updatedAt": "2026-08-16T21:10:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
