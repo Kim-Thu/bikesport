@@ -9,6 +9,7 @@ import { MobileMenu } from "@/components/navigation/MobileMenu";
 import { NavMenu } from "@/components/navigation/NavMenu";
 import { Promotion } from "@/components/promotion/Promotion";
 import { SearchForm } from "@/components/search/SearchForm";
+import { Social } from "@/components/social/Social";
 import type { ComponentItem } from "@/interfaces/component.interface";
 
 export const COMPONENT_REGISTRY: Record<string, ElementType> = {
@@ -22,6 +23,7 @@ export const COMPONENT_REGISTRY: Record<string, ElementType> = {
   "mini-cart": MiniCart,
   "nav-menu": NavMenu,
   "mobile-menu": MobileMenu,
+  social: Social,
 };
 
 export function renderComponent(item: ComponentItem, index: number) {
