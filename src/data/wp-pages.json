@@ -35,66 +35,110 @@
             "name": "Featured categories",
             "order": 3,
             "status": "active",
-            "component": "category-grid",
-            "props": { "title": "Danh mục nổi bật", "href": "/danh-muc", "actionLabel": "Xem tất cả", "type": "product", "limit": 6, "sectionClassName": "pb-4 sm:pb-6" }
+            "component": "card-grid",
+            "props": {
+              "title": "Danh mục nổi bật",
+              "href": "/danh-muc",
+              "actionLabel": "Xem tất cả",
+              "template": "media-footer",
+              "sectionClassName": "pb-4 sm:pb-6",
+              "source": { "type": "category", "categoryType": "product", "limit": 6 }
+            }
           },
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4205",
             "name": "Ưu đãi sản phẩm",
             "order": 4,
             "status": "active",
-            "component": "product-sale",
+            "component": "lead-slider",
             "props": {
-              "promotionId": "66bf4e8c9f2a4d7b8c1e3901",
+              "leadTemplate": "accent",
               "limit": 5,
-              "sectionClassName": "pb-4 sm:pb-6"
+              "sectionClassName": "pb-4 sm:pb-6",
+              "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3901" }
             }
           },
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4206",
-            "name": "Best sellers and featured events",
+            "name": "Product and event content with aside",
             "order": 5,
             "status": "active",
-            "component": "storefront-showcase",
+            "component": "content-aside",
             "props": {
-              "sectionClassName": "pb-4 sm:pb-6",
-              "bestSeller": {
-                "title": "Sản phẩm bán chạy",
-                "href": "/san-pham",
-                "actionLabel": "Xem tất cả",
-                "limit": 8,
-                "tabs": [
-                  { "label": "Xe đạp", "categoryId": "66bf4e8c9f2a4d7b8c1e3c02" },
-                  { "label": "Phụ kiện", "categoryId": "66bf4e8c9f2a4d7b8c1e3c03" },
-                  { "label": "Thiết bị thể thao", "categoryId": "66bf4e8c9f2a4d7b8c1e3c16" }
-                ]
+              "sectionClassName": "pb-4 sm:pb-6"
+            },
+            "content": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4231",
+                "status": "active",
+                "component": "tabs-slider",
+                "props": {
+                  "title": "Sản phẩm bán chạy",
+                  "href": "/san-pham",
+                  "actionLabel": "Xem tất cả",
+                  "source": {
+                    "type": "best-seller",
+                    "limit": 8,
+                    "tabs": [
+                      { "label": "Xe đạp", "categoryId": "66bf4e8c9f2a4d7b8c1e3c02" },
+                      { "label": "Phụ kiện", "categoryId": "66bf4e8c9f2a4d7b8c1e3c03" },
+                      { "label": "Thiết bị thể thao", "categoryId": "66bf4e8c9f2a4d7b8c1e3c16" }
+                    ]
+                  }
+                }
               },
-              "events": {
-                "title": "Sự kiện nổi bật",
-                "href": "/su-kien",
-                "actionLabel": "Xem tất cả",
-                "limit": 3
-              },
-              "benefits": [
-                { "icon": "package", "title": "Cam kết chính hãng 100%", "description": "Hoàn tiền 200% nếu phát hiện hàng giả" },
-                { "icon": "support", "title": "Hỗ trợ kỹ thuật trọn đời", "description": "Đội ngũ chuyên nghiệp" },
-                { "icon": "badge-percent", "title": "Ưu đãi độc quyền", "description": "Dành riêng cho thành viên" }
-              ],
-              "membership": {
-                "eyebrow": "Trở thành thành viên",
-                "title": "Nhận ngay 100K",
-                "description": "Và nhiều ưu đãi hấp dẫn",
-                "href": "/dang-ky",
-                "actionLabel": "Đăng ký ngay",
-                "mediaId": null
-              },
-              "newsletter": {
-                "title": "Nhận tin khuyến mãi",
-                "description": "Đừng bỏ lỡ các ưu đãi và thông tin mới nhất từ BikeSport",
-                "placeholder": "Nhập email của bạn...",
-                "actionLabel": "Đăng ký"
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4232",
+                "status": "active",
+                "component": "card-grid",
+                "props": {
+                  "title": "Sự kiện nổi bật",
+                  "href": "/su-kien",
+                  "actionLabel": "Xem tất cả",
+                  "template": "overlay",
+                  "source": { "type": "event", "limit": 3 }
+                }
               }
-            }
+            ],
+            "aside": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4241",
+                "status": "active",
+                "component": "icon-list",
+                "props": {
+                  "items": [
+                    { "icon": "package", "title": "Cam kết chính hãng 100%", "description": "Hoàn tiền 200% nếu phát hiện hàng giả" },
+                    { "icon": "support", "title": "Hỗ trợ kỹ thuật trọn đời", "description": "Đội ngũ chuyên nghiệp" },
+                    { "icon": "badge-percent", "title": "Ưu đãi độc quyền", "description": "Dành riêng cho thành viên" }
+                  ]
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4242",
+                "status": "active",
+                "component": "media-cta",
+                "props": {
+                  "eyebrow": "Trở thành thành viên",
+                  "title": "Nhận ngay 100K",
+                  "description": "Và nhiều ưu đãi hấp dẫn",
+                  "href": "/dang-ky",
+                  "actionLabel": "Đăng ký ngay",
+                  "mediaId": null
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4243",
+                "status": "active",
+                "component": "inline-form",
+                "props": {
+                  "title": "Nhận tin khuyến mãi",
+                  "description": "Đừng bỏ lỡ các ưu đãi và thông tin mới nhất từ BikeSport",
+                  "placeholder": "Nhập email của bạn...",
+                  "actionLabel": "Đăng ký",
+                  "inputType": "email"
+                }
+              }
+            ]
           },
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4203",
@@ -115,7 +159,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-16T22:09:00+07:00"
+      "updatedAt": "2026-08-16T22:37:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
