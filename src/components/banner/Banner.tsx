@@ -63,7 +63,7 @@ export function Banner({ bannerId }: BannerProps) {
           />
 
           <div
-            className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-blue-600/10 via-blue-600/10 to-transparent"
+            className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-blue-600 to-blue-600/10"
             aria-hidden="true"
           />
 
