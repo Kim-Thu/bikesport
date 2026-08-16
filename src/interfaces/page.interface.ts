@@ -1,8 +1,10 @@
+import type { CardTemplate } from "@/interfaces/card.interface";
 import type { CategoryType } from "@/interfaces/category.interface";
+import type { PageBlockPayload } from "@/interfaces/page-block.interface";
 
 export type PageStatus = "draft" | "published";
 export type PageSectionStatus = "active" | "inactive";
-export type PageSectionComponent = "banner" | "stack" | "category-grid" | "product-sale" | "storefront-showcase";
+export type PageSectionComponent = "banner" | "stack" | "card-grid" | "lead-slider" | "content-aside";
 
 export interface PageBoxIconProps {
   icon?: string;
@@ -18,20 +20,20 @@ export interface PageColumnPayload {
   props: PageBoxIconProps;
 }
 
-export interface BannerSectionPayload {
+interface PageSectionBase {
   _id: string;
   name: string;
   order: number;
   status: PageSectionStatus;
+  component: PageSectionComponent;
+}
+
+export interface BannerSectionPayload extends PageSectionBase {
   component: "banner";
   props: { bannerId: string };
 }
 
-export interface StackSectionPayload {
-  _id: string;
-  name: string;
-  order: number;
-  status: PageSectionStatus;
+export interface StackSectionPayload extends PageSectionBase {
   component: "stack";
   props: {
     variant: "surface" | "primary";
@@ -41,80 +43,54 @@ export interface StackSectionPayload {
   columns: PageColumnPayload[];
 }
 
-export interface CategoryGridSectionPayload {
-  _id: string;
-  name: string;
-  order: number;
-  status: PageSectionStatus;
-  component: "category-grid";
+export interface CardGridSectionPayload extends PageSectionBase {
+  component: "card-grid";
   props: {
     title: string;
     href?: string;
     actionLabel?: string;
-    type: CategoryType;
-    limit?: number;
+    template: CardTemplate;
+    gridClassName?: string;
     sectionClassName?: string;
+    source: {
+      type: "category";
+      categoryType: CategoryType;
+      limit?: number;
+    };
   };
 }
 
-export interface ProductSaleSectionPayload {
-  _id: string;
-  name: string;
-  order: number;
-  status: PageSectionStatus;
-  component: "product-sale";
+export interface LeadSliderSectionPayload extends PageSectionBase {
+  component: "lead-slider";
   props: {
-    promotionId: string;
+    leadTemplate: CardTemplate;
     limit?: number;
     sectionClassName?: string;
+    source: {
+      type: "promotion";
+      promotionId: string;
+    };
   };
 }
 
-export interface StorefrontShowcaseSectionPayload {
-  _id: string;
-  name: string;
-  order: number;
-  status: PageSectionStatus;
-  component: "storefront-showcase";
+export interface ContentAsideSectionPayload extends PageSectionBase {
+  component: "content-aside";
   props: {
     sectionClassName?: string;
-    bestSeller: {
-      title: string;
-      href?: string;
-      actionLabel?: string;
-      limit?: number;
-      tabs: Array<{ label: string; categoryId: string }>;
-    };
-    events: {
-      title: string;
-      href?: string;
-      actionLabel?: string;
-      limit?: number;
-    };
-    benefits: PageBoxIconProps[];
-    membership: {
-      eyebrow?: string;
-      title: string;
-      description?: string;
-      href: string;
-      actionLabel?: string;
-      mediaId?: string | null;
-    };
-    newsletter: {
-      title: string;
-      description?: string;
-      placeholder?: string;
-      actionLabel?: string;
-    };
+    gridClassName?: string;
+    contentClassName?: string;
+    asideClassName?: string;
   };
+  content: PageBlockPayload[];
+  aside: PageBlockPayload[];
 }
 
 export type PageSectionPayload =
   | BannerSectionPayload
   | StackSectionPayload
-  | CategoryGridSectionPayload
-  | ProductSaleSectionPayload
-  | StorefrontShowcaseSectionPayload;
+  | CardGridSectionPayload
+  | LeadSliderSectionPayload
+  | ContentAsideSectionPayload;
 
 export interface PagePayload {
   sections: PageSectionPayload[];
