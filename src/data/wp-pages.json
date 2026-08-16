@@ -183,6 +183,48 @@
                         }
                       },
                       {
+                        "_id": "66bf4e8c9f2a4d7b8c1e42d2",
+                        "status": "active",
+                        "component": "product-slider",
+                        "props": {
+                          "title": "Xe đạp đường phố",
+                          "href": "/danh-muc/xe-dap-thanh-pho",
+                          "actionLabel": "Xem tất cả",
+                          "template": "media-action",
+                          "trackClassName": "-ml-4",
+                          "slideClassName": "basis-48 pl-4 sm:basis-52 lg:basis-1/4",
+                          "source": { "type": "category", "categoryId": "66bf4e8c9f2a4d7b8c1e3c13", "limit": 5 }
+                        }
+                      },
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e42e2",
+                        "status": "active",
+                        "component": "product-slider",
+                        "props": {
+                          "title": "Xe đạp Touring",
+                          "href": "/danh-muc/xe-dap-touring",
+                          "actionLabel": "Xem tất cả",
+                          "template": "media-action",
+                          "trackClassName": "-ml-4",
+                          "slideClassName": "basis-48 pl-4 sm:basis-52 lg:basis-1/4",
+                          "source": { "type": "category", "categoryId": "66bf4e8c9f2a4d7b8c1e3c17", "limit": 5 }
+                        }
+                      },
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e42f2",
+                        "status": "active",
+                        "component": "product-slider",
+                        "props": {
+                          "title": "Xe đạp trẻ em",
+                          "href": "/danh-muc/xe-dap-tre-em",
+                          "actionLabel": "Xem tất cả",
+                          "template": "media-action",
+                          "trackClassName": "-ml-4",
+                          "slideClassName": "basis-48 pl-4 sm:basis-52 lg:basis-1/4",
+                          "source": { "type": "category", "categoryId": "66bf4e8c9f2a4d7b8c1e3c14", "limit": 5 }
+                        }
+                      },
+                      {
                         "_id": "66bf4e8c9f2a4d7b8c1e42c2",
                         "status": "active",
                         "component": "product-slider",
@@ -356,7 +398,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-17T03:31:00+07:00"
+      "updatedAt": "2026-08-17T04:55:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
