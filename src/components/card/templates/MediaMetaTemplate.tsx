@@ -7,6 +7,7 @@ export function MediaMetaTemplate({
   title,
   href,
   mediaId,
+  description,
   publishedAt,
   categoryName,
   authorName,
@@ -19,7 +20,7 @@ export function MediaMetaTemplate({
         className,
       )}
     >
-      <CLink href={href} className="block">
+      <CLink href={href} className="relative block">
         <div className="aspect-video w-full overflow-hidden">
           <MediaImage
             mediaId={mediaId}
@@ -29,14 +30,19 @@ export function MediaMetaTemplate({
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
+        {categoryName ? (
+          <span className="absolute left-4 top-4 rounded-md bg-white px-2 py-2 text-xs font-medium text-blue-600">
+            {categoryName}
+          </span>
+        ) : null}
       </CLink>
 
       <div className="flex flex-1 flex-col gap-2 p-4">
-        {categoryName ? <div className="text-xs font-medium text-blue-600">{categoryName}</div> : null}
         <CLink href={href} className="line-clamp-2 text-xs font-semibold text-gray-900 sm:text-sm">
           {title}
         </CLink>
-        <div className="mt-auto flex flex-wrap items-center gap-2 text-xs text-gray-500">
+
+        <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500">
           {authorName ? <span>{authorName}</span> : null}
           {authorName && publishedAt ? <span aria-hidden="true">•</span> : null}
           {publishedAt ? (
@@ -47,6 +53,8 @@ export function MediaMetaTemplate({
             </time>
           ) : null}
         </div>
+
+        {description ? <p className="line-clamp-2 text-xs leading-relaxed text-gray-600">{description}</p> : null}
       </div>
     </article>
   );
