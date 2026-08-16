@@ -1,7 +1,7 @@
 import { Card } from "@/components/card/Card";
 import { Container } from "@/components/layout/Container";
+import { ProductSlider, type ProductSliderItem } from "@/components/product/ProductSlider";
 import { Section } from "@/components/section/Section";
-import { CardSlider, type CardSliderItem } from "@/components/slider/CardSlider";
 import type { LeadSliderSectionPayload } from "@/interfaces/page.interface";
 import { getProductPrimaryMediaId } from "@/lib/product.utils";
 import {
@@ -19,12 +19,11 @@ export function LeadSliderSection({ section }: { section: LeadSliderSectionPaylo
   const products = getPromotionProducts(promotion, section.props.limit);
   if (!products.length) return null;
 
-  const items: CardSliderItem[] = products.map((product) => {
+  const items: ProductSliderItem[] = products.map((product) => {
     const pricing = getPromotionProductPricing(product, promotion);
 
     return {
       _key: product.sku,
-      template: "media-action",
       title: product.name,
       href: `/san-pham/${product.slug}`,
       mediaId: getProductPrimaryMediaId(product),
@@ -46,7 +45,12 @@ export function LeadSliderSection({ section }: { section: LeadSliderSectionPaylo
             actionLabel={promotion.display?.actionLabel ?? "Xem tất cả"}
           />
 
-          <CardSlider items={items} ariaLabel={`Sản phẩm ${promotion.name}`} />
+          <ProductSlider
+            items={items}
+            template={section.props.productTemplate}
+            ariaLabel={`Sản phẩm ${promotion.name}`}
+            slideClassName={section.props.slideClassName}
+          />
         </div>
       </Container>
     </Section>
