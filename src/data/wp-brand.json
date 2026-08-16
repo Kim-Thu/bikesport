@@ -1,0 +1,18 @@
+{
+  "brands": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4301",
+      "name": "Giant",
+      "slug": "giant",
+      "description": null,
+      "logoMediaId": null,
+      "featured": true,
+      "status": "active",
+      "order": 1,
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T20:37:00+07:00",
+      "updatedAt": "2026-08-16T20:37:00+07:00"
+    }
+  ]
+}
