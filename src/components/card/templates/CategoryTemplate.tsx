@@ -9,11 +9,11 @@ export function CategoryTemplate({ title, href, mediaId, className }: CardProps)
     <CLink
       href={href}
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-gray-50 transition-colors hover:border-blue-200",
+        "group flex h-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white transition-colors hover:border-blue-200",
         className,
       )}
     >
-      <div className="flex min-h-28 flex-1 items-center justify-center p-3 sm:min-h-32 lg:min-h-36">
+      <div className="flex min-h-28 flex-1 items-center justify-center bg-white p-3 sm:min-h-32 lg:min-h-36">
         {mediaId ? (
           <MediaImage
             mediaId={mediaId}
@@ -23,7 +23,7 @@ export function CategoryTemplate({ title, href, mediaId, className }: CardProps)
             className="h-24 w-full object-contain transition-transform duration-300 group-hover:scale-105 sm:h-28 lg:h-32"
           />
         ) : (
-          <div className="flex h-24 w-full items-center justify-center rounded-md bg-gray-100 text-xs font-medium text-gray-400 sm:h-28 lg:h-32">
+          <div className="flex h-24 w-full items-center justify-center rounded-md bg-white text-xs font-medium text-gray-400 sm:h-28 lg:h-32">
             {title}
           </div>
         )}
