@@ -10,6 +10,7 @@ interface ProductSliderProps {
   items: ProductSliderItem[];
   template: CardTemplate;
   ariaLabel: string;
+  trackClassName?: string;
   slideClassName?: string;
 }
 
@@ -17,6 +18,7 @@ export function ProductSlider({
   items,
   template,
   ariaLabel,
+  trackClassName,
   slideClassName,
 }: ProductSliderProps) {
   if (!items.length) return null;
@@ -30,6 +32,7 @@ export function ProductSlider({
       dragFree
       showArrows
       ariaLabel={ariaLabel}
+      trackClassName={trackClassName}
       slideClassName={slideClassName}
       dotsClassName="hidden"
     >
