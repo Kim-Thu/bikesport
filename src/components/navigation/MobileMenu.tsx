@@ -5,20 +5,22 @@ import Link from "next/link";
 import { Button } from "@/components/button/Button";
 import { Icon } from "@/components/icon/Icon";
 import { Logo } from "@/components/logo/Logo";
-import menuData from "@/data/wp-menu.json";
-import type { NavMenuData, NavMenuItem, NavMenuProps } from "@/interfaces/navigation.interface";
-
-function sortItems(items: NavMenuItem[]) {
-  return items.slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-}
+import type { NavMenuProps } from "@/interfaces/navigation.interface";
+import {
+  getChildMenuItems,
+  getMenuById,
+  getMenuHref,
+  getRootMenuItems,
+  hasMenuChildren,
+} from "@/lib/menu.utils";
 
 export function MobileMenu({ menuId }: NavMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [expandedItemId, setExpandedItemId] = useState<string | null>(null);
-  const menu = (menuData.menus as NavMenuData[]).find((item) => item._id === menuId);
+  const menu = getMenuById(menuId);
   const items = menu?.items ?? [];
-  const rootItems = sortItems(items.filter((item) => !item.parentId));
+  const rootItems = getRootMenuItems(items);
 
   useEffect(() => {
     if (!isOpen) {
@@ -98,8 +100,8 @@ export function MobileMenu({ menuId }: NavMenuProps) {
               {rootItems.map((item) => {
                 if (!item.label) return null;
 
-                const children = sortItems(items.filter((child) => child.parentId === item._id));
-                const hasDropdown = children.length > 0 || item.hasDropdown;
+                const children = getChildMenuItems(items, item._id);
+                const hasDropdown = hasMenuChildren(items, item);
                 const isExpanded = expandedItemId === item._id;
                 const itemClass = `flex min-h-12 w-full items-center justify-between gap-2 text-sm font-semibold sm:min-h-14 ${item.highlight ? "text-red-500" : "text-gray-900"}`;
 
@@ -117,7 +119,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
                         <Icon name="chevron-down" className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} strokeWidth={2} />
                       </button>
                     ) : (
-                      <Link href={item.href || "/"} className={itemClass} onClick={closeMenu}>
+                      <Link href={getMenuHref(item)} className={itemClass} onClick={closeMenu}>
                         <span>{item.label}</span>
                       </Link>
                     )}
@@ -126,7 +128,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
                       <ul id={`mobile-submenu-${item._id}`} className="m-0 list-none bg-gray-50 p-0">
                         {children.map((child) => (
                           <li key={child._id}>
-                            <Link href={child.href || "/"} className="flex min-h-11 items-center px-4 text-sm text-gray-700" onClick={closeMenu}>
+                            <Link href={getMenuHref(child)} className="flex min-h-11 items-center px-4 text-sm text-gray-700" onClick={closeMenu}>
                               {child.label}
                             </Link>
                           </li>
