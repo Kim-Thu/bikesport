@@ -14,9 +14,9 @@ export function CardGridBlock({ block }: { block: CardGridBlockPayload }) {
         title={block.props.title}
         href={block.props.href}
         actionLabel={block.props.actionLabel}
-        className="mb-3"
+        className="mb-4"
       />
-      <div className={cn("grid gap-3 sm:grid-cols-2 xl:grid-cols-3", block.props.gridClassName)}>
+      <div className={cn("grid gap-4 sm:grid-cols-2 xl:grid-cols-3", block.props.gridClassName)}>
         {items.map((item) => (
           <Card
             key={item._id}
