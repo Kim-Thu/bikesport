@@ -1,4 +1,10 @@
-export type CardTemplate = "media-footer" | "media-action" | "media-meta" | "accent" | "overlay";
+export type CardTemplate =
+  | "media-footer"
+  | "media-action"
+  | "media-meta"
+  | "media-details"
+  | "accent"
+  | "overlay";
 
 export interface CardProps {
   title: string;
@@ -7,6 +13,7 @@ export interface CardProps {
   template?: CardTemplate;
   className?: string;
   description?: string;
+  metaItems?: string[];
   price?: number;
   salePrice?: number | null;
   discountPercentage?: number | null;
