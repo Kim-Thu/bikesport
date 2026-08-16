@@ -47,7 +47,7 @@ function BannerSlide({ banner }: { banner: BannerRecord }) {
   const promotionCards = banner.promotionCards ?? [];
 
   return (
-    <div className="relative flex min-h-88 w-full overflow-hidden rounded-xl border border-blue-100 bg-blue-200">
+    <div className="relative flex min-h-88 w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent">
       <MediaImage
         mediaId={banner.backgroundMediaId}
         alt=""
@@ -59,7 +59,7 @@ function BannerSlide({ banner }: { banner: BannerRecord }) {
       />
 
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-1/2 bg-gradient-to-r from-blue-200 via-blue-200/80 via-55% to-transparent"
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-3/5 bg-gradient-to-r from-blue-200 via-blue-200/80 via-45% to-transparent"
         aria-hidden="true"
       />
 
