@@ -5,7 +5,6 @@ export interface FooterSettings {
   template: FooterTemplateName;
   description?: string;
   menuIds?: string[];
-  copyright?: string;
 }
 
 export interface FooterProps {
