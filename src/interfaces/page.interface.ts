@@ -64,6 +64,8 @@ export interface LeadSliderSectionPayload extends PageSectionBase {
   component: "lead-slider";
   props: {
     leadTemplate: CardTemplate;
+    productTemplate: CardTemplate;
+    slideClassName?: string;
     limit?: number;
     sectionClassName?: string;
     source: {
