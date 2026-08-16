@@ -10,6 +10,8 @@ export interface CardProps {
   price?: number;
   salePrice?: number | null;
   discountPercentage?: number | null;
+  rating?: number;
+  reviewCount?: number;
   actionLabel?: string;
   startAt?: string;
   location?: string;
