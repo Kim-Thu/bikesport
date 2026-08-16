@@ -15,6 +15,8 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
     title: string;
     href?: string;
     actionLabel?: string;
+    template: CardTemplate;
+    slideClassName?: string;
     source: {
       type: "best-seller";
       limit?: number;
