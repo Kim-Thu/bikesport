@@ -178,16 +178,16 @@ export function getPromotionProductPricing(product: ProductRecord, promotion: Pr
   }
 
   return {
-    salePrice: product.salePrice,
-    discountPercentage: getIntrinsicDiscountPercentage(product),
+    salePrice: null,
+    discountPercentage: null,
   };
 }
 
-export function getActivePromotionsForProduct(
-  productId: string,
+export function getActivePromotionsForSku(
+  sku: string,
   now: Date = new Date(),
 ): PromotionRecord[] {
-  const product = products.find((item) => item._id === productId);
+  const product = products.find((item) => item.sku === sku);
   if (!product) return [];
 
   return promotionData.promotions
