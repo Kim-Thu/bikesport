@@ -128,7 +128,6 @@ export function Banner({ bannerId }: BannerProps) {
                       icon={card.icon}
                       label={card.label}
                       description={card.description}
-                      size={card.size}
                       value={promotion.endAt && card.label === "FLASH SALE" ? <Countdown endAt={promotion.endAt} /> : value}
                     />
                   );
