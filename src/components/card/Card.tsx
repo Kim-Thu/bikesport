@@ -1,8 +1,12 @@
 import { CategoryTemplate } from "@/components/card/templates/CategoryTemplate";
+import { ProductTemplate } from "@/components/card/templates/ProductTemplate";
+import { PromotionTemplate } from "@/components/card/templates/PromotionTemplate";
 import type { CardProps, CardTemplate } from "@/interfaces/card.interface";
 
-const CARD_TEMPLATES: Record<CardTemplate, typeof CategoryTemplate> = {
+const CARD_TEMPLATES: Record<CardTemplate, (props: CardProps) => React.ReactNode> = {
   category: CategoryTemplate,
+  product: ProductTemplate,
+  promotion: PromotionTemplate,
 };
 
 export function Card({ template = "category", ...props }: CardProps) {
