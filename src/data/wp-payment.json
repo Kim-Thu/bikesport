@@ -1,0 +1,59 @@
+{
+  "paymentMethods": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3601",
+      "name": "mastercard",
+      "label": "Mastercard",
+      "logo": "/uploads/images/placehoder.png",
+      "alt": "Mastercard",
+      "width": 64,
+      "height": 40,
+      "enabled": true,
+      "order": 1
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3602",
+      "name": "zalopay",
+      "label": "ZaloPay",
+      "logo": "/uploads/images/placehoder.png",
+      "alt": "ZaloPay",
+      "width": 64,
+      "height": 40,
+      "enabled": true,
+      "order": 2
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3603",
+      "name": "momo",
+      "label": "MoMo",
+      "logo": "/uploads/images/placehoder.png",
+      "alt": "MoMo",
+      "width": 64,
+      "height": 40,
+      "enabled": true,
+      "order": 3
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3604",
+      "name": "vnpay",
+      "label": "VNPay",
+      "logo": "/uploads/images/placehoder.png",
+      "alt": "VNPay",
+      "width": 64,
+      "height": 40,
+      "enabled": true,
+      "order": 4
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3605",
+      "name": "cod",
+      "label": "COD",
+      "logo": "/uploads/images/placehoder.png",
+      "alt": "Thanh toán khi nhận hàng",
+      "width": 64,
+      "height": 40,
+      "enabled": true,
+      "order": 5
+    }
+  ]
+}
