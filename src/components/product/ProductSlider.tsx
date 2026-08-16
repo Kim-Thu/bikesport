@@ -23,9 +23,6 @@ export function ProductSlider({
 }: ProductSliderProps) {
   if (!items.length) return null;
 
-  const repeatCount = Math.max(1, Math.ceil(10 / items.length));
-  const slides = Array.from({ length: repeatCount }, () => items).flat();
-
   return (
     <Carousel
       loop
@@ -36,8 +33,8 @@ export function ProductSlider({
       slideClassName={slideClassName}
       dotsClassName="hidden"
     >
-      {slides.map(({ _key, ...item }, index) => (
-        <Card key={`${_key}-${index}`} template={template} {...item} />
+      {items.map(({ _key, ...item }) => (
+        <Card key={_key} template={template} {...item} />
       ))}
     </Carousel>
   );
