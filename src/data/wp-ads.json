@@ -1,0 +1,57 @@
+{
+  "ads": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4801",
+      "name": "Home sidebar - Ưu đãi tháng 8",
+      "placement": "home-sidebar",
+      "status": "active",
+      "priority": 100,
+      "mediaId": null,
+      "alt": "Ưu đãi tháng 8 BikeSport",
+      "href": "/khuyen-mai",
+      "schedule": {
+        "type": "promotion",
+        "promotionId": "66bf4e8c9f2a4d7b8c1e3901"
+      },
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T02:03:00+07:00",
+      "updatedAt": "2026-08-17T02:03:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4802",
+      "name": "Home sidebar - Quảng cáo thường xuyên",
+      "placement": "home-sidebar",
+      "status": "active",
+      "priority": 10,
+      "mediaId": null,
+      "alt": "BikeSport",
+      "href": "/san-pham",
+      "schedule": {
+        "type": "always"
+      },
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T02:03:00+07:00",
+      "updatedAt": "2026-08-17T02:03:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4803",
+      "name": "Home sidebar - Charity Ride 2026",
+      "placement": "home-sidebar",
+      "status": "active",
+      "priority": 80,
+      "mediaId": null,
+      "alt": "Charity Ride 2026",
+      "href": "/su-kien/charity-ride-2026",
+      "schedule": {
+        "type": "event",
+        "eventId": "66bf4e8c9f2a4d7b8c1e4703"
+      },
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T02:03:00+07:00",
+      "updatedAt": "2026-08-17T02:03:00+07:00"
+    }
+  ]
+}
