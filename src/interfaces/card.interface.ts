@@ -6,6 +6,11 @@ export type CardTemplate =
   | "accent"
   | "overlay";
 
+export interface CardMetaItem {
+  icon?: string;
+  text: string;
+}
+
 export interface CardProps {
   title: string;
   href: string;
@@ -13,7 +18,7 @@ export interface CardProps {
   template?: CardTemplate;
   className?: string;
   description?: string;
-  metaItems?: string[];
+  metaItems?: CardMetaItem[];
   price?: number;
   salePrice?: number | null;
   discountPercentage?: number | null;
