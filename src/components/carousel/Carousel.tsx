@@ -89,7 +89,7 @@ export function Carousel({
                 key={index}
                 type="button"
                 className={cn(
-                  "block h-1.5 cursor-default rounded-full bg-white/70 transition-[width,opacity]",
+                  "block h-1.5 cursor-pointer rounded-full bg-white/70 transition-[width,opacity]",
                   isActive ? "w-8 bg-white" : "w-1.5",
                 )}
                 aria-label={`Chuyển đến slide ${index + 1}`}
