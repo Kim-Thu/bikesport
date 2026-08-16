@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/button/Button";
 import { Icon } from "@/components/icon/Icon";
 import { Logo } from "@/components/logo/Logo";
+import { MenuChildren } from "@/components/navigation/MenuChildren";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
 import {
   getChildMenuItems,
@@ -125,15 +126,13 @@ export function MobileMenu({ menuId }: NavMenuProps) {
                     )}
 
                     {children.length && isExpanded ? (
-                      <ul id={`mobile-submenu-${item._id}`} className="m-0 list-none bg-gray-50 p-0">
-                        {children.map((child) => (
-                          <li key={child._id}>
-                            <Link href={getMenuHref(child)} className="flex min-h-11 items-center px-4 text-sm text-gray-700" onClick={closeMenu}>
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+                      <MenuChildren
+                        id={`mobile-submenu-${item._id}`}
+                        items={children}
+                        listClassName="m-0 list-none bg-gray-50 p-0"
+                        itemClassName="flex min-h-11 items-center px-4 text-sm text-gray-700"
+                        onItemClick={closeMenu}
+                      />
                     ) : null}
                   </li>
                 );
