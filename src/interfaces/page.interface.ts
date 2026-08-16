@@ -64,10 +64,7 @@ export interface ProductSaleSectionPayload {
   status: PageSectionStatus;
   component: "product-sale";
   props: {
-    title: string;
-    description?: string;
-    href: string;
-    actionLabel?: string;
+    promotionId: string;
     limit?: number;
     sectionClassName?: string;
   };
