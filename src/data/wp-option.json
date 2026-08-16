@@ -3,7 +3,7 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-15T16:27:00+07:00",
+  "updatedAt": "2026-08-16T10:47:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
@@ -64,11 +64,9 @@
               {
                 "items": [
                   {
-                    "component": "button",
+                    "component": "mobile-menu",
                     "props": {
-                      "variant": "icon",
-                      "icon": "menu",
-                      "aria-label": "Mở menu"
+                      "menuId": "66bf4e8c9f2a4d7b8c1e3301"
                     }
                   },
                   {
