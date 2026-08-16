@@ -1,4 +1,4 @@
-export type CardTemplate = "category" | "product" | "promotion";
+export type CardTemplate = "category" | "product" | "promotion" | "event";
 
 export interface CardProps {
   title: string;
@@ -11,4 +11,7 @@ export interface CardProps {
   salePrice?: number | null;
   discountPercentage?: number | null;
   actionLabel?: string;
+  startAt?: string;
+  location?: string;
+  attendees?: number;
 }
