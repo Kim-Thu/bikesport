@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { CLink } from "@/components/link/CLink";
 import wpOption from "@/data/wp-option.json";
 import type { LogoProps } from "@/interfaces/logo.interface";
 
@@ -10,7 +10,7 @@ export function Logo({ href = "/" }: LogoProps) {
   const shouldShowTagLine = showTagLine && Boolean(tagLine);
 
   return (
-    <Link href={href} className="inline-flex shrink-0 items-center gap-3" aria-label={siteTitle || "Trang chủ"}>
+    <CLink href={href} className="inline-flex shrink-0 items-center gap-3" aria-label={siteTitle || "Trang chủ"}>
       {hasLogo && (
         <Image
           src={logo}
@@ -28,6 +28,6 @@ export function Logo({ href = "/" }: LogoProps) {
           {shouldShowTagLine && <span>{tagLine}</span>}
         </span>
       )}
-    </Link>
+    </CLink>
   );
 }

@@ -3,7 +3,7 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T13:47:00+07:00",
+  "updatedAt": "2026-08-16T14:03:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
@@ -22,29 +22,25 @@
         "name": "facebook",
         "label": "Facebook",
         "icon": "/uploads/images/facebook.svg",
-        "href": "#facebook",
-        "external": false
+        "href": "#facebook"
       },
       {
         "name": "instagram",
         "label": "Instagram",
         "icon": "/uploads/images/instagram.svg",
-        "href": "#instagram",
-        "external": false
+        "href": "#instagram"
       },
       {
         "name": "youtube",
         "label": "YouTube",
         "icon": "/uploads/images/youtube.svg",
-        "href": "#youtube",
-        "external": false
+        "href": "#youtube"
       },
       {
         "name": "tiktok",
         "label": "TikTok",
         "icon": "/uploads/images/tiktok.svg",
-        "href": "#tiktok",
-        "external": false
+        "href": "#tiktok"
       }
     ]
   },

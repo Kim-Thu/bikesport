@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { CLink } from "@/components/link/CLink";
 import type { MenuChildrenProps } from "@/interfaces/navigation.interface";
 import { getMenuHref } from "@/lib/menu.utils";
 
@@ -15,9 +15,9 @@ export function MenuChildren({
     <ul id={id} className={listClassName}>
       {items.map((item) => (
         <li key={item._id}>
-          <Link href={getMenuHref(item)} className={itemClassName} onClick={onItemClick}>
+          <CLink href={getMenuHref(item)} className={itemClassName} onClick={onItemClick}>
             {item.label}
-          </Link>
+          </CLink>
         </li>
       ))}
     </ul>

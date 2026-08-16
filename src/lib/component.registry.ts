@@ -4,6 +4,7 @@ import { Button } from "@/components/button/Button";
 import { MiniCart } from "@/components/cart/MiniCart";
 import { Contact } from "@/components/contact/Contact";
 import { Icon } from "@/components/icon/Icon";
+import { CLink } from "@/components/link/CLink";
 import { Logo } from "@/components/logo/Logo";
 import { MobileMenu } from "@/components/navigation/MobileMenu";
 import { NavMenu } from "@/components/navigation/NavMenu";
@@ -16,6 +17,7 @@ export const COMPONENT_REGISTRY: Record<string, ElementType> = {
   promotion: Promotion,
   button: Button,
   icon: Icon,
+  link: CLink,
   logo: Logo,
   "search-form": SearchForm,
   contact: Contact,

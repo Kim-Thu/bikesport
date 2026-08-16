@@ -3,13 +3,13 @@
 import { Button } from "@/components/button/Button";
 import { Contact } from "@/components/contact/Contact";
 import { Icon } from "@/components/icon/Icon";
+import { CLink } from "@/components/link/CLink";
 import { Logo } from "@/components/logo/Logo";
 import { MenuChildren } from "@/components/navigation/partials/MenuChildren";
 import { Social } from "@/components/social/Social";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
 import { createMenuIndex, getMenuById, getMenuHref } from "@/lib/menu.utils";
 import { useUiStore } from "@/stores/ui.store";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 export function MobileMenu({ menuId }: NavMenuProps) {
@@ -119,9 +119,9 @@ export function MobileMenu({ menuId }: NavMenuProps) {
                         <Icon name="chevron-down" className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} strokeWidth={2} />
                       </button>
                     ) : (
-                      <Link href={getMenuHref(item)} className={itemClass} onClick={closeMenu}>
+                      <CLink href={getMenuHref(item)} className={itemClass} onClick={closeMenu}>
                         <span>{item.label}</span>
-                      </Link>
+                      </CLink>
                     )}
 
                     {children.length && isExpanded ? (
