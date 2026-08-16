@@ -87,6 +87,10 @@ export interface CardGridBlockPayload extends PageBlockBase {
       | {
           type: "post";
           limit?: number;
+        }
+      | {
+          type: "store";
+          limit?: number;
         };
   };
 }
