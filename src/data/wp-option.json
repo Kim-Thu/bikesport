@@ -3,7 +3,7 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T15:06:00+07:00",
+  "updatedAt": "2026-08-16T15:15:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
@@ -12,29 +12,20 @@
     "showTagLine": false
   },
   "organization": {
-    "legalName": "Công Ty Cổ Phần Vòng Xanh",
+    "legalName": "BikeSport",
     "businessRegistration": {
-      "number": "0313891315",
-      "issuedBy": "Sở KH&ĐT TP.HCM",
-      "issuedDate": "17/06/2025"
+      "number": "",
+      "issuedBy": "",
+      "issuedDate": ""
     },
-    "headquarters": "100 Hải Thượng Lãn Ông, Phường Chợ Lớn, HCM",
-    "verificationAssets": [
-      {
-        "label": "Đã thông báo Bộ Công Thương",
-        "src": "/uploads/images/bo-cong-thuong.png",
-        "alt": "Đã thông báo Bộ Công Thương",
-        "width": 160,
-        "height": 60,
-        "enabled": false
-      }
-    ]
+    "headquarters": "",
+    "verificationAssets": []
   },
   "contact": {
     "email": {
       "label": "Email",
-      "value": "info@xedap.vn",
-      "href": "mailto:info@xedap.vn"
+      "value": "",
+      "href": ""
     },
     "hotline": {
       "label": "Hotline",
