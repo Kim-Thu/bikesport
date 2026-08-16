@@ -6,7 +6,7 @@ import type { SearchFormProps } from "@/interfaces/search.interface";
 
 const VARIANT_CLASS = {
   default: "flex w-full",
-  desktop: "hidden w-full max-w-xl lg:flex",
+  desktop: "hidden w-full lg:flex",
   mobile: "flex w-full lg:hidden",
 } as const;
 
