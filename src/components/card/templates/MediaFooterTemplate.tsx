@@ -13,17 +13,17 @@ export function MediaFooterTemplate({ title, href, mediaId, className }: CardPro
         className,
       )}
     >
-      <div className="aspect-card-media w-full overflow-hidden bg-white p-3">
+      <div className="aspect-card-media w-full overflow-hidden bg-white p-4">
         <MediaImage
           mediaId={mediaId}
           alt={title}
           width={320}
           height={240}
-          className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
-      <div className="flex items-center justify-between gap-2 border-t border-gray-100 bg-white px-3 py-2.5">
+      <div className="flex items-center justify-between gap-2 border-t border-gray-100 bg-white p-4">
         <span className="min-w-0 text-xs font-semibold text-gray-900 sm:text-sm">{title}</span>
         <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-gray-300 text-gray-500 transition-colors group-hover:border-blue-600 group-hover:text-blue-600">
           <Icon name="arrow-right" className="h-3 w-3" strokeWidth={2} />
