@@ -8,25 +8,62 @@
       "name": "Storefront Hero Demo 1",
       "status": "active",
       "variant": "promo-left",
-      "overlay": { "variant": "blue-left" },
+      "overlay": {
+        "variant": "blue-left"
+      },
       "eyebrow": "CHINH PHỤC MỌI CUNG ĐƯỜNG",
       "title": "GIẢM ĐẾN",
       "titleHighlight": "20%",
       "description": "XE ĐẠP THỂ THAO MÙA HÈ",
       "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3716",
       "features": [
-        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3717", "title": "Trả góp 0%", "description": "Lãi suất" },
-        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3721", "title": "Bảo hành", "description": "Chính hãng" },
-        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3715", "title": "Miễn phí", "description": "Giao hàng" }
+        {
+          "iconMediaId": "66bf4e8c9f2a4d7b8c1e3717",
+          "title": "Trả góp 0%",
+          "description": "Lãi suất"
+        },
+        {
+          "iconMediaId": "66bf4e8c9f2a4d7b8c1e3721",
+          "title": "Bảo hành",
+          "description": "Chính hãng"
+        },
+        {
+          "iconMediaId": "66bf4e8c9f2a4d7b8c1e3715",
+          "title": "Miễn phí",
+          "description": "Giao hàng"
+        }
       ],
       "actions": [
-        { "label": "MUA NGAY", "href": "#products", "variant": "primary" },
-        { "label": "XEM SỰ KIỆN", "href": "#promotions", "variant": "outline" }
+        {
+          "label": "MUA NGAY",
+          "href": "#products",
+          "variant": "primary"
+        },
+        {
+          "label": "XEM SỰ KIỆN",
+          "href": "#promotions",
+          "variant": "outline"
+        }
       ],
       "promotionCards": [
-        { "label": "FLASH SALE", "description": "Kết thúc sau", "promotionId": "66bf4e8c9f2a4d7b8c1e3901", "icon": "tag" },
-        { "label": "VOUCHER", "description": "Giảm thêm", "promotionId": "66bf4e8c9f2a4d7b8c1e3902", "icon": "badge-percent" },
-        { "label": "QUÀ TẶNG", "description": "Ưu đãi kèm sản phẩm", "promotionId": "66bf4e8c9f2a4d7b8c1e3904", "icon": "gift" }
+        {
+          "label": "FLASH SALE",
+          "description": "Kết thúc sau",
+          "promotionId": "66bf4e8c9f2a4d7b8c1e3901",
+          "icon": "tag"
+        },
+        {
+          "label": "VOUCHER",
+          "description": "Giảm thêm",
+          "promotionId": "66bf4e8c9f2a4d7b8c1e3902",
+          "icon": "badge-percent"
+        },
+        {
+          "label": "QUÀ TẶNG",
+          "description": "Ưu đãi kèm sản phẩm",
+          "promotionId": "66bf4e8c9f2a4d7b8c1e3904",
+          "icon": "gift"
+        }
       ],
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
@@ -41,7 +78,6 @@
       "name": "Storefront Hero Demo 2",
       "status": "active",
       "variant": "image-only",
-      "overlay": { "variant": "blue-center" },
       "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3725",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
