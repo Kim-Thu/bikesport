@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { CLink } from "@/components/link/CLink";
 import { CList } from "@/components/list/CList";
 import { Column } from "@/components/layout/Column";
+import { MediaImage } from "@/components/media/MediaImage";
 import { Row } from "@/components/layout/Row";
 import wpOption from "@/data/wp-option.json";
 
@@ -73,12 +73,12 @@ export function CompanyInfo() {
         <Column className="w-full sm:w-auto sm:min-w-40">
           <div className="flex flex-wrap items-center gap-3 sm:justify-end">
             {verificationAssets.map((asset) => (
-              <Image
-                key={asset.src}
-                src={asset.src}
-                alt={asset.alt}
-                width={asset.width}
-                height={asset.height}
+              <MediaImage
+                key={asset.mediaId}
+                mediaId={asset.mediaId}
+                alt={asset.label}
+                width={160}
+                height={60}
                 className="h-auto max-h-12 w-auto object-contain"
               />
             ))}
