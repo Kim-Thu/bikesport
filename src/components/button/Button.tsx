@@ -1,5 +1,6 @@
 import { Icon } from "@/components/icon/Icon";
 import type { ButtonProps } from "@/interfaces/button.interface";
+import { cn } from "@/lib/classname.utils";
 
 const VARIANTS = {
   default: "inline-flex items-center justify-center",
@@ -8,7 +9,7 @@ const VARIANTS = {
 
 export function Button({ variant = "default", icon, label, children, className = "", ...props }: ButtonProps) {
   return (
-    <button type="button" className={`${VARIANTS[variant]} ${className}`.trim()} {...props}>
+    <button type="button" className={cn(VARIANTS[variant], className)} {...props}>
       {icon ? <Icon name={icon} size={30} strokeWidth={1.7} /> : null}
       {label ? <span>{label}</span> : null}
       {children}
