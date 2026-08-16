@@ -6,7 +6,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-15T14:30:00+07:00",
-      "updatedAt": "2026-08-16T20:29:00+07:00",
+      "updatedAt": "2026-08-16T20:37:00+07:00",
       "items": [
         { "_id": "66bf4e8c9f2a4d7b8c1e3401", "label": "XE ĐẠP", "href": "#bikes", "display": "text", "hasDropdown": true, "parentId": null, "order": 1 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3411", "label": "Xe đạp địa hình", "href": "#mountain-bikes", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3401", "order": 1 },
@@ -18,7 +18,7 @@
         { "_id": "66bf4e8c9f2a4d7b8c1e3422", "label": "Đèn xe", "href": "#bike-lights", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3402", "order": 2 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3423", "label": "Bình nước", "href": "#bottles", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3402", "order": 3 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3424", "label": "Túi và balo", "href": "#bags", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3402", "order": 4 },
-        { "_id": "66bf4e8c9f2a4d7b8c1e3408", "label": "THƯƠNG HIỆU", "href": "#brands", "display": "text", "parentId": null, "order": 3 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3408", "label": "THƯƠNG HIỆU", "href": "#brands", "display": "text", "hasDropdown": true, "source": { "type": "brand", "featured": true, "display": "image-text", "limit": 8 }, "parentId": null, "order": 3 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3403", "label": "KHUYẾN MÃI", "href": "#promotions", "display": "text", "highlight": true, "parentId": null, "order": 4 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3404", "label": "SỰ KIỆN", "href": "#events", "display": "text", "parentId": null, "order": 5 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3405", "label": "DỊCH VỤ", "href": "#services", "display": "text", "parentId": null, "order": 6 },
