@@ -3,6 +3,10 @@ import type { CategoryRecord, CategoryType } from "@/interfaces/category.interfa
 
 const categories = categoryData.categories as CategoryRecord[];
 
+export function getCategoryById(categoryId: string): CategoryRecord | null {
+  return categories.find((category) => category._id === categoryId && category.status === "active") ?? null;
+}
+
 export function getCategoriesByType(type: CategoryType) {
   return categories
     .filter((category) => category.type === type && category.status === "active")
