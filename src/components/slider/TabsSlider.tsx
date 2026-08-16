@@ -1,12 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { CardSlider, type CardSliderItem } from "@/components/slider/CardSlider";
+import { ProductSlider, type ProductSliderItem } from "@/components/product/ProductSlider";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { Tabs, type TabItem } from "@/components/tabs/Tabs";
+import type { CardTemplate } from "@/interfaces/card.interface";
 
 export interface TabsSliderGroup extends TabItem {
-  items: CardSliderItem[];
+  items: ProductSliderItem[];
 }
 
 interface TabsSliderProps {
@@ -14,9 +15,18 @@ interface TabsSliderProps {
   href?: string;
   actionLabel?: string;
   groups: TabsSliderGroup[];
+  template: CardTemplate;
+  slideClassName?: string;
 }
 
-export function TabsSlider({ title, href, actionLabel, groups }: TabsSliderProps) {
+export function TabsSlider({
+  title,
+  href,
+  actionLabel,
+  groups,
+  template,
+  slideClassName,
+}: TabsSliderProps) {
   const [activeValue, setActiveValue] = useState(groups[0]?.value ?? "");
   const activeGroup = useMemo(
     () => groups.find((group) => group.value === activeValue) ?? groups[0],
@@ -35,7 +45,12 @@ export function TabsSlider({ title, href, actionLabel, groups }: TabsSliderProps
         />
       </SectionHeader>
 
-      <CardSlider items={activeGroup.items} ariaLabel={`${title} - ${activeGroup.label}`} />
+      <ProductSlider
+        items={activeGroup.items}
+        template={template}
+        ariaLabel={`${title} - ${activeGroup.label}`}
+        slideClassName={slideClassName}
+      />
     </div>
   );
 }
