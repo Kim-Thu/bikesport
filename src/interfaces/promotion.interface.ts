@@ -7,4 +7,5 @@ export interface PromotionProps {
   alt?: string;
   href?: string;
   ctaLabel?: string;
+  icon?: string;
 }
