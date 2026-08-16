@@ -11,7 +11,7 @@ export function HeaderMain({ region }: HeaderPartialProps) {
     <div className="bg-white">
       <Container>
         {region.rows.map((row, rowIndex) => (
-          <Row key={row.id || rowIndex} className="min-h-20 gap-9 max-lg:gap-4 max-md:flex-wrap max-md:gap-3 max-md:py-3">
+          <Row key={row.id || rowIndex} className="min-h-20 flex-wrap gap-3 py-3 md:flex-nowrap md:gap-4 md:py-0 lg:gap-9">
             {row.columns?.map((column, columnIndex) => {
               const columnClass = columnIndex === 1
                 ? "hidden min-w-0 flex-1 items-center gap-4 lg:flex"
