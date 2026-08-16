@@ -1,8 +1,9 @@
-import { ChevronDown, Menu, Phone, ShoppingCart, UserRound, type LucideIcon } from "lucide-react";
+import { ChevronDown, Menu, Phone, ShoppingCart, UserRound, X, type LucideIcon } from "lucide-react";
 import type { IconProps } from "@/interfaces/icon.interface";
 
 const ICONS: Record<string, LucideIcon> = {
   menu: Menu,
+  close: X,
   phone: Phone,
   account: UserRound,
   cart: ShoppingCart,
