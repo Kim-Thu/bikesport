@@ -18,7 +18,7 @@ export function getCardGridItems(source: CardGridBlockPayload["props"]["source"]
         description: post.excerpt,
         publishedAt: post.publishedAt,
         categoryName: category?.name,
-        categoryHref: category ? `/blog?category=${category.slug}` : undefined,
+        categoryHref: category ? `/category/${category.slug}` : undefined,
         authorName: getUserById(post.authorId)?.displayName,
         actionLabel: "Xem thêm",
       };
