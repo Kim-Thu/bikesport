@@ -15,9 +15,9 @@ export function Logo({ href = "/" }: LogoProps) {
         <Image
           src={logo}
           alt={siteTitle || "Logo"}
-          width={176}
-          height={44}
-          className="h-auto w-44 max-md:w-32"
+          width={192}
+          height={48}
+          className="h-auto w-48 max-md:w-36"
           priority
         />
       )}
