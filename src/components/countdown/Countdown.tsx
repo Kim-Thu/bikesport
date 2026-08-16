@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/classname.utils";
 
 interface RemainingTime {
   days: number;
@@ -8,6 +9,8 @@ interface RemainingTime {
   minutes: number;
   seconds: number;
 }
+
+type CountdownVariant = "default" | "compact";
 
 function getRemaining(endAt: string): RemainingTime {
   const diff = Math.max(0, new Date(endAt).getTime() - Date.now());
@@ -21,9 +24,22 @@ function getRemaining(endAt: string): RemainingTime {
   };
 }
 
-function CountdownUnit({ value, label }: { value: number | null; label: string }) {
+function CountdownUnit({
+  value,
+  label,
+  variant,
+}: {
+  value: number | null;
+  label: string;
+  variant: CountdownVariant;
+}) {
   return (
-    <span className="min-w-12 rounded-md bg-white px-2 py-1 text-center text-red-600">
+    <span
+      className={cn(
+        "rounded-md bg-white py-1 text-center text-red-600",
+        variant === "compact" ? "min-w-0 px-1" : "min-w-12 px-2",
+      )}
+    >
       <span className="block text-sm font-bold tabular-nums sm:text-base">
         {value === null ? "--" : String(value).padStart(2, "0")}
       </span>
@@ -32,7 +48,13 @@ function CountdownUnit({ value, label }: { value: number | null; label: string }
   );
 }
 
-export function Countdown({ endAt }: { endAt: string }) {
+export function Countdown({
+  endAt,
+  variant = "default",
+}: {
+  endAt: string;
+  variant?: CountdownVariant;
+}) {
   const [remaining, setRemaining] = useState<RemainingTime | null>(null);
 
   useEffect(() => {
@@ -49,12 +71,16 @@ export function Countdown({ endAt }: { endAt: string }) {
           ? `Còn ${remaining.days} ngày ${remaining.hours} giờ ${remaining.minutes} phút ${remaining.seconds} giây`
           : "Đang tải thời gian Flash Sale"
       }
-      className="flex items-center gap-2"
+      className={cn(
+        variant === "compact"
+          ? "grid w-full grid-cols-4 gap-1"
+          : "flex items-center gap-2",
+      )}
     >
-      <CountdownUnit value={remaining?.days ?? null} label="Ngày" />
-      <CountdownUnit value={remaining?.hours ?? null} label="Giờ" />
-      <CountdownUnit value={remaining?.minutes ?? null} label="Phút" />
-      <CountdownUnit value={remaining?.seconds ?? null} label="Giây" />
+      <CountdownUnit value={remaining?.days ?? null} label="Ngày" variant={variant} />
+      <CountdownUnit value={remaining?.hours ?? null} label="Giờ" variant={variant} />
+      <CountdownUnit value={remaining?.minutes ?? null} label="Phút" variant={variant} />
+      <CountdownUnit value={remaining?.seconds ?? null} label="Giây" variant={variant} />
     </span>
   );
 }
