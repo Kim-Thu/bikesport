@@ -14,6 +14,7 @@
       "salePrice": 13990000,
       "stock": 12,
       "featured": true,
+      "bestSeller": true,
       "attributeValues": [
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] },
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4402", "optionIds": ["66bf4e8c9f2a4d7b8c1e4422", "66bf4e8c9f2a4d7b8c1e4423"] }
@@ -35,6 +36,7 @@
       "salePrice": 25990000,
       "stock": 8,
       "featured": true,
+      "bestSeller": true,
       "attributeValues": [
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] }
       ],
@@ -55,6 +57,7 @@
       "salePrice": 8490000,
       "stock": 15,
       "featured": true,
+      "bestSeller": true,
       "attributeValues": [
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4412"] }
       ],
@@ -75,6 +78,7 @@
       "salePrice": 590000,
       "stock": 30,
       "featured": true,
+      "bestSeller": true,
       "attributeValues": [],
       "createdAt": "2026-08-13T09:00:00+07:00",
       "updatedAt": "2026-08-16T21:33:00+07:00"
@@ -93,6 +97,7 @@
       "salePrice": 1590000,
       "stock": 20,
       "featured": true,
+      "bestSeller": true,
       "attributeValues": [
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] }
       ],
