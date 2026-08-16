@@ -1,0 +1,93 @@
+{
+  "products": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4501",
+      "name": "Giant ATX 610 2024",
+      "slug": "giant-atx-610-2024",
+      "sku": "GIANT-ATX-610-2024",
+      "status": "published",
+      "brandId": "66bf4e8c9f2a4d7b8c1e4301",
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c11"],
+      "tagIds": ["66bf4e8c9f2a4d7b8c1e4601"],
+      "mediaIds": [],
+      "price": 17490000,
+      "salePrice": 13990000,
+      "stock": 12,
+      "featured": true,
+      "attributeValues": [
+        { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] },
+        { "attributeId": "66bf4e8c9f2a4d7b8c1e4402", "optionIds": ["66bf4e8c9f2a4d7b8c1e4422", "66bf4e8c9f2a4d7b8c1e4423"] }
+      ]
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4502",
+      "name": "Twitter R10 2024",
+      "slug": "twitter-r10-2024",
+      "sku": "TWITTER-R10-2024",
+      "status": "published",
+      "brandId": "66bf4e8c9f2a4d7b8c1e4302",
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c12"],
+      "tagIds": ["66bf4e8c9f2a4d7b8c1e4601"],
+      "mediaIds": [],
+      "price": 36990000,
+      "salePrice": 25990000,
+      "stock": 8,
+      "featured": true,
+      "attributeValues": [
+        { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] }
+      ]
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4503",
+      "name": "Forlife LUX 2024",
+      "slug": "forlife-lux-2024",
+      "sku": "FORLIFE-LUX-2024",
+      "status": "published",
+      "brandId": "66bf4e8c9f2a4d7b8c1e4303",
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c13"],
+      "tagIds": ["66bf4e8c9f2a4d7b8c1e4601"],
+      "mediaIds": [],
+      "price": 9990000,
+      "salePrice": 8490000,
+      "stock": 15,
+      "featured": true,
+      "attributeValues": [
+        { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4412"] }
+      ]
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4504",
+      "name": "Combo Mũ + Kính",
+      "slug": "combo-mu-kinh",
+      "sku": "COMBO-MU-KINH",
+      "status": "published",
+      "brandId": null,
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c15"],
+      "tagIds": ["66bf4e8c9f2a4d7b8c1e4601"],
+      "mediaIds": [],
+      "price": 790000,
+      "salePrice": 590000,
+      "stock": 30,
+      "featured": true,
+      "attributeValues": []
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4505",
+      "name": "Giày Shimano RC100",
+      "slug": "giay-shimano-rc100",
+      "sku": "SHIMANO-RC100",
+      "status": "published",
+      "brandId": "66bf4e8c9f2a4d7b8c1e4304",
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c16"],
+      "tagIds": ["66bf4e8c9f2a4d7b8c1e4601"],
+      "mediaIds": [],
+      "price": 1990000,
+      "salePrice": 1590000,
+      "stock": 20,
+      "featured": true,
+      "attributeValues": [
+        { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] }
+      ]
+    }
+  ]
+}
