@@ -1,3 +1,79 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5201",
+      "title": "Kinh nghiệm chọn size xe đạp phù hợp với chiều cao",
+      "slug": "kinh-nghiem-chon-size-xe-dap-phu-hop-voi-chieu-cao",
+      "status": "published",
+      "excerpt": "Cách chọn kích thước khung xe phù hợp để đạp thoải mái và kiểm soát tốt hơn.",
+      "categoryIds": [],
+      "tagIds": [],
+      "mediaId": null,
+      "publishedAt": "2026-08-16T09:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T08:30:00+07:00",
+      "updatedAt": "2026-08-16T09:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5202",
+      "title": "5 mẹo bảo dưỡng xe đạp tại nhà đơn giản",
+      "slug": "5-meo-bao-duong-xe-dap-tai-nha-don-gian",
+      "status": "published",
+      "excerpt": "Những bước chăm sóc cơ bản giúp xe vận hành êm và hạn chế hao mòn linh kiện.",
+      "categoryIds": [],
+      "tagIds": [],
+      "mediaId": null,
+      "publishedAt": "2026-08-14T10:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-14T09:20:00+07:00",
+      "updatedAt": "2026-08-14T10:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5203",
+      "title": "Top 10 cung đường đạp xe đẹp nhất Việt Nam",
+      "slug": "top-10-cung-duong-dap-xe-dep-nhat-viet-nam",
+      "status": "published",
+      "excerpt": "Gợi ý những cung đường đáng trải nghiệm cho người yêu đạp xe và khám phá.",
+      "categoryIds": [],
+      "tagIds": [],
+      "mediaId": null,
+      "publishedAt": "2026-08-12T08:30:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-12T08:00:00+07:00",
+      "updatedAt": "2026-08-12T08:30:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5204",
+      "title": "Hướng dẫn đạp xe đúng cách cho người mới bắt đầu",
+      "slug": "huong-dan-dap-xe-dung-cach-cho-nguoi-moi-bat-dau",
+      "status": "published",
+      "excerpt": "Tư thế, nhịp đạp và cách sử dụng số cơ bản giúp người mới đạp xe hiệu quả hơn.",
+      "categoryIds": [],
+      "tagIds": [],
+      "mediaId": null,
+      "publishedAt": "2026-08-10T07:45:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-10T07:10:00+07:00",
+      "updatedAt": "2026-08-10T07:45:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5205",
+      "title": "Cách kiểm tra lốp và áp suất trước mỗi chuyến đi",
+      "slug": "cach-kiem-tra-lop-va-ap-suat-truoc-moi-chuyen-di",
+      "status": "published",
+      "excerpt": "Kiểm tra nhanh lốp xe và áp suất giúp tăng độ bám đường và giảm nguy cơ thủng lốp.",
+      "categoryIds": [],
+      "tagIds": [],
+      "mediaId": null,
+      "publishedAt": "2026-08-08T09:15:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-08T08:45:00+07:00",
+      "updatedAt": "2026-08-08T09:15:00+07:00"
+    }
+  ]
 }
