@@ -1,16 +1,15 @@
-import type { CSSProperties } from "react";
 import { InfoCard } from "@/components/card/InfoCard";
 import { Countdown } from "@/components/countdown/Countdown";
 import { FeatureItem } from "@/components/feature/FeatureItem";
 import { Heading } from "@/components/heading/Heading";
 import { Container } from "@/components/layout/Container";
 import { CLink } from "@/components/link/CLink";
+import { MediaImage } from "@/components/media/MediaImage";
 import { Section } from "@/components/section/Section";
 import type { BannerAction, BannerProps } from "@/interfaces/banner.interface";
 import type { PromotionBenefit } from "@/interfaces/promotion.interface";
 import { getActiveBannerById } from "@/lib/banner.utils";
 import { cn } from "@/lib/classname.utils";
-import { getMediaWithFallback } from "@/lib/media.utils";
 import { getActivePromotionById } from "@/lib/promotion.utils";
 
 function formatMoney(value: number) {
@@ -48,26 +47,23 @@ export function Banner({ bannerId }: BannerProps) {
   const features = banner.features ?? [];
   const actions = banner.actions ?? [];
   const promotionCards = banner.promotionCards ?? [];
-  const backgroundMedia = getMediaWithFallback(banner.backgroundMediaId);
-
-  const backgroundStyle: CSSProperties | undefined = backgroundMedia
-    ? {
-        backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 28%, rgba(255,255,255,0.18) 58%, rgba(255,255,255,0) 76%), url("${backgroundMedia.src}")`,
-        backgroundPosition: banner.backgroundPosition ?? "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }
-    : undefined;
 
   return (
     <Section className="py-4 sm:py-6">
       <Container>
-        <div
-          className="relative overflow-hidden rounded-xl border border-blue-100 bg-slate-100"
-          style={backgroundStyle}
-        >
-          <div className="grid gap-6 p-5 sm:p-7 lg:min-h-88 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,1.25fr)_14rem] lg:items-center lg:gap-4 lg:p-8">
-            <div className="relative z-10 order-1 lg:col-start-1">
+        <div className="relative overflow-hidden rounded-xl border border-blue-100 bg-slate-100">
+          <MediaImage
+            mediaId={banner.backgroundMediaId}
+            alt=""
+            width={1920}
+            height={820}
+            priority
+            sizes="100vw"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+
+          <div className="relative z-10 grid gap-6 p-5 sm:p-7 lg:min-h-88 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,1.25fr)_14rem] lg:items-center lg:gap-4 lg:p-8">
+            <div className="order-1 lg:col-start-1">
               {banner.eyebrow ? (
                 <p className="mb-2 text-xs font-bold uppercase tracking-wide text-gray-800 sm:text-sm">
                   {banner.eyebrow}
@@ -114,7 +110,7 @@ export function Banner({ bannerId }: BannerProps) {
             <div className="order-2 hidden min-h-56 lg:block" aria-hidden="true" />
 
             {promotionCards.length ? (
-              <div className="relative z-10 order-3 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 lg:col-start-3">
+              <div className="order-3 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 lg:col-start-3">
                 {promotionCards.map((card) => {
                   const promotion = getActivePromotionById(card.promotionId);
                   if (!promotion) return null;
@@ -141,7 +137,7 @@ export function Banner({ bannerId }: BannerProps) {
           </div>
 
           <div
-            className="pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5"
+            className="pointer-events-none absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5"
             aria-hidden="true"
           >
             <span className="h-1.5 w-8 rounded-full bg-white" />
