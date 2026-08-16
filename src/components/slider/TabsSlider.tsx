@@ -1,12 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ProductSlider, type ProductSliderItem } from "@/components/product/ProductSlider";
+import { CardSlider, type CardSliderItem } from "@/components/slider/CardSlider";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { Tabs, type TabItem } from "@/components/tabs/Tabs";
 
 export interface TabsSliderGroup extends TabItem {
-  items: ProductSliderItem[];
+  items: CardSliderItem[];
 }
 
 interface TabsSliderProps {
@@ -35,7 +35,7 @@ export function TabsSlider({ title, href, actionLabel, groups }: TabsSliderProps
         />
       </SectionHeader>
 
-      <ProductSlider items={activeGroup.items} ariaLabel={`${title} - ${activeGroup.label}`} />
+      <CardSlider items={activeGroup.items} ariaLabel={`${title} - ${activeGroup.label}`} />
     </div>
   );
 }
