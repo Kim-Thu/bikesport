@@ -36,6 +36,7 @@ export function getProductSliderItems(source: ProductSliderBlockPayload["props"]
       ? getPromotionProductPricing(product, activePromotion)
       : { salePrice: null, discountPercentage: null };
     const inventory = promotion?.inventory?.find((item) => item.sku === product.sku);
+    const productBadge = promotion?.productBadges?.find((item) => item.sku === product.sku);
 
     return {
       _key: product.sku,
@@ -47,6 +48,8 @@ export function getProductSliderItems(source: ProductSliderBlockPayload["props"]
       discountPercentage: pricing.discountPercentage,
       stockRemaining: inventory ? Math.min(product.stock, inventory.total) : undefined,
       stockTotal: inventory?.total,
+      promotionBadgeMediaId: productBadge?.mediaId,
+      promotionBadgeAlt: productBadge?.alt,
     };
   });
 }
