@@ -5,13 +5,7 @@ import { Icon } from "@/components/icon/Icon";
 import { Logo } from "@/components/logo/Logo";
 import { MenuChildren } from "@/components/navigation/partials/MenuChildren";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
-import {
-  getChildMenuItems,
-  getMenuById,
-  getMenuHref,
-  getRootMenuItems,
-  hasMenuChildren,
-} from "@/lib/menu.utils";
+import { createMenuIndex, getMenuById, getMenuHref } from "@/lib/menu.utils";
 import { useUiStore } from "@/stores/ui.store";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -24,7 +18,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
   const [expandedItemId, setExpandedItemId] = useState<string | null>(null);
   const menu = getMenuById(menuId);
   const items = menu?.items ?? [];
-  const rootItems = getRootMenuItems(items);
+  const { rootItems, childrenByParentId } = createMenuIndex(items);
 
   useEffect(() => {
     if (!isOpen) {
@@ -104,8 +98,8 @@ export function MobileMenu({ menuId }: NavMenuProps) {
               {rootItems.map((item) => {
                 if (!item.label) return null;
 
-                const children = getChildMenuItems(items, item._id);
-                const hasDropdown = hasMenuChildren(items, item);
+                const children = childrenByParentId.get(item._id) ?? [];
+                const hasDropdown = children.length > 0 || item.hasDropdown === true;
                 const isExpanded = expandedItemId === item._id;
                 const itemClass = `flex min-h-12 w-full items-center justify-between gap-2 text-sm font-semibold sm:min-h-14 ${item.highlight ? "text-red-500" : "text-gray-900"}`;
 
