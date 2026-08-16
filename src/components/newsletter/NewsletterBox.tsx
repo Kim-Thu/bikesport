@@ -27,7 +27,7 @@ export function NewsletterBox({
           aria-label={placeholder}
           className="min-w-0 flex-1 bg-white px-3 py-2 text-xs text-gray-900 outline-none placeholder:text-gray-400"
         />
-        <Button className="cursor-pointer bg-blue-600 px-3 text-xs font-bold uppercase text-white hover:bg-blue-700">
+        <Button type="submit" className="cursor-pointer bg-blue-600 px-3 text-xs font-bold uppercase text-white hover:bg-blue-700">
           {actionLabel}
         </Button>
       </form>
