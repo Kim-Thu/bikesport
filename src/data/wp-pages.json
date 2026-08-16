@@ -51,7 +51,7 @@
             "order": 4,
             "status": "active",
             "component": "layout",
-            "props": { "sectionClassName": "pb-4 sm:pb-6" },
+            "props": { "sectionClassName": "bg-red-50 pb-4 sm:pb-6" },
             "rows": [
               {
                 "_id": "66bf4e8c9f2a4d7b8c1e42a0",
@@ -68,7 +68,9 @@
                           "title": "Flash Sale",
                           "href": "/khuyen-mai/flash-sale-17-18-08-2026",
                           "actionLabel": "Xem tất cả",
-                          "template": "media-action",
+                          "headerTemplate": "flash-sale",
+                          "countdownAt": "2026-08-31T23:59:59+07:00",
+                          "template": "flash-sale",
                           "trackClassName": "-ml-4",
                           "slideClassName": "basis-48 pl-4 sm:basis-52 lg:basis-1/5",
                           "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3906", "limit": 5 }
@@ -354,7 +356,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-17T03:15:00+07:00"
+      "updatedAt": "2026-08-17T03:31:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
