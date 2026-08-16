@@ -38,7 +38,7 @@ export function ProductTemplate({
           {typeof price === "number" ? <Price price={price} salePrice={salePrice} /> : null}
           <Button
             variant="icon"
-            icon="shopping-cart"
+            icon="cart"
             aria-label={`Thêm ${title} vào giỏ hàng`}
             className="shrink-0 rounded-md bg-blue-600 text-white hover:bg-blue-700"
           />
