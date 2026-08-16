@@ -1,19 +1,84 @@
-import type { PromotionVariant } from "@/variants/promotion.variant";
-
 export type PromotionStatus = "draft" | "scheduled" | "active" | "expired" | "disabled";
+export type PromotionTargetType = "product" | "category" | "brand" | "cart";
+export type PromotionBenefitType =
+  | "percentage_discount"
+  | "fixed_discount"
+  | "voucher"
+  | "buy_x_get_y"
+  | "gift"
+  | "free_shipping";
+
+export interface PromotionTarget {
+  type: PromotionTargetType;
+  productIds?: string[];
+  categoryIds?: string[];
+  brandIds?: string[];
+  excludeProductIds?: string[];
+}
+
+export interface PromotionCondition {
+  minQuantity?: number;
+  minSubtotal?: number;
+  customerGroupIds?: string[];
+}
+
+export interface PercentageDiscountBenefit {
+  type: "percentage_discount";
+  percentage: number;
+  maxDiscountAmount?: number;
+}
+
+export interface FixedDiscountBenefit {
+  type: "fixed_discount";
+  amount: number;
+}
+
+export interface VoucherBenefit {
+  type: "voucher";
+  code: string;
+  valueType: "percentage" | "fixed";
+  value: number;
+  maxDiscountAmount?: number;
+}
+
+export interface BuyXGetYBenefit {
+  type: "buy_x_get_y";
+  buyProductId: string;
+  buyQuantity: number;
+  getProductId: string;
+  getQuantity: number;
+  getDiscountPercentage?: number;
+}
+
+export interface GiftBenefit {
+  type: "gift";
+  giftProductId: string;
+  quantity: number;
+}
+
+export interface FreeShippingBenefit {
+  type: "free_shipping";
+  maxShippingDiscount?: number;
+}
+
+export type PromotionBenefit =
+  | PercentageDiscountBenefit
+  | FixedDiscountBenefit
+  | VoucherBenefit
+  | BuyXGetYBenefit
+  | GiftBenefit
+  | FreeShippingBenefit;
 
 export interface PromotionRecord {
   _id: string;
   name: string;
   slug: string;
   status: PromotionStatus;
-  type: PromotionVariant;
-  content?: string;
-  mediaId?: string;
-  alt?: string;
-  href?: string;
-  ctaLabel?: string;
-  iconMediaId?: string;
+  priority?: number;
+  stackable?: boolean;
+  target: PromotionTarget;
+  conditions?: PromotionCondition;
+  benefits: PromotionBenefit[];
   startAt?: string;
   endAt?: string;
   createdBy: string;
@@ -24,8 +89,4 @@ export interface PromotionRecord {
 
 export interface PromotionData {
   promotions: PromotionRecord[];
-}
-
-export interface PromotionProps {
-  promotionId: string;
 }
