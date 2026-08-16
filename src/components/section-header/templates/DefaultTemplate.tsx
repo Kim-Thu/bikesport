@@ -9,12 +9,15 @@ export function DefaultTemplate({
   href,
   actionLabel = "Xem tất cả",
   className,
+  children,
 }: SectionHeaderProps) {
   return (
-    <div className={cn("flex items-center justify-between gap-4", className)}>
-      <Heading level={2} className="text-base font-bold uppercase text-gray-900 sm:text-lg">
+    <div className={cn("flex flex-wrap items-center gap-x-6 gap-y-2", className)}>
+      <Heading level={2} className="shrink-0 text-base font-bold uppercase text-gray-900 sm:text-lg">
         {title}
       </Heading>
+
+      {children ? <div className="min-w-0 flex-1">{children}</div> : <div className="flex-1" />}
 
       {href ? (
         <CLink
