@@ -3,7 +3,7 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T15:37:00+07:00",
+  "updatedAt": "2026-08-16T15:46:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
@@ -190,16 +190,6 @@
       "66bf4e8c9f2a4d7b8c1e3503",
       "66bf4e8c9f2a4d7b8c1e3502",
       "66bf4e8c9f2a4d7b8c1e3504"
-    ],
-    "assets": [
-      {
-        "label": "Phương thức thanh toán",
-        "src": "/uploads/images/placehoder.png",
-        "alt": "Phương thức thanh toán BikeSport",
-        "width": 220,
-        "height": 40,
-        "enabled": true
-      }
     ],
     "copyright": "© 2026 BikeSport. All rights reserved."
   }
