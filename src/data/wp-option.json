@@ -3,7 +3,7 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T11:11:00+07:00",
+  "updatedAt": "2026-08-16T11:16:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
@@ -65,12 +65,6 @@
               {
                 "items": [
                   {
-                    "component": "mobile-menu",
-                    "props": {
-                      "menuId": "66bf4e8c9f2a4d7b8c1e3301"
-                    }
-                  },
-                  {
                     "component": "logo",
                     "props": {
                       "href": "#home"
@@ -84,6 +78,7 @@
                   {
                     "component": "search-form",
                     "props": {
+                      "variant": "desktop",
                       "placeholder": "Tìm kiếm xe đạp, phụ kiện..."
                     }
                   }
@@ -109,6 +104,19 @@
               {
                 "grow": true,
                 "items": [
+                  {
+                    "component": "mobile-menu",
+                    "props": {
+                      "menuId": "66bf4e8c9f2a4d7b8c1e3301"
+                    }
+                  },
+                  {
+                    "component": "search-form",
+                    "props": {
+                      "variant": "mobile",
+                      "placeholder": "Tìm kiếm xe đạp, phụ kiện..."
+                    }
+                  },
                   {
                     "component": "nav-menu",
                     "props": {
