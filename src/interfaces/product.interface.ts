@@ -17,6 +17,7 @@ export interface ProductRecord {
   salePrice?: number | null;
   stock: number;
   featured?: boolean;
+  bestSeller?: boolean;
   attributeValues: ProductAttributeValue[];
   createdAt: string;
   updatedAt: string;
