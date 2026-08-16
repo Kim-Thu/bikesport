@@ -1,0 +1,30 @@
+{
+  "categories": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3c02",
+      "type": "product",
+      "name": "Xe đạp",
+      "slug": "xe-dap",
+      "description": null,
+      "parentId": null,
+      "status": "active",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T20:23:00+07:00",
+      "updatedAt": "2026-08-16T20:26:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3c03",
+      "type": "product",
+      "name": "Phụ kiện",
+      "slug": "phu-kien",
+      "description": null,
+      "parentId": null,
+      "status": "active",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T20:23:00+07:00",
+      "updatedAt": "2026-08-16T20:26:00+07:00"
+    }
+  ]
+}
