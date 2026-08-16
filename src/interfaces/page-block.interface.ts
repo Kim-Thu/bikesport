@@ -8,6 +8,7 @@ export type PageBlockComponent =
   | "card-grid"
   | "icon-list"
   | "media-cta"
+  | "media"
   | "inline-form";
 
 interface PageBlockBase {
@@ -103,6 +104,15 @@ export interface MediaCtaBlockPayload extends PageBlockBase {
   };
 }
 
+export interface MediaBlockPayload extends PageBlockBase {
+  component: "media";
+  props: {
+    mediaId?: string | null;
+    alt: string;
+    href?: string;
+  };
+}
+
 export interface InlineFormBlockPayload extends PageBlockBase {
   component: "inline-form";
   props: {
@@ -121,4 +131,5 @@ export type PageBlockPayload =
   | CardGridBlockPayload
   | IconListBlockPayload
   | MediaCtaBlockPayload
+  | MediaBlockPayload
   | InlineFormBlockPayload;
