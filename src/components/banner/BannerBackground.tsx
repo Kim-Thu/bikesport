@@ -19,7 +19,7 @@ export function BannerBackground({ banner, imageClassName }: BannerBackgroundPro
         mediaId={banner.backgroundMediaId}
         alt=""
         width={1920}
-        height={820}
+        height={480}
         priority={banner.order === 1}
         sizes="100vw"
         className={cn("absolute inset-0 h-full w-full object-cover object-center", imageClassName)}
