@@ -21,13 +21,15 @@ export function MediaActionTemplate({
         {discountPercentage ? (
           <Badge className="absolute left-3 top-3 z-10">-{discountPercentage}%</Badge>
         ) : null}
-        <MediaImage
-          mediaId={mediaId}
-          alt={title}
-          width={320}
-          height={220}
-          className="h-32 w-full object-contain transition-transform duration-300 group-hover:scale-105 sm:h-36"
-        />
+        <div className="aspect-4/3 w-full overflow-hidden">
+          <MediaImage
+            mediaId={mediaId}
+            alt={title}
+            width={320}
+            height={240}
+            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
       </CLink>
 
       <div className="flex flex-1 flex-col gap-2 px-3 pb-3">
