@@ -10,14 +10,14 @@ export function Logo({ href = "/" }: LogoProps) {
   const shouldShowTagLine = showTagLine && Boolean(tagLine);
 
   return (
-    <Link href={href} className="inline-flex items-center gap-3" aria-label={siteTitle || "Trang chủ"}>
+    <Link href={href} className="inline-flex shrink-0 items-center gap-3" aria-label={siteTitle || "Trang chủ"}>
       {hasLogo && (
         <Image
           src={logo}
           alt={siteTitle || "Logo"}
-          width={160}
-          height={40}
-          className="h-auto w-40 max-md:w-28"
+          width={176}
+          height={44}
+          className="h-auto w-44 max-md:w-32"
           priority
         />
       )}
