@@ -1,5 +1,6 @@
 import { CLink } from "@/components/link/CLink";
 import { CList } from "@/components/list/CList";
+import { MenuItemContent } from "@/components/navigation/partials/MenuItemContent";
 import type { CMenuProps } from "@/interfaces/menu.interface";
 import { createMenuIndex, getMenuById, getMenuHref, sortMenuItems } from "@/lib/menu.utils";
 
@@ -24,7 +25,7 @@ export function CMenu({
         key: item._id,
         content: (
           <CLink href={getMenuHref(item)} className={linkClassName}>
-            {item.label}
+            <MenuItemContent item={item} />
           </CLink>
         ),
       }))}
