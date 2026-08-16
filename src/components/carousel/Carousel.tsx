@@ -60,7 +60,10 @@ export function Carousel({
 
   return (
     <div className={cn("relative", className)} role="region" aria-label={ariaLabel}>
-      <div ref={emblaRef} className={cn("overflow-hidden", viewportClassName)}>
+      <div
+        ref={emblaRef}
+        className={cn("cursor-grab overflow-hidden active:cursor-grabbing", viewportClassName)}
+      >
         <div className="flex touch-pan-y">
           {children.map((child, index) => (
             <div key={index} className="min-w-0 flex-[0_0_100%]">
@@ -86,7 +89,7 @@ export function Carousel({
                 key={index}
                 type="button"
                 className={cn(
-                  "block h-1.5 rounded-full bg-white/70 transition-[width,opacity]",
+                  "block h-1.5 cursor-default rounded-full bg-white/70 transition-[width,opacity]",
                   isActive ? "w-8 bg-white" : "w-1.5",
                 )}
                 aria-label={`Chuyển đến slide ${index + 1}`}
