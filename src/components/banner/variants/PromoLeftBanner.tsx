@@ -43,10 +43,10 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
   const promotionCards = banner.promotionCards ?? [];
 
   return (
-    <div className="relative flex min-h-88 w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent lg:min-h-hero">
+    <div className="relative flex min-h-88 w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent lg:min-h-125">
       <BannerBackground banner={banner} imageClassName="lg:object-right" />
 
-      <div className="relative z-20 grid min-h-88 w-full flex-1 gap-6 p-5 sm:p-7 lg:min-h-hero lg:grid-cols-12 lg:items-stretch lg:gap-6 lg:p-8">
+      <div className="relative z-20 grid min-h-88 w-full flex-1 gap-6 p-5 sm:p-7 lg:min-h-125 lg:grid-cols-12 lg:items-stretch lg:gap-6 lg:p-8">
         <div className="order-1 flex items-center lg:col-span-10">
           <div className="max-w-xl">
             {banner.eyebrow ? (
