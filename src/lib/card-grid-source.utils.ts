@@ -8,15 +8,21 @@ import { getUserById } from "@/lib/user.utils";
 
 export function getCardGridItems(source: CardGridBlockPayload["props"]["source"]): CardProps[] {
   if (source.type === "post") {
-    return getLatestPosts(source.limit).map((post) => ({
-      title: post.title,
-      href: `/blog/${post.slug}`,
-      mediaId: post.mediaId,
-      description: post.excerpt,
-      publishedAt: post.publishedAt,
-      categoryName: post.categoryIds[0] ? getCategoryById(post.categoryIds[0])?.name : undefined,
-      authorName: getUserById(post.authorId)?.displayName,
-    }));
+    return getLatestPosts(source.limit).map((post) => {
+      const category = post.categoryIds[0] ? getCategoryById(post.categoryIds[0]) : null;
+
+      return {
+        title: post.title,
+        href: `/blog/${post.slug}`,
+        mediaId: post.mediaId,
+        description: post.excerpt,
+        publishedAt: post.publishedAt,
+        categoryName: category?.name,
+        categoryHref: category ? `/blog?category=${category.slug}` : undefined,
+        authorName: getUserById(post.authorId)?.displayName,
+        actionLabel: "Xem thêm",
+      };
+    });
   }
 
   if (source.type === "store") {
