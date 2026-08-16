@@ -15,7 +15,7 @@ export function InfoCard({ icon, label, description, value }: InfoCardProps) {
       <div className="min-w-0">
         <div className="text-2xs font-bold uppercase tracking-wide text-gray-900 sm:text-xs">{label}</div>
         {description ? <div className="mt-0.5 text-2xs text-gray-500 sm:text-xs">{description}</div> : null}
-        {value ? <div className="mt-1 text-lg font-bold text-blue-600 sm:text-xl">{value}</div> : null}
+        {value ? <div className="mt-1 text-sm font-bold text-blue-600">{value}</div> : null}
       </div>
     </div>
   );
