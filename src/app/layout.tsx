@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { ToastViewport } from "@/components/toast/ToastViewport";
+import wpOption from "@/data/wp-option.json";
 import { getMediaUrl } from "@/lib/media.utils";
 import "@/styles/globals.css";
 
@@ -12,15 +13,27 @@ const inter = Inter({
 const faviconUrl = getMediaUrl("66bf4e8c9f2a4d7b8c1e3708");
 const favicon32Url = getMediaUrl("66bf4e8c9f2a4d7b8c1e3709");
 const appleTouchIconUrl = getMediaUrl("66bf4e8c9f2a4d7b8c1e3710");
+const defaultOgImageUrl = getMediaUrl(wpOption.seo.openGraph.defaultImageMediaId);
+const defaultTwitterImageUrl = getMediaUrl(wpOption.seo.twitter.defaultImageMediaId);
 
 export const metadata: Metadata = {
-  title: "Bike Sport",
-  description: "",
-  applicationName: "Bike Sport",
+  title: wpOption.site.siteTitle,
+  description: wpOption.seo.defaultDescription,
+  applicationName: wpOption.site.siteTitle,
+  robots: wpOption.seo.robots,
   openGraph: {
-    title: "Bike Sport",
-    description: "",
-    type: "website",
+    title: wpOption.site.siteTitle,
+    description: wpOption.seo.defaultDescription,
+    type: wpOption.seo.openGraph.type,
+    locale: wpOption.seo.openGraph.locale,
+    siteName: wpOption.site.siteTitle,
+    images: defaultOgImageUrl ? [{ url: defaultOgImageUrl }] : undefined,
+  },
+  twitter: {
+    card: wpOption.seo.twitter.card,
+    title: wpOption.site.siteTitle,
+    description: wpOption.seo.defaultDescription,
+    images: defaultTwitterImageUrl ? [defaultTwitterImageUrl] : undefined,
   },
   manifest: "/manifest.webmanifest",
   icons: {
