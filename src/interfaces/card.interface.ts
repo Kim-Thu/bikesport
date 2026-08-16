@@ -15,6 +15,8 @@ export interface CardProps {
   actionLabel?: string;
   startAt?: string;
   publishedAt?: string;
+  categoryName?: string;
+  authorName?: string;
   location?: string;
   attendees?: number;
 }
