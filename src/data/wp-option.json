@@ -3,7 +3,7 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T15:15:00+07:00",
+  "updatedAt": "2026-08-16T15:19:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
@@ -12,20 +12,29 @@
     "showTagLine": false
   },
   "organization": {
-    "legalName": "BikeSport",
+    "legalName": "Công Ty Cổ Phần BikeSport",
     "businessRegistration": {
-      "number": "",
-      "issuedBy": "",
-      "issuedDate": ""
+      "number": "031XXXXXXX",
+      "issuedBy": "Sở KH&ĐT TP.HCM",
+      "issuedDate": "01/01/2026"
     },
-    "headquarters": "",
-    "verificationAssets": []
+    "headquarters": "TP. Hồ Chí Minh",
+    "verificationAssets": [
+      {
+        "label": "Đã thông báo Bộ Công Thương",
+        "src": "/uploads/images/bo-cong-thuong.png",
+        "alt": "Đã thông báo Bộ Công Thương - BikeSport",
+        "width": 160,
+        "height": 60,
+        "enabled": false
+      }
+    ]
   },
   "contact": {
     "email": {
       "label": "Email",
-      "value": "",
-      "href": ""
+      "value": "info@bikesport.vn",
+      "href": "mailto:info@bikesport.vn"
     },
     "hotline": {
       "label": "Hotline",
