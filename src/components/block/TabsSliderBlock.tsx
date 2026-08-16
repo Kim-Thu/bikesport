@@ -2,8 +2,11 @@ import { TabsSlider, type TabsSliderGroup } from "@/components/slider/TabsSlider
 import type { TabsSliderBlockPayload } from "@/interfaces/page-block.interface";
 import { getBestSellerProducts, getProductPrimaryMediaId } from "@/lib/product.utils";
 import { getActivePromotionsForSku, getPromotionProductPricing } from "@/lib/promotion.utils";
+import { getProductReviewStatsBySku } from "@/lib/review.utils";
 
 export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
+  const reviewStatsBySku = getProductReviewStatsBySku();
+
   const groups: TabsSliderGroup[] = block.props.source.tabs.map((tab) => ({
     label: tab.label,
     value: tab.categoryId,
@@ -12,6 +15,7 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
       const pricing = activePromotion
         ? getPromotionProductPricing(product, activePromotion)
         : { salePrice: null, discountPercentage: null };
+      const reviewStats = reviewStatsBySku.get(product.sku);
 
       return {
         _key: product.sku,
@@ -21,6 +25,8 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
         price: product.price,
         salePrice: pricing.salePrice,
         discountPercentage: pricing.discountPercentage,
+        rating: reviewStats?.averageRating,
+        reviewCount: reviewStats?.reviewCount,
       };
     }),
   }));
