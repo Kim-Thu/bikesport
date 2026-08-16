@@ -18,12 +18,12 @@ export function OverlayTemplate({
 
   return (
     <article className={cn("group relative overflow-hidden rounded-lg border border-gray-100 bg-white", className)}>
-      <CLink href={href} className="relative block min-h-40 overflow-hidden">
+      <CLink href={href} className="relative block aspect-video overflow-hidden">
         <MediaImage
           mediaId={mediaId}
           alt={title}
           width={480}
-          height={280}
+          height={270}
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
