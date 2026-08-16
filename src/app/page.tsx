@@ -1,3 +1,4 @@
+import { Banner } from "@/components/banner/Banner";
 import { Footer } from "@/components/footer/Footer";
 import { Header } from "@/components/header/Header";
 import wpOption from "@/data/wp-option.json";
@@ -9,7 +10,7 @@ export default function Home() {
     <>
       <Header settings={wpOption.header as HeaderSettings} />
       <main aria-label="Nội dung trang chủ">
-        <div className="mx-auto my-6 min-h-screen max-w-screen-2xl rounded-xl bg-gradient-to-br from-blue-50 to-white px-6" />
+        <Banner bannerId="66bf4e8c9f2a4d7b8c1e3a01" />
       </main>
       <Footer settings={wpOption.footer as FooterSettings} />
     </>
