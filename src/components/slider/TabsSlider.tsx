@@ -16,6 +16,7 @@ interface TabsSliderProps {
   actionLabel?: string;
   groups: TabsSliderGroup[];
   template: CardTemplate;
+  trackClassName?: string;
   slideClassName?: string;
 }
 
@@ -25,6 +26,7 @@ export function TabsSlider({
   actionLabel,
   groups,
   template,
+  trackClassName,
   slideClassName,
 }: TabsSliderProps) {
   const [activeValue, setActiveValue] = useState(groups[0]?.value ?? "");
@@ -49,6 +51,7 @@ export function TabsSlider({
         items={activeGroup.items}
         template={template}
         ariaLabel={`${title} - ${activeGroup.label}`}
+        trackClassName={trackClassName}
         slideClassName={slideClassName}
       />
     </div>
