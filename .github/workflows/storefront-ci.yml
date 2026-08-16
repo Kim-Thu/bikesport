@@ -9,8 +9,12 @@ on:
       - "src/**"
       - "public/**"
       - "package.json"
+      - "package-lock.json"
       - "tsconfig.json"
       - "next.config.ts"
+
+permissions:
+  contents: read
 
 jobs:
   validate:
@@ -24,10 +28,10 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: package.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Lint
         run: npm run lint
