@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { CompanyInfo } from "@/components/company/CompanyInfo";
 import { Column } from "@/components/layout/Column";
 import { Container } from "@/components/layout/Container";
@@ -9,7 +8,6 @@ import type { FooterSettings } from "@/interfaces/footer.interface";
 
 export function FooterMain({ settings }: { settings: FooterSettings }) {
   const menuIds = settings.menuIds ?? [];
-  const assets = (settings.assets ?? []).filter((asset) => asset.enabled !== false);
 
   return (
     <Container className="py-8 sm:py-10 lg:py-12">
@@ -17,21 +15,6 @@ export function FooterMain({ settings }: { settings: FooterSettings }) {
         <Column className="w-full space-y-5 xl:w-auto xl:basis-96">
           <Logo href="/" />
           <CompanyInfo />
-
-          {assets.length ? (
-            <Row className="flex-wrap gap-4 pt-2">
-              {assets.map((asset) => (
-                <Image
-                  key={asset.src}
-                  src={asset.src}
-                  alt={asset.alt}
-                  width={asset.width}
-                  height={asset.height}
-                  className="h-auto max-h-10 w-auto object-contain"
-                />
-              ))}
-            </Row>
-          ) : null}
         </Column>
 
         <Column grow className="w-full">
