@@ -33,13 +33,15 @@ export function MediaCta({
         </CLink>
       </div>
 
-      <MediaImage
-        mediaId={mediaId}
-        alt={title}
-        width={220}
-        height={180}
-        className="absolute bottom-0 right-0 h-full w-2/5 object-contain object-bottom"
-      />
+      <div className="absolute bottom-0 right-0 aspect-cta-media w-2/5">
+        <MediaImage
+          mediaId={mediaId}
+          alt={title}
+          width={220}
+          height={176}
+          className="h-full w-full object-contain object-bottom"
+        />
+      </div>
     </Panel>
   );
 }
