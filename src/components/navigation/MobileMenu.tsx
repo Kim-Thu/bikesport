@@ -1,9 +1,11 @@
 "use client";
 
 import { Button } from "@/components/button/Button";
+import { Contact } from "@/components/contact/Contact";
 import { Icon } from "@/components/icon/Icon";
 import { Logo } from "@/components/logo/Logo";
 import { MenuChildren } from "@/components/navigation/partials/MenuChildren";
+import { Social } from "@/components/social/Social";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
 import { createMenuIndex, getMenuById, getMenuHref } from "@/lib/menu.utils";
 import { useUiStore } from "@/stores/ui.store";
@@ -83,7 +85,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
         >
           <nav
             id="mobile-navigation"
-            className={`h-screen h-dvh w-full overflow-y-auto overscroll-contain bg-white p-4 transition-transform duration-300 ease-out sm:p-5 ${isVisible ? "translate-x-0" : "-translate-x-full"}`}
+            className={`flex h-screen h-dvh w-full flex-col overflow-y-auto overscroll-contain bg-white p-4 transition-transform duration-300 ease-out sm:p-5 ${isVisible ? "translate-x-0" : "-translate-x-full"}`}
             aria-label={menu?.name || "Điều hướng di động"}
             onClick={(event) => event.stopPropagation()}
           >
@@ -135,6 +137,14 @@ export function MobileMenu({ menuId }: NavMenuProps) {
                 );
               })}
             </ul>
+
+            <div className="mt-auto space-y-4 border-t border-gray-100 pt-5">
+              <Contact variant="mobile" />
+              <div>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Theo dõi BikeSport</p>
+                <Social />
+              </div>
+            </div>
           </nav>
         </div>
       ) : null}
