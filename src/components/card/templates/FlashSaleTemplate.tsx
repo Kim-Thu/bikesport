@@ -31,9 +31,12 @@ export function FlashSaleTemplate({
       )}
     >
       <CLink href={href} className="relative block p-4">
-        {discountPercentage ? (
-          <Badge className="absolute left-4 top-4 z-10 bg-red-500 text-white">-{discountPercentage}%</Badge>
-        ) : null}
+        <div className="absolute left-4 top-4 z-10 flex items-center gap-2">
+          <Badge className="bg-red-600 text-white">HOT</Badge>
+          {discountPercentage ? (
+            <Badge className="bg-red-500 text-white">-{discountPercentage}%</Badge>
+          ) : null}
+        </div>
         <div className="aspect-product w-full overflow-hidden rounded-md bg-red-50">
           <MediaImage
             mediaId={mediaId}
