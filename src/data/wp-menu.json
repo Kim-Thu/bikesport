@@ -24,6 +24,48 @@
         { "_id": "66bf4e8c9f2a4d7b8c1e3406", "label": "BLOG", "href": "#blog", "parentId": null, "order": 6 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3407", "label": "CỬA HÀNG", "href": "#stores", "parentId": null, "order": 7 }
       ]
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3501",
+      "name": "Về BikeSport",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T14:38:00+07:00",
+      "updatedAt": "2026-08-16T14:38:00+07:00",
+      "items": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e3511", "label": "Giới thiệu", "href": "#about", "parentId": null, "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3512", "label": "Hệ thống cửa hàng", "href": "#stores", "parentId": null, "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3513", "label": "Tin tức & sự kiện", "href": "#blog", "parentId": null, "order": 3 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3514", "label": "Liên hệ", "href": "#contact", "parentId": null, "order": 4 }
+      ]
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3502",
+      "name": "Hỗ trợ khách hàng",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T14:38:00+07:00",
+      "updatedAt": "2026-08-16T14:38:00+07:00",
+      "items": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e3521", "label": "Hướng dẫn mua hàng", "href": "#shopping-guide", "parentId": null, "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3522", "label": "Hướng dẫn thanh toán", "href": "#payment-guide", "parentId": null, "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3523", "label": "Tra cứu đơn hàng", "href": "#order-tracking", "parentId": null, "order": 3 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3524", "label": "Câu hỏi thường gặp", "href": "#faq", "parentId": null, "order": 4 }
+      ]
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3503",
+      "name": "Chính sách",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T14:38:00+07:00",
+      "updatedAt": "2026-08-16T14:38:00+07:00",
+      "items": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e3531", "label": "Chính sách bảo hành", "href": "#warranty-policy", "parentId": null, "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3532", "label": "Chính sách đổi trả", "href": "#return-policy", "parentId": null, "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3533", "label": "Chính sách vận chuyển", "href": "#shipping-policy", "parentId": null, "order": 3 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3534", "label": "Chính sách bảo mật", "href": "#privacy-policy", "parentId": null, "order": 4 }
+      ]
     }
   ]
 }
