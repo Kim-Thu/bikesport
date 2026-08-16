@@ -19,7 +19,7 @@
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] },
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4402", "optionIds": ["66bf4e8c9f2a4d7b8c1e4422", "66bf4e8c9f2a4d7b8c1e4423"] }
       ],
-      "createdAt": "2026-08-10T09:00:00+07:00",
+      "createdAt": "2026-04-10T09:00:00+07:00",
       "updatedAt": "2026-08-16T21:30:00+07:00"
     },
     {
@@ -40,7 +40,7 @@
       "attributeValues": [
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] }
       ],
-      "createdAt": "2026-08-11T09:00:00+07:00",
+      "createdAt": "2026-04-18T09:00:00+07:00",
       "updatedAt": "2026-08-16T21:31:00+07:00"
     },
     {
@@ -61,7 +61,7 @@
       "attributeValues": [
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4412"] }
       ],
-      "createdAt": "2026-08-12T09:00:00+07:00",
+      "createdAt": "2026-05-02T09:00:00+07:00",
       "updatedAt": "2026-08-16T21:32:00+07:00"
     },
     {
@@ -80,7 +80,7 @@
       "featured": true,
       "bestSeller": true,
       "attributeValues": [],
-      "createdAt": "2026-08-13T09:00:00+07:00",
+      "createdAt": "2026-05-15T09:00:00+07:00",
       "updatedAt": "2026-08-16T21:33:00+07:00"
     },
     {
@@ -101,8 +101,134 @@
       "attributeValues": [
         { "attributeId": "66bf4e8c9f2a4d7b8c1e4401", "optionIds": ["66bf4e8c9f2a4d7b8c1e4411"] }
       ],
-      "createdAt": "2026-08-14T09:00:00+07:00",
+      "createdAt": "2026-05-22T09:00:00+07:00",
       "updatedAt": "2026-08-16T21:34:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4506",
+      "name": "Giant Escape 1 2024",
+      "slug": "giant-escape-1-2024",
+      "sku": "GIANT-ESCAPE-1-2024",
+      "status": "published",
+      "brandId": "66bf4e8c9f2a4d7b8c1e4301",
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c13"],
+      "tagIds": [],
+      "mediaIds": [],
+      "price": 10990000,
+      "salePrice": null,
+      "stock": 18,
+      "featured": false,
+      "attributeValues": [],
+      "createdAt": "2026-06-03T09:00:00+07:00",
+      "updatedAt": "2026-08-15T10:10:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4507",
+      "name": "Merida Speeder 100",
+      "slug": "merida-speeder-100",
+      "sku": "MERIDA-SPEEDER-100",
+      "status": "published",
+      "brandId": null,
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c12"],
+      "tagIds": [],
+      "mediaIds": [],
+      "price": 9490000,
+      "salePrice": null,
+      "stock": 14,
+      "featured": false,
+      "attributeValues": [],
+      "createdAt": "2026-06-12T09:00:00+07:00",
+      "updatedAt": "2026-08-16T11:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4508",
+      "name": "Trek Marlin 5 2024",
+      "slug": "trek-marlin-5-2024",
+      "sku": "TREK-MARLIN-5-2024",
+      "status": "published",
+      "brandId": null,
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c11"],
+      "tagIds": [],
+      "mediaIds": [],
+      "price": 15990000,
+      "salePrice": null,
+      "stock": 9,
+      "featured": false,
+      "attributeValues": [],
+      "createdAt": "2026-06-24T09:00:00+07:00",
+      "updatedAt": "2026-08-14T15:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4509",
+      "name": "Twitter Thunder R200",
+      "slug": "twitter-thunder-r200",
+      "sku": "TWITTER-THUNDER-R200",
+      "status": "published",
+      "brandId": "66bf4e8c9f2a4d7b8c1e4302",
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c12"],
+      "tagIds": [],
+      "mediaIds": [],
+      "price": 19990000,
+      "salePrice": null,
+      "stock": 11,
+      "featured": false,
+      "attributeValues": [],
+      "createdAt": "2026-07-04T09:00:00+07:00",
+      "updatedAt": "2026-08-13T15:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4510",
+      "name": "Mũ bảo hiểm Kenda Urban",
+      "slug": "mu-bao-hiem-kenda-urban",
+      "sku": "KENDA-URBAN-HELMET",
+      "status": "published",
+      "brandId": null,
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c16"],
+      "tagIds": [],
+      "mediaIds": [],
+      "price": 1290000,
+      "salePrice": null,
+      "stock": 25,
+      "featured": false,
+      "attributeValues": [],
+      "createdAt": "2026-07-15T09:00:00+07:00",
+      "updatedAt": "2026-08-16T12:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4511",
+      "name": "Gọng bình nước Elite Custom Race",
+      "slug": "gong-binh-nuoc-elite-custom-race",
+      "sku": "ELITE-CUSTOM-RACE",
+      "status": "published",
+      "brandId": null,
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c15"],
+      "tagIds": [],
+      "mediaIds": [],
+      "price": 490000,
+      "salePrice": null,
+      "stock": 40,
+      "featured": false,
+      "attributeValues": [],
+      "createdAt": "2026-07-28T09:00:00+07:00",
+      "updatedAt": "2026-08-16T13:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4512",
+      "name": "Liv Adore C/B 16",
+      "slug": "liv-adore-cb-16",
+      "sku": "LIV-ADORE-CB-16",
+      "status": "published",
+      "brandId": null,
+      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c14"],
+      "tagIds": [],
+      "mediaIds": [],
+      "price": 6290000,
+      "salePrice": null,
+      "stock": 10,
+      "featured": false,
+      "attributeValues": [],
+      "createdAt": "2026-08-05T09:00:00+07:00",
+      "updatedAt": "2026-08-16T14:00:00+07:00"
     }
   ]
 }
