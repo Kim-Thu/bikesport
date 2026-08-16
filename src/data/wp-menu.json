@@ -66,6 +66,19 @@
         { "_id": "66bf4e8c9f2a4d7b8c1e3533", "label": "Chính sách vận chuyển", "href": "#shipping-policy", "parentId": null, "order": 3 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3534", "label": "Chính sách bảo mật", "href": "#privacy-policy", "parentId": null, "order": 4 }
       ]
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3504",
+      "name": "Hệ thống cửa hàng",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T15:06:00+07:00",
+      "updatedAt": "2026-08-16T15:06:00+07:00",
+      "items": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e3541", "label": "Tìm cửa hàng", "href": "#store-finder", "parentId": null, "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3542", "label": "Hệ thống cửa hàng", "href": "#stores", "parentId": null, "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3543", "label": "Trung tâm bảo hành", "href": "#service-centers", "parentId": null, "order": 3 }
+      ]
     }
   ]
 }
