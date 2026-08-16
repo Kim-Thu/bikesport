@@ -1,8 +1,8 @@
 import { Icon } from "@/components/icon/Icon";
+import { CLink } from "@/components/link/CLink";
 import { MenuChildren } from "@/components/navigation/partials/MenuChildren";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
 import { createMenuIndex, getMenuById, getMenuHref } from "@/lib/menu.utils";
-import Link from "next/link";
 
 export function NavMenu({ menuId }: NavMenuProps) {
   const menu = getMenuById(menuId);
@@ -22,13 +22,13 @@ export function NavMenu({ menuId }: NavMenuProps) {
 
           return (
             <li key={item._id} className="group relative">
-              <Link
+              <CLink
                 href={getMenuHref(item)}
                 className={`inline-flex min-h-12 items-center gap-1 whitespace-nowrap text-xs font-bold tracking-wide ${item.highlight ? "text-red-500" : "text-gray-900"}`}
               >
                 <span>{item.label}</span>
                 {hasDropdown ? <Icon name="chevron-down" className="h-3 w-3 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" strokeWidth={2} /> : null}
-              </Link>
+              </CLink>
 
               {children.length ? (
                 <MenuChildren
