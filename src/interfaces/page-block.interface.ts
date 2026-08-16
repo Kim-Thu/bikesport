@@ -1,4 +1,5 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
+import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 
 export type PageBlockStatus = "active" | "inactive";
 export type PageBlockComponent =
@@ -45,6 +46,8 @@ export interface ProductSliderBlockPayload extends PageBlockBase {
     title?: string;
     href?: string;
     actionLabel?: string;
+    headerTemplate?: SectionHeaderTemplate;
+    countdownAt?: string;
     template: CardTemplate;
     ariaLabel?: string;
     trackClassName?: string;
