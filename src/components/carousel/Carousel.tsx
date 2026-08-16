@@ -12,6 +12,8 @@ interface CarouselProps {
   ariaLabel?: string;
 }
 
+const DRAG_THRESHOLD_PX = 60;
+
 export function Carousel({
   children,
   className,
@@ -92,13 +94,16 @@ export function Carousel({
 
     if (!viewport.clientWidth) return;
 
-    const nextIndex = Math.max(
-      0,
-      Math.min(children.length - 1, Math.round(viewport.scrollLeft / viewport.clientWidth)),
-    );
+    const startIndex = Math.round(dragStartScrollLeft.current / viewport.clientWidth);
+    const dragDistance = event.clientX - dragStartX.current;
 
-    scrollToIndex(nextIndex);
-  }, [children.length, scrollToIndex]);
+    if (Math.abs(dragDistance) >= DRAG_THRESHOLD_PX) {
+      scrollToIndex(startIndex + (dragDistance < 0 ? 1 : -1));
+      return;
+    }
+
+    scrollToIndex(startIndex);
+  }, [scrollToIndex]);
 
   const preventNativeDrag = useCallback((event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -146,19 +151,14 @@ export function Carousel({
               <button
                 key={index}
                 type="button"
-                className="flex min-h-8 min-w-8 items-center justify-center rounded-full"
+                className={cn(
+                  "block h-1.5 rounded-full bg-white/70 transition-[width,opacity]",
+                  isActive ? "w-8 bg-white" : "w-1.5",
+                )}
                 aria-label={`Chuyển đến slide ${index + 1}`}
                 aria-current={isActive ? "true" : undefined}
                 onClick={() => scrollToIndex(index)}
-              >
-                <span
-                  className={cn(
-                    "block h-1.5 rounded-full bg-white/70 transition-[width,opacity]",
-                    isActive ? "w-8 bg-white" : "w-1.5",
-                  )}
-                  aria-hidden="true"
-                />
-              </button>
+              />
             );
           })}
         </div>
