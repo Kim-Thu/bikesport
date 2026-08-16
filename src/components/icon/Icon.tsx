@@ -15,8 +15,6 @@ const ICONS: Record<string, LucideIcon> = {
 export function Icon({ name, src, size = 24, className = "", style, ...props }: IconProps) {
   if (src) {
     const maskStyle: CSSProperties = {
-      width: size,
-      height: size,
       backgroundColor: "currentColor",
       WebkitMaskImage: `url(${src})`,
       maskImage: `url(${src})`,
