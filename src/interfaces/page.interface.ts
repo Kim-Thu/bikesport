@@ -1,6 +1,8 @@
+import type { CategoryType } from "@/interfaces/category.interface";
+
 export type PageStatus = "draft" | "published";
 export type PageSectionStatus = "active" | "inactive";
-export type PageSectionComponent = "banner" | "stack";
+export type PageSectionComponent = "banner" | "stack" | "category-grid";
 
 export interface PageBoxIconProps {
   icon?: string;
@@ -41,7 +43,23 @@ export interface StackSectionPayload {
   columns: PageColumnPayload[];
 }
 
-export type PageSectionPayload = BannerSectionPayload | StackSectionPayload;
+export interface CategoryGridSectionPayload {
+  _id: string;
+  name: string;
+  order: number;
+  status: PageSectionStatus;
+  component: "category-grid";
+  props: {
+    title: string;
+    href?: string;
+    actionLabel?: string;
+    type: CategoryType;
+    limit?: number;
+    sectionClassName?: string;
+  };
+}
+
+export type PageSectionPayload = BannerSectionPayload | StackSectionPayload | CategoryGridSectionPayload;
 
 export interface PagePayload {
   sections: PageSectionPayload[];
