@@ -12,7 +12,6 @@ export interface FooterAsset {
 export interface FooterSettings {
   name: string;
   template: FooterTemplateName;
-  description?: string;
   menuIds?: string[];
   assets?: FooterAsset[];
   copyright?: string;
