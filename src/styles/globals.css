@@ -3,6 +3,14 @@
 @theme {
   --text-2xs: 0.625rem;
   --text-2xs--line-height: 0.875rem;
+
+  --aspect-hero-mobile: 4 / 3;
+  --aspect-hero-tablet: 16 / 9;
+  --aspect-hero: 4 / 1;
+  --aspect-product: 4 / 3;
+  --aspect-event: 16 / 9;
+  --aspect-card-media: 4 / 3;
+  --aspect-cta-media: 5 / 4;
 }
 
 @layer base {
