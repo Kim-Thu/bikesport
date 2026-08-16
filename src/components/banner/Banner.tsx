@@ -62,56 +62,56 @@ export function Banner({ bannerId }: BannerProps) {
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
 
-          <div className="relative z-10 grid gap-6 p-5 sm:p-7 lg:min-h-88 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,1.25fr)_14rem] lg:items-center lg:gap-4 lg:p-8">
-            <div className="order-1 lg:col-start-1">
-              {banner.eyebrow ? (
-                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-gray-800 sm:text-sm">
-                  {banner.eyebrow}
-                </p>
-              ) : null}
+          <div className="relative z-10 grid gap-6 p-5 sm:p-7 lg:min-h-88 lg:grid-cols-12 lg:items-center lg:gap-6 lg:p-8">
+            <div className="order-1 lg:col-span-9">
+              <div className="max-w-xl">
+                {banner.eyebrow ? (
+                  <p className="mb-2 text-xs font-bold uppercase tracking-wide text-gray-800 sm:text-sm">
+                    {banner.eyebrow}
+                  </p>
+                ) : null}
 
-              <Heading
-                level={1}
-                className="text-4xl font-black uppercase leading-none tracking-tight text-gray-950 sm:text-5xl lg:text-6xl"
-              >
-                <span>{banner.title}</span>
-                {banner.titleHighlight ? <span className="ml-2 text-blue-600">{banner.titleHighlight}</span> : null}
-              </Heading>
+                <Heading
+                  level={1}
+                  className="text-4xl font-black uppercase leading-none tracking-tight text-gray-950 sm:text-5xl lg:text-6xl"
+                >
+                  <span>{banner.title}</span>
+                  {banner.titleHighlight ? <span className="ml-2 text-blue-600">{banner.titleHighlight}</span> : null}
+                </Heading>
 
-              {banner.description ? (
-                <p className="mt-2 text-base font-bold uppercase text-gray-800 sm:text-lg">{banner.description}</p>
-              ) : null}
+                {banner.description ? (
+                  <p className="mt-2 text-base font-bold uppercase text-gray-800 sm:text-lg">{banner.description}</p>
+                ) : null}
 
-              {features.length ? (
-                <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                  {features.map((feature, index) => (
-                    <FeatureItem key={`${feature.title}-${index}`} {...feature} />
-                  ))}
-                </div>
-              ) : null}
+                {features.length ? (
+                  <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                    {features.map((feature, index) => (
+                      <FeatureItem key={`${feature.title}-${index}`} {...feature} />
+                    ))}
+                  </div>
+                ) : null}
 
-              {actions.length ? (
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {actions.map((action) => (
-                    <CLink
-                      key={`${action.label}-${action.href}`}
-                      href={action.href}
-                      className={cn(
-                        "inline-flex min-h-10 items-center justify-center rounded-md border px-5 text-xs font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
-                        ACTION_CLASS[action.variant ?? "primary"],
-                      )}
-                    >
-                      {action.label}
-                    </CLink>
-                  ))}
-                </div>
-              ) : null}
+                {actions.length ? (
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    {actions.map((action) => (
+                      <CLink
+                        key={`${action.label}-${action.href}`}
+                        href={action.href}
+                        className={cn(
+                          "inline-flex min-h-10 items-center justify-center rounded-md border px-5 text-xs font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
+                          ACTION_CLASS[action.variant ?? "primary"],
+                        )}
+                      >
+                        {action.label}
+                      </CLink>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
             </div>
 
-            <div className="order-2 hidden min-h-56 lg:block" aria-hidden="true" />
-
             {promotionCards.length ? (
-              <div className="order-3 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 lg:col-start-3">
+              <div className="order-2 grid gap-3 sm:grid-cols-3 lg:col-span-3 lg:grid-cols-1">
                 {promotionCards.map((card) => {
                   const promotion = getActivePromotionById(card.promotionId);
                   if (!promotion) return null;
