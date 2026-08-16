@@ -2,10 +2,7 @@ export interface PaymentMethod {
   _id: string;
   name: string;
   label: string;
-  logo: string;
-  alt: string;
-  width: number;
-  height: number;
+  mediaId: string;
   enabled?: boolean;
   order?: number;
 }
