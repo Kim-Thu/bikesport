@@ -19,7 +19,12 @@ export function MediaActionTemplate({
   className,
 }: CardProps) {
   return (
-    <article className={cn("group flex h-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white", className)}>
+    <article
+      className={cn(
+        "group flex h-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white transition-colors hover:border-blue-200",
+        className,
+      )}
+    >
       <CLink href={href} className="relative block p-4">
         {discountPercentage ? (
           <Badge className="absolute left-4 top-4 z-10">-{discountPercentage}%</Badge>
