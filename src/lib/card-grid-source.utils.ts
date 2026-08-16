@@ -12,6 +12,7 @@ export function getCardGridItems(source: CardGridBlockPayload["props"]["source"]
       title: post.title,
       href: `/blog/${post.slug}`,
       mediaId: post.mediaId,
+      description: post.excerpt,
       publishedAt: post.publishedAt,
       categoryName: post.categoryIds[0] ? getCategoryById(post.categoryIds[0])?.name : undefined,
       authorName: getUserById(post.authorId)?.displayName,
