@@ -30,7 +30,7 @@ export function Announcement({ announcementId }: AnnouncementProps) {
   if (!content) return null;
 
   return (
-    <div className="flex min-h-9 items-center justify-center gap-2 text-center text-2xs text-white sm:gap-3 sm:text-xs">
+    <div className="flex items-center justify-center gap-2 py-2 text-center text-2xs text-white sm:gap-3 sm:text-xs">
       {iconMediaId ? <Icon mediaId={iconMediaId} className="h-3 w-3 text-white sm:h-3.5 sm:w-3.5" /> : null}
       <strong>{content}</strong>
       {href && ctaLabel ? (
