@@ -6,17 +6,24 @@ import { Button } from "@/components/button/Button";
 import { Icon } from "@/components/icon/Icon";
 import { Logo } from "@/components/logo/Logo";
 import menuData from "@/data/wp-menu.json";
-import type { NavMenuData, NavMenuProps } from "@/interfaces/navigation.interface";
+import type { NavMenuData, NavMenuItem, NavMenuProps } from "@/interfaces/navigation.interface";
+
+function sortItems(items: NavMenuItem[]) {
+  return items.slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+}
 
 export function MobileMenu({ menuId }: NavMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [expandedItemId, setExpandedItemId] = useState<string | null>(null);
   const menu = (menuData.menus as NavMenuData[]).find((item) => item._id === menuId);
   const items = menu?.items ?? [];
+  const rootItems = sortItems(items.filter((item) => !item.parentId));
 
   useEffect(() => {
     if (!isOpen) {
       setIsVisible(false);
+      setExpandedItemId(null);
       return;
     }
 
@@ -49,10 +56,11 @@ export function MobileMenu({ menuId }: NavMenuProps) {
     };
   }, [isOpen]);
 
-  if (!items.length) return null;
+  if (!rootItems.length) return null;
 
   const closeMenu = () => {
     setIsVisible(false);
+    setExpandedItemId(null);
     window.setTimeout(() => setIsOpen(false), 300);
   };
 
@@ -82,30 +90,52 @@ export function MobileMenu({ menuId }: NavMenuProps) {
             <div className="sticky top-0 z-10 mb-4 flex items-center justify-between bg-white py-1">
               <Logo href="/" />
               <Button variant="icon" aria-label="Đóng menu" onClick={closeMenu}>
-                <Icon name="close" size={26} strokeWidth={1.8} />
+                <Icon name="close" className="h-6 w-6" strokeWidth={1.8} />
               </Button>
             </div>
 
             <ul className="m-0 list-none p-0 pb-6">
-              {items
-                .slice()
-                .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
-                .map((item) => {
-                  if (!item.label) return null;
+              {rootItems.map((item) => {
+                if (!item.label) return null;
 
-                  return (
-                    <li key={item._id} className="border-b border-gray-100">
-                      <Link
-                        href={item.href || "/"}
-                        className={`flex min-h-12 items-center justify-between gap-2 text-sm font-semibold sm:min-h-14 ${item.highlight ? "text-red-500" : "text-gray-900"}`}
-                        onClick={closeMenu}
+                const children = sortItems(items.filter((child) => child.parentId === item._id));
+                const hasDropdown = children.length > 0 || item.hasDropdown;
+                const isExpanded = expandedItemId === item._id;
+                const itemClass = `flex min-h-12 w-full items-center justify-between gap-2 text-sm font-semibold sm:min-h-14 ${item.highlight ? "text-red-500" : "text-gray-900"}`;
+
+                return (
+                  <li key={item._id} className="border-b border-gray-100">
+                    {hasDropdown ? (
+                      <button
+                        type="button"
+                        className={itemClass}
+                        aria-expanded={isExpanded}
+                        aria-controls={`mobile-submenu-${item._id}`}
+                        onClick={() => setExpandedItemId(isExpanded ? null : item._id)}
                       >
                         <span>{item.label}</span>
-                        {item.hasDropdown ? <Icon name="chevron-down" size={16} strokeWidth={2} /> : null}
+                        <Icon name="chevron-down" className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} strokeWidth={2} />
+                      </button>
+                    ) : (
+                      <Link href={item.href || "/"} className={itemClass} onClick={closeMenu}>
+                        <span>{item.label}</span>
                       </Link>
-                    </li>
-                  );
-                })}
+                    )}
+
+                    {children.length && isExpanded ? (
+                      <ul id={`mobile-submenu-${item._id}`} className="m-0 list-none bg-gray-50 p-0">
+                        {children.map((child) => (
+                          <li key={child._id}>
+                            <Link href={child.href || "/"} className="flex min-h-11 items-center px-4 text-sm text-gray-700" onClick={closeMenu}>
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
