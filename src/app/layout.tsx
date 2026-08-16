@@ -35,7 +35,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="vi" className={inter.className} suppressHydrationWarning>
+    <html lang="vi" className={inter.className}>
       <body>
         {children}
         <ToastViewport />
