@@ -1,4 +1,4 @@
-import type { PromotionVariant } from "@/variants/promotion.variant";
+import type { AnnouncementVariant } from "@/variants/announcement.variant";
 
 export type AnnouncementStatus = "draft" | "scheduled" | "active" | "expired" | "disabled";
 
@@ -6,7 +6,7 @@ export interface AnnouncementRecord {
   _id: string;
   name: string;
   status: AnnouncementStatus;
-  type: PromotionVariant;
+  type: AnnouncementVariant;
   content?: string;
   mediaId?: string;
   alt?: string;
