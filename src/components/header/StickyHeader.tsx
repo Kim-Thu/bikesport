@@ -14,7 +14,7 @@ export function StickyHeader({ children }: StickyHeaderProps) {
   return (
     <header
       id="home"
-      className={`sticky top-0 z-40 w-full border-b border-gray-200 bg-white shadow-sm transition-transform duration-300 ease-out ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
+      className={`sticky top-0 z-40 w-full border-b border-gray-200 bg-white transition-transform duration-300 ease-out ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
     >
       {children}
     </header>
