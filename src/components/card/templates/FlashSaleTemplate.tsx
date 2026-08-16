@@ -15,6 +15,8 @@ export function FlashSaleTemplate({
   discountPercentage,
   stockRemaining,
   stockTotal,
+  promotionBadgeMediaId,
+  promotionBadgeAlt,
   className,
 }: CardProps) {
   const hasStockProgress =
@@ -37,6 +39,19 @@ export function FlashSaleTemplate({
             <Badge className="bg-red-500 text-white">-{discountPercentage}%</Badge>
           ) : null}
         </div>
+
+        {promotionBadgeMediaId ? (
+          <div className="absolute bottom-4 left-4 z-10 h-10 w-24 overflow-hidden rounded-md bg-white/90 p-1">
+            <MediaImage
+              mediaId={promotionBadgeMediaId}
+              alt={promotionBadgeAlt ?? "Nhãn khuyến mãi"}
+              width={96}
+              height={40}
+              className="h-full w-full object-contain"
+            />
+          </div>
+        ) : null}
+
         <div className="aspect-product w-full overflow-hidden rounded-md bg-red-50">
           <MediaImage
             mediaId={mediaId}
