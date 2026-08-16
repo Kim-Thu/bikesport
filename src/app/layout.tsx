@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "",
     type: "website",
   },
-  manifest: "/uploads/site.webmanifest",
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: [
       ...(faviconUrl ? [{ url: faviconUrl, type: "image/x-icon" }] : []),
