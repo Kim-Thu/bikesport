@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Icon } from "@/components/icon/Icon";
+import { MenuChildren } from "@/components/navigation/MenuChildren";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
 import {
   getChildMenuItems,
@@ -36,15 +37,11 @@ export function NavMenu({ menuId }: NavMenuProps) {
               </Link>
 
               {children.length ? (
-                <ul className="invisible absolute left-0 top-full z-50 min-w-56 list-none border border-gray-100 bg-white p-2 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                  {children.map((child) => (
-                    <li key={child._id}>
-                      <Link href={getMenuHref(child)} className="flex min-h-10 items-center whitespace-nowrap px-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 focus:bg-gray-50 focus:text-blue-600">
-                        {child.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                <MenuChildren
+                  items={children}
+                  listClassName="invisible absolute left-0 top-full z-50 min-w-56 list-none border border-gray-100 bg-white p-2 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                  itemClassName="flex min-h-10 items-center whitespace-nowrap px-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 focus:bg-gray-50 focus:text-blue-600"
+                />
               ) : null}
             </li>
           );
