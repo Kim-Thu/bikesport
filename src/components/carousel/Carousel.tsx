@@ -83,7 +83,7 @@ export function Carousel({
           {children.map((child, index) => (
             <div
               key={index}
-              className={cn("flex min-w-0 flex-[0_0_100%] self-stretch", slideClassName)}
+              className={cn("flex min-w-0 grow-0 shrink-0 basis-full self-stretch", slideClassName)}
             >
               {child}
             </div>
@@ -128,7 +128,7 @@ export function Carousel({
                 key={index}
                 type="button"
                 className={cn(
-                  "block h-1.5 cursor-pointer rounded-full bg-white/70 transition-[width,opacity]",
+                  "block h-1.5 cursor-pointer rounded-full bg-white/70 transition-all",
                   isActive ? "w-8 bg-white" : "w-1.5",
                 )}
                 aria-label={`Chuyển đến slide ${index + 1}`}
