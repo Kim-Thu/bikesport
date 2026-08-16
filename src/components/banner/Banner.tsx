@@ -47,7 +47,7 @@ function BannerSlide({ banner }: { banner: BannerRecord }) {
   const promotionCards = banner.promotionCards ?? [];
 
   return (
-    <div className="relative min-h-full overflow-hidden rounded-xl border border-blue-100 bg-slate-100">
+    <div className="relative flex min-h-88 w-full overflow-hidden rounded-xl border border-blue-100 bg-blue-200">
       <MediaImage
         mediaId={banner.backgroundMediaId}
         alt=""
@@ -55,7 +55,7 @@ function BannerSlide({ banner }: { banner: BannerRecord }) {
         height={820}
         priority={banner.order === 1}
         sizes="100vw"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className="absolute inset-0 h-full w-full object-cover object-center lg:object-contain lg:object-right"
       />
 
       <div
@@ -63,8 +63,8 @@ function BannerSlide({ banner }: { banner: BannerRecord }) {
         aria-hidden="true"
       />
 
-      <div className="relative z-20 grid gap-6 p-5 sm:p-7 lg:min-h-88 lg:grid-cols-12 lg:items-center lg:gap-6 lg:p-8">
-        <div className="order-1 lg:col-span-10">
+      <div className="relative z-20 grid min-h-88 w-full flex-1 gap-6 p-5 sm:p-7 lg:grid-cols-12 lg:items-stretch lg:gap-6 lg:p-8">
+        <div className="order-1 flex items-center lg:col-span-10">
           <div className="max-w-xl">
             {banner.eyebrow ? (
               <p className="mb-2 text-xs font-bold uppercase tracking-wide text-gray-800 sm:text-sm">{banner.eyebrow}</p>
@@ -105,7 +105,7 @@ function BannerSlide({ banner }: { banner: BannerRecord }) {
         </div>
 
         {promotionCards.length ? (
-          <div className="order-2 grid gap-3 sm:grid-cols-3 lg:col-span-2 lg:grid-cols-1">
+          <div className="order-2 grid content-center gap-3 sm:grid-cols-3 lg:col-span-2 lg:grid-cols-1">
             {promotionCards.map((card) => {
               const promotion = getActivePromotionById(card.promotionId);
               if (!promotion) return null;
