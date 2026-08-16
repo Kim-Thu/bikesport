@@ -1,6 +1,11 @@
 import menuData from "@/data/wp-menu.json";
 import type { NavMenuData, NavMenuItem } from "@/interfaces/navigation.interface";
 
+export interface MenuIndex {
+  rootItems: NavMenuItem[];
+  childrenByParentId: Map<string, NavMenuItem[]>;
+}
+
 export function sortMenuItems(items: NavMenuItem[]) {
   return items.slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 }
@@ -9,16 +14,25 @@ export function getMenuById(menuId: string) {
   return (menuData.menus as NavMenuData[]).find((menu) => menu._id === menuId);
 }
 
-export function getRootMenuItems(items: NavMenuItem[]) {
-  return sortMenuItems(items.filter((item) => !item.parentId));
-}
+export function createMenuIndex(items: NavMenuItem[]): MenuIndex {
+  const rootItems: NavMenuItem[] = [];
+  const childrenByParentId = new Map<string, NavMenuItem[]>();
 
-export function getChildMenuItems(items: NavMenuItem[], parentId: string) {
-  return sortMenuItems(items.filter((item) => item.parentId === parentId));
-}
+  for (const item of sortMenuItems(items)) {
+    if (!item.parentId) {
+      rootItems.push(item);
+      continue;
+    }
 
-export function hasMenuChildren(items: NavMenuItem[], item: NavMenuItem) {
-  return item.hasDropdown === true || items.some((child) => child.parentId === item._id);
+    const children = childrenByParentId.get(item.parentId);
+    if (children) {
+      children.push(item);
+    } else {
+      childrenByParentId.set(item.parentId, [item]);
+    }
+  }
+
+  return { rootItems, childrenByParentId };
 }
 
 export function getMenuHref(item: NavMenuItem) {
