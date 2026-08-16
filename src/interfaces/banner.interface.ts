@@ -22,6 +22,7 @@ export interface BannerPromotionCard {
 
 export interface BannerRecord {
   _id: string;
+  categoryId: string;
   groupId?: string;
   order?: number;
   name: string;
