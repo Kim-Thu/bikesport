@@ -3,13 +3,31 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T16:21:00+07:00",
+  "updatedAt": "2026-08-16T16:34:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
     "logoMediaId": "66bf4e8c9f2a4d7b8c1e3701",
     "showSiteTitle": false,
     "showTagLine": false
+  },
+  "seo": {
+    "titleFormat": "%title% | %siteName%",
+    "defaultDescription": "Hệ thống bán lẻ xe đạp và phụ kiện thể thao uy tín hàng đầu Việt Nam.",
+    "canonicalBaseUrl": "",
+    "robots": {
+      "index": true,
+      "follow": true
+    },
+    "openGraph": {
+      "type": "website",
+      "locale": "vi_VN",
+      "defaultImageMediaId": "66bf4e8c9f2a4d7b8c1e3701"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "defaultImageMediaId": "66bf4e8c9f2a4d7b8c1e3701"
+    }
   },
   "organization": {
     "legalName": "Công Ty Cổ Phần BikeSport",
