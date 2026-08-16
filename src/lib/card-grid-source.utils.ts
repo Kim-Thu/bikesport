@@ -23,8 +23,11 @@ export function getCardGridItems(source: CardGridBlockPayload["props"]["source"]
       title: store.name,
       href: `/cua-hang/${store.slug}`,
       mediaId: store.mediaId,
-      description: store.address,
-      metaItems: [store.phone, store.openingHours].filter((item): item is string => Boolean(item)),
+      metaItems: [
+        { icon: "location", text: store.address },
+        ...(store.phone ? [{ icon: "phone", text: store.phone }] : []),
+        ...(store.openingHours ? [{ icon: "clock", text: store.openingHours }] : []),
+      ],
       actionLabel: "Xem cửa hàng",
     }));
   }
