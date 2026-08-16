@@ -38,7 +38,7 @@ export function MediaMetaTemplate({
         {categoryName && categoryHref ? (
           <CLink
             href={categoryHref}
-            className="absolute left-4 top-4 rounded-md bg-blue-200 px-2 py-2 text-xs font-medium text-blue-700"
+            className="absolute left-4 top-4 rounded-md bg-blue-600/10 px-2 py-2 text-xs font-medium text-blue-600"
           >
             {categoryName}
           </CLink>
