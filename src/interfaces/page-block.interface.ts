@@ -67,10 +67,15 @@ export interface CardGridBlockPayload extends PageBlockBase {
     actionLabel?: string;
     template: CardTemplate;
     gridClassName?: string;
-    source: {
-      type: "event";
-      limit?: number;
-    };
+    source:
+      | {
+          type: "event";
+          limit?: number;
+        }
+      | {
+          type: "post";
+          limit?: number;
+        };
   };
 }
 
