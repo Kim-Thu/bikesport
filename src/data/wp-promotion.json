@@ -175,7 +175,14 @@
         "skus": [
           "GIANT-ATX-610-2024",
           "TREK-MARLIN-5-2024",
-          "SHIMANO-RC100"
+          "SHIMANO-RC100",
+          "TWITTER-R10-2024",
+          "FORLIFE-LUX-2024",
+          "COMBO-MU-KINH",
+          "GIANT-ESCAPE-1-2024",
+          "MERIDA-SPEEDER-100",
+          "TWITTER-THUNDER-R200",
+          "KENDA-URBAN-HELMET"
         ]
       },
       "benefits": [
@@ -193,7 +200,14 @@
       "inventory": [
         { "sku": "GIANT-ATX-610-2024", "total": 20 },
         { "sku": "TREK-MARLIN-5-2024", "total": 15 },
-        { "sku": "SHIMANO-RC100", "total": 30 }
+        { "sku": "SHIMANO-RC100", "total": 30 },
+        { "sku": "TWITTER-R10-2024", "total": 12 },
+        { "sku": "FORLIFE-LUX-2024", "total": 20 },
+        { "sku": "COMBO-MU-KINH", "total": 40 },
+        { "sku": "GIANT-ESCAPE-1-2024", "total": 25 },
+        { "sku": "MERIDA-SPEEDER-100", "total": 20 },
+        { "sku": "TWITTER-THUNDER-R200", "total": 18 },
+        { "sku": "KENDA-URBAN-HELMET", "total": 35 }
       ],
       "productBadges": [
         {
@@ -206,7 +220,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-17T09:00:00+07:00",
-      "updatedAt": "2026-08-17T03:25:00+07:00"
+      "updatedAt": "2026-08-17T04:28:00+07:00"
     }
   ]
 }
