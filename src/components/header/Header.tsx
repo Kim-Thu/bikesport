@@ -12,9 +12,5 @@ export function Header({ settings }: HeaderProps) {
 
   if (!Template) return null;
 
-  return (
-    <header id="home" className="w-full border-b border-gray-200 bg-white">
-      <Template settings={settings} />
-    </header>
-  );
+  return <Template settings={settings} />;
 }
