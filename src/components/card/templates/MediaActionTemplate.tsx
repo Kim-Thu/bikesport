@@ -21,7 +21,7 @@ export function MediaActionTemplate({
         {discountPercentage ? (
           <Badge className="absolute left-3 top-3 z-10">-{discountPercentage}%</Badge>
         ) : null}
-        <div className="aspect-4/3 w-full overflow-hidden">
+        <div className="aspect-product w-full overflow-hidden">
           <MediaImage
             mediaId={mediaId}
             alt={title}
