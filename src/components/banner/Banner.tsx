@@ -59,7 +59,7 @@ function BannerSlide({ banner }: { banner: BannerRecord }) {
       />
 
       <div
-        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-blue-600 to-blue-600/10"
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-1/2 bg-gradient-to-r from-blue-200 via-blue-200 via-80% to-transparent"
         aria-hidden="true"
       />
 
