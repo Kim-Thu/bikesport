@@ -103,7 +103,13 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
                   label={card.label}
                   description={card.description}
                   valueClassName={card.label === "VOUCHER" ? "text-lg sm:text-xl" : undefined}
-                  value={promotion.endAt && card.label === "FLASH SALE" ? <Countdown endAt={promotion.endAt} /> : value}
+                  value={
+                    promotion.endAt && card.label === "FLASH SALE" ? (
+                      <Countdown endAt={promotion.endAt} variant="compact" />
+                    ) : (
+                      value
+                    )
+                  }
                 />
               );
             })}
