@@ -1,3 +1,4 @@
+import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
 import { MediaImage } from "@/components/media/MediaImage";
 import type { CardProps } from "@/interfaces/card.interface";
@@ -35,10 +36,20 @@ export function OverlayTemplate({
               <div className="mt-1 text-2xs font-bold uppercase leading-none">{date.month}</div>
             </div>
 
-            <div>
+            <div className="space-y-1">
               <h3 className="text-sm font-bold sm:text-base">{title}</h3>
-              {location ? <div className="mt-1 text-xs text-white/80">{location}</div> : null}
-              {typeof attendees === "number" ? <div className="mt-1 text-xs text-white/80">{attendees} người tham gia</div> : null}
+              {location ? (
+                <div className="flex items-center gap-1 text-xs text-white/80">
+                  <Icon name="location" size={14} strokeWidth={2} />
+                  <span>{location}</span>
+                </div>
+              ) : null}
+              {typeof attendees === "number" ? (
+                <div className="flex items-center gap-1 text-xs text-white/80">
+                  <Icon name="users" size={14} strokeWidth={2} />
+                  <span>{attendees} người tham gia</span>
+                </div>
+              ) : null}
             </div>
           </div>
 
