@@ -15,9 +15,10 @@ export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload
   if (!items.length) return null;
 
   const hasHeader = Boolean(block.props.title) || block.props.titleMediaId !== undefined;
+  const isFlashSale = block.props.headerTemplate === "flash-sale";
   const layoutTemplate =
     block.props.layoutTemplate ??
-    (block.props.headerTemplate === "flash-sale" ? "featured-showcase" : "default");
+    (isFlashSale ? "featured-showcase" : "default");
   const LayoutTemplate = LAYOUT_TEMPLATES[layoutTemplate];
 
   const header = hasHeader ? (
@@ -48,6 +49,7 @@ export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload
       slider={slider}
       href={block.props.href}
       actionLabel={block.props.actionLabel}
+      tone={isFlashSale ? "danger" : "primary"}
     />
   );
 }
