@@ -11,6 +11,7 @@ import { createMongoEventDataSource } from "@/data-access/mongodb/mongodb-event-
 import { createMongoMediaDataSource } from "@/data-access/mongodb/mongodb-media-data-source";
 import { createMongoMenuDataSource } from "@/data-access/mongodb/mongodb-menu-data-source";
 import { createMongoOptionsDataSource } from "@/data-access/mongodb/mongodb-options-data-source";
+import { createMongoOrderDataSource } from "@/data-access/mongodb/mongodb-order-data-source";
 import { createMongoPageDataSource } from "@/data-access/mongodb/mongodb-page-data-source";
 import { createMongoPaymentDataSource } from "@/data-access/mongodb/mongodb-payment-data-source";
 import { createMongoPostDataSource } from "@/data-access/mongodb/mongodb-post-data-source";
@@ -42,6 +43,7 @@ export function createMongoDataSources(
     payment: createMongoPaymentDataSource(getDatabase),
     options: createMongoOptionsDataSource(getDatabase),
     media: createMongoMediaDataSource(getDatabase),
+    order: createMongoOrderDataSource(getDatabase),
   };
 }
 
