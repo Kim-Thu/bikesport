@@ -2,8 +2,7 @@ import type { ReactNode } from "react";
 import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
 import { cn } from "@/lib/classname.utils";
-
-export type ActionLinkTone = "primary" | "danger";
+import type { ActionLinkTone } from "@/variants/action-link.variant";
 
 interface ActionLinkProps {
   href: string;
