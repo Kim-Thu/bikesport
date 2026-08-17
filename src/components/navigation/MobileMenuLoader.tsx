@@ -8,10 +8,13 @@ export async function MobileMenuLoader({ menuId }: NavMenuProps) {
   const [menu, options] = await Promise.all([getMenuById(menuId), getSiteOptions()]);
   if (!menu || !options) return null;
 
+  const socialItems = options.contact.social ?? [];
   const menuMediaIds = menu.items.flatMap((item) => (item.mediaId ? [item.mediaId] : []));
-  const [logoMedia, menuMediaById] = await Promise.all([
+  const socialMediaIds = socialItems.flatMap((item) => (item.iconMediaId ? [item.iconMediaId] : []));
+  const [logoMedia, menuMediaById, socialMediaById] = await Promise.all([
     options.site.logoMediaId ? getMediaById(options.site.logoMediaId) : Promise.resolve(null),
     getMediaWithFallbackByIds(menuMediaIds),
+    getMediaWithFallbackByIds(socialMediaIds),
   ]);
 
   return (
@@ -21,7 +24,8 @@ export async function MobileMenuLoader({ menuId }: NavMenuProps) {
       logoMedia={logoMedia}
       menuMediaById={menuMediaById}
       hotline={options.contact.hotline}
-      socialItems={options.contact.social ?? []}
+      socialItems={socialItems}
+      socialMediaById={socialMediaById}
     />
   );
 }
