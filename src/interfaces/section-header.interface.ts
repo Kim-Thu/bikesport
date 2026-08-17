@@ -1,9 +1,11 @@
 import type { ReactNode } from "react";
 
-export type SectionHeaderTemplate = "default" | "flash-sale";
+export type SectionHeaderTemplate = "default" | "flash-sale" | "featured";
 
 export interface SectionHeaderProps {
-  title: string;
+  title?: string;
+  titleMediaId?: string | null;
+  titleAlt?: string;
   href?: string;
   actionLabel?: string;
   template?: SectionHeaderTemplate;
