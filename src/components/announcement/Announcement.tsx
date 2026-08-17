@@ -33,7 +33,7 @@ export async function Announcement({ announcementId }: AnnouncementProps) {
 
   return (
     <div className="flex items-center justify-center gap-2 py-2 text-center text-2xs text-white sm:gap-3 sm:text-xs">
-      {iconMedia ? <Icon media={iconMedia} className="h-3 w-3 text-white sm:h-3.5 sm:w-3.5" /> : null}
+      {iconMedia?.src ? <Icon mediaUrl={iconMedia.src} className="h-3 w-3 text-white sm:h-3.5 sm:w-3.5" /> : null}
       <strong>{content}</strong>
       {href && ctaLabel ? (
         <CLink href={href} className="inline-flex items-center gap-1 border-l border-white/40 pl-2 text-2xs sm:pl-4 sm:text-xs">
