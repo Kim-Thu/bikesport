@@ -36,14 +36,14 @@ const FLASH_SALE_PRESENTATION = {
   actionTone: "danger",
 } as const;
 
-export function resolveProductSliderBlock(
+export async function resolveProductSliderBlock(
   block: ProductSliderBlockPayload,
-): ProductSliderBlockViewModel {
+): Promise<ProductSliderBlockViewModel> {
   const headingTemplate = block.props.headingTemplate ?? block.props.headerTemplate;
   const isFlashSale = headingTemplate === "flash-sale";
 
   if (isFlashSale && block.props.source.type === "promotion") {
-    const groups = getPromotionSessionCollectionGroups(
+    const groups = await getPromotionSessionCollectionGroups(
       block.props.source.promotionId,
       block.props.source.limit,
     );
@@ -60,7 +60,7 @@ export function resolveProductSliderBlock(
 
   return {
     kind: "slider",
-    items: getProductCollectionItems(block.props.source),
+    items: await getProductCollectionItems(block.props.source),
     headingTemplate,
     layoutTemplate: block.props.layoutTemplate ?? (isFlashSale ? "featured-showcase" : "default"),
     actionTone: isFlashSale ? "danger" : "primary",
