@@ -3,20 +3,23 @@ import type { ProductRecord } from "@/interfaces/product.interface";
 import { getCategoryTreeIds } from "@/lib/category.utils";
 import { getProductSalesStatsBySku } from "@/lib/order.utils";
 
-export function getPublishedProducts() {
-  return (productData.products as ProductRecord[]).filter((product) => product.status === "published");
+const products = productData.products as ProductRecord[];
+const publishedProducts = products.filter((product) => product.status === "published");
+
+export function getPublishedProducts(): ProductRecord[] {
+  return publishedProducts;
 }
 
 export function getFeaturedProducts(limit?: number) {
-  const products = getPublishedProducts().filter((product) => product.featured);
-  return typeof limit === "number" ? products.slice(0, limit) : products;
+  const items = publishedProducts.filter((product) => product.featured);
+  return typeof limit === "number" ? items.slice(0, limit) : items;
 }
 
 export function getBestSellerProducts(categoryId?: string | null, limit?: number) {
   const categoryIds = categoryId ? new Set(getCategoryTreeIds(categoryId)) : null;
   const salesBySku = getProductSalesStatsBySku();
 
-  const products = getPublishedProducts()
+  const items = publishedProducts
     .filter((product) => !categoryIds || product.categoryIds.some((id) => categoryIds.has(id)))
     .filter((product) => salesBySku.has(product.sku))
     .sort((a, b) => {
@@ -35,7 +38,7 @@ export function getBestSellerProducts(categoryId?: string | null, limit?: number
       return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
     });
 
-  return typeof limit === "number" ? products.slice(0, limit) : products;
+  return typeof limit === "number" ? items.slice(0, limit) : items;
 }
 
 export function getProductDiscountPercentage(product: ProductRecord) {
