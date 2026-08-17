@@ -20,8 +20,8 @@ export function MediaCta({
   mediaId,
 }: MediaCtaProps) {
   return (
-    <Panel className="relative min-h-56 overflow-hidden bg-blue-50 p-6 sm:min-h-64 sm:p-8">
-      <div className="relative z-10 flex min-h-44 max-w-3/5 flex-col justify-center sm:min-h-48">
+    <Panel className="grid min-h-56 overflow-hidden bg-blue-50 sm:min-h-64 sm:grid-cols-5">
+      <div className="flex flex-col justify-center p-6 sm:col-span-3 sm:p-8">
         {eyebrow ? <div className="text-xs font-bold uppercase text-blue-600">{eyebrow}</div> : null}
         <div className="mt-1 text-xl font-black uppercase leading-tight text-blue-700 sm:text-2xl">{title}</div>
         {description ? <div className="mt-2 text-sm leading-relaxed text-gray-600 sm:text-base">{description}</div> : null}
@@ -35,7 +35,7 @@ export function MediaCta({
         </div>
       </div>
 
-      <div className="absolute inset-y-0 right-0 w-2/5 overflow-hidden">
+      <div className="min-h-48 overflow-hidden sm:col-span-2 sm:min-h-0">
         <MediaImage
           mediaId={mediaId}
           alt={title}
