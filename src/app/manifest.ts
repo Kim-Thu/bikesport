@@ -1,18 +1,19 @@
 import type { MetadataRoute } from "next";
+import wpOption from "@/data/wp-option.json";
 import { getMediaUrl } from "@/lib/media.utils";
 
 export default function manifest(): MetadataRoute.Manifest {
-  const icon192 = getMediaUrl("66bf4e8c9f2a4d7b8c1e3711");
-  const icon512 = getMediaUrl("66bf4e8c9f2a4d7b8c1e3712");
+  const icon192 = getMediaUrl(wpOption.site.icons.pwa192MediaId);
+  const icon512 = getMediaUrl(wpOption.site.icons.pwa512MediaId);
 
   return {
-    name: "Bike Sport",
-    short_name: "Bike Sport",
-    description: "",
+    name: wpOption.site.siteTitle,
+    short_name: wpOption.site.siteTitle,
+    description: wpOption.seo.defaultDescription,
     start_url: "/",
     display: "standalone",
-    background_color: "#FFFFFF",
-    theme_color: "#FFFFFF",
+    background_color: wpOption.site.theme.backgroundColor,
+    theme_color: wpOption.site.theme.themeColor,
     icons: [
       ...(icon192 ? [{ src: icon192, sizes: "192x192", type: "image/png" }] : []),
       ...(icon512 ? [{ src: icon512, sizes: "512x512", type: "image/png" }] : []),
