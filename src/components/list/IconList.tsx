@@ -10,22 +10,41 @@ export interface IconListItem {
 
 interface IconListProps {
   items: IconListItem[];
+  layout?: "list" | "grid";
 }
 
-export function IconList({ items }: IconListProps) {
+function IconListItemContent({ item }: { item: IconListItem }) {
+  return (
+    <BoxIcon
+      icon={item.icon}
+      iconMediaId={item.mediaId}
+      title={item.title}
+      description={item.description}
+      iconClassName="h-8 w-8 text-blue-600"
+      titleClassName="text-base normal-case text-gray-900"
+      descriptionClassName="text-sm text-gray-500 opacity-100"
+    />
+  );
+}
+
+export function IconList({ items, layout = "list" }: IconListProps) {
+  if (layout === "grid") {
+    return (
+      <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        {items.map((item, index) => (
+          <div key={`${item.title}-${index}`} className="min-w-0">
+            <IconListItemContent item={item} />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <Panel className="divide-y divide-gray-100 p-4">
       {items.map((item, index) => (
         <div key={`${item.title}-${index}`} className="py-3 first:pt-0 last:pb-0">
-          <BoxIcon
-            icon={item.icon}
-            iconMediaId={item.mediaId}
-            title={item.title}
-            description={item.description}
-            iconClassName="h-8 w-8 text-blue-600"
-            titleClassName="text-base normal-case text-gray-900"
-            descriptionClassName="text-sm text-gray-500 opacity-100"
-          />
+          <IconListItemContent item={item} />
         </div>
       ))}
     </Panel>
