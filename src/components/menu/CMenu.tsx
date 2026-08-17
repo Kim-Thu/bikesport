@@ -2,19 +2,15 @@ import { CLink } from "@/components/link/CLink";
 import { CList } from "@/components/list/CList";
 import { MenuItemContent } from "@/components/navigation/partials/MenuItemContent";
 import type { CMenuProps } from "@/interfaces/menu.interface";
-import { createMenuIndex, getMenuById, getMenuHref, sortMenuItems } from "@/lib/menu.utils";
+import { createMenuIndex, getMenuHref, sortMenuItems } from "@/lib/menu-presentation.utils";
 
 export function CMenu({
-  menuId,
+  menu,
   listClassName = "",
   itemClassName = "",
   linkClassName = "",
   includeChildren = false,
 }: CMenuProps) {
-  const menu = getMenuById(menuId);
-
-  if (!menu) return null;
-
   const items = includeChildren ? sortMenuItems(menu.items) : createMenuIndex(menu.items).rootItems;
 
   return (
