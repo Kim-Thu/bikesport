@@ -6,6 +6,7 @@ import { createMenuIndex, getMenuHref, sortMenuItems } from "@/lib/menu-presenta
 
 export function CMenu({
   menu,
+  mediaById,
   listClassName = "",
   itemClassName = "",
   linkClassName = "",
@@ -21,7 +22,7 @@ export function CMenu({
         key: item._id,
         content: (
           <CLink href={getMenuHref(item)} className={linkClassName}>
-            <MenuItemContent item={item} />
+            <MenuItemContent item={item} mediaById={mediaById} />
           </CLink>
         ),
       }))}
