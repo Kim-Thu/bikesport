@@ -117,6 +117,7 @@ export interface CardGridBlockPayload extends PageBlockBase {
 export interface IconListBlockPayload extends PageBlockBase {
   component: "icon-list";
   props: {
+    layout?: "list" | "grid";
     items: Array<{ icon?: string; mediaId?: string; title: string; description?: string }>;
   };
 }
