@@ -5,7 +5,7 @@ export function Column({ children, grow = false, className = "" }: ColumnProps) 
   return (
     <div
       className={cn(
-        "flex self-stretch flex-col",
+        "self-stretch",
         grow ? "min-w-0 flex-1" : "shrink-0",
         className,
       )}
