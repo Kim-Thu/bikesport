@@ -18,6 +18,7 @@ import { createMongoPostDataSource } from "@/data-access/mongodb/mongodb-post-da
 import { createMongoProductDataSource } from "@/data-access/mongodb/mongodb-product-data-source";
 import { createMongoPromotionDataSource } from "@/data-access/mongodb/mongodb-promotion-data-source";
 import { createMongoReviewDataSource } from "@/data-access/mongodb/mongodb-review-data-source";
+import { createMongoSeoDataSource } from "@/data-access/mongodb/mongodb-seo-data-source";
 import { createMongoStoreDataSource } from "@/data-access/mongodb/mongodb-store-data-source";
 import { createMongoUserDataSource } from "@/data-access/mongodb/mongodb-user-data-source";
 import type { MongoDatabaseProvider } from "@/data-access/mongodb/mongodb-driver.interface";
@@ -46,6 +47,7 @@ export function createMongoDataSources(
     media: createMongoMediaDataSource(getDatabase),
     order: createMongoOrderDataSource(getDatabase),
     review: createMongoReviewDataSource(getDatabase),
+    seo: createMongoSeoDataSource(getDatabase),
   };
 }
 
