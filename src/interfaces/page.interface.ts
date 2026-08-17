@@ -83,6 +83,7 @@ export interface LayoutSectionPayload extends PageSectionBase {
   props: {
     sectionTemplate?: SectionTemplate;
     sectionClassName?: string;
+    containerClassName?: string;
   };
   rows: LayoutRowPayload[];
 }
