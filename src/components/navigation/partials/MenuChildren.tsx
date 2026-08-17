@@ -1,7 +1,7 @@
 import { CLink } from "@/components/link/CLink";
 import { MenuItemContent } from "@/components/navigation/partials/MenuItemContent";
 import type { MenuChildrenProps } from "@/interfaces/navigation.interface";
-import { getMenuHref } from "@/lib/menu.utils";
+import { getMenuHref } from "@/lib/menu-presentation.utils";
 
 export function MenuChildren({
   items,
