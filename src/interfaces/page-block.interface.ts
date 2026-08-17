@@ -48,6 +48,8 @@ export interface ProductSliderBlockPayload extends PageBlockBase {
   component: "product-slider";
   props: {
     title?: string;
+    titleMediaId?: string | null;
+    titleAlt?: string;
     href?: string;
     actionLabel?: string;
     headerTemplate?: SectionHeaderTemplate;
