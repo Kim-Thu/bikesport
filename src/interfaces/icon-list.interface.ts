@@ -8,4 +8,5 @@ export interface IconListItem {
 export interface IconListProps {
   items: IconListItem[];
   layout?: "list" | "grid";
+  mediaUrlById?: Record<string, string>;
 }
