@@ -1,19 +1,18 @@
-import wpPromotion from "@/data/wp-promotion.json";
-import wpProducts from "@/data/wp-products.json";
+import { cache } from "react";
+import { dataSources } from "@/data-access/data-sources";
+import type { ProductDataFilter } from "@/data-access/contracts/product-data-source.interface";
 import type {
   PercentageDiscountBenefit,
-  PromotionData,
   PromotionRecord,
 } from "@/interfaces/promotion.interface";
 import type { ProductRecord } from "@/interfaces/product.interface";
 
-const promotionData = wpPromotion as PromotionData;
-const products = wpProducts.products as ProductRecord[];
-const publishedProducts = products.filter((product) => product.status === "published");
-const productBySku = new Map(products.map((product) => [product.sku, product]));
-const promotionIndex = new Map<string, PromotionRecord>(
-  promotionData.promotions.map((promotion) => [promotion._id, promotion]),
-);
+const getPromotionByIdCached = cache((promotionId: string) => dataSources.promotion.getById(promotionId));
+const getActivePromotionCandidates = cache(() => dataSources.promotion.getActive());
+const getPublishedProductBySku = cache(async (sku: string): Promise<ProductRecord | null> => {
+  const products = await dataSources.product.getPublishedByFilter({ skus: [sku] }, 1);
+  return products[0] ?? null;
+});
 
 export function isPromotionActive(promotion: PromotionRecord, now: Date = new Date()): boolean {
   if (promotion.status !== "active") return false;
@@ -28,17 +27,22 @@ export function isPromotionActive(promotion: PromotionRecord, now: Date = new Da
   return true;
 }
 
-export function getPromotionById(promotionId?: string | null): PromotionRecord | null {
+export async function getPromotionById(promotionId?: string | null): Promise<PromotionRecord | null> {
   if (!promotionId) return null;
-  return promotionIndex.get(promotionId) ?? null;
+  return getPromotionByIdCached(promotionId);
 }
 
-export function getActivePromotionById(
+export async function getActivePromotionById(
   promotionId?: string | null,
   now: Date = new Date(),
-): PromotionRecord | null {
-  const promotion = getPromotionById(promotionId);
+): Promise<PromotionRecord | null> {
+  const promotion = await getPromotionById(promotionId);
   return promotion && isPromotionActive(promotion, now) ? promotion : null;
+}
+
+export async function getActivePromotions(now: Date = new Date()): Promise<PromotionRecord[]> {
+  const promotions = await getActivePromotionCandidates();
+  return promotions.filter((promotion) => isPromotionActive(promotion, now));
 }
 
 function getPercentageBenefit(promotion: PromotionRecord): PercentageDiscountBenefit | null {
@@ -81,6 +85,18 @@ function matchesTarget(product: ProductRecord, promotion: PromotionRecord): bool
   return target.match === "all" ? selectors.every(Boolean) : selectors.some(Boolean);
 }
 
+function getProductFilter(promotion: PromotionRecord): ProductDataFilter {
+  const target = promotion.target;
+  return {
+    skus: target.skus,
+    categoryIds: target.categoryIds,
+    tagIds: target.tagIds,
+    brandIds: target.brandIds,
+    excludeSkus: target.excludeSkus,
+    match: target.match,
+  };
+}
+
 function getIntrinsicDiscountPercentage(product: ProductRecord): number | null {
   if (!product.salePrice || product.salePrice >= product.price) return null;
   return Math.round(((product.price - product.salePrice) / product.price) * 100);
@@ -106,14 +122,20 @@ function sortPromotionProducts(items: ProductRecord[], promotion: PromotionRecor
   });
 }
 
-export function getPromotionProducts(promotion: PromotionRecord, limit?: number): ProductRecord[] {
+export async function getPromotionProducts(
+  promotion: PromotionRecord,
+  limit?: number,
+): Promise<ProductRecord[]> {
   let matchedProducts: ProductRecord[];
 
+  if (promotion.target.type === "cart") return [];
+
   if (hasTargetSelectors(promotion)) {
-    matchedProducts = publishedProducts.filter((product) => matchesTarget(product, promotion));
+    matchedProducts = await dataSources.product.getPublishedByFilter(getProductFilter(promotion));
   } else {
     const percentage = getPercentageBenefit(promotion)?.percentage;
-    matchedProducts = publishedProducts.filter((product) => {
+    const products = await dataSources.product.getPublished();
+    matchedProducts = products.filter((product) => {
       if (typeof percentage !== "number") return true;
       return getIntrinsicDiscountPercentage(product) === percentage;
     });
@@ -186,14 +208,22 @@ export function getPromotionProductPricing(product: ProductRecord, promotion: Pr
   };
 }
 
-export function getActivePromotionsForSku(
+export async function getActivePromotionsForSku(
   sku: string,
   now: Date = new Date(),
-): PromotionRecord[] {
-  const product = productBySku.get(sku);
+): Promise<PromotionRecord[]> {
+  const product = await getPublishedProductBySku(sku);
   if (!product) return [];
 
-  return promotionData.promotions
-    .filter((promotion) => isPromotionActive(promotion, now) && matchesTarget(product, promotion))
+  const promotions = await getActivePromotions(now);
+  return promotions
+    .filter((promotion) => matchesTarget(product, promotion))
     .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
+}
+
+export function findActivePromotionForProduct(
+  product: ProductRecord,
+  promotions: PromotionRecord[],
+): PromotionRecord | null {
+  return promotions.find((promotion) => matchesTarget(product, promotion)) ?? null;
 }
