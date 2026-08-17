@@ -1,15 +1,20 @@
 import { notFound } from "next/navigation";
 import { PageSections } from "@/components/page/PageSections";
-import wpPages from "@/data/wp-pages.json";
-import type { PageRecord } from "@/interfaces/page.interface";
+import {
+  getPublishedPageBySlug,
+  getPublishedPageSlugs,
+} from "@/lib/page.utils";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return getPublishedPageSlugs().map((slug) => ({ slug }));
+}
 
 export default async function ContentPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const page = (wpPages.pages as PageRecord[]).find(
-    (item) => item.slug === slug && item.status === "published",
-  );
+  const page = getPublishedPageBySlug(slug);
 
   if (!page) notFound();
 
