@@ -171,23 +171,14 @@
                       {
                         "_id": "66bf4e8c9f2a4d7b8c1e42g2",
                         "status": "active",
-                        "component": "tabs-slider",
+                        "component": "card-grid",
                         "props": {
-                          "title": "Combo tiết kiệm",
+                          "title": "Deal ngon - Giá hời",
                           "href": "/combo",
                           "actionLabel": "Xem tất cả",
                           "template": "media-action",
-                          "trackClassName": "-ml-4",
-                          "slideClassName": "basis-48 pl-4 sm:basis-52 lg:basis-1/3",
-                          "source": {
-                            "type": "combo",
-                            "tabs": [
-                              { "label": "Giá tốt", "comboId": "66bf4e8c9f2a4d7b8c1e4701" },
-                              { "label": "Đi phố", "comboId": "66bf4e8c9f2a4d7b8c1e4702" },
-                              { "label": "Người lớn tuổi", "comboId": "66bf4e8c9f2a4d7b8c1e4703" },
-                              { "label": "Bắt đầu thể thao", "comboId": "66bf4e8c9f2a4d7b8c1e4704" }
-                            ]
-                          }
+                          "gridClassName": "grid-cols-2 xl:grid-cols-4",
+                          "source": { "type": "combo", "featured": true, "limit": 4 }
                         }
                       }
                     ]
@@ -350,7 +341,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-17T08:16:00+07:00"
+      "updatedAt": "2026-08-17T08:18:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
