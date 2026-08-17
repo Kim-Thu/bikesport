@@ -10,8 +10,6 @@ import {
 } from "@/lib/promotion.utils";
 import { getProductReviewStatsBySku } from "@/lib/review.utils";
 
-const REVIEW_STATS_BY_SKU = getProductReviewStatsBySku();
-
 export async function mapProductsToCollectionItems(
   products: ProductRecord[],
   explicitPromotion?: PromotionRecord | null,
@@ -22,7 +20,10 @@ export async function mapProductsToCollectionItems(
     const productBadge = promotion?.productBadges?.find((item) => item.sku === product.sku);
     return [getProductPrimaryMediaId(product), productBadge?.mediaId].filter((mediaId): mediaId is string => Boolean(mediaId));
   });
-  const mediaById = await getMediaWithFallbackByIds(mediaIds);
+  const [mediaById, reviewStatsBySku] = await Promise.all([
+    getMediaWithFallbackByIds(mediaIds),
+    getProductReviewStatsBySku(products.map((product) => product.sku)),
+  ]);
 
   return products.map((product) => {
     const promotion = explicitPromotion ?? findActivePromotionForProduct(product, activePromotions);
@@ -34,7 +35,7 @@ export async function mapProductsToCollectionItems(
         };
     const inventory = promotion?.inventory?.find((item) => item.sku === product.sku);
     const productBadge = promotion?.productBadges?.find((item) => item.sku === product.sku);
-    const reviewStats = REVIEW_STATS_BY_SKU.get(product.sku);
+    const reviewStats = reviewStatsBySku.get(product.sku);
     const mediaId = getProductPrimaryMediaId(product);
     const promotionBadgeMediaId = productBadge?.mediaId;
 
