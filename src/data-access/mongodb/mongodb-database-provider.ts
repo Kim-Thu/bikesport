@@ -1,21 +1,24 @@
 import "server-only";
+import { getMongoDataSourceConfig } from "@/data-access/data-source.config";
 import type {
+  MongoConnectionFactory,
   MongoDatabaseLike,
-  MongoDatabaseProvider,
 } from "@/data-access/mongodb/mongodb-driver.interface";
 
-let databaseProvider: MongoDatabaseProvider | null = null;
+let connectionFactory: MongoConnectionFactory | null = null;
 
-export function registerMongoDatabaseProvider(provider: MongoDatabaseProvider) {
-  databaseProvider = provider;
+export function registerMongoConnectionFactory(factory: MongoConnectionFactory) {
+  connectionFactory = factory;
 }
 
 export async function getMongoDatabase(): Promise<MongoDatabaseLike> {
-  if (!databaseProvider) {
+  const config = getMongoDataSourceConfig();
+
+  if (!connectionFactory) {
     throw new Error(
-      "MongoDB database provider is not registered. Configure the MongoDB driver connection before using DATA_SOURCE=mongodb.",
+      "MongoDB query adapters are ready, but the runtime MongoDB connection factory is not registered. Keep DATA_SOURCE=json while building the storefront, or register MongoClient later when MongoDB is enabled.",
     );
   }
 
-  return databaseProvider();
+  return connectionFactory(config);
 }
