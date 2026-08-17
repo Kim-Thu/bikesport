@@ -64,6 +64,12 @@ export interface ProductSliderBlockPayload extends PageBlockBase {
           limit?: number;
         }
       | {
+          type: "campaign";
+          campaignId: string;
+          categoryId?: string;
+          limit?: number;
+        }
+      | {
           type: "category";
           categoryId: string;
           limit?: number;
