@@ -1,3 +1,4 @@
+import type { MediaItem } from "@/interfaces/media.interface";
 import type {
   ContactLinkOptions,
   SiteIdentityOptions,
@@ -43,6 +44,7 @@ export interface NavMenuProps {
 export interface MobileMenuClientProps {
   menu: NavMenuData;
   site: SiteIdentityOptions;
+  logoMedia: MediaItem | null;
   hotline: ContactLinkOptions;
   socialItems: SocialLinkOptions[];
 }
