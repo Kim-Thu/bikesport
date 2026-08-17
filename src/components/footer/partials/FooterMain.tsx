@@ -8,10 +8,13 @@ import { CMenu } from "@/components/menu/CMenu";
 import { Section } from "@/components/section/Section";
 import { Social } from "@/components/social/Social";
 import type { FooterSettings } from "@/interfaces/footer.interface";
-import { getMenuById } from "@/lib/menu.utils";
+import { getMenuById } from "@/lib/menu-data.utils";
 
-export function FooterMain({ settings }: { settings: FooterSettings }) {
+export async function FooterMain({ settings }: { settings: FooterSettings }) {
   const menuIds = settings.menuIds ?? [];
+  const menus = (await Promise.all(menuIds.map((menuId) => getMenuById(menuId)))).filter(
+    (menu) => menu !== null,
+  );
 
   return (
     <Container className="py-8 sm:py-10 lg:py-12">
@@ -28,25 +31,20 @@ export function FooterMain({ settings }: { settings: FooterSettings }) {
 
         <Column grow className="w-full">
           <Row className="flex-wrap items-start gap-x-8 gap-y-8 sm:gap-x-10 xl:justify-between">
-            {menuIds.map((menuId) => {
-              const menu = getMenuById(menuId);
-              if (!menu) return null;
-
-              return (
-                <Column key={menuId} className="w-full sm:w-auto sm:min-w-48 sm:flex-1 xl:min-w-0">
-                  <Section>
-                    <Heading level={4} className="mb-4 text-sm font-bold uppercase tracking-wide text-gray-900">
-                      {menu.name}
-                    </Heading>
-                    <CMenu
-                      menuId={menuId}
-                      listClassName="space-y-3 text-sm text-gray-600"
-                      linkClassName="transition hover:text-blue-600 focus:text-blue-600"
-                    />
-                  </Section>
-                </Column>
-              );
-            })}
+            {menus.map((menu) => (
+              <Column key={menu._id} className="w-full sm:w-auto sm:min-w-48 sm:flex-1 xl:min-w-0">
+                <Section>
+                  <Heading level={4} className="mb-4 text-sm font-bold uppercase tracking-wide text-gray-900">
+                    {menu.name}
+                  </Heading>
+                  <CMenu
+                    menu={menu}
+                    listClassName="space-y-3 text-sm text-gray-600"
+                    linkClassName="transition hover:text-blue-600 focus:text-blue-600"
+                  />
+                </Section>
+              </Column>
+            ))}
           </Row>
         </Column>
       </Row>
