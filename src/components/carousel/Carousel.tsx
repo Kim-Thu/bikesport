@@ -19,6 +19,7 @@ interface CarouselProps {
   dragFree?: boolean;
   showArrows?: boolean;
   autoHeight?: boolean;
+  stretchSlides?: boolean;
 }
 
 export function Carousel({
@@ -34,6 +35,7 @@ export function Carousel({
   dragFree = false,
   showArrows = false,
   autoHeight = false,
+  stretchSlides = false,
 }: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop,
@@ -118,14 +120,24 @@ export function Carousel({
           viewportClassName,
         )}
       >
-        <div className={cn("flex touch-pan-y items-start", trackClassName)}>
+        <div
+          className={cn(
+            "flex touch-pan-y",
+            stretchSlides ? "items-stretch" : "items-start",
+            trackClassName,
+          )}
+        >
           {children.map((child, index) => (
             <div
               key={index}
               ref={(node) => {
                 slideRefs.current[index] = node;
               }}
-              className={cn("flex min-w-0 grow-0 shrink-0 basis-full self-start", slideClassName)}
+              className={cn(
+                "flex min-w-0 grow-0 shrink-0 basis-full",
+                stretchSlides ? "self-stretch [&>*]:w-full" : "self-start",
+                slideClassName,
+              )}
             >
               {child}
             </div>
