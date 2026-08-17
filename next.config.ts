@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const isDevelopment = process.env.NODE_ENV === "development";
+const isProduction = process.env.NODE_ENV === "production";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -35,15 +36,46 @@ const securityHeaders = [
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
   },
+  {
+    key: "Cross-Origin-Opener-Policy",
+    value: "same-origin",
+  },
+  ...(isProduction
+    ? [
+        {
+          key: "Strict-Transport-Security",
+          value: "max-age=31536000; includeSubDomains",
+        },
+      ]
+    : []),
+];
+
+const staticMediaCacheHeaders = [
+  {
+    key: "Cache-Control",
+    value: "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800",
+  },
 ];
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
+  images: {
+    minimumCacheTTL: 86400,
+  },
   async headers() {
     return [
       {
         source: "/:path*",
         headers: securityHeaders,
+      },
+      {
+        source: "/uploads/:path*",
+        headers: staticMediaCacheHeaders,
+      },
+      {
+        source: "/bikesport-logo.svg",
+        headers: staticMediaCacheHeaders,
       },
     ];
   },
