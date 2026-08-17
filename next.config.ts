@@ -16,7 +16,7 @@ const contentSecurityPolicy = [
   `connect-src 'self'${isDevelopment ? " ws: wss:" : ""}`,
   "media-src 'self'",
   "worker-src 'self' blob:",
-  "upgrade-insecure-requests",
+  ...(isProduction ? ["upgrade-insecure-requests"] : []),
 ].join("; ");
 
 const securityHeaders = [
