@@ -1,6 +1,6 @@
 import type { ProductCollectionItem } from "@/interfaces/product-collection-item.interface";
 import type { ProductCollectionSource } from "@/interfaces/product-source.interface";
-import type { PromotionSession, PromotionSessionStatus } from "@/interfaces/promotion.interface";
+import type { PromotionSessionStatus } from "@/interfaces/promotion.interface";
 import { getCampaignProducts } from "@/lib/campaign.utils";
 import { getCategoryTreeIds } from "@/lib/category.utils";
 import { getActiveCombos, getComboProducts } from "@/lib/combo.utils";
@@ -15,16 +15,6 @@ export interface PromotionSessionCollectionGroup {
   startAt?: string;
   endAt?: string;
   items: ProductCollectionItem[];
-}
-
-function getPromotionSessionStatus(session: PromotionSession, now = Date.now()): PromotionSessionStatus {
-  const startAt = new Date(session.startAt).getTime();
-  const endAt = new Date(session.endAt).getTime();
-
-  if (!Number.isFinite(startAt) || !Number.isFinite(endAt)) return session.status;
-  if (now < startAt) return "upcoming";
-  if (now > endAt) return "ended";
-  return "active";
 }
 
 export function getPromotionSessionCollectionGroups(
@@ -53,8 +43,6 @@ export function getPromotionSessionCollectionGroups(
     ];
   }
 
-  const now = Date.now();
-
   return sessions.map((session) => {
     const sessionProducts = session.skus?.length
       ? promotionProducts.filter((product) => session.skus?.includes(product.sku))
@@ -63,7 +51,7 @@ export function getPromotionSessionCollectionGroups(
     return {
       label: session.label,
       value: session._id,
-      status: getPromotionSessionStatus(session, now),
+      status: session.status,
       startAt: session.startAt,
       endAt: session.endAt,
       items: mapProductsToCollectionItems(
