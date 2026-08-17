@@ -47,11 +47,14 @@ async function resolveComboCards(
 async function resolvePostCards(
   source: Extract<CardGridSource, { type: "post" }>,
 ): Promise<CardProps[]> {
-  const posts = getLatestPosts(source.limit);
+  const posts = await getLatestPosts(source.limit);
 
   return Promise.all(
     posts.map(async (post) => {
-      const category = post.categoryIds[0] ? await getCategoryById(post.categoryIds[0]) : null;
+      const [category, author] = await Promise.all([
+        post.categoryIds[0] ? getCategoryById(post.categoryIds[0]) : Promise.resolve(null),
+        getUserById(post.authorId),
+      ]);
 
       return {
         title: post.title,
@@ -61,7 +64,7 @@ async function resolvePostCards(
         publishedAt: post.publishedAt,
         categoryName: category?.name,
         categoryHref: category ? `/category/${category.slug}` : undefined,
-        authorName: getUserById(post.authorId)?.displayName,
+        authorName: author?.displayName,
         actionLabel: "Xem thêm",
       };
     }),
@@ -87,7 +90,8 @@ async function resolveStoreCards(
 async function resolveEventCards(
   source: Extract<CardGridSource, { type: "event" }>,
 ): Promise<CardProps[]> {
-  return getFeaturedEvents(source.limit).map((event) => ({
+  const events = await getFeaturedEvents(source.limit);
+  return events.map((event) => ({
     title: event.title,
     href: `/su-kien/${event.slug}`,
     mediaId: event.mediaId,
