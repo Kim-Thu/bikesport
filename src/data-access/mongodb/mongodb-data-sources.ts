@@ -1,6 +1,7 @@
 import type { DataSources } from "@/data-access/contracts/data-sources.interface";
 import { getMongoDatabase } from "@/data-access/mongodb/mongodb-database-provider";
 import { createMongoAdsDataSource } from "@/data-access/mongodb/mongodb-ads-data-source";
+import { createMongoAnnouncementDataSource } from "@/data-access/mongodb/mongodb-announcement-data-source";
 import { createMongoBannerDataSource } from "@/data-access/mongodb/mongodb-banner-data-source";
 import { createMongoBrandDataSource } from "@/data-access/mongodb/mongodb-brand-data-source";
 import { createMongoCampaignDataSource } from "@/data-access/mongodb/mongodb-campaign-data-source";
@@ -34,6 +35,7 @@ export function createMongoDataSources(
     ads: createMongoAdsDataSource(getDatabase),
     combo: createMongoComboDataSource(getDatabase),
     campaign: createMongoCampaignDataSource(getDatabase),
+    announcement: createMongoAnnouncementDataSource(getDatabase),
   };
 }
 
