@@ -1,13 +1,10 @@
 import { MediaImage } from "@/components/media/MediaImage";
-import paymentData from "@/data/wp-payment.json";
-import type { PaymentMethod, PaymentProps } from "@/interfaces/payment.interface";
+import type { PaymentProps } from "@/interfaces/payment.interface";
 import { cn } from "@/lib/classname.utils";
+import { getEnabledPaymentMethods } from "@/lib/payment.utils";
 
-export function Payment({ className = "", itemClassName = "", imageClassName = "" }: PaymentProps) {
-  const methods = (paymentData.paymentMethods as PaymentMethod[])
-    .filter((method) => method.enabled !== false)
-    .slice()
-    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+export async function Payment({ className = "", itemClassName = "", imageClassName = "" }: PaymentProps) {
+  const methods = await getEnabledPaymentMethods();
 
   if (!methods.length) return null;
 
