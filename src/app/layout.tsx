@@ -7,6 +7,7 @@ import wpOption from "@/data/wp-option.json";
 import type { FooterSettings } from "@/interfaces/footer.interface";
 import type { HeaderSettings } from "@/interfaces/header.interface";
 import type { SeoGlobalSettings } from "@/interfaces/seo.interface";
+import { getHomeUrl } from "@/lib/link.utils";
 import { getMediaUrl } from "@/lib/media.utils";
 import "@/styles/globals.css";
 
@@ -17,6 +18,8 @@ const inter = Inter({
 
 const globalSeo = wpOption.seo as SeoGlobalSettings;
 const siteIcons = wpOption.site.icons;
+const siteUrl = getHomeUrl();
+const metadataBase = siteUrl ? new URL(siteUrl) : undefined;
 const faviconUrl = getMediaUrl(siteIcons.faviconMediaId);
 const favicon32Url = getMediaUrl(siteIcons.favicon32MediaId);
 const appleTouchIconUrl = getMediaUrl(siteIcons.appleTouchIconMediaId);
@@ -24,6 +27,7 @@ const defaultOgImageUrl = getMediaUrl(globalSeo.openGraph?.defaultImageMediaId);
 const defaultTwitterImageUrl = getMediaUrl(globalSeo.twitter?.defaultImageMediaId);
 
 export const metadata: Metadata = {
+  metadataBase,
   title: wpOption.site.siteTitle,
   description: globalSeo.defaultDescription,
   applicationName: wpOption.site.siteTitle,
@@ -34,13 +38,13 @@ export const metadata: Metadata = {
     type: globalSeo.openGraph?.type,
     locale: globalSeo.openGraph?.locale,
     siteName: wpOption.site.siteTitle,
-    images: defaultOgImageUrl ? [{ url: defaultOgImageUrl }] : undefined,
+    images: metadataBase && defaultOgImageUrl ? [{ url: defaultOgImageUrl }] : undefined,
   },
   twitter: {
     card: globalSeo.twitter?.card,
     title: wpOption.site.siteTitle,
     description: globalSeo.defaultDescription,
-    images: defaultTwitterImageUrl ? [defaultTwitterImageUrl] : undefined,
+    images: metadataBase && defaultTwitterImageUrl ? [defaultTwitterImageUrl] : undefined,
   },
   manifest: "/manifest.webmanifest",
   icons: {
