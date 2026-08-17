@@ -74,17 +74,21 @@ async function resolvePostCards(
 async function resolveStoreCards(
   source: Extract<CardGridSource, { type: "store" }>,
 ): Promise<CardProps[]> {
-  return getFeaturedStores(source.limit).map((store) => ({
-    title: store.name,
-    href: `/cua-hang/${store.slug}`,
-    mediaId: store.mediaId,
-    metaItems: [
-      { icon: "location", text: formatStoreAddress(store) },
-      ...(store.phone ? [{ icon: "phone", text: store.phone }] : []),
-      ...(store.openingHours ? [{ icon: "clock", text: store.openingHours }] : []),
-    ],
-    actionLabel: "Xem cửa hàng",
-  }));
+  const stores = await getFeaturedStores(source.limit);
+
+  return Promise.all(
+    stores.map(async (store) => ({
+      title: store.name,
+      href: `/cua-hang/${store.slug}`,
+      mediaId: store.mediaId,
+      metaItems: [
+        { icon: "location", text: await formatStoreAddress(store) },
+        ...(store.phone ? [{ icon: "phone", text: store.phone }] : []),
+        ...(store.openingHours ? [{ icon: "clock", text: store.openingHours }] : []),
+      ],
+      actionLabel: "Xem cửa hàng",
+    })),
+  );
 }
 
 async function resolveEventCards(
