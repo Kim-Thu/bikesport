@@ -1,9 +1,10 @@
 import { TabsSlider, type TabsSliderGroup } from "@/components/slider/TabsSlider";
 import type { TabsSliderBlockPayload } from "@/interfaces/page-block.interface";
 import { getActiveBrands } from "@/lib/brand.utils";
-import { getProductCollectionItems } from "@/lib/product-collection-source.utils";
-import { mapProductsToCollectionItems } from "@/lib/product-collection.utils";
-import { getPromotionById, getPromotionProducts } from "@/lib/promotion.utils";
+import {
+  getProductCollectionItems,
+  getPromotionSessionCollectionGroups,
+} from "@/lib/product-collection-source.utils";
 
 export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
   const activeBrands = getActiveBrands();
@@ -29,43 +30,7 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
       };
     });
   } else if (source.type === "flash-sale") {
-    const promotion = getPromotionById(source.promotionId);
-    if (!promotion) return null;
-
-    const promotionProducts = getPromotionProducts(promotion);
-    const sessions = promotion.sessions ?? [];
-
-    groups = sessions.length
-      ? sessions.map((session) => {
-          const sessionProducts = session.skus?.length
-            ? promotionProducts.filter((product) => session.skus?.includes(product.sku))
-            : promotionProducts;
-
-          return {
-            label: session.label,
-            value: session._id,
-            status: session.status,
-            startAt: session.startAt,
-            endAt: session.endAt,
-            items: mapProductsToCollectionItems(
-              typeof source.limit === "number" ? sessionProducts.slice(0, source.limit) : sessionProducts,
-              promotion,
-            ),
-          };
-        })
-      : [
-          {
-            label: "Hôm nay",
-            value: promotion._id,
-            status: "active",
-            startAt: promotion.startAt,
-            endAt: promotion.endAt,
-            items: mapProductsToCollectionItems(
-              typeof source.limit === "number" ? promotionProducts.slice(0, source.limit) : promotionProducts,
-              promotion,
-            ),
-          },
-        ];
+    groups = getPromotionSessionCollectionGroups(source.promotionId, source.limit);
   } else {
     groups = source.tabs.map((tab) => ({
       label: tab.label,
