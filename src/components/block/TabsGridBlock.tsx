@@ -5,11 +5,9 @@ import { getMediaWithFallbackByIds } from "@/lib/media.utils";
 import { getProductCollectionItems } from "@/lib/product-collection-source.utils";
 
 export async function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) {
-  const mediaIds = [
-    block.props.titleMediaId,
-    block.props.backgroundMediaId,
-    ...block.props.tabs.map((tab) => tab.mediaId),
-  ].filter((mediaId): mediaId is string => Boolean(mediaId));
+  const mediaIds = [block.props.titleMediaId, block.props.backgroundMediaId].filter(
+    (mediaId): mediaId is string => Boolean(mediaId),
+  );
 
   const [mediaById, groups] = await Promise.all([
     getMediaWithFallbackByIds(mediaIds),
@@ -17,16 +15,12 @@ export async function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) 
       block.props.tabs.map(async (tab) => ({
         label: tab.label,
         value: tab.value,
-        mediaId: tab.mediaId,
         items: await getProductCollectionItems(tab.source),
       })),
     ),
   ]);
 
-  const resolvedGroups: TabsGridGroup[] = groups.map((group) => ({
-    ...group,
-    media: group.mediaId ? mediaById[group.mediaId] ?? null : null,
-  }));
+  const resolvedGroups: TabsGridGroup[] = groups;
 
   if (!resolvedGroups.some((group) => group.items.length)) {
     return <EmptyContent />;
