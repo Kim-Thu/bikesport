@@ -1,18 +1,16 @@
-import wpAnnouncement from "@/data/wp-announcement.json";
-import type { AnnouncementData, AnnouncementRecord } from "@/interfaces/announcement.interface";
+import { dataSources } from "@/data-access/data-sources";
+import type { AnnouncementRecord } from "@/interfaces/announcement.interface";
 
-const announcementData = wpAnnouncement as AnnouncementData;
-const announcementIndex = new Map<string, AnnouncementRecord>(
-  announcementData.announcements.map((announcement) => [announcement._id, announcement]),
-);
-
-export function getAnnouncementById(announcementId?: string | null): AnnouncementRecord | null {
+export async function getAnnouncementById(
+  announcementId?: string | null,
+): Promise<AnnouncementRecord | null> {
   if (!announcementId) return null;
-  return announcementIndex.get(announcementId) ?? null;
+  return dataSources.announcement.getById(announcementId);
 }
 
-export function getActiveAnnouncementById(announcementId?: string | null): AnnouncementRecord | null {
-  const announcement = getAnnouncementById(announcementId);
-  if (!announcement || announcement.status !== "active") return null;
-  return announcement;
+export async function getActiveAnnouncementById(
+  announcementId?: string | null,
+): Promise<AnnouncementRecord | null> {
+  if (!announcementId) return null;
+  return dataSources.announcement.getActiveById(announcementId);
 }
