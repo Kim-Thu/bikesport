@@ -98,7 +98,7 @@ export function Tabs({ items, value, onChange, className }: TabsProps) {
     <div
       ref={containerRef}
       className={cn(
-        "flex min-w-0 items-center gap-5 overflow-x-auto overscroll-x-contain scroll-smooth select-none",
+        "scrollbar-none flex min-w-0 items-center gap-5 overflow-x-auto overscroll-x-contain scroll-smooth select-none",
         isDragging ? "cursor-grabbing" : "cursor-grab",
         className,
       )}
