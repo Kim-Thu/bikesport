@@ -3,6 +3,7 @@ import { InfoCard } from "@/components/card/InfoCard";
 import { Countdown } from "@/components/countdown/Countdown";
 import { FeatureItem } from "@/components/feature/FeatureItem";
 import { Heading } from "@/components/heading/Heading";
+import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
 import type { BannerAction, BannerRecord } from "@/interfaces/banner.interface";
 import type { PromotionBenefit } from "@/interfaces/promotion.interface";
@@ -85,7 +86,7 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
               ) : null}
 
               {banner.description ? (
-                <p className="mt-4 max-w-lg text-base leading-7 text-gray-700 sm:text-base sm:leading-7">{banner.description}</p>
+                <p className="mt-4 max-w-lg text-base leading-7 text-gray-700">{banner.description}</p>
               ) : null}
 
               {features.length ? (
@@ -96,18 +97,24 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
 
               {actions.length ? (
                 <div className="mt-6 flex flex-wrap gap-3">
-                  {actions.map((action) => (
-                    <CLink
-                      key={`${action.label}-${action.href}`}
-                      href={action.href}
-                      className={cn(
-                        "inline-flex items-center justify-center rounded-md border px-5 py-2.5 text-xs font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
-                        ACTION_CLASS[action.variant ?? "primary"],
-                      )}
-                    >
-                      {action.label}
-                    </CLink>
-                  ))}
+                  {actions.map((action) => {
+                    const iconPosition = action.iconPosition ?? "left";
+
+                    return (
+                      <CLink
+                        key={`${action.label}-${action.href}`}
+                        href={action.href}
+                        className={cn(
+                          "inline-flex items-center justify-center gap-2 rounded-md border px-5 py-2.5 text-xs font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
+                          ACTION_CLASS[action.variant ?? "primary"],
+                        )}
+                      >
+                        {action.icon && iconPosition === "left" ? <Icon name={action.icon} className="h-4 w-4" /> : null}
+                        <span>{action.label}</span>
+                        {action.icon && iconPosition === "right" ? <Icon name={action.icon} className="h-4 w-4" /> : null}
+                      </CLink>
+                    );
+                  })}
                 </div>
               ) : null}
             </div>
