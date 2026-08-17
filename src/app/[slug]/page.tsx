@@ -8,13 +8,14 @@ import {
 export const revalidate = 300;
 export const dynamicParams = false;
 
-export function generateStaticParams() {
-  return getPublishedPageSlugs().map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  const slugs = await getPublishedPageSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export default async function ContentPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const page = getPublishedPageBySlug(slug);
+  const page = await getPublishedPageBySlug(slug);
 
   if (!page) notFound();
 
