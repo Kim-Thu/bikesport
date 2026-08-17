@@ -11,26 +11,10 @@
       "target": {
         "type": "product",
         "match": "any",
-        "skus": [
-          "GIANT-ATX-610-2024",
-          "TWITTER-R10-2024",
-          "FORLIFE-LUX-2024",
-          "COMBO-MU-KINH",
-          "SHIMANO-RC100"
-        ]
+        "skus": ["GIANT-ATX-610-2024", "TWITTER-R10-2024", "FORLIFE-LUX-2024", "COMBO-MU-KINH", "SHIMANO-RC100"]
       },
-      "benefits": [
-        {
-          "type": "percentage_discount",
-          "percentage": 30,
-          "maxDiscountAmount": 12000000
-        }
-      ],
-      "display": {
-        "href": "/khuyen-mai",
-        "actionLabel": "Xem tất cả",
-        "badgeMediaId": null
-      },
+      "benefits": [{ "type": "percentage_discount", "percentage": 30, "maxDiscountAmount": 12000000 }],
+      "display": { "href": "/khuyen-mai", "actionLabel": "Xem tất cả", "badgeMediaId": null },
       "startAt": "2026-08-01T10:00:00+07:00",
       "endAt": "2026-08-31T22:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
@@ -46,31 +30,13 @@
       "status": "active",
       "priority": 90,
       "stackable": true,
-      "target": {
-        "type": "product",
-        "match": "any",
-        "tagIds": ["66bf4e8c9f2a4d7b8c1e4602"]
-      },
-      "conditions": {
-        "minQuantity": 1
-      },
+      "target": { "type": "product", "match": "any", "tagIds": ["66bf4e8c9f2a4d7b8c1e4602"] },
+      "conditions": { "minQuantity": 1 },
       "benefits": [
-        {
-          "type": "percentage_discount",
-          "percentage": 10
-        },
-        {
-          "type": "voucher",
-          "code": "BIKE200",
-          "valueType": "fixed",
-          "value": 200000
-        }
+        { "type": "percentage_discount", "percentage": 10 },
+        { "type": "voucher", "code": "BIKE200", "valueType": "fixed", "value": 200000 }
       ],
-      "display": {
-        "title": "ƯU ĐÃI BÁN CHẠY",
-        "href": "/khuyen-mai",
-        "actionLabel": "Xem tất cả"
-      },
+      "display": { "title": "ƯU ĐÃI BÁN CHẠY", "href": "/khuyen-mai", "actionLabel": "Xem tất cả" },
       "startAt": "2026-08-01T10:00:00+07:00",
       "endAt": "2026-08-31T22:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
@@ -86,22 +52,9 @@
       "status": "active",
       "priority": 80,
       "stackable": false,
-      "target": {
-        "type": "product",
-        "match": "any",
-        "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c11"]
-      },
-      "benefits": [
-        {
-          "type": "percentage_discount",
-          "percentage": 15
-        }
-      ],
-      "display": {
-        "title": "ƯU ĐÃI XE ĐỊA HÌNH",
-        "href": "/khuyen-mai",
-        "actionLabel": "Xem tất cả"
-      },
+      "target": { "type": "product", "match": "any", "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c11"] },
+      "benefits": [{ "type": "percentage_discount", "percentage": 15 }],
+      "display": { "title": "ƯU ĐÃI XE ĐỊA HÌNH", "href": "/khuyen-mai", "actionLabel": "Xem tất cả" },
       "startAt": "2026-08-10T10:00:00+07:00",
       "endAt": "2026-08-25T22:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
@@ -117,22 +70,9 @@
       "status": "active",
       "priority": 70,
       "stackable": true,
-      "target": {
-        "type": "product",
-        "match": "any",
-        "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c15", "66bf4e8c9f2a4d7b8c1e3c16"]
-      },
-      "benefits": [
-        {
-          "type": "fixed_discount",
-          "amount": 200000
-        }
-      ],
-      "display": {
-        "title": "ƯU ĐÃI PHỤ KIỆN",
-        "href": "/khuyen-mai",
-        "actionLabel": "Xem tất cả"
-      },
+      "target": { "type": "product", "match": "any", "categoryIds": ["66bf4e8c9f2a4d7b8c1e3c15", "66bf4e8c9f2a4d7b8c1e3c16"] },
+      "benefits": [{ "type": "fixed_discount", "amount": 200000 }],
+      "display": { "title": "ƯU ĐÃI PHỤ KIỆN", "href": "/khuyen-mai", "actionLabel": "Xem tất cả" },
       "startAt": "2026-08-01T10:00:00+07:00",
       "endAt": "2026-08-31T22:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
@@ -148,18 +88,9 @@
       "status": "active",
       "priority": 60,
       "stackable": true,
-      "target": {
-        "type": "cart"
-      },
-      "conditions": {
-        "minSubtotal": 5000000
-      },
-      "benefits": [
-        {
-          "type": "free_shipping",
-          "maxShippingDiscount": 300000
-        }
-      ],
+      "target": { "type": "cart" },
+      "conditions": { "minSubtotal": 5000000 },
+      "benefits": [{ "type": "free_shipping", "maxShippingDiscount": 300000 }],
       "startAt": "2026-08-01T10:00:00+07:00",
       "endAt": "2026-08-31T22:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
@@ -179,54 +110,54 @@
         "type": "product",
         "match": "any",
         "skus": [
-          "GIANT-ATX-610-2024",
-          "TREK-MARLIN-5-2024",
-          "SHIMANO-RC100",
-          "TWITTER-R10-2024",
-          "FORLIFE-LUX-2024",
-          "COMBO-MU-KINH",
-          "GIANT-ESCAPE-1-2024",
-          "MERIDA-SPEEDER-100",
-          "TWITTER-THUNDER-R200",
-          "KENDA-URBAN-HELMET"
+          "GIANT-ATX-610-2024", "TREK-MARLIN-5-2024", "SHIMANO-RC100", "TWITTER-R10-2024", "FORLIFE-LUX-2024",
+          "COMBO-MU-KINH", "GIANT-ESCAPE-1-2024", "MERIDA-SPEEDER-100", "TWITTER-THUNDER-R200", "KENDA-URBAN-HELMET"
         ]
       },
-      "benefits": [
-        {
-          "type": "percentage_discount",
-          "percentage": 20,
-          "maxDiscountAmount": 5000000
-        }
-      ],
-      "display": {
-        "title": "FLASH SALE",
-        "href": "/khuyen-mai/flash-sale-17-18-08-2026",
-        "actionLabel": "Xem tất cả"
-      },
+      "benefits": [{ "type": "percentage_discount", "percentage": 20, "maxDiscountAmount": 5000000 }],
+      "display": { "title": "FLASH SALE", "href": "/khuyen-mai/flash-sale-17-18-08-2026", "actionLabel": "Xem tất cả" },
       "inventory": [
-        { "sku": "GIANT-ATX-610-2024", "total": 20 },
-        { "sku": "TREK-MARLIN-5-2024", "total": 15 },
-        { "sku": "SHIMANO-RC100", "total": 30 },
-        { "sku": "TWITTER-R10-2024", "total": 12 },
-        { "sku": "FORLIFE-LUX-2024", "total": 20 },
-        { "sku": "COMBO-MU-KINH", "total": 40 },
-        { "sku": "GIANT-ESCAPE-1-2024", "total": 25 },
-        { "sku": "MERIDA-SPEEDER-100", "total": 20 },
-        { "sku": "TWITTER-THUNDER-R200", "total": 18 },
-        { "sku": "KENDA-URBAN-HELMET", "total": 35 }
+        { "sku": "GIANT-ATX-610-2024", "total": 20 }, { "sku": "TREK-MARLIN-5-2024", "total": 15 },
+        { "sku": "SHIMANO-RC100", "total": 30 }, { "sku": "TWITTER-R10-2024", "total": 12 },
+        { "sku": "FORLIFE-LUX-2024", "total": 20 }, { "sku": "COMBO-MU-KINH", "total": 40 },
+        { "sku": "GIANT-ESCAPE-1-2024", "total": 25 }, { "sku": "MERIDA-SPEEDER-100", "total": 20 },
+        { "sku": "TWITTER-THUNDER-R200", "total": 18 }, { "sku": "KENDA-URBAN-HELMET", "total": 35 }
       ],
       "productBadges": [
+        { "sku": "GIANT-ATX-610-2024", "mediaId": "66bf4e8c9f2a4d7b8c1e3707", "alt": "Tặng 1 bình thể thao" }
+      ],
+      "sessions": [
         {
-          "sku": "GIANT-ATX-610-2024",
-          "mediaId": "66bf4e8c9f2a4d7b8c1e3707",
-          "alt": "Tặng 1 bình thể thao"
+          "_id": "66bf4e8c9f2a4d7b8c1e3911",
+          "label": "Hôm nay",
+          "status": "active",
+          "startAt": "2026-08-17T09:00:00+07:00",
+          "endAt": "2026-08-17T12:00:00+07:00",
+          "skus": ["GIANT-ATX-610-2024", "TREK-MARLIN-5-2024", "SHIMANO-RC100", "TWITTER-R10-2024", "FORLIFE-LUX-2024"]
+        },
+        {
+          "_id": "66bf4e8c9f2a4d7b8c1e3912",
+          "label": "14:00",
+          "status": "upcoming",
+          "startAt": "2026-08-17T14:00:00+07:00",
+          "endAt": "2026-08-17T17:00:00+07:00",
+          "skus": ["GIANT-ESCAPE-1-2024", "MERIDA-SPEEDER-100", "TWITTER-THUNDER-R200", "COMBO-MU-KINH", "KENDA-URBAN-HELMET"]
+        },
+        {
+          "_id": "66bf4e8c9f2a4d7b8c1e3913",
+          "label": "20:00",
+          "status": "upcoming",
+          "startAt": "2026-08-17T20:00:00+07:00",
+          "endAt": "2026-08-17T23:00:00+07:00",
+          "skus": ["TWITTER-R10-2024", "GIANT-ATX-610-2024", "MERIDA-SPEEDER-100", "SHIMANO-RC100", "FORLIFE-LUX-2024"]
         }
       ],
-      "startAt": "2026-08-17T00:00:00+07:00",
+      "startAt": "2026-08-17T09:00:00+07:00",
+      "endAt": "2026-08-18T23:00:00+07:00",
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-17T09:00:00+07:00",
-      "updatedAt": "2026-08-17T07:41:00+07:00"
+      "updatedAt": "2026-08-17T10:55:00+07:00"
     }
   ]
 }
