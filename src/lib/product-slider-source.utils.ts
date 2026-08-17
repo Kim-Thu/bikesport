@@ -1,5 +1,6 @@
 import type { ProductSliderItem } from "@/components/product/ProductSlider";
 import type { ProductSliderBlockPayload } from "@/interfaces/page-block.interface";
+import { getCampaignProducts } from "@/lib/campaign.utils";
 import { getCategoryTreeIds } from "@/lib/category.utils";
 import {
   getProductDiscountPercentage,
@@ -21,17 +22,19 @@ export function getProductSliderItems(source: ProductSliderBlockPayload["props"]
       ? promotion
         ? getPromotionProducts(promotion)
         : []
-      : source.type === "category"
-        ? (() => {
-            const categoryIds = new Set(getCategoryTreeIds(source.categoryId));
-            return getPublishedProducts().filter((product) =>
-              product.categoryIds.some((categoryId) => categoryIds.has(categoryId)),
-            );
-          })()
-        : getPublishedProducts().filter((product) => product.brandId === source.brandId);
+      : source.type === "campaign"
+        ? getCampaignProducts(source.campaignId, source.categoryId, source.limit)
+        : source.type === "category"
+          ? (() => {
+              const categoryIds = new Set(getCategoryTreeIds(source.categoryId));
+              return getPublishedProducts().filter((product) =>
+                product.categoryIds.some((categoryId) => categoryIds.has(categoryId)),
+              );
+            })()
+          : getPublishedProducts().filter((product) => product.brandId === source.brandId);
 
   const limitedProducts =
-    typeof source.limit === "number" ? products.slice(0, source.limit) : products;
+    source.type === "campaign" || typeof source.limit !== "number" ? products : products.slice(0, source.limit);
 
   return limitedProducts.map((product) => {
     const activePromotion = getActivePromotionsForSku(product.sku)[0] ?? null;
