@@ -6,5 +6,5 @@ export async function getEventById(eventId: string): Promise<EventRecord | null>
 }
 
 export async function getFeaturedEvents(limit?: number): Promise<EventRecord[]> {
-  return dataSources.event.getFeatured(limit);
+  return dataSources.event.getFeaturedPublished(limit);
 }
