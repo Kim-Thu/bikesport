@@ -1,14 +1,13 @@
-import { Card } from "@/components/card/Card";
+import { CardGrid } from "@/components/grid/CardGrid";
 import { ActionLink } from "@/components/link/ActionLink";
 import { Container } from "@/components/layout/Container";
 import { MediaImage } from "@/components/media/MediaImage";
-import { SectionHeader } from "@/components/section-header/SectionHeader";
-import { getFeaturedCategoriesByType } from "@/lib/category.utils";
+import { getCardGridItems } from "@/lib/card-grid-source.utils";
 
 const NOT_FOUND_MEDIA_ID: string | null = null;
 
 export default function NotFound() {
-  const suggestions = getFeaturedCategoriesByType("product", 5);
+  const suggestions = getCardGridItems({ type: "category", categoryType: "product", limit: 5 });
 
   return (
     <main aria-labelledby="not-found-title" className="py-10 sm:py-14 lg:py-16">
@@ -44,27 +43,15 @@ export default function NotFound() {
           </div>
         </section>
 
-        {suggestions.length ? (
-          <section aria-label="Bạn có thể quan tâm" className="mt-12 sm:mt-14">
-            <SectionHeader
-              title="Bạn có thể quan tâm"
-              template="featured"
-              className="mb-5"
-            />
-
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-              {suggestions.map((item) => (
-                <Card
-                  key={item._id}
-                  template="media-footer"
-                  title={item.name}
-                  href={`/danh-muc/${item.slug}`}
-                  mediaId={item.mediaId}
-                />
-              ))}
-            </div>
-          </section>
-        ) : null}
+        <section aria-label="Bạn có thể quan tâm" className="mt-12 sm:mt-14">
+          <CardGrid
+            items={suggestions}
+            template="media-footer"
+            title="Bạn có thể quan tâm"
+            headingTemplate="featured"
+            defaultGridClassName="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-flow-col lg:grid-cols-none lg:auto-cols-fr"
+          />
+        </section>
       </Container>
     </main>
   );
