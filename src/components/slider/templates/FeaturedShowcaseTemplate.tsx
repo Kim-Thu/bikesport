@@ -2,6 +2,7 @@ import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
 import { MediaImage } from "@/components/media/MediaImage";
 import type { TabsSliderTemplateProps } from "@/interfaces/tabs-slider.interface";
+import { cn } from "@/lib/classname.utils";
 
 export function FeaturedShowcaseTemplate({
   header,
@@ -9,9 +10,10 @@ export function FeaturedShowcaseTemplate({
   href,
   actionLabel = "Xem tất cả",
   backgroundMediaId,
+  containerClassName,
 }: TabsSliderTemplateProps) {
   return (
-    <div className="relative overflow-hidden rounded-xl bg-gray-50 p-4 sm:p-6">
+    <div className={cn("relative overflow-hidden", containerClassName)}>
       {backgroundMediaId !== undefined ? (
         <div className="pointer-events-none absolute inset-0 opacity-10">
           <MediaImage
