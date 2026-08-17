@@ -68,7 +68,7 @@ export async function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
                     <FeatureItem
                       key={`${feature.title}-${index}`}
                       {...feature}
-                      iconMedia={feature.iconMediaId ? featureMediaById[feature.iconMediaId] ?? null : null}
+                      iconMediaUrl={feature.iconMediaId ? featureMediaById[feature.iconMediaId]?.src : undefined}
                     />
                   ))}
                 </div>
