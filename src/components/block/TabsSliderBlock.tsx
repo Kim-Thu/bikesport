@@ -84,11 +84,16 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
   return (
     <TabsSlider
       title={block.props.title}
+      titleMediaId={block.props.titleMediaId}
+      titleAlt={block.props.titleAlt}
       href={block.props.href}
       actionLabel={block.props.actionLabel}
       groups={groups}
       template={block.props.template}
+      headingTemplate={block.props.headingTemplate}
       tabTemplate={block.props.tabTemplate ?? (block.props.source.type === "brand" ? "image" : "default")}
+      layoutTemplate={block.props.layoutTemplate}
+      backgroundMediaId={block.props.backgroundMediaId}
       trackClassName={block.props.trackClassName}
       slideClassName={block.props.slideClassName}
     />
