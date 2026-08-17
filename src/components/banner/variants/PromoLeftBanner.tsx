@@ -1,13 +1,11 @@
+import { BannerActions } from "@/components/banner/BannerActions";
 import { BannerBackground } from "@/components/banner/BannerBackground";
 import { InfoCard } from "@/components/card/InfoCard";
 import { Countdown } from "@/components/countdown/Countdown";
 import { FeatureItem } from "@/components/feature/FeatureItem";
 import { Heading } from "@/components/heading/Heading";
-import { Icon } from "@/components/icon/Icon";
-import { CLink } from "@/components/link/CLink";
-import type { BannerAction, BannerRecord } from "@/interfaces/banner.interface";
+import type { BannerRecord } from "@/interfaces/banner.interface";
 import type { PromotionBenefit } from "@/interfaces/promotion.interface";
-import { cn } from "@/lib/classname.utils";
 import { getActivePromotionById } from "@/lib/promotion.utils";
 
 function formatMoney(value: number) {
@@ -32,11 +30,6 @@ function getBenefitValue(benefit?: PromotionBenefit): string | undefined {
       return "Miễn phí giao hàng";
   }
 }
-
-const ACTION_CLASS: Record<NonNullable<BannerAction["variant"]>, string> = {
-  primary: "border-blue-600 bg-blue-600 text-white hover:bg-blue-700",
-  outline: "border-blue-600 bg-white text-blue-600 hover:bg-blue-50",
-};
 
 function PromotionInfoCard({ card }: { card: NonNullable<BannerRecord["promotionCards"]>[number] }) {
   const promotion = getActivePromotionById(card.promotionId);
@@ -95,28 +88,7 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
                 </div>
               ) : null}
 
-              {actions.length ? (
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {actions.map((action) => {
-                    const iconPosition = action.iconPosition ?? "left";
-
-                    return (
-                      <CLink
-                        key={`${action.label}-${action.href}`}
-                        href={action.href}
-                        className={cn(
-                          "inline-flex items-center justify-center gap-2 rounded-md border px-5 py-2.5 text-xs font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
-                          ACTION_CLASS[action.variant ?? "primary"],
-                        )}
-                      >
-                        {action.icon && iconPosition === "left" ? <Icon name={action.icon} className="h-4 w-4" /> : null}
-                        <span>{action.label}</span>
-                        {action.icon && iconPosition === "right" ? <Icon name={action.icon} className="h-4 w-4" /> : null}
-                      </CLink>
-                    );
-                  })}
-                </div>
-              ) : null}
+              <BannerActions actions={actions} />
             </div>
           </div>
 
