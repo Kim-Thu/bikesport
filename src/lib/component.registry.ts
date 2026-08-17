@@ -15,7 +15,7 @@ import { Social } from "@/components/social/Social";
 import type { ComponentItem } from "@/interfaces/component.interface";
 import type { ComponentName } from "@/types/component.type";
 
-export const COMPONENT_REGISTRY = {
+export const COMPONENT_REGISTRY: Record<ComponentName, ElementType> = {
   announcement: Announcement,
   button: Button,
   icon: Icon,
@@ -29,7 +29,7 @@ export const COMPONENT_REGISTRY = {
   "mobile-menu": MobileMenu,
   payment: Payment,
   social: Social,
-} satisfies Record<ComponentName, ElementType>;
+};
 
 export function renderComponent(item: ComponentItem, index: number) {
   if (item.enabled === false) return null;
