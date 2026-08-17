@@ -7,6 +7,10 @@ export interface MenuIndex {
   childrenByParentId: Map<string, NavMenuItem[]>;
 }
 
+const menus = menuData.menus as NavMenuData[];
+const menuById = new Map(menus.map((menu) => [menu._id, menu]));
+const resolvedMenuById = new Map<string, NavMenuData>();
+
 export function sortMenuItems(items: NavMenuItem[]) {
   return items.slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 }
@@ -16,7 +20,7 @@ function resolveSourceItems(item: NavMenuItem): NavMenuItem[] {
 
   const brands = item.source.featured === true
     ? getFeaturedBrands(item.source.limit)
-    : getActiveBrands().slice(0, item.source.limit);
+    : getActiveBrands(item.source.limit);
 
   return brands.map((brand, index) => ({
     _id: `menu-brand-${brand._id}`,
@@ -30,12 +34,17 @@ function resolveSourceItems(item: NavMenuItem): NavMenuItem[] {
 }
 
 function resolveMenu(menu: NavMenuData): NavMenuData {
+  const cached = resolvedMenuById.get(menu._id);
+  if (cached) return cached;
+
   const sourceItems = menu.items.flatMap(resolveSourceItems);
-  return sourceItems.length ? { ...menu, items: [...menu.items, ...sourceItems] } : menu;
+  const resolved = sourceItems.length ? { ...menu, items: [...menu.items, ...sourceItems] } : menu;
+  resolvedMenuById.set(menu._id, resolved);
+  return resolved;
 }
 
 export function getMenuById(menuId: string) {
-  const menu = (menuData.menus as NavMenuData[]).find((item) => item._id === menuId);
+  const menu = menuById.get(menuId);
   return menu ? resolveMenu(menu) : undefined;
 }
 
