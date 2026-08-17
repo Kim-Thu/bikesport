@@ -20,8 +20,18 @@ export function MediaCta({
   mediaId,
 }: MediaCtaProps) {
   return (
-    <Panel className="grid min-h-56 overflow-hidden bg-blue-50 sm:min-h-64 sm:grid-cols-5">
-      <div className="flex flex-col justify-center p-6 sm:col-span-3 sm:p-8">
+    <Panel className="relative overflow-hidden bg-blue-50">
+      <MediaImage
+        mediaId={mediaId}
+        alt=""
+        width={1440}
+        height={640}
+        className="absolute inset-0 h-full w-full object-cover object-right"
+      />
+
+      <div className="absolute inset-0 bg-linear-to-r from-blue-50 via-blue-50/95 to-transparent" />
+
+      <div className="relative z-10 p-6 sm:w-3/5 sm:p-8">
         {eyebrow ? <div className="text-xs font-bold uppercase text-blue-600">{eyebrow}</div> : null}
         <div className="mt-1 text-xl font-black uppercase leading-tight text-blue-700 sm:text-2xl">{title}</div>
         {description ? <div className="mt-2 text-sm leading-relaxed text-gray-600 sm:text-base">{description}</div> : null}
@@ -33,16 +43,6 @@ export function MediaCta({
             {actionLabel}
           </CLink>
         </div>
-      </div>
-
-      <div className="min-h-48 overflow-hidden sm:col-span-2 sm:min-h-0">
-        <MediaImage
-          mediaId={mediaId}
-          alt={title}
-          width={640}
-          height={420}
-          className="h-full w-full object-cover"
-        />
       </div>
     </Panel>
   );
