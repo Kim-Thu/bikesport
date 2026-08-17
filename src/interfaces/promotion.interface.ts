@@ -43,6 +43,17 @@ export interface PromotionProductBadge {
   alt: string;
 }
 
+export type PromotionSessionStatus = "active" | "upcoming" | "ended";
+
+export interface PromotionSession {
+  _id: string;
+  label: string;
+  status: PromotionSessionStatus;
+  startAt: string;
+  endAt: string;
+  skus?: string[];
+}
+
 export interface PercentageDiscountBenefit {
   type: "percentage_discount";
   percentage: number;
@@ -92,6 +103,7 @@ export type PromotionBenefit =
 
 export interface PromotionRecord {
   _id: string;
+  campaignId?: string;
   name: string;
   slug: string;
   status: PromotionStatus;
@@ -103,6 +115,7 @@ export interface PromotionRecord {
   display?: PromotionDisplay;
   inventory?: PromotionInventoryItem[];
   productBadges?: PromotionProductBadge[];
+  sessions?: PromotionSession[];
   startAt?: string;
   endAt?: string;
   createdBy: string;
