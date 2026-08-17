@@ -8,6 +8,7 @@ import type { ComboDataSource } from "@/data-access/contracts/combo-data-source.
 import type { EventDataSource } from "@/data-access/contracts/event-data-source.interface";
 import type { MediaDataSource } from "@/data-access/contracts/media-data-source.interface";
 import type { MenuDataSource } from "@/data-access/contracts/menu-data-source.interface";
+import type { MetaDataSource } from "@/data-access/contracts/meta-data-source.interface";
 import type { OptionsDataSource } from "@/data-access/contracts/options-data-source.interface";
 import type { OrderDataSource } from "@/data-access/contracts/order-data-source.interface";
 import type { PageDataSource } from "@/data-access/contracts/page-data-source.interface";
@@ -42,4 +43,5 @@ export interface DataSources {
   order: OrderDataSource;
   review: ReviewDataSource;
   seo: SeoDataSource;
+  meta: MetaDataSource;
 }
