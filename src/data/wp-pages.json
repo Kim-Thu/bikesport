@@ -169,7 +169,7 @@
                   { "icon": "users", "title": "Cộng đồng lớn mạnh", "description": "Tham gia cộng đồng để chia sẻ và truyền cảm hứng mỗi ngày." }
                 ] } }
               ] },
-              { "_id": "66bf4e8c9f2a4d7b8c1e4556", "props": { "grow": true, "className": "w-full lg:w-1/2" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4557", "status": "active", "component": "media", "props": { "mediaId": null, "alt": "Không gian cửa hàng BikeSport", "aspect": "landscape" } }] }
+              { "_id": "66bf4e8c9f2a4d7b8c1e4556", "props": { "grow": true, "className": "w-full lg:w-1/2" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4557", "status": "active", "component": "media", "props": { "mediaId": null, "alt": "Không gian cửa hàng BikeSport", "aspect": "video" } }] }
             ] }]
           },
           {
@@ -181,7 +181,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-17T12:32:00+07:00"
+      "updatedAt": "2026-08-17T12:39:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4110", "title": "Liên hệ", "slug": "lien-he", "path": "/lien-he", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4111", "title": "Hướng dẫn mua hàng", "slug": "huong-dan-mua-hang", "path": "/huong-dan-mua-hang", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
