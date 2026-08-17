@@ -6,7 +6,7 @@ export interface ProductSalesStats {
   lastPurchasedAt: string;
 }
 
-export function getProductSalesStatsBySku(): Map<string, ProductSalesStats> {
+function buildProductSalesStats(): Map<string, ProductSalesStats> {
   const sales = new Map<string, ProductSalesStats>();
 
   for (const order of (wpOrders as OrderData).orders) {
@@ -27,4 +27,10 @@ export function getProductSalesStatsBySku(): Map<string, ProductSalesStats> {
   }
 
   return sales;
+}
+
+const productSalesStatsBySku = buildProductSalesStats();
+
+export function getProductSalesStatsBySku(): ReadonlyMap<string, ProductSalesStats> {
+  return productSalesStatsBySku;
 }
