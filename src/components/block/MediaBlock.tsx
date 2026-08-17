@@ -35,12 +35,8 @@ function resolveAspect(block: MediaBlockPayload): MediaAspect {
 export function MediaBlock({ block }: { block: MediaBlockPayload }) {
   const aspect = resolveAspect(block);
   const size = mediaSizeMap[aspect];
-  const wrapperClassName = block.props.fill
-    ? "h-full min-h-full w-full overflow-hidden rounded-lg"
-    : `${aspectClassMap[aspect]} w-full overflow-hidden rounded-lg`;
-
   const media = (
-    <div className={wrapperClassName}>
+    <div className={`${aspectClassMap[aspect]} h-full w-full overflow-hidden rounded-lg`}>
       <MediaImage
         mediaId={block.props.mediaId}
         alt={block.props.alt}
@@ -52,11 +48,7 @@ export function MediaBlock({ block }: { block: MediaBlockPayload }) {
   );
 
   return block.props.href ? (
-    <CLink
-      href={block.props.href}
-      aria-label={block.props.alt}
-      className={block.props.fill ? "block h-full cursor-pointer" : "block cursor-pointer"}
-    >
+    <CLink href={block.props.href} aria-label={block.props.alt} className="block h-full cursor-pointer">
       {media}
     </CLink>
   ) : (
