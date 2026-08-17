@@ -95,6 +95,7 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
       tabTemplate={block.props.tabTemplate ?? (isBrandSource ? "image" : "default")}
       layoutTemplate={block.props.layoutTemplate ?? (isBrandSource ? "featured-showcase" : "default")}
       backgroundMediaId={block.props.backgroundMediaId}
+      containerClassName={block.props.containerClassName}
       trackClassName={block.props.trackClassName}
       slideClassName={block.props.slideClassName}
     />
