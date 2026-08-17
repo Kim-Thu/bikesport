@@ -23,8 +23,8 @@ export function IconList({ items }: IconListProps) {
             title={item.title}
             description={item.description}
             iconClassName="h-8 w-8 text-blue-600"
-            titleClassName="text-xs normal-case text-gray-900"
-            descriptionClassName="text-2xs text-gray-500 opacity-100"
+            titleClassName="text-base normal-case text-gray-900"
+            descriptionClassName="text-sm text-gray-500 opacity-100"
           />
         </div>
       ))}
