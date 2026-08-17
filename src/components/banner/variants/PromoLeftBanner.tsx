@@ -43,7 +43,7 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
   const promotionCards = banner.promotionCards ?? [];
 
   return (
-    <div className="relative flex aspect-hero-mobile w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent sm:aspect-hero-tablet lg:aspect-8/3">
+    <div className="relative flex w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent sm:aspect-hero-tablet lg:aspect-8/3">
       <BannerBackground banner={banner} imageClassName="lg:object-right" />
 
       <div className="relative z-20 grid w-full flex-1 gap-6 p-5 sm:p-7 lg:grid-cols-12 lg:items-stretch lg:gap-6 lg:p-8">
