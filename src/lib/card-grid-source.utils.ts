@@ -28,7 +28,9 @@ async function resolveCategoryCards(
 async function resolveComboCards(
   source: Extract<CardGridSource, { type: "combo" }>,
 ): Promise<CardProps[]> {
-  const combos = source.featured === false ? getActiveCombos(source.limit) : getFeaturedCombos(source.limit);
+  const combos = await (source.featured === false
+    ? getActiveCombos(source.limit)
+    : getFeaturedCombos(source.limit));
 
   return Promise.all(
     combos.map(async (combo) => ({
