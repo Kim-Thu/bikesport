@@ -1,23 +1,8 @@
-import type { ReactNode } from "react";
 import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
+import type { ActionLinkProps } from "@/interfaces/action-link.interface";
 import { cn } from "@/lib/classname.utils";
-import type {
-  ActionLinkIconPosition,
-  ActionLinkSize,
-  ActionLinkTone,
-} from "@/variants/action-link.variant";
-
-interface ActionLinkProps {
-  href: string;
-  children: ReactNode;
-  tone?: ActionLinkTone;
-  size?: ActionLinkSize;
-  icon?: string;
-  iconPosition?: ActionLinkIconPosition;
-  className?: string;
-  showArrow?: boolean;
-}
+import type { ActionLinkSize, ActionLinkTone } from "@/variants/action-link.variant";
 
 const TONES: Record<ActionLinkTone, string> = {
   primary: "border-transparent bg-blue-600 text-white hover:bg-blue-700",
