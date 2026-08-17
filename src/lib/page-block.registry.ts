@@ -6,6 +6,7 @@ import { InlineFormBlock } from "@/components/block/InlineFormBlock";
 import { MediaBlock } from "@/components/block/MediaBlock";
 import { MediaCtaBlock } from "@/components/block/MediaCtaBlock";
 import { ProductSliderBlock } from "@/components/block/ProductSliderBlock";
+import { SectionHeaderBlock } from "@/components/block/SectionHeaderBlock";
 import { TabsGridBlock } from "@/components/block/TabsGridBlock";
 import { TabsSliderBlock } from "@/components/block/TabsSliderBlock";
 import { TimelineBlock } from "@/components/block/TimelineBlock";
@@ -22,5 +23,6 @@ export const PAGE_BLOCK_COMPONENTS = {
   "media-cta": MediaCtaBlock,
   media: MediaBlock,
   "inline-form": InlineFormBlock,
+  "section-header": SectionHeaderBlock,
   timeline: TimelineBlock,
 } satisfies Record<PageBlockComponent, unknown>;
