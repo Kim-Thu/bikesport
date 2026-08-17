@@ -1,3 +1,4 @@
+import { EmptyContent } from "@/components/empty-content/EmptyContent";
 import { ProductSlider } from "@/components/product/ProductSlider";
 import { DefaultTemplate } from "@/components/product-slider-layout/templates/DefaultTemplate";
 import { FeaturedShowcaseTemplate } from "@/components/product-slider-layout/templates/FeaturedShowcaseTemplate";
@@ -24,7 +25,7 @@ export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload
       block.props.source.limit,
     );
 
-    if (groups.length) {
+    if (groups.some((group) => group.items.length)) {
       return (
         <TabsSlider
           title={block.props.title ?? "Flash Sale"}
@@ -46,7 +47,7 @@ export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload
   }
 
   const items = getProductCollectionItems(block.props.source);
-  if (!items.length) return null;
+  if (!items.length) return <EmptyContent />;
 
   const hasHeader = Boolean(block.props.title) || block.props.titleMediaId !== undefined;
   const layoutTemplate = block.props.layoutTemplate ?? (isFlashSale ? "featured-showcase" : "default");
