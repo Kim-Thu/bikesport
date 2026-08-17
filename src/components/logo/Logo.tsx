@@ -1,21 +1,19 @@
+import Image from "next/image";
 import { CLink } from "@/components/link/CLink";
-import { MediaImage } from "@/components/media/MediaImage";
 import type { LogoProps } from "@/interfaces/logo.interface";
-import { getMediaById } from "@/lib/media.utils";
 
-export function Logo({ href = "/", site }: LogoProps) {
-  const { logoMediaId, siteTitle, tagLine, showSiteTitle, showTagLine } = site;
-  const logoMedia = logoMediaId ? getMediaById(logoMediaId) : null;
-  const hasLogo = Boolean(logoMedia);
+export function Logo({ href = "/", site, logoMedia = null }: LogoProps) {
+  const { siteTitle, tagLine, showSiteTitle, showTagLine } = site;
+  const hasLogo = Boolean(logoMedia?.src && logoMedia.width && logoMedia.height);
   const shouldShowSiteTitle = !hasLogo || showSiteTitle;
   const shouldShowTagLine = showTagLine && Boolean(tagLine);
 
   return (
     <CLink href={href} className="inline-flex shrink-0 items-center gap-3" aria-label={siteTitle || "Trang chủ"}>
-      {hasLogo && logoMediaId ? (
-        <MediaImage
-          mediaId={logoMediaId}
-          alt={siteTitle || "Logo"}
+      {hasLogo && logoMedia ? (
+        <Image
+          src={logoMedia.src}
+          alt={siteTitle || logoMedia.alt || logoMedia.name || "Logo"}
           width={192}
           height={48}
           className="h-auto w-36 md:w-48"
