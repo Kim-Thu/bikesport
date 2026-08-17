@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { ComponentType, PointerEvent, WheelEvent } from "react";
 import { DefaultTemplate } from "@/components/tabs/templates/DefaultTemplate";
 import { FeaturedTemplate } from "@/components/tabs/templates/FeaturedTemplate";
 import { ImageTemplate } from "@/components/tabs/templates/ImageTemplate";
@@ -18,7 +19,7 @@ interface TabsProps {
   template?: TabsTemplate;
 }
 
-const TAB_TEMPLATES: Record<TabsTemplate, (props: TabTemplateProps) => React.ReactNode> = {
+const TAB_TEMPLATES: Record<TabsTemplate, ComponentType<TabTemplateProps>> = {
   default: DefaultTemplate,
   image: ImageTemplate,
   featured: FeaturedTemplate,
@@ -66,7 +67,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
     }
   }, [value]);
 
-  function handleWheel(event: React.WheelEvent<HTMLDivElement>) {
+  function handleWheel(event: WheelEvent<HTMLDivElement>) {
     const container = containerRef.current;
     if (!container || container.scrollWidth <= container.clientWidth) return;
 
@@ -77,7 +78,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
     container.scrollLeft += delta;
   }
 
-  function handlePointerDown(event: React.PointerEvent<HTMLDivElement>) {
+  function handlePointerDown(event: PointerEvent<HTMLDivElement>) {
     if (event.pointerType === "touch" || event.button !== 0) return;
 
     const container = containerRef.current;
@@ -94,7 +95,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
     setIsDragging(true);
   }
 
-  function handlePointerMove(event: React.PointerEvent<HTMLDivElement>) {
+  function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
     const container = containerRef.current;
     const drag = dragRef.current;
     if (!container || !drag.active || drag.pointerId !== event.pointerId) return;
@@ -104,7 +105,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
     container.scrollLeft = drag.startScrollLeft - distance;
   }
 
-  function endDrag(event: React.PointerEvent<HTMLDivElement>) {
+  function endDrag(event: PointerEvent<HTMLDivElement>) {
     const container = containerRef.current;
     const drag = dragRef.current;
     if (!drag.active || drag.pointerId !== event.pointerId) return;
