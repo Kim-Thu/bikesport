@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { ComponentType, PointerEvent, WheelEvent } from "react";
 import { DefaultTemplate } from "@/components/tabs/templates/DefaultTemplate";
 import { FeaturedTemplate } from "@/components/tabs/templates/FeaturedTemplate";
+import { FlashSaleTemplate } from "@/components/tabs/templates/FlashSaleTemplate";
 import { ImageTemplate } from "@/components/tabs/templates/ImageTemplate";
 import type { TabItem, TabTemplateProps } from "@/interfaces/tabs.interface";
 import { cn } from "@/lib/classname.utils";
@@ -23,12 +24,14 @@ const TAB_TEMPLATES: Record<TabsTemplate, ComponentType<TabTemplateProps>> = {
   default: DefaultTemplate,
   image: ImageTemplate,
   featured: FeaturedTemplate,
+  "flash-sale": FlashSaleTemplate,
 };
 
 const TEMPLATE_GAPS: Record<TabsTemplate, string> = {
   default: "gap-5",
   image: "gap-3",
   featured: "gap-2",
+  "flash-sale": "gap-3",
 };
 
 const DRAG_THRESHOLD = 4;
@@ -36,13 +39,7 @@ const SCROLL_PADDING = 12;
 
 export function Tabs({ items, value, onChange, className, template = "default" }: TabsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const dragRef = useRef({
-    active: false,
-    pointerId: -1,
-    startX: 0,
-    startScrollLeft: 0,
-    moved: false,
-  });
+  const dragRef = useRef({ active: false, pointerId: -1, startX: 0, startScrollLeft: 0, moved: false });
   const suppressClickRef = useRef(false);
   const [isDragging, setIsDragging] = useState(false);
   const Template = TAB_TEMPLATES[template];
@@ -60,37 +57,24 @@ export function Tabs({ items, value, onChange, className, template = "default" }
     if (tabLeft < visibleLeft + SCROLL_PADDING) {
       container.scrollTo({ left: Math.max(0, tabLeft - SCROLL_PADDING), behavior: "smooth" });
     } else if (tabRight > visibleRight - SCROLL_PADDING) {
-      container.scrollTo({
-        left: tabRight - container.clientWidth + SCROLL_PADDING,
-        behavior: "smooth",
-      });
+      container.scrollTo({ left: tabRight - container.clientWidth + SCROLL_PADDING, behavior: "smooth" });
     }
   }, [value]);
 
   function handleWheel(event: WheelEvent<HTMLDivElement>) {
     const container = containerRef.current;
     if (!container || container.scrollWidth <= container.clientWidth) return;
-
     const delta = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
     if (!delta) return;
-
     event.preventDefault();
     container.scrollLeft += delta;
   }
 
   function handlePointerDown(event: PointerEvent<HTMLDivElement>) {
     if (event.pointerType === "touch" || event.button !== 0) return;
-
     const container = containerRef.current;
     if (!container || container.scrollWidth <= container.clientWidth) return;
-
-    dragRef.current = {
-      active: true,
-      pointerId: event.pointerId,
-      startX: event.clientX,
-      startScrollLeft: container.scrollLeft,
-      moved: false,
-    };
+    dragRef.current = { active: true, pointerId: event.pointerId, startX: event.clientX, startScrollLeft: container.scrollLeft, moved: false };
     container.setPointerCapture(event.pointerId);
     setIsDragging(true);
   }
@@ -99,7 +83,6 @@ export function Tabs({ items, value, onChange, className, template = "default" }
     const container = containerRef.current;
     const drag = dragRef.current;
     if (!container || !drag.active || drag.pointerId !== event.pointerId) return;
-
     const distance = event.clientX - drag.startX;
     if (Math.abs(distance) > DRAG_THRESHOLD) drag.moved = true;
     container.scrollLeft = drag.startScrollLeft - distance;
@@ -109,14 +92,10 @@ export function Tabs({ items, value, onChange, className, template = "default" }
     const container = containerRef.current;
     const drag = dragRef.current;
     if (!drag.active || drag.pointerId !== event.pointerId) return;
-
     suppressClickRef.current = drag.moved;
     drag.active = false;
     setIsDragging(false);
-
-    if (container?.hasPointerCapture(event.pointerId)) {
-      container.releasePointerCapture(event.pointerId);
-    }
+    if (container?.hasPointerCapture(event.pointerId)) container.releasePointerCapture(event.pointerId);
   }
 
   function handleTabClick(itemValue: string) {
@@ -144,12 +123,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
       onPointerCancel={endDrag}
     >
       {items.map((item) => (
-        <Template
-          key={item.value}
-          item={item}
-          active={item.value === value}
-          onClick={() => handleTabClick(item.value)}
-        />
+        <Template key={item.value} item={item} active={item.value === value} onClick={() => handleTabClick(item.value)} />
       ))}
     </div>
   );
