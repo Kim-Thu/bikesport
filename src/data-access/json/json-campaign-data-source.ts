@@ -10,6 +10,9 @@ export const jsonCampaignDataSource: CampaignDataSource = {
   async getById(campaignId) {
     return campaignById.get(campaignId) ?? null;
   },
+  async getAll() {
+    return campaigns;
+  },
   async getActive(limit) {
     return typeof limit === "number" ? activeCampaigns.slice(0, limit) : activeCampaigns;
   },
