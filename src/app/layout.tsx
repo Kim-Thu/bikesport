@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { ToastViewport } from "@/components/toast/ToastViewport";
 import wpOption from "@/data/wp-option.json";
+import type { SeoGlobalSettings } from "@/interfaces/seo.interface";
 import { getMediaUrl } from "@/lib/media.utils";
 import "@/styles/globals.css";
 
@@ -10,31 +11,30 @@ const inter = Inter({
   display: "swap",
 });
 
+const globalSeo = wpOption.seo as SeoGlobalSettings;
 const faviconUrl = getMediaUrl("66bf4e8c9f2a4d7b8c1e3708");
 const favicon32Url = getMediaUrl("66bf4e8c9f2a4d7b8c1e3709");
 const appleTouchIconUrl = getMediaUrl("66bf4e8c9f2a4d7b8c1e3710");
-const defaultOgImageUrl = getMediaUrl(wpOption.seo.openGraph.defaultImageMediaId);
-const defaultTwitterImageUrl = getMediaUrl(wpOption.seo.twitter.defaultImageMediaId);
-const openGraphType = wpOption.seo.openGraph.type as NonNullable<Metadata["openGraph"]>["type"];
-const twitterCard = wpOption.seo.twitter.card as NonNullable<Metadata["twitter"]>["card"];
+const defaultOgImageUrl = getMediaUrl(globalSeo.openGraph?.defaultImageMediaId);
+const defaultTwitterImageUrl = getMediaUrl(globalSeo.twitter?.defaultImageMediaId);
 
 export const metadata: Metadata = {
   title: wpOption.site.siteTitle,
-  description: wpOption.seo.defaultDescription,
+  description: globalSeo.defaultDescription,
   applicationName: wpOption.site.siteTitle,
-  robots: wpOption.seo.robots,
+  robots: globalSeo.robots,
   openGraph: {
     title: wpOption.site.siteTitle,
-    description: wpOption.seo.defaultDescription,
-    type: openGraphType,
-    locale: wpOption.seo.openGraph.locale,
+    description: globalSeo.defaultDescription,
+    type: globalSeo.openGraph?.type,
+    locale: globalSeo.openGraph?.locale,
     siteName: wpOption.site.siteTitle,
     images: defaultOgImageUrl ? [{ url: defaultOgImageUrl }] : undefined,
   },
   twitter: {
-    card: twitterCard,
+    card: globalSeo.twitter?.card,
     title: wpOption.site.siteTitle,
-    description: wpOption.seo.defaultDescription,
+    description: globalSeo.defaultDescription,
     images: defaultTwitterImageUrl ? [defaultTwitterImageUrl] : undefined,
   },
   manifest: "/manifest.webmanifest",
