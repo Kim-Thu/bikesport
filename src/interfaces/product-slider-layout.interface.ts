@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { ActionLinkTone } from "@/components/link/ActionLink";
+import type { ActionLinkTone } from "@/variants/action-link.variant";
 
 export interface ProductSliderLayoutTemplateProps {
   header?: ReactNode;
