@@ -6,6 +6,7 @@ import type { PageDataSource } from "@/data-access/contracts/page-data-source.in
 import type { PostDataSource } from "@/data-access/contracts/post-data-source.interface";
 import type { ProductDataSource } from "@/data-access/contracts/product-data-source.interface";
 import type { PromotionDataSource } from "@/data-access/contracts/promotion-data-source.interface";
+import type { StoreDataSource } from "@/data-access/contracts/store-data-source.interface";
 import type { UserDataSource } from "@/data-access/contracts/user-data-source.interface";
 
 export interface DataSources {
@@ -18,4 +19,5 @@ export interface DataSources {
   post: PostDataSource;
   event: EventDataSource;
   user: UserDataSource;
+  store: StoreDataSource;
 }
