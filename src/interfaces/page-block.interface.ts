@@ -1,5 +1,6 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
+import type { TabsTemplate } from "@/variants/tabs.variant";
 
 export type PageBlockStatus = "active" | "inactive";
 export type PageBlockComponent =
@@ -92,6 +93,7 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
     href?: string;
     actionLabel?: string;
     template: CardTemplate;
+    tabTemplate?: TabsTemplate;
     trackClassName?: string;
     slideClassName?: string;
     source:
