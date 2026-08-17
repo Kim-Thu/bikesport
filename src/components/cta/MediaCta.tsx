@@ -1,15 +1,7 @@
 import { CLink } from "@/components/link/CLink";
 import { MediaImage } from "@/components/media/MediaImage";
 import { Panel } from "@/components/panel/Panel";
-
-interface MediaCtaProps {
-  eyebrow?: string;
-  title: string;
-  description?: string;
-  href: string;
-  actionLabel?: string;
-  mediaId?: string | null;
-}
+import type { MediaCtaProps } from "@/interfaces/media-cta.interface";
 
 export function MediaCta({
   eyebrow,
