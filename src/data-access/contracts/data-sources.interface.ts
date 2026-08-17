@@ -1,3 +1,4 @@
+import type { BannerDataSource } from "@/data-access/contracts/banner-data-source.interface";
 import type { BrandDataSource } from "@/data-access/contracts/brand-data-source.interface";
 import type { CategoryDataSource } from "@/data-access/contracts/category-data-source.interface";
 import type { EventDataSource } from "@/data-access/contracts/event-data-source.interface";
@@ -20,4 +21,5 @@ export interface DataSources {
   event: EventDataSource;
   user: UserDataSource;
   store: StoreDataSource;
+  banner: BannerDataSource;
 }
