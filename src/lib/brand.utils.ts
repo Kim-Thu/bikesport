@@ -1,13 +1,20 @@
 import brandData from "@/data/wp-brand.json";
 import type { BrandRecord } from "@/interfaces/brand.interface";
 
-export function getActiveBrands() {
-  return (brandData.brands as BrandRecord[])
-    .filter((brand) => brand.status === "active")
-    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+const activeBrands = (brandData.brands as BrandRecord[])
+  .filter((brand) => brand.status === "active")
+  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+const featuredBrands = activeBrands.filter((brand) => brand.featured === true);
+const activeBrandById = new Map(activeBrands.map((brand) => [brand._id, brand]));
+
+export function getBrandById(brandId: string): BrandRecord | null {
+  return activeBrandById.get(brandId) ?? null;
 }
 
-export function getFeaturedBrands(limit?: number) {
-  const brands = getActiveBrands().filter((brand) => brand.featured === true);
-  return typeof limit === "number" ? brands.slice(0, limit) : brands;
+export function getActiveBrands(limit?: number): BrandRecord[] {
+  return typeof limit === "number" ? activeBrands.slice(0, limit) : activeBrands;
+}
+
+export function getFeaturedBrands(limit?: number): BrandRecord[] {
+  return typeof limit === "number" ? featuredBrands.slice(0, limit) : featuredBrands;
 }
