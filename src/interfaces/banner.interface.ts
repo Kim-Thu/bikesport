@@ -2,6 +2,7 @@ import type { BannerOverlayVariant, BannerVariant } from "@/variants/banner.vari
 
 export type BannerStatus = "draft" | "scheduled" | "active" | "expired" | "disabled";
 export type BannerActionVariant = "primary" | "outline";
+export type BannerActionIconPosition = "left" | "right";
 
 export interface BannerFeature {
   iconMediaId?: string;
@@ -13,6 +14,8 @@ export interface BannerAction {
   label: string;
   href: string;
   variant?: BannerActionVariant;
+  icon?: string;
+  iconPosition?: BannerActionIconPosition;
 }
 
 export interface BannerPromotionCard {
