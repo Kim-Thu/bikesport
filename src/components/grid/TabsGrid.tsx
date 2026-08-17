@@ -1,21 +1,22 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { DefaultTemplate } from "@/components/grid/templates/DefaultTemplate";
 import { FeaturedDealsTemplate } from "@/components/grid/templates/FeaturedDealsTemplate";
 import { Pagination } from "@/components/pagination/Pagination";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { Tabs, type TabItem } from "@/components/tabs/Tabs";
-import type { ProductSliderItem } from "@/components/product/ProductSlider";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { CardTemplate } from "@/interfaces/card.interface";
+import type { ProductCollectionItem } from "@/interfaces/product-collection-item.interface";
 import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 import type { PaginationVariant } from "@/variants/pagination.variant";
 import type { TabsGridTemplate } from "@/variants/tabs-grid.variant";
 import type { TabsTemplate } from "@/variants/tabs.variant";
 
 export interface TabsGridGroup extends TabItem {
-  items: ProductSliderItem[];
+  items: ProductCollectionItem[];
 }
 
 interface TabsGridProps {
@@ -58,21 +59,13 @@ export function TabsGrid({
 }: TabsGridProps) {
   const [activeValue, setActiveValue] = useState(groups[0]?.value ?? "");
   const [mobilePage, setMobilePage] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 639px)");
   const sectionStartRef = useRef<HTMLDivElement>(null);
 
   const activeGroup = useMemo(
     () => groups.find((group) => group.value === activeValue) ?? groups[0],
     [activeValue, groups],
   );
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 639px)");
-    const syncViewport = () => setIsMobile(mediaQuery.matches);
-    syncViewport();
-    mediaQuery.addEventListener("change", syncViewport);
-    return () => mediaQuery.removeEventListener("change", syncViewport);
-  }, []);
 
   function scrollToSectionStart() {
     window.requestAnimationFrame(() => {
