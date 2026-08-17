@@ -1,5 +1,6 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
+import type { ProductSliderLayoutTemplate } from "@/variants/product-slider.variant";
 import type { TabsGridTemplate } from "@/variants/tabs-grid.variant";
 import type { TabsSliderTemplate } from "@/variants/tabs-slider.variant";
 import type { TabsTemplate } from "@/variants/tabs.variant";
@@ -53,6 +54,7 @@ export interface ProductSliderBlockPayload extends PageBlockBase {
     href?: string;
     actionLabel?: string;
     headerTemplate?: SectionHeaderTemplate;
+    layoutTemplate?: ProductSliderLayoutTemplate;
     countdownAt?: string;
     template: CardTemplate;
     ariaLabel?: string;
