@@ -4,10 +4,12 @@ import { createMongoBrandDataSource } from "@/data-access/mongodb/mongodb-brand-
 import { createMongoCategoryDataSource } from "@/data-access/mongodb/mongodb-category-data-source";
 import { createMongoPageDataSource } from "@/data-access/mongodb/mongodb-page-data-source";
 import { createMongoProductDataSource } from "@/data-access/mongodb/mongodb-product-data-source";
+import { createMongoPromotionDataSource } from "@/data-access/mongodb/mongodb-promotion-data-source";
 
 export const mongodbDataSources: DataSources = {
   page: createMongoPageDataSource(getMongoDatabase),
   category: createMongoCategoryDataSource(getMongoDatabase),
   brand: createMongoBrandDataSource(getMongoDatabase),
   product: createMongoProductDataSource(getMongoDatabase),
+  promotion: createMongoPromotionDataSource(getMongoDatabase),
 };
