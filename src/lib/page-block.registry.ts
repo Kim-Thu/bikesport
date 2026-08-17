@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import { AdsBlock } from "@/components/block/AdsBlock";
 import { CardBlock } from "@/components/block/CardBlock";
 import { CardGridBlock } from "@/components/block/CardGridBlock";
@@ -11,7 +12,13 @@ import { SectionHeaderBlock } from "@/components/block/SectionHeaderBlock";
 import { TabsGridBlock } from "@/components/block/TabsGridBlock";
 import { TabsSliderBlock } from "@/components/block/TabsSliderBlock";
 import { TimelineBlock } from "@/components/block/TimelineBlock";
-import type { PageBlockComponent } from "@/interfaces/page-block.interface";
+import type { PageBlockPayloadMap } from "@/interfaces/page-block.interface";
+
+export type PageBlockComponentRegistry = {
+  [Component in keyof PageBlockPayloadMap]: ComponentType<{
+    block: PageBlockPayloadMap[Component];
+  }>;
+};
 
 export const PAGE_BLOCK_COMPONENTS = {
   ads: AdsBlock,
@@ -27,4 +34,4 @@ export const PAGE_BLOCK_COMPONENTS = {
   "section-header": SectionHeaderBlock,
   content: ContentBlock,
   timeline: TimelineBlock,
-} satisfies Record<PageBlockComponent, unknown>;
+} satisfies PageBlockComponentRegistry;
