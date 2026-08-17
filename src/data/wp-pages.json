@@ -169,6 +169,19 @@
                         }
                       },
                       {
+                        "_id": "66bf4e8c9f2a4d7b8c1e42g2",
+                        "status": "active",
+                        "component": "card-grid",
+                        "props": {
+                          "title": "Combo tiết kiệm",
+                          "href": "/combo",
+                          "actionLabel": "Xem tất cả",
+                          "template": "media-action",
+                          "gridClassName": "xl:grid-cols-2",
+                          "source": { "type": "combo", "featured": true, "limit": 4 }
+                        }
+                      },
+                      {
                         "_id": "66bf4e8c9f2a4d7b8c1e42b2",
                         "status": "active",
                         "component": "product-slider",
@@ -398,7 +411,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-17T04:55:00+07:00"
+      "updatedAt": "2026-08-17T07:44:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
