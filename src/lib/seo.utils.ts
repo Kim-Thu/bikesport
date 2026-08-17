@@ -59,7 +59,7 @@ function resolveCanonical(input: ResolveSeoInput, record?: SeoRecord): string | 
   return path === "/" ? `${baseUrl}/` : `${baseUrl}${path}`;
 }
 
-export function resolveSeoMetadata(input: ResolveSeoInput = {}): Metadata {
+export async function resolveSeoMetadata(input: ResolveSeoInput = {}): Promise<Metadata> {
   const record = getSeoRecord(input);
   const rawTitle = record?.title || input.title || wpOption.site.siteTitle || "";
   const title = applyTitleFormat(rawTitle, record?.titleFormat || globalSeo.titleFormat);
@@ -71,9 +71,11 @@ export function resolveSeoMetadata(input: ResolveSeoInput = {}): Metadata {
   };
 
   const openGraphImageMediaId = record?.openGraph?.imageMediaId || globalSeo.openGraph?.defaultImageMediaId;
-  const openGraphImage = getMediaUrl(openGraphImageMediaId);
   const twitterImageMediaId = record?.twitter?.imageMediaId || globalSeo.twitter?.defaultImageMediaId || openGraphImageMediaId;
-  const twitterImage = getMediaUrl(twitterImageMediaId);
+  const [openGraphImage, twitterImage] = await Promise.all([
+    getMediaUrl(openGraphImageMediaId),
+    getMediaUrl(twitterImageMediaId),
+  ]);
 
   return {
     title,
