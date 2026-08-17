@@ -14,10 +14,16 @@ export function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) {
   return (
     <TabsGrid
       title={block.props.title}
+      titleMediaId={block.props.titleMediaId}
+      titleAlt={block.props.titleAlt}
       href={block.props.href}
       actionLabel={block.props.actionLabel}
       groups={groups}
       template={block.props.template}
+      headingTemplate={block.props.headingTemplate}
+      tabsTemplate={block.props.tabsTemplate}
+      layoutTemplate={block.props.layoutTemplate}
+      backgroundMediaId={block.props.backgroundMediaId}
       gridClassName={block.props.gridClassName}
       mobilePageSize={block.props.mobilePageSize}
     />
