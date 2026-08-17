@@ -45,10 +45,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
     const visibleRight = visibleLeft + container.clientWidth;
 
     if (tabLeft < visibleLeft + SCROLL_PADDING) {
-      container.scrollTo({
-        left: Math.max(0, tabLeft - SCROLL_PADDING),
-        behavior: "smooth",
-      });
+      container.scrollTo({ left: Math.max(0, tabLeft - SCROLL_PADDING), behavior: "smooth" });
     } else if (tabRight > visibleRight - SCROLL_PADDING) {
       container.scrollTo({
         left: tabRight - container.clientWidth + SCROLL_PADDING,
@@ -122,7 +119,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
       ref={containerRef}
       className={cn(
         "scrollbar-none flex min-w-0 items-center overflow-x-auto overscroll-x-contain scroll-smooth select-none",
-        template === "image" ? "gap-3" : "gap-5",
+        template === "image" ? "gap-3" : template === "featured" ? "gap-2" : "gap-5",
         isDragging ? "cursor-grabbing" : "cursor-grab",
         className,
       )}
@@ -150,12 +147,19 @@ export function Tabs({ items, value, onChange, className, template = "default" }
                     "overflow-hidden rounded-lg border bg-white p-2 hover:border-blue-200",
                     active ? "border-blue-300" : "border-gray-100",
                   )
-                : cn(
-                    "border-b-2 px-1 py-2 text-xs font-semibold sm:text-sm",
-                    active
-                      ? "border-blue-600 text-blue-600"
-                      : "border-transparent text-gray-600 hover:text-blue-600",
-                  ),
+                : template === "featured"
+                  ? cn(
+                      "rounded-md border px-3 py-2 text-xs font-semibold sm:px-4 sm:text-sm",
+                      active
+                        ? "border-blue-600 bg-blue-600 text-white"
+                        : "border-gray-200 bg-white text-gray-700 hover:border-blue-200 hover:text-blue-600",
+                    )
+                  : cn(
+                      "border-b-2 px-1 py-2 text-xs font-semibold sm:text-sm",
+                      active
+                        ? "border-blue-600 text-blue-600"
+                        : "border-transparent text-gray-600 hover:text-blue-600",
+                    ),
             )}
             onClick={() => handleTabClick(item.value)}
           >
