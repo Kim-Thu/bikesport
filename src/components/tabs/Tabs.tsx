@@ -16,6 +16,7 @@ interface TabsProps {
 }
 
 const DRAG_THRESHOLD = 4;
+const SCROLL_PADDING = 12;
 
 export function Tabs({ items, value, onChange, className }: TabsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -30,8 +31,26 @@ export function Tabs({ items, value, onChange, className }: TabsProps) {
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
-    const activeTab = containerRef.current?.querySelector<HTMLElement>(`[data-tab-value="${CSS.escape(value)}"]`);
-    activeTab?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+    const container = containerRef.current;
+    const activeTab = container?.querySelector<HTMLElement>(`[data-tab-value="${CSS.escape(value)}"]`);
+    if (!container || !activeTab) return;
+
+    const tabLeft = activeTab.offsetLeft;
+    const tabRight = tabLeft + activeTab.offsetWidth;
+    const visibleLeft = container.scrollLeft;
+    const visibleRight = visibleLeft + container.clientWidth;
+
+    if (tabLeft < visibleLeft + SCROLL_PADDING) {
+      container.scrollTo({
+        left: Math.max(0, tabLeft - SCROLL_PADDING),
+        behavior: "smooth",
+      });
+    } else if (tabRight > visibleRight - SCROLL_PADDING) {
+      container.scrollTo({
+        left: tabRight - container.clientWidth + SCROLL_PADDING,
+        behavior: "smooth",
+      });
+    }
   }, [value]);
 
   function handleWheel(event: React.WheelEvent<HTMLDivElement>) {
