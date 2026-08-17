@@ -1,18 +1,19 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ProductSlider } from "@/components/product/ProductSlider";
+import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { DefaultTemplate } from "@/components/slider/templates/DefaultTemplate";
 import { FeaturedShowcaseTemplate } from "@/components/slider/templates/FeaturedShowcaseTemplate";
-import { ProductSlider, type ProductSliderItem } from "@/components/product/ProductSlider";
-import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { Tabs, type TabItem } from "@/components/tabs/Tabs";
 import type { CardTemplate } from "@/interfaces/card.interface";
+import type { ProductCollectionItem } from "@/interfaces/product-collection-item.interface";
 import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 import type { TabsSliderTemplate } from "@/variants/tabs-slider.variant";
 import type { TabsTemplate } from "@/variants/tabs.variant";
 
 export interface TabsSliderGroup extends TabItem {
-  items: ProductSliderItem[];
+  items: ProductCollectionItem[];
 }
 
 interface TabsSliderProps {
