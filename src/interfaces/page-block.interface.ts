@@ -45,7 +45,8 @@ export interface CardBlockPayload extends PageBlockBase {
 
 export interface ProductSliderBlockPayload extends PageBlockBase {
   component: "product-slider";
-  props: Omit<SectionHeadingConfig, "headingTemplate"> & {
+  props: SectionHeadingConfig & {
+    /** @deprecated Use headingTemplate. Kept for existing JSON compatibility. */
     headerTemplate?: SectionHeaderTemplate;
     layoutTemplate?: ProductSliderLayoutTemplate;
     countdownAt?: string;
