@@ -4,7 +4,7 @@ import type { AdsRecord } from "@/interfaces/ads.interface";
 
 export function Ads({ ad }: { ad: AdsRecord }) {
   const media = (
-    <div className="aspect-video w-full overflow-hidden rounded-lg lg:aspect-1/2">
+    <div className="aspect-video w-full overflow-hidden rounded-lg lg:h-full lg:flex-1 lg:aspect-auto">
       <MediaImage
         mediaId={ad.mediaId}
         alt={ad.alt}
@@ -16,7 +16,11 @@ export function Ads({ ad }: { ad: AdsRecord }) {
   );
 
   return ad.href ? (
-    <CLink href={ad.href} aria-label={ad.alt} className="block cursor-pointer">
+    <CLink
+      href={ad.href}
+      aria-label={ad.alt}
+      className="block cursor-pointer lg:flex lg:min-h-0 lg:flex-1"
+    >
       {media}
     </CLink>
   ) : (
