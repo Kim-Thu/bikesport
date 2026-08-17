@@ -25,17 +25,33 @@ export async function getMediaUrl(mediaId?: string | null): Promise<string | und
 }
 
 export async function getMediaWithFallback(mediaId?: string | null): Promise<MediaItem | null> {
-  const requestedIds = mediaId && mediaId !== PLACEHOLDER_MEDIA_ID
-    ? [mediaId, PLACEHOLDER_MEDIA_ID]
-    : [PLACEHOLDER_MEDIA_ID];
+  const mediaById = await getMediaWithFallbackByIds(mediaId ? [mediaId] : []);
+  return mediaId ? mediaById[mediaId] ?? null : mediaById[PLACEHOLDER_MEDIA_ID] ?? null;
+}
+
+export async function getMediaWithFallbackByIds(mediaIds: string[]): Promise<Record<string, MediaItem>> {
+  const uniqueMediaIds = [...new Set(mediaIds.filter(Boolean))];
+  const requestedIds = uniqueMediaIds.includes(PLACEHOLDER_MEDIA_ID)
+    ? uniqueMediaIds
+    : [...uniqueMediaIds, PLACEHOLDER_MEDIA_ID];
   const mediaItems = await getMediaByIds(requestedIds);
-  const mediaById = new Map(mediaItems.map((item) => [item._id, item]));
-  const media = mediaId ? mediaById.get(mediaId) : null;
+  const sourceById = new Map(mediaItems.map((item) => [item._id, item]));
+  const placeholder = sourceById.get(PLACEHOLDER_MEDIA_ID);
+  const safePlaceholder = placeholder?.src && isSafeLocalMediaUrl(placeholder.src) ? placeholder : null;
+  const resolved: Record<string, MediaItem> = {};
 
-  if (media?.src && isSafeLocalMediaUrl(media.src)) return media;
+  for (const mediaId of uniqueMediaIds) {
+    const media = sourceById.get(mediaId);
+    if (media?.src && isSafeLocalMediaUrl(media.src)) {
+      resolved[mediaId] = media;
+    } else if (safePlaceholder) {
+      resolved[mediaId] = safePlaceholder;
+    }
+  }
 
-  const placeholder = mediaById.get(PLACEHOLDER_MEDIA_ID);
-  if (!placeholder?.src || !isSafeLocalMediaUrl(placeholder.src)) return null;
+  if (safePlaceholder) {
+    resolved[PLACEHOLDER_MEDIA_ID] = safePlaceholder;
+  }
 
-  return placeholder;
+  return resolved;
 }
