@@ -2,6 +2,7 @@
   "promotions": [
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3901",
+      "campaignId": "66bf4e8c9f2a4d7b8c1e3801",
       "name": "Ưu đãi tháng 8",
       "slug": "uu-dai-thang-8-2026",
       "status": "active",
@@ -35,10 +36,11 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-01T09:00:00+07:00",
-      "updatedAt": "2026-08-16T21:45:00+07:00"
+      "updatedAt": "2026-08-17T07:41:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3902",
+      "campaignId": "66bf4e8c9f2a4d7b8c1e3801",
       "name": "Ưu đãi sản phẩm bán chạy",
       "slug": "uu-dai-san-pham-ban-chay",
       "status": "active",
@@ -74,10 +76,11 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-01T09:10:00+07:00",
-      "updatedAt": "2026-08-16T21:45:00+07:00"
+      "updatedAt": "2026-08-17T07:41:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3903",
+      "campaignId": "66bf4e8c9f2a4d7b8c1e3801",
       "name": "Ưu đãi xe đạp địa hình",
       "slug": "uu-dai-xe-dap-dia-hinh",
       "status": "active",
@@ -104,10 +107,11 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-10T09:00:00+07:00",
-      "updatedAt": "2026-08-16T21:45:00+07:00"
+      "updatedAt": "2026-08-17T07:41:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3904",
+      "campaignId": "66bf4e8c9f2a4d7b8c1e3801",
       "name": "Ưu đãi phụ kiện",
       "slug": "uu-dai-phu-kien",
       "status": "active",
@@ -134,10 +138,11 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-01T09:20:00+07:00",
-      "updatedAt": "2026-08-16T21:45:00+07:00"
+      "updatedAt": "2026-08-17T07:41:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3905",
+      "campaignId": "66bf4e8c9f2a4d7b8c1e3801",
       "name": "Miễn phí vận chuyển đơn từ 5 triệu",
       "slug": "mien-phi-van-chuyen-don-tu-5-trieu",
       "status": "active",
@@ -160,10 +165,11 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-01T09:30:00+07:00",
-      "updatedAt": "2026-08-16T21:45:00+07:00"
+      "updatedAt": "2026-08-17T07:41:00+07:00"
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e3906",
+      "campaignId": "66bf4e8c9f2a4d7b8c1e3801",
       "name": "Flash Sale 17 - 18/08",
       "slug": "flash-sale-17-18-08-2026",
       "status": "active",
@@ -220,7 +226,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-17T09:00:00+07:00",
-      "updatedAt": "2026-08-17T04:28:00+07:00"
+      "updatedAt": "2026-08-17T07:41:00+07:00"
     }
   ]
 }
