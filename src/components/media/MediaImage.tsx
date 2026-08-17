@@ -2,8 +2,8 @@ import Image from "next/image";
 import type { MediaImageProps } from "@/interfaces/media.interface";
 import { getMediaWithFallback, PLACEHOLDER_MEDIA_ID } from "@/lib/media.utils";
 
-export function MediaImage({ mediaId, alt, width, height, ...props }: MediaImageProps) {
-  const media = getMediaWithFallback(mediaId);
+export async function MediaImage({ mediaId, alt, width, height, ...props }: MediaImageProps) {
+  const media = await getMediaWithFallback(mediaId);
   if (!media) return null;
 
   const isPlaceholder = media._id === PLACEHOLDER_MEDIA_ID;
