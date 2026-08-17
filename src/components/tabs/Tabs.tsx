@@ -31,7 +31,7 @@ const TEMPLATE_GAPS: Record<TabsTemplate, string> = {
   default: "gap-5",
   image: "gap-3",
   featured: "gap-2",
-  "flash-sale": "gap-3",
+  "flash-sale": "gap-1",
 };
 
 const DRAG_THRESHOLD = 4;
@@ -112,7 +112,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
       className={cn(
         "scrollbar-none flex min-w-0 items-center overflow-x-auto overscroll-x-contain scroll-smooth select-none",
         TEMPLATE_GAPS[template],
-        template === "flash-sale" && "justify-center",
+        template === "flash-sale" && "mx-auto w-fit max-w-full rounded-xl border border-red-100 bg-white p-1",
         isDragging ? "cursor-grabbing" : "cursor-grab",
         className,
       )}
