@@ -229,14 +229,35 @@
                       {
                         "_id": "66bf4e8c9f2a4d7b8c1e42g2",
                         "status": "active",
-                        "component": "card-grid",
+                        "component": "tabs-grid",
                         "props": {
                           "title": "Deal ngon - Giá hời",
-                          "href": "/combo",
+                          "href": "/khuyen-mai",
                           "actionLabel": "Xem tất cả",
                           "template": "media-action",
-                          "gridClassName": "grid-cols-2 xl:grid-cols-4",
-                          "source": { "type": "combo", "featured": true, "limit": 4 }
+                          "gridClassName": "grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+                          "tabs": [
+                            {
+                              "label": "Flash Sale",
+                              "value": "flash-sale",
+                              "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3906", "limit": 12 }
+                            },
+                            {
+                              "label": "Xe địa hình",
+                              "value": "mountain-bike",
+                              "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3903", "limit": 12 }
+                            },
+                            {
+                              "label": "Phụ kiện",
+                              "value": "accessories",
+                              "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3904", "limit": 12 }
+                            },
+                            {
+                              "label": "Summer Ride",
+                              "value": "summer-ride",
+                              "source": { "type": "campaign", "campaignId": "66bf4e8c9f2a4d7b8c1e3801", "limit": 12 }
+                            }
+                          ]
                         }
                       }
                     ]
@@ -399,7 +420,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-17T08:41:00+07:00"
+      "updatedAt": "2026-08-17T08:48:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
