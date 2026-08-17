@@ -5,12 +5,12 @@ import { getProductDiscountPercentage, getProductPrimaryMediaId } from "@/lib/pr
 import { getActivePromotionsForSku, getPromotionProductPricing } from "@/lib/promotion.utils";
 import { getProductReviewStatsBySku } from "@/lib/review.utils";
 
+const REVIEW_STATS_BY_SKU = getProductReviewStatsBySku();
+
 export function mapProductsToCollectionItems(
   products: ProductRecord[],
   explicitPromotion?: PromotionRecord | null,
 ): ProductCollectionItem[] {
-  const reviewStatsBySku = getProductReviewStatsBySku();
-
   return products.map((product) => {
     const promotion = explicitPromotion ?? getActivePromotionsForSku(product.sku)[0] ?? null;
     const pricing = promotion
@@ -21,7 +21,7 @@ export function mapProductsToCollectionItems(
         };
     const inventory = promotion?.inventory?.find((item) => item.sku === product.sku);
     const productBadge = promotion?.productBadges?.find((item) => item.sku === product.sku);
-    const reviewStats = reviewStatsBySku.get(product.sku);
+    const reviewStats = REVIEW_STATS_BY_SKU.get(product.sku);
 
     return {
       _key: product.sku,
