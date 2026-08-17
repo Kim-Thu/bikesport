@@ -5,6 +5,7 @@ import { getMenuHref } from "@/lib/menu-presentation.utils";
 
 export function MenuChildren({
   items,
+  mediaById,
   id,
   listClassName = "",
   itemClassName = "",
@@ -17,7 +18,7 @@ export function MenuChildren({
       {items.map((item) => (
         <li key={item._id}>
           <CLink href={getMenuHref(item)} className={itemClassName} onClick={onItemClick}>
-            <MenuItemContent item={item} />
+            <MenuItemContent item={item} mediaById={mediaById} />
           </CLink>
         </li>
       ))}
