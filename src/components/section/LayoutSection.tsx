@@ -5,15 +5,17 @@ import { Row } from "@/components/layout/Row";
 import { Section } from "@/components/section/Section";
 import type { LayoutSectionPayload } from "@/interfaces/page.interface";
 import { cn } from "@/lib/classname.utils";
+import { SECTION_CONTAINER_CLASS } from "@/variants/section.variant";
 
 export function LayoutSection({ section }: { section: LayoutSectionPayload }) {
+  const sectionTemplate = section.props.sectionTemplate ?? "default";
   const containerClassName = cn(
-    section.props.sectionTemplate === "flash-sale" && "rounded-xl bg-red-50 p-4 sm:p-6",
+    SECTION_CONTAINER_CLASS[sectionTemplate],
     section.props.containerClassName,
   );
 
   return (
-    <Section template={section.props.sectionTemplate} className={section.props.sectionClassName}>
+    <Section template={sectionTemplate} className={section.props.sectionClassName}>
       <Container className={containerClassName}>
         {section.rows.map((row) => (
           <Row key={row._id} className={row.props?.className}>
