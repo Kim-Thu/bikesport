@@ -1,6 +1,7 @@
 import "server-only";
 import type { DataSources } from "@/data-access/contracts/data-sources.interface";
 import { getDataSourceProvider } from "@/data-access/data-source.config";
+import { jsonBannerDataSource } from "@/data-access/json/json-banner-data-source";
 import { jsonBrandDataSource } from "@/data-access/json/json-brand-data-source";
 import { jsonCategoryDataSource } from "@/data-access/json/json-category-data-source";
 import { jsonEventDataSource } from "@/data-access/json/json-event-data-source";
@@ -24,6 +25,7 @@ const jsonDataSources: DataSources = {
   event: jsonEventDataSource,
   user: jsonUserDataSource,
   store: jsonStoreDataSource,
+  banner: jsonBannerDataSource,
 };
 
 function createDataSources(): DataSources {
