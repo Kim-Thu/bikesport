@@ -8,6 +8,7 @@ import { CMenu } from "@/components/menu/CMenu";
 import { Section } from "@/components/section/Section";
 import { SocialLoader } from "@/components/social/SocialLoader";
 import type { FooterSettings } from "@/interfaces/footer.interface";
+import { getMediaWithFallbackByIds } from "@/lib/media.utils";
 import { getMenuById } from "@/lib/menu-data.utils";
 
 export async function FooterMain({ settings }: { settings: FooterSettings }) {
@@ -15,6 +16,10 @@ export async function FooterMain({ settings }: { settings: FooterSettings }) {
   const menus = (await Promise.all(menuIds.map((menuId) => getMenuById(menuId)))).filter(
     (menu) => menu !== null,
   );
+  const mediaIds = menus.flatMap((menu) =>
+    menu.items.flatMap((item) => (item.mediaId ? [item.mediaId] : [])),
+  );
+  const mediaById = await getMediaWithFallbackByIds(mediaIds);
 
   return (
     <Container className="py-8 sm:py-10 lg:py-12">
@@ -39,6 +44,7 @@ export async function FooterMain({ settings }: { settings: FooterSettings }) {
                   </Heading>
                   <CMenu
                     menu={menu}
+                    mediaById={mediaById}
                     listClassName="space-y-3 text-sm text-gray-600"
                     linkClassName="transition hover:text-blue-600 focus:text-blue-600"
                   />
