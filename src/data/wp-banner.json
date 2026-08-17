@@ -8,62 +8,25 @@
       "name": "Storefront Hero Demo 1",
       "status": "active",
       "variant": "promo-left",
-      "overlay": {
-        "variant": "blue-left"
-      },
+      "overlay": { "variant": "blue-left" },
       "eyebrow": "CHINH PHỤC MỌI CUNG ĐƯỜNG",
       "title": "GIẢM ĐẾN",
       "titleHighlight": "20%",
       "description": "XE ĐẠP THỂ THAO MÙA HÈ",
       "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3716",
       "features": [
-        {
-          "iconMediaId": "66bf4e8c9f2a4d7b8c1e3717",
-          "title": "Trả góp 0%",
-          "description": "Lãi suất"
-        },
-        {
-          "iconMediaId": "66bf4e8c9f2a4d7b8c1e3721",
-          "title": "Bảo hành",
-          "description": "Chính hãng"
-        },
-        {
-          "iconMediaId": "66bf4e8c9f2a4d7b8c1e3715",
-          "title": "Miễn phí",
-          "description": "Giao hàng"
-        }
+        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3717", "title": "Trả góp 0%", "description": "Lãi suất" },
+        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3721", "title": "Bảo hành", "description": "Chính hãng" },
+        { "iconMediaId": "66bf4e8c9f2a4d7b8c1e3715", "title": "Miễn phí", "description": "Giao hàng" }
       ],
       "actions": [
-        {
-          "label": "MUA NGAY",
-          "href": "#products",
-          "variant": "primary"
-        },
-        {
-          "label": "XEM SỰ KIỆN",
-          "href": "#promotions",
-          "variant": "outline"
-        }
+        { "label": "MUA NGAY", "href": "#products", "variant": "primary" },
+        { "label": "XEM SỰ KIỆN", "href": "#promotions", "variant": "outline" }
       ],
       "promotionCards": [
-        {
-          "label": "FLASH SALE",
-          "description": "Kết thúc sau",
-          "promotionId": "66bf4e8c9f2a4d7b8c1e3901",
-          "icon": "tag"
-        },
-        {
-          "label": "VOUCHER",
-          "description": "Giảm thêm",
-          "promotionId": "66bf4e8c9f2a4d7b8c1e3902",
-          "icon": "badge-percent"
-        },
-        {
-          "label": "QUÀ TẶNG",
-          "description": "Ưu đãi kèm sản phẩm",
-          "promotionId": "66bf4e8c9f2a4d7b8c1e3904",
-          "icon": "gift"
-        }
+        { "label": "FLASH SALE", "description": "Kết thúc sau", "promotionId": "66bf4e8c9f2a4d7b8c1e3901", "icon": "tag" },
+        { "label": "VOUCHER", "description": "Giảm thêm", "promotionId": "66bf4e8c9f2a4d7b8c1e3902", "icon": "badge-percent" },
+        { "label": "QUÀ TẶNG", "description": "Ưu đãi kèm sản phẩm", "promotionId": "66bf4e8c9f2a4d7b8c1e3904", "icon": "gift" }
       ],
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
@@ -97,6 +60,27 @@
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T17:50:00+07:00",
       "updatedAt": "2026-08-16T19:34:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3a10",
+      "categoryId": "66bf4e8c9f2a4d7b8c1e3c01",
+      "order": 1,
+      "name": "About BikeSport Hero",
+      "status": "active",
+      "variant": "promo-left",
+      "overlay": { "variant": "blue-left" },
+      "eyebrow": "GIỚI THIỆU BIKESPORT",
+      "title": "Đam mê xe đạp",
+      "titleHighlight": "Kết nối cộng đồng",
+      "description": "BikeSport được thành lập với sứ mệnh mang đến những sản phẩm và dịch vụ tốt nhất cho người yêu xe đạp. Chúng tôi không chỉ bán sản phẩm, mà còn xây dựng một cộng đồng đam mê và gắn kết.",
+      "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3726",
+      "actions": [
+        { "label": "Xem video hành trình", "href": "#hanh-trinh-phat-trien", "variant": "primary" }
+      ],
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T12:12:00+07:00",
+      "updatedAt": "2026-08-17T12:12:00+07:00"
     }
   ]
 }
