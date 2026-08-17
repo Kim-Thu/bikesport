@@ -1,3 +1,4 @@
+import { Heading } from "@/components/heading/Heading";
 import type { ContentBlockPayload } from "@/interfaces/page-block.interface";
 import { cn } from "@/lib/classname.utils";
 
@@ -26,9 +27,9 @@ export function ContentBlock({ block }: { block: ContentBlockPayload }) {
       ) : null}
 
       {block.props.title ? (
-        <h2 className="text-xl font-bold uppercase text-gray-950 sm:text-2xl">
+        <Heading level={2} className="text-xl font-bold uppercase text-gray-950 sm:text-2xl">
           {block.props.title}
-        </h2>
+        </Heading>
       ) : null}
 
       {block.props.paragraphs?.length ? (
