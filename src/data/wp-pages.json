@@ -117,21 +117,23 @@
         "sections": [
           { "_id": "66bf4e8c9f2a4d7b8c1e4501", "name": "About hero", "order": 1, "status": "active", "component": "banner", "props": { "bannerId": "66bf4e8c9f2a4d7b8c1e3a10" } },
           {
-            "_id": "66bf4e8c9f2a4d7b8c1e4502", "name": "Mission heading", "order": 2, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-0" },
-            "rows": [{ "_id": "66bf4e8c9f2a4d7b8c1e4510", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4511", "props": { "className": "w-full" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4512", "status": "active", "component": "section-header", "props": { "title": "Sứ mệnh của chúng tôi", "template": "featured" } }] }] }]
+            "_id": "66bf4e8c9f2a4d7b8c1e4502", "name": "Mission", "order": 2, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-4 sm:pb-6" },
+            "rows": [{ "_id": "66bf4e8c9f2a4d7b8c1e4510", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4511", "props": { "className": "w-full" }, "blocks": [{
+              "_id": "66bf4e8c9f2a4d7b8c1e4512",
+              "status": "active",
+              "component": "content",
+              "props": {
+                "title": "Sứ mệnh của chúng tôi",
+                "align": "center",
+                "paragraphs": [
+                  "BikeSport được xây dựng với sứ mệnh truyền cảm hứng và đồng hành cùng mọi người trên hành trình chinh phục đam mê xe đạp, mang đến những sản phẩm và dịch vụ đáng tin cậy cho từng nhu cầu và từng cung đường.",
+                  "Chúng tôi hướng tới một hệ sinh thái xe đạp hàng đầu Việt Nam, phát triển trên những giá trị Chính trực - Chất lượng - Đam mê - Kết nối - Không ngừng cải tiến, đồng thời góp phần xây dựng một cộng đồng người yêu xe đạp lớn mạnh, văn minh và tích cực."
+                ]
+              }
+            }] }] }]
           },
           {
-            "_id": "66bf4e8c9f2a4d7b8c1e4503", "name": "Mission values", "order": 3, "status": "active", "component": "stack",
-            "props": { "variant": "surface", "sectionClassName": "pt-4 pb-4 sm:pt-4 sm:pb-6", "rowClassName": "flex-wrap items-stretch" },
-            "columns": [
-              { "_id": "66bf4e8c9f2a4d7b8c1e4521", "component": "box-icon", "props": { "icon": "click", "title": "Sứ mệnh", "description": "Truyền cảm hứng và đồng hành cùng mọi người trên hành trình chinh phục đam mê xe đạp.", "iconClassName": "text-blue-600", "titleClassName": "normal-case text-base", "descriptionClassName": "text-sm" } },
-              { "_id": "66bf4e8c9f2a4d7b8c1e4522", "component": "box-icon", "props": { "icon": "search", "title": "Tầm nhìn", "description": "Trở thành hệ sinh thái xe đạp hàng đầu Việt Nam, được tin yêu bởi cộng đồng.", "iconClassName": "text-blue-600", "titleClassName": "normal-case text-base", "descriptionClassName": "text-sm" } },
-              { "_id": "66bf4e8c9f2a4d7b8c1e4523", "component": "box-icon", "props": { "icon": "badge-percent", "title": "Giá trị cốt lõi", "description": "Chính trực - Chất lượng - Đam mê - Kết nối - Không ngừng cải tiến.", "iconClassName": "text-blue-600", "titleClassName": "normal-case text-base", "descriptionClassName": "text-sm" } },
-              { "_id": "66bf4e8c9f2a4d7b8c1e4524", "component": "box-icon", "props": { "icon": "users", "title": "Cộng đồng", "description": "Xây dựng cộng đồng người yêu xe đạp lớn mạnh, văn minh và tích cực.", "iconClassName": "text-blue-600", "titleClassName": "normal-case text-base", "descriptionClassName": "text-sm" } }
-            ]
-          },
-          {
-            "_id": "66bf4e8c9f2a4d7b8c1e4504", "name": "Company numbers", "order": 4, "status": "active", "component": "stack",
+            "_id": "66bf4e8c9f2a4d7b8c1e4504", "name": "Company numbers", "order": 3, "status": "active", "component": "stack",
             "props": { "variant": "primary", "sectionClassName": "pb-4 sm:pb-6", "rowClassName": "flex-wrap items-stretch" },
             "columns": [
               { "_id": "66bf4e8c9f2a4d7b8c1e4531", "component": "box-icon", "props": { "icon": "location", "title": "30+", "description": "Cửa hàng toàn quốc", "iconClassName": "text-white", "titleClassName": "text-2xl", "descriptionClassName": "text-sm" } },
@@ -141,7 +143,7 @@
             ]
           },
           {
-            "_id": "66bf4e8c9f2a4d7b8c1e4505", "name": "Development journey", "order": 5, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-4 sm:pb-6" },
+            "_id": "66bf4e8c9f2a4d7b8c1e4505", "name": "Development journey", "order": 4, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-4 sm:pb-6" },
             "rows": [
               { "_id": "66bf4e8c9f2a4d7b8c1e4540", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4541", "props": { "className": "w-full" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4542", "status": "active", "component": "section-header", "props": { "title": "Hành trình phát triển", "template": "featured" } }] }] },
               { "_id": "66bf4e8c9f2a4d7b8c1e4543", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4544", "props": { "className": "w-full" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4545", "status": "active", "component": "timeline", "props": { "items": [
@@ -154,7 +156,7 @@
             ]
           },
           {
-            "_id": "66bf4e8c9f2a4d7b8c1e4506", "name": "Why BikeSport", "order": 6, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-4 sm:pb-6" },
+            "_id": "66bf4e8c9f2a4d7b8c1e4506", "name": "Why BikeSport", "order": 5, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-4 sm:pb-6" },
             "rows": [
               { "_id": "66bf4e8c9f2a4d7b8c1e4550", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4551", "props": { "className": "w-full" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4552", "status": "active", "component": "section-header", "props": { "title": "Vì sao chọn BikeSport?", "template": "default" } }] }] },
               { "_id": "66bf4e8c9f2a4d7b8c1e4553", "props": { "className": "flex-col items-stretch gap-6 lg:flex-row" }, "columns": [
@@ -171,7 +173,7 @@
             ]
           },
           {
-            "_id": "66bf4e8c9f2a4d7b8c1e4507", "name": "About CTA", "order": 7, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-6 sm:pb-8" },
+            "_id": "66bf4e8c9f2a4d7b8c1e4507", "name": "About CTA", "order": 6, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-6 sm:pb-8" },
             "rows": [{ "_id": "66bf4e8c9f2a4d7b8c1e4560", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4561", "props": { "className": "w-full" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4562", "status": "active", "component": "media-cta", "props": { "title": "Cùng BikeSport chinh phục mọi hành trình!", "description": "Dù bạn là người mới bắt đầu hay vận động viên chuyên nghiệp, BikeSport luôn sẵn sàng đồng hành cùng bạn.", "href": "/san-pham", "actionLabel": "Khám phá ngay", "mediaId": null } }] }] }]
           }
         ]
@@ -179,7 +181,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-17T12:12:00+07:00"
+      "updatedAt": "2026-08-17T12:26:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4110", "title": "Liên hệ", "slug": "lien-he", "path": "/lien-he", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4111", "title": "Hướng dẫn mua hàng", "slug": "huong-dan-mua-hang", "path": "/huong-dan-mua-hang", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
