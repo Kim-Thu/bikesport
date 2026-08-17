@@ -9,15 +9,22 @@ import { createMongoPostDataSource } from "@/data-access/mongodb/mongodb-post-da
 import { createMongoProductDataSource } from "@/data-access/mongodb/mongodb-product-data-source";
 import { createMongoPromotionDataSource } from "@/data-access/mongodb/mongodb-promotion-data-source";
 import { createMongoUserDataSource } from "@/data-access/mongodb/mongodb-user-data-source";
+import type { MongoDatabaseProvider } from "@/data-access/mongodb/mongodb-driver.interface";
 
-export const mongodbDataSources: DataSources = {
-  page: createMongoPageDataSource(getMongoDatabase),
-  category: createMongoCategoryDataSource(getMongoDatabase),
-  brand: createMongoBrandDataSource(getMongoDatabase),
-  product: createMongoProductDataSource(getMongoDatabase),
-  promotion: createMongoPromotionDataSource(getMongoDatabase),
-  menu: createMongoMenuDataSource(getMongoDatabase),
-  post: createMongoPostDataSource(getMongoDatabase),
-  event: createMongoEventDataSource(getMongoDatabase),
-  user: createMongoUserDataSource(getMongoDatabase),
-};
+export function createMongoDataSources(
+  getDatabase: MongoDatabaseProvider = getMongoDatabase,
+): DataSources {
+  return {
+    page: createMongoPageDataSource(getDatabase),
+    category: createMongoCategoryDataSource(getDatabase),
+    brand: createMongoBrandDataSource(getDatabase),
+    product: createMongoProductDataSource(getDatabase),
+    promotion: createMongoPromotionDataSource(getDatabase),
+    menu: createMongoMenuDataSource(getDatabase),
+    post: createMongoPostDataSource(getDatabase),
+    event: createMongoEventDataSource(getDatabase),
+    user: createMongoUserDataSource(getDatabase),
+  };
+}
+
+export const mongodbDataSources = createMongoDataSources();
