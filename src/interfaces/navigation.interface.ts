@@ -34,6 +34,10 @@ export interface NavMenuProps {
   menuId: string;
 }
 
+export interface MobileMenuClientProps {
+  menu: NavMenuData;
+}
+
 export interface MenuChildrenProps {
   items: NavMenuItem[];
   id?: string;
