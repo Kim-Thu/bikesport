@@ -1,6 +1,7 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { CategoryType } from "@/interfaces/category.interface";
 import type { PageBlockPayload } from "@/interfaces/page-block.interface";
+import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { SectionTemplate } from "@/interfaces/section.interface";
 
 export type PageStatus = "draft" | "published";
@@ -46,10 +47,8 @@ export interface StackSectionPayload extends PageSectionBase {
 
 export interface CardGridSectionPayload extends PageSectionBase {
   component: "card-grid";
-  props: {
+  props: SectionHeadingConfig & {
     title: string;
-    href?: string;
-    actionLabel?: string;
     template: CardTemplate;
     gridClassName?: string;
     sectionClassName?: string;
