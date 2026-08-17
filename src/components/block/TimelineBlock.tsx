@@ -7,9 +7,12 @@ export function TimelineBlock({ block }: { block: TimelineBlockPayload }) {
 
   return (
     <div className={cn("w-full", block.props.className)}>
-      <div className="grid md:grid-cols-3 lg:grid-cols-5">
+      <div className="grid gap-6 md:grid-cols-3 lg:flex lg:gap-0">
         {block.props.items.map((item, index) => (
-          <article key={`${item.label}-${index}`} className="flex min-w-0 flex-col items-center text-center">
+          <article
+            key={`${item.label}-${index}`}
+            className="flex min-w-0 flex-col items-center text-center lg:flex-1"
+          >
             <div className="mb-3 hidden w-full items-center lg:flex" aria-hidden="true">
               <span className={cn("h-px flex-1", index === 0 ? "bg-transparent" : "bg-blue-300")} />
               <span
