@@ -1,7 +1,7 @@
 import { Badge } from "@/components/badge/Badge";
 import { Button } from "@/components/button/Button";
 import { CLink } from "@/components/link/CLink";
-import { MediaImage } from "@/components/media/MediaImage";
+import { MediaImageView } from "@/components/media/MediaImageView";
 import { Price } from "@/components/price/Price";
 import type { CardProps } from "@/interfaces/card.interface";
 import { cn } from "@/lib/classname.utils";
@@ -9,13 +9,13 @@ import { cn } from "@/lib/classname.utils";
 export function FlashSaleTemplate({
   title,
   href,
-  mediaId,
+  media,
   price,
   salePrice,
   discountPercentage,
   stockRemaining,
   stockTotal,
-  promotionBadgeMediaId,
+  promotionBadgeMedia,
   promotionBadgeAlt,
   className,
 }: CardProps) {
@@ -40,10 +40,10 @@ export function FlashSaleTemplate({
           ) : null}
         </div>
 
-        {promotionBadgeMediaId ? (
+        {promotionBadgeMedia ? (
           <div className="absolute bottom-4 left-4 z-10 h-10 w-24 overflow-hidden rounded-md bg-white/90 p-1">
-            <MediaImage
-              mediaId={promotionBadgeMediaId}
+            <MediaImageView
+              media={promotionBadgeMedia}
               alt={promotionBadgeAlt ?? "Nhãn khuyến mãi"}
               width={96}
               height={40}
@@ -53,13 +53,15 @@ export function FlashSaleTemplate({
         ) : null}
 
         <div className="aspect-product w-full overflow-hidden rounded-md bg-red-50">
-          <MediaImage
-            mediaId={mediaId}
-            alt={title}
-            width={320}
-            height={240}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
+          {media ? (
+            <MediaImageView
+              media={media}
+              alt={title}
+              width={320}
+              height={240}
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          ) : null}
         </div>
       </CLink>
 
