@@ -6,8 +6,8 @@ import { getCardGridItems } from "@/lib/card-grid-source.utils";
 
 const NOT_FOUND_MEDIA_ID: string | null = null;
 
-export default function NotFound() {
-  const suggestions = getCardGridItems({ type: "category", categoryType: "product", limit: 5 });
+export default async function NotFound() {
+  const suggestions = await getCardGridItems({ type: "category", categoryType: "product", limit: 5 });
 
   return (
     <main aria-labelledby="not-found-title" className="py-10 sm:py-14 lg:py-16">
