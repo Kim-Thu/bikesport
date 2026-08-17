@@ -20,11 +20,13 @@ function BannerSlide({ banner }: { banner: BannerRecord }) {
   return <VariantComponent banner={banner} />;
 }
 
-export function Banner({ bannerId }: BannerProps) {
-  const initialBanner = getActiveBannerById(bannerId);
+export async function Banner({ bannerId }: BannerProps) {
+  const initialBanner = await getActiveBannerById(bannerId);
   if (!initialBanner) return null;
 
-  const slides = initialBanner.groupId ? getActiveBannersByGroup(initialBanner.groupId) : [initialBanner];
+  const slides = initialBanner.groupId
+    ? await getActiveBannersByGroup(initialBanner.groupId)
+    : [initialBanner];
 
   return (
     <Section className="py-4 sm:py-6">
