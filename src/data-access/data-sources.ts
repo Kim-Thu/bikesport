@@ -10,6 +10,7 @@ import { jsonCategoryDataSource } from "@/data-access/json/json-category-data-so
 import { jsonComboDataSource } from "@/data-access/json/json-combo-data-source";
 import { jsonEventDataSource } from "@/data-access/json/json-event-data-source";
 import { jsonMenuDataSource } from "@/data-access/json/json-menu-data-source";
+import { jsonOptionsDataSource } from "@/data-access/json/json-options-data-source";
 import { jsonPageDataSource } from "@/data-access/json/json-page-data-source";
 import { jsonPaymentDataSource } from "@/data-access/json/json-payment-data-source";
 import { jsonPostDataSource } from "@/data-access/json/json-post-data-source";
@@ -36,6 +37,7 @@ const jsonDataSources: DataSources = {
   campaign: jsonCampaignDataSource,
   announcement: jsonAnnouncementDataSource,
   payment: jsonPaymentDataSource,
+  options: jsonOptionsDataSource,
 };
 
 function createDataSources(): DataSources {
