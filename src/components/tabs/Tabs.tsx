@@ -112,6 +112,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
       className={cn(
         "scrollbar-none flex min-w-0 items-center overflow-x-auto overscroll-x-contain scroll-smooth select-none",
         TEMPLATE_GAPS[template],
+        template === "flash-sale" && "justify-center",
         isDragging ? "cursor-grabbing" : "cursor-grab",
         className,
       )}
