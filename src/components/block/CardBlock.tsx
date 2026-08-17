@@ -7,7 +7,7 @@ import {
   getPromotionTitle,
 } from "@/lib/promotion.utils";
 
-export function CardBlock({ block }: { block: CardBlockPayload }) {
+export async function CardBlock({ block }: { block: CardBlockPayload }) {
   if (block.props.source.type === "campaign") {
     const campaign = getActiveCampaignById(block.props.source.campaignId);
     if (!campaign) return null;
@@ -24,7 +24,7 @@ export function CardBlock({ block }: { block: CardBlockPayload }) {
     );
   }
 
-  const promotion = getActivePromotionById(block.props.source.promotionId);
+  const promotion = await getActivePromotionById(block.props.source.promotionId);
   if (!promotion) return null;
 
   return (
