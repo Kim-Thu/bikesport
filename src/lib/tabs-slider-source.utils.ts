@@ -8,40 +8,54 @@ import {
 
 export type TabsSliderSource = TabsSliderBlockPayload["props"]["source"];
 
-function resolveComboGroups(source: Extract<TabsSliderSource, { type: "combo" }>): TabsSliderGroup[] {
-  return source.tabs.map((tab) => ({
-    label: tab.label,
-    value: tab.comboId,
-    items: getProductCollectionItems({ type: "combo", comboId: tab.comboId }),
-  }));
+async function resolveComboGroups(
+  source: Extract<TabsSliderSource, { type: "combo" }>,
+): Promise<TabsSliderGroup[]> {
+  return Promise.all(
+    source.tabs.map(async (tab) => ({
+      label: tab.label,
+      value: tab.comboId,
+      items: await getProductCollectionItems({ type: "combo", comboId: tab.comboId }),
+    })),
+  );
 }
 
-function resolveBrandGroups(source: Extract<TabsSliderSource, { type: "brand" }>): TabsSliderGroup[] {
+async function resolveBrandGroups(
+  source: Extract<TabsSliderSource, { type: "brand" }>,
+): Promise<TabsSliderGroup[]> {
   const brands = new Map(getActiveBrands().map((brand) => [brand._id, brand]));
 
-  return source.tabs.map((tab) => ({
-    label: tab.label,
-    value: tab.brandId,
-    mediaId: brands.get(tab.brandId)?.logoMediaId ?? null,
-    items: getProductCollectionItems({ type: "brand", brandId: tab.brandId, limit: source.limit }),
-  }));
+  return Promise.all(
+    source.tabs.map(async (tab) => ({
+      label: tab.label,
+      value: tab.brandId,
+      mediaId: brands.get(tab.brandId)?.logoMediaId ?? null,
+      items: await getProductCollectionItems({
+        type: "brand",
+        brandId: tab.brandId,
+        limit: source.limit,
+      }),
+    })),
+  );
 }
 
-function resolveBestSellerGroups(
+async function resolveBestSellerGroups(
   source: Extract<TabsSliderSource, { type: "best-seller" }>,
-): TabsSliderGroup[] {
-  return source.tabs.map((tab) => ({
-    label: tab.label,
-    value: tab.categoryId,
-    items: getProductCollectionItems({
-      type: "best-seller",
-      categoryId: tab.categoryId,
-      limit: source.limit,
-    }),
-  }));
+): Promise<TabsSliderGroup[]> {
+  return Promise.all(
+    source.tabs.map(async (tab) => ({
+      label: tab.label,
+      value: tab.categoryId,
+      items: await getProductCollectionItems({
+        type: "best-seller",
+        categoryId: tab.categoryId,
+        limit: source.limit,
+      }),
+    })),
+  );
 }
 
-export function getTabsSliderGroups(source: TabsSliderSource): TabsSliderGroup[] {
+export async function getTabsSliderGroups(source: TabsSliderSource): Promise<TabsSliderGroup[]> {
   switch (source.type) {
     case "combo":
       return resolveComboGroups(source);
