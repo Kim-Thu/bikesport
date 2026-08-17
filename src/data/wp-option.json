@@ -128,7 +128,7 @@
                   {
                     "component": "logo",
                     "props": {
-                      "href": "#home"
+                      "href": "/"
                     }
                   }
                 ]
