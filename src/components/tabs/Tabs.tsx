@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { MediaImage } from "@/components/media/MediaImage";
 import { cn } from "@/lib/classname.utils";
+import type { TabsTemplate } from "@/variants/tabs.variant";
 
 export interface TabItem {
   label: string;
   value: string;
+  mediaId?: string | null;
 }
 
 interface TabsProps {
@@ -13,12 +16,13 @@ interface TabsProps {
   value: string;
   onChange: (value: string) => void;
   className?: string;
+  template?: TabsTemplate;
 }
 
 const DRAG_THRESHOLD = 4;
 const SCROLL_PADDING = 12;
 
-export function Tabs({ items, value, onChange, className }: TabsProps) {
+export function Tabs({ items, value, onChange, className, template = "default" }: TabsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef({
     active: false,
@@ -117,7 +121,8 @@ export function Tabs({ items, value, onChange, className }: TabsProps) {
     <div
       ref={containerRef}
       className={cn(
-        "scrollbar-none flex min-w-0 items-center gap-5 overflow-x-auto overscroll-x-contain scroll-smooth select-none",
+        "scrollbar-none flex min-w-0 items-center overflow-x-auto overscroll-x-contain scroll-smooth select-none",
+        template === "image" ? "gap-3" : "gap-5",
         isDragging ? "cursor-grabbing" : "cursor-grab",
         className,
       )}
@@ -139,14 +144,35 @@ export function Tabs({ items, value, onChange, className }: TabsProps) {
             aria-selected={active}
             data-tab-value={item.value}
             className={cn(
-              "shrink-0 cursor-pointer border-b-2 px-1 py-2 text-xs font-semibold transition-colors sm:text-sm",
-              active
-                ? "border-blue-600 text-blue-600"
-                : "border-transparent text-gray-600 hover:text-blue-600",
+              "shrink-0 cursor-pointer transition-colors",
+              template === "image"
+                ? cn(
+                    "overflow-hidden rounded-lg border bg-white p-2",
+                    active ? "border-blue-600 ring-1 ring-blue-600" : "border-gray-200 hover:border-blue-300",
+                  )
+                : cn(
+                    "border-b-2 px-1 py-2 text-xs font-semibold sm:text-sm",
+                    active
+                      ? "border-blue-600 text-blue-600"
+                      : "border-transparent text-gray-600 hover:text-blue-600",
+                  ),
             )}
             onClick={() => handleTabClick(item.value)}
           >
-            {item.label}
+            {template === "image" ? (
+              <span className="flex h-10 w-20 items-center justify-center sm:h-12 sm:w-24">
+                <MediaImage
+                  mediaId={item.mediaId}
+                  alt={item.label}
+                  width={96}
+                  height={48}
+                  className="h-full w-full object-contain"
+                />
+                <span className="sr-only">{item.label}</span>
+              </span>
+            ) : (
+              item.label
+            )}
           </button>
         );
       })}
