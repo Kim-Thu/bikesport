@@ -9,6 +9,8 @@ import type { ProductRecord } from "@/interfaces/product.interface";
 
 const promotionData = wpPromotion as PromotionData;
 const products = wpProducts.products as ProductRecord[];
+const publishedProducts = products.filter((product) => product.status === "published");
+const productBySku = new Map(products.map((product) => [product.sku, product]));
 const promotionIndex = new Map<string, PromotionRecord>(
   promotionData.promotions.map((promotion) => [promotion._id, promotion]),
 );
@@ -86,14 +88,16 @@ function getIntrinsicDiscountPercentage(product: ProductRecord): number | null {
 
 function sortPromotionProducts(items: ProductRecord[], promotion: PromotionRecord): ProductRecord[] {
   const skuOrder = promotion.target.skus ?? [];
+  const skuRank = new Map(skuOrder.map((sku, index) => [sku, index]));
 
   return [...items].sort((a, b) => {
-    if (skuOrder.length) {
-      const aIndex = skuOrder.indexOf(a.sku);
-      const bIndex = skuOrder.indexOf(b.sku);
+    if (skuRank.size) {
+      const aIndex = skuRank.get(a.sku);
+      const bIndex = skuRank.get(b.sku);
+
       if (aIndex !== bIndex) {
-        if (aIndex === -1) return 1;
-        if (bIndex === -1) return -1;
+        if (aIndex === undefined) return 1;
+        if (bIndex === undefined) return -1;
         return aIndex - bIndex;
       }
     }
@@ -103,7 +107,6 @@ function sortPromotionProducts(items: ProductRecord[], promotion: PromotionRecor
 }
 
 export function getPromotionProducts(promotion: PromotionRecord, limit?: number): ProductRecord[] {
-  const publishedProducts = products.filter((product) => product.status === "published");
   let matchedProducts: ProductRecord[];
 
   if (hasTargetSelectors(promotion)) {
@@ -187,7 +190,7 @@ export function getActivePromotionsForSku(
   sku: string,
   now: Date = new Date(),
 ): PromotionRecord[] {
-  const product = products.find((item) => item.sku === sku);
+  const product = productBySku.get(sku);
   if (!product) return [];
 
   return promotionData.promotions
