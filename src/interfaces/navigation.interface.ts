@@ -49,7 +49,7 @@ export interface MobileMenuClientProps {
   menuMediaById: ResolvedMenuMediaMap;
   hotline: ContactLinkOptions;
   socialItems: SocialLinkOptions[];
-  socialMediaById: Record<string, MediaItem>;
+  socialMediaUrlById: Record<string, string>;
 }
 
 export interface MenuItemContentProps {
