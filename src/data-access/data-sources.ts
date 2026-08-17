@@ -2,6 +2,7 @@ import "server-only";
 import type { DataSources } from "@/data-access/contracts/data-sources.interface";
 import { jsonBrandDataSource } from "@/data-access/json/json-brand-data-source";
 import { jsonCategoryDataSource } from "@/data-access/json/json-category-data-source";
+import { jsonMenuDataSource } from "@/data-access/json/json-menu-data-source";
 import { jsonPageDataSource } from "@/data-access/json/json-page-data-source";
 import { jsonProductDataSource } from "@/data-access/json/json-product-data-source";
 import { jsonPromotionDataSource } from "@/data-access/json/json-promotion-data-source";
@@ -13,6 +14,7 @@ const jsonDataSources: DataSources = {
   brand: jsonBrandDataSource,
   product: jsonProductDataSource,
   promotion: jsonPromotionDataSource,
+  menu: jsonMenuDataSource,
 };
 
 function createDataSources(): DataSources {
