@@ -13,6 +13,13 @@ export function createMongoCampaignDataSource(
         .collection<CampaignRecord>(MONGODB_COLLECTIONS.campaigns)
         .findOne({ _id: campaignId });
     },
+    async getAll() {
+      const database = await getDatabase();
+      return database
+        .collection<CampaignRecord>(MONGODB_COLLECTIONS.campaigns)
+        .find()
+        .toArray();
+    },
     async getActive(limit) {
       const database = await getDatabase();
       let cursor = database
