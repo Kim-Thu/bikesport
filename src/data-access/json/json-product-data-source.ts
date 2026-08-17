@@ -26,6 +26,7 @@ function matchesFilter(product: ProductRecord, filter: ProductDataFilter): boole
   if (filter.excludeSkus?.includes(product.sku)) return false;
 
   const selectors: boolean[] = [];
+  if (filter.ids?.length) selectors.push(filter.ids.includes(product._id));
   if (filter.skus?.length) selectors.push(filter.skus.includes(product.sku));
   if (filter.categoryIds?.length) {
     selectors.push(product.categoryIds.some((id) => filter.categoryIds?.includes(id)));
