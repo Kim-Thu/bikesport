@@ -127,6 +127,50 @@
                     ]
                   }
                 ]
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4255",
+                "props": { "className": "flex-col items-stretch gap-4 lg:flex-row" },
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4256",
+                    "props": { "className": "w-full lg:w-1/4" },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4257",
+                        "status": "active",
+                        "component": "card",
+                        "props": {
+                          "template": "accent",
+                          "source": { "type": "campaign", "campaignId": "66bf4e8c9f2a4d7b8c1e3801" }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4258",
+                    "props": { "grow": true, "className": "w-full" },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4259",
+                        "status": "active",
+                        "component": "product-slider",
+                        "props": {
+                          "template": "media-action",
+                          "ariaLabel": "Xe đạp trong chiến dịch Summer Ride 2026",
+                          "trackClassName": "-ml-4",
+                          "slideClassName": "basis-48 pl-4 sm:basis-52 lg:basis-1/4",
+                          "source": {
+                            "type": "campaign",
+                            "campaignId": "66bf4e8c9f2a4d7b8c1e3801",
+                            "categoryId": "66bf4e8c9f2a4d7b8c1e3c02",
+                            "limit": 4
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -341,7 +385,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-17T08:18:00+07:00"
+      "updatedAt": "2026-08-17T08:22:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4104", "title": "Khuyến mãi", "slug": "khuyen-mai", "path": "/khuyen-mai", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4105", "title": "Sự kiện", "slug": "su-kien", "path": "/su-kien", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
