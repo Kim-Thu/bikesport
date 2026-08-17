@@ -6,4 +6,5 @@ export interface TabsSliderTemplateProps {
   href?: string;
   actionLabel?: string;
   backgroundMediaId?: string | null;
+  containerClassName?: string;
 }
