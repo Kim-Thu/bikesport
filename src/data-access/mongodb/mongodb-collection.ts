@@ -22,4 +22,5 @@ export const MONGODB_COLLECTIONS = {
   announcements: "announcements",
   options: "options",
   seo: "seo",
+  metaCategories: "meta_categories",
 } as const;
