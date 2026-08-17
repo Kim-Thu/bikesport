@@ -7,7 +7,7 @@ export function FeaturedDealsTemplate({
   pagination,
   href,
   actionLabel = "Xem thêm ưu đãi",
-  backgroundMediaId,
+  backgroundMedia,
 }: TabsGridTemplateProps) {
   return (
     <CollectionShowcase
@@ -16,7 +16,7 @@ export function FeaturedDealsTemplate({
       footer={pagination}
       href={href}
       actionLabel={actionLabel}
-      backgroundMediaId={backgroundMediaId}
+      backgroundMedia={backgroundMedia}
       containerClassName="rounded-xl bg-blue-50 p-4 sm:p-6"
     />
   );
