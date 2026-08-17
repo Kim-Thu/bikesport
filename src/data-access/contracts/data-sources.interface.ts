@@ -9,6 +9,7 @@ import type { EventDataSource } from "@/data-access/contracts/event-data-source.
 import type { MediaDataSource } from "@/data-access/contracts/media-data-source.interface";
 import type { MenuDataSource } from "@/data-access/contracts/menu-data-source.interface";
 import type { OptionsDataSource } from "@/data-access/contracts/options-data-source.interface";
+import type { OrderDataSource } from "@/data-access/contracts/order-data-source.interface";
 import type { PageDataSource } from "@/data-access/contracts/page-data-source.interface";
 import type { PaymentDataSource } from "@/data-access/contracts/payment-data-source.interface";
 import type { PostDataSource } from "@/data-access/contracts/post-data-source.interface";
@@ -36,4 +37,5 @@ export interface DataSources {
   payment: PaymentDataSource;
   options: OptionsDataSource;
   media: MediaDataSource;
+  order: OrderDataSource;
 }
