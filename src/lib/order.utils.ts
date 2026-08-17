@@ -1,36 +1,23 @@
-import wpOrders from "@/data/wp-orders.json";
-import type { OrderData } from "@/interfaces/order.interface";
+import { dataSources } from "@/data-access/data-sources";
+import type { ProductSalesStatsRecord } from "@/data-access/contracts/order-data-source.interface";
 
 export interface ProductSalesStats {
   quantity: number;
   lastPurchasedAt: string;
 }
 
-function buildProductSalesStats(): Map<string, ProductSalesStats> {
-  const sales = new Map<string, ProductSalesStats>();
+export async function getProductSalesStatsBySku(
+  skus?: string[],
+): Promise<ReadonlyMap<string, ProductSalesStats>> {
+  const rows: ProductSalesStatsRecord[] = await dataSources.order.getCompletedProductSalesStats(skus);
 
-  for (const order of (wpOrders as OrderData).orders) {
-    if (order.status !== "completed") continue;
-
-    for (const item of order.items) {
-      const current = sales.get(item.sku);
-      const lastPurchasedAt =
-        !current || new Date(order.createdAt).getTime() > new Date(current.lastPurchasedAt).getTime()
-          ? order.createdAt
-          : current.lastPurchasedAt;
-
-      sales.set(item.sku, {
-        quantity: (current?.quantity ?? 0) + item.quantity,
-        lastPurchasedAt,
-      });
-    }
-  }
-
-  return sales;
-}
-
-const productSalesStatsBySku = buildProductSalesStats();
-
-export function getProductSalesStatsBySku(): ReadonlyMap<string, ProductSalesStats> {
-  return productSalesStatsBySku;
+  return new Map(
+    rows.map((row) => [
+      row.sku,
+      {
+        quantity: row.quantity,
+        lastPurchasedAt: row.lastPurchasedAt,
+      },
+    ]),
+  );
 }
