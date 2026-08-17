@@ -1,10 +1,13 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
+import type { ProductSource } from "@/interfaces/product-source.interface";
 import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { ProductSliderLayoutTemplate } from "@/variants/product-slider.variant";
 import type { TabsGridTemplate } from "@/variants/tabs-grid.variant";
 import type { TabsSliderTemplate } from "@/variants/tabs-slider.variant";
 import type { TabsTemplate } from "@/variants/tabs.variant";
+
+export type { ProductSource } from "@/interfaces/product-source.interface";
 
 export type PageBlockStatus = "active" | "inactive";
 export type PageBlockComponent =
@@ -24,12 +27,6 @@ interface PageBlockBase {
   status: PageBlockStatus;
   component: PageBlockComponent;
 }
-
-export type ProductSource =
-  | { type: "promotion"; promotionId: string; limit?: number }
-  | { type: "campaign"; campaignId: string; categoryId?: string; limit?: number }
-  | { type: "category"; categoryId: string; limit?: number }
-  | { type: "brand"; brandId: string; limit?: number };
 
 export interface AdsBlockPayload extends PageBlockBase {
   component: "ads";
