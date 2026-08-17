@@ -9,6 +9,7 @@ import { Tabs, type TabItem } from "@/components/tabs/Tabs";
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { ProductCollectionItem } from "@/interfaces/product-collection-item.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
+import type { ActionLinkTone } from "@/variants/action-link.variant";
 import type { TabsSliderTemplate } from "@/variants/tabs-slider.variant";
 import type { TabsTemplate } from "@/variants/tabs.variant";
 
@@ -22,6 +23,7 @@ interface TabsSliderProps extends SectionHeadingConfig {
   template: CardTemplate;
   tabTemplate?: TabsTemplate;
   layoutTemplate?: TabsSliderTemplate;
+  actionTone?: ActionLinkTone;
   backgroundMediaId?: string | null;
   containerClassName?: string;
   trackClassName?: string;
@@ -44,15 +46,17 @@ export function TabsSlider({
   headingTemplate = "default",
   tabTemplate = "default",
   layoutTemplate = "default",
+  actionTone,
   backgroundMediaId,
   containerClassName,
   trackClassName,
   slideClassName,
 }: TabsSliderProps) {
-  const [activeValue, setActiveValue] = useState(groups[0]?.value ?? "");
+  const preferredGroup = groups.find((group) => group.status === "active") ?? groups[0];
+  const [activeValue, setActiveValue] = useState(preferredGroup?.value ?? "");
   const activeGroup = useMemo(
-    () => groups.find((group) => group.value === activeValue) ?? groups[0],
-    [activeValue, groups],
+    () => groups.find((group) => group.value === activeValue) ?? preferredGroup,
+    [activeValue, groups, preferredGroup],
   );
 
   if (!activeGroup) return null;
@@ -68,7 +72,14 @@ export function TabsSlider({
       template={headingTemplate}
     >
       <Tabs
-        items={groups.map(({ label, value, mediaId }) => ({ label, value, mediaId }))}
+        items={groups.map(({ label, value, mediaId, status, startAt, endAt }) => ({
+          label,
+          value,
+          mediaId,
+          status,
+          startAt,
+          endAt,
+        }))}
         value={activeGroup.value}
         onChange={setActiveValue}
         template={tabTemplate}
@@ -93,6 +104,7 @@ export function TabsSlider({
         slider={slider}
         href={href}
         actionLabel={actionLabel}
+        actionTone={actionTone}
         backgroundMediaId={backgroundMediaId}
         containerClassName={containerClassName}
       />
