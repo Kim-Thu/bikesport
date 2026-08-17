@@ -1,6 +1,7 @@
 import { AdsBlock } from "@/components/block/AdsBlock";
 import { CardBlock } from "@/components/block/CardBlock";
 import { CardGridBlock } from "@/components/block/CardGridBlock";
+import { ContentBlock } from "@/components/block/ContentBlock";
 import { IconListBlock } from "@/components/block/IconListBlock";
 import { InlineFormBlock } from "@/components/block/InlineFormBlock";
 import { MediaBlock } from "@/components/block/MediaBlock";
@@ -24,5 +25,6 @@ export const PAGE_BLOCK_COMPONENTS = {
   media: MediaBlock,
   "inline-form": InlineFormBlock,
   "section-header": SectionHeaderBlock,
+  content: ContentBlock,
   timeline: TimelineBlock,
 } satisfies Record<PageBlockComponent, unknown>;
