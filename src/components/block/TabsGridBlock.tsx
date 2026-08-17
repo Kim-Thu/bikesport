@@ -1,12 +1,12 @@
 import { TabsGrid, type TabsGridGroup } from "@/components/grid/TabsGrid";
 import type { TabsGridBlockPayload } from "@/interfaces/page-block.interface";
-import { getProductSliderItems } from "@/lib/product-slider-source.utils";
+import { getProductCollectionItems } from "@/lib/product-collection-source.utils";
 
 export function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) {
   const groups: TabsGridGroup[] = block.props.tabs.map((tab) => ({
     label: tab.label,
     value: tab.value,
-    items: getProductSliderItems(tab.source),
+    items: getProductCollectionItems(tab.source),
   }));
 
   if (!groups.some((group) => group.items.length)) return null;
