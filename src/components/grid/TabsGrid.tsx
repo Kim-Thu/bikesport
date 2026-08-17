@@ -80,7 +80,7 @@ export function TabsGrid({
     : activeGroup.items;
 
   return (
-    <div ref={sectionStartRef} className="min-w-0 scroll-mt-4">
+    <div ref={sectionStartRef} className="min-w-0 scroll-mt-8 sm:scroll-mt-6">
       <SectionHeader title={title} href={href} actionLabel={actionLabel} className="mb-4">
         <Tabs
           items={groups.map(({ label, value }) => ({ label, value }))}
