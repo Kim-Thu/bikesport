@@ -8,8 +8,8 @@ import type { BannerRecord } from "@/interfaces/banner.interface";
 import { getPromotionBenefitLabel } from "@/lib/promotion-presentation.utils";
 import { getActivePromotionById } from "@/lib/promotion.utils";
 
-function PromotionInfoCard({ card }: { card: NonNullable<BannerRecord["promotionCards"]>[number] }) {
-  const promotion = getActivePromotionById(card.promotionId);
+async function PromotionInfoCard({ card }: { card: NonNullable<BannerRecord["promotionCards"]>[number] }) {
+  const promotion = await getActivePromotionById(card.promotionId);
   if (!promotion) return null;
 
   const value = getPromotionBenefitLabel(promotion.benefits[0]);
