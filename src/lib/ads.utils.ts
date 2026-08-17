@@ -1,20 +1,7 @@
-import wpAds from "@/data/wp-ads.json";
-import type { AdsData, AdsRecord, AdsSchedule } from "@/interfaces/ads.interface";
+import { dataSources } from "@/data-access/data-sources";
+import type { AdsRecord, AdsSchedule } from "@/interfaces/ads.interface";
 import { getEventById } from "@/lib/event.utils";
 import { getPromotionById } from "@/lib/promotion.utils";
-
-const adsByPlacement = new Map<string, AdsRecord[]>();
-
-for (const ad of (wpAds as AdsData).ads) {
-  if (ad.status !== "active") continue;
-  const placementAds = adsByPlacement.get(ad.placement) ?? [];
-  placementAds.push(ad);
-  adsByPlacement.set(ad.placement, placementAds);
-}
-
-for (const placementAds of adsByPlacement.values()) {
-  placementAds.sort((a, b) => b.priority - a.priority);
-}
 
 function isWithinRange(now: Date, startAt?: string, endAt?: string): boolean {
   if (startAt && now < new Date(startAt)) return false;
@@ -50,8 +37,11 @@ export async function getActiveAdByPlacement(
   placement: string,
   now = new Date(),
 ): Promise<AdsRecord | null> {
-  for (const ad of adsByPlacement.get(placement) ?? []) {
+  const ads = await dataSources.ads.getActiveByPlacement(placement);
+
+  for (const ad of ads) {
     if (await isScheduleActive(ad.schedule, now)) return ad;
   }
+
   return null;
 }
