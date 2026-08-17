@@ -16,6 +16,9 @@ export async function MobileMenuLoader({ menuId }: NavMenuProps) {
     getMediaWithFallbackByIds(menuMediaIds),
     getMediaWithFallbackByIds(socialMediaIds),
   ]);
+  const socialMediaUrlById = Object.fromEntries(
+    Object.entries(socialMediaById).flatMap(([mediaId, media]) => (media.src ? [[mediaId, media.src]] : [])),
+  );
 
   return (
     <MobileMenu
@@ -25,7 +28,7 @@ export async function MobileMenuLoader({ menuId }: NavMenuProps) {
       menuMediaById={menuMediaById}
       hotline={options.contact.hotline}
       socialItems={socialItems}
-      socialMediaById={socialMediaById}
+      socialMediaUrlById={socialMediaUrlById}
     />
   );
 }
