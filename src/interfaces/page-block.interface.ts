@@ -1,5 +1,6 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
+import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { ProductSliderLayoutTemplate } from "@/variants/product-slider.variant";
 import type { TabsGridTemplate } from "@/variants/tabs-grid.variant";
 import type { TabsSliderTemplate } from "@/variants/tabs-slider.variant";
@@ -47,12 +48,7 @@ export interface CardBlockPayload extends PageBlockBase {
 
 export interface ProductSliderBlockPayload extends PageBlockBase {
   component: "product-slider";
-  props: {
-    title?: string;
-    titleMediaId?: string | null;
-    titleAlt?: string;
-    href?: string;
-    actionLabel?: string;
+  props: Omit<SectionHeadingConfig, "headingTemplate"> & {
     headerTemplate?: SectionHeaderTemplate;
     layoutTemplate?: ProductSliderLayoutTemplate;
     countdownAt?: string;
@@ -66,14 +62,9 @@ export interface ProductSliderBlockPayload extends PageBlockBase {
 
 export interface TabsSliderBlockPayload extends PageBlockBase {
   component: "tabs-slider";
-  props: {
+  props: SectionHeadingConfig & {
     title: string;
-    titleMediaId?: string | null;
-    titleAlt?: string;
-    href?: string;
-    actionLabel?: string;
     template: CardTemplate;
-    headingTemplate?: SectionHeaderTemplate;
     tabTemplate?: TabsTemplate;
     layoutTemplate?: TabsSliderTemplate;
     backgroundMediaId?: string | null;
@@ -89,14 +80,9 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
 
 export interface TabsGridBlockPayload extends PageBlockBase {
   component: "tabs-grid";
-  props: {
+  props: SectionHeadingConfig & {
     title: string;
-    titleMediaId?: string | null;
-    titleAlt?: string;
-    href?: string;
-    actionLabel?: string;
     template: CardTemplate;
-    headingTemplate?: SectionHeaderTemplate;
     tabsTemplate?: TabsTemplate;
     layoutTemplate?: TabsGridTemplate;
     backgroundMediaId?: string | null;
@@ -112,10 +98,8 @@ export interface TabsGridBlockPayload extends PageBlockBase {
 
 export interface CardGridBlockPayload extends PageBlockBase {
   component: "card-grid";
-  props: {
+  props: SectionHeadingConfig & {
     title: string;
-    href?: string;
-    actionLabel?: string;
     template: CardTemplate;
     gridClassName?: string;
     source:
