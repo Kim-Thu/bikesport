@@ -5,7 +5,11 @@ import { getCampaignProducts } from "@/lib/campaign.utils";
 import { getCategoryTreeIds } from "@/lib/category.utils";
 import { getActiveCombos, getComboProducts } from "@/lib/combo.utils";
 import { mapProductsToCollectionItems } from "@/lib/product-collection.utils";
-import { getBestSellerProducts, getPublishedProducts } from "@/lib/product.utils";
+import {
+  getBestSellerProducts,
+  getPublishedProducts,
+  getPublishedProductsByBrandId,
+} from "@/lib/product.utils";
 import { getActivePromotionById, getPromotionById, getPromotionProducts } from "@/lib/promotion.utils";
 
 export interface PromotionSessionCollectionGroup {
@@ -103,8 +107,9 @@ function resolveCategoryCollection(
 function resolveBrandCollection(
   source: Extract<ProductCollectionSource, { type: "brand" }>,
 ): ProductCollectionItem[] {
-  const products = getPublishedProducts().filter((product) => product.brandId === source.brandId);
-  return mapProductsToCollectionItems(takeLimit(products, source.limit));
+  return mapProductsToCollectionItems(
+    getPublishedProductsByBrandId(source.brandId, source.limit),
+  );
 }
 
 export function getProductCollectionItems(source: ProductCollectionSource): ProductCollectionItem[] {
