@@ -1,14 +1,11 @@
 import { Card } from "@/components/card/Card";
 import { Carousel } from "@/components/carousel/Carousel";
-import type { CardProps, CardTemplate } from "@/interfaces/card.interface";
+import type { CardTemplate } from "@/interfaces/card.interface";
+import type { ProductCollectionItem } from "@/interfaces/product-collection-item.interface";
 import { cn } from "@/lib/classname.utils";
 
-export interface ProductSliderItem extends Omit<CardProps, "template"> {
-  _key: string;
-}
-
 interface ProductSliderProps {
-  items: ProductSliderItem[];
+  items: ProductCollectionItem[];
   template: CardTemplate;
   ariaLabel: string;
   trackClassName?: string;
@@ -31,6 +28,8 @@ export function ProductSlider({
       showArrows
       stretchSlides
       ariaLabel={ariaLabel}
+      prevAriaLabel="Sản phẩm trước"
+      nextAriaLabel="Sản phẩm tiếp theo"
       trackClassName={trackClassName}
       slideClassName={cn("max-sm:basis-full", slideClassName)}
       dotsClassName="hidden"
