@@ -11,7 +11,7 @@ import { MEDIA_QUERIES } from "@/constants/breakpoint.constant";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { ProductCollectionItem } from "@/interfaces/product-collection-item.interface";
-import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
+import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { PaginationVariant } from "@/variants/pagination.variant";
 import type { TabsGridTemplate } from "@/variants/tabs-grid.variant";
 import type { TabsTemplate } from "@/variants/tabs.variant";
@@ -20,15 +20,10 @@ export interface TabsGridGroup extends TabItem {
   items: ProductCollectionItem[];
 }
 
-interface TabsGridProps {
+interface TabsGridProps extends SectionHeadingConfig {
   title: string;
-  titleMediaId?: string | null;
-  titleAlt?: string;
-  href?: string;
-  actionLabel?: string;
   groups: TabsGridGroup[];
   template: CardTemplate;
-  headingTemplate?: SectionHeaderTemplate;
   tabsTemplate?: TabsTemplate;
   layoutTemplate?: TabsGridTemplate;
   backgroundMediaId?: string | null;
