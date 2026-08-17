@@ -1,17 +1,17 @@
 import { createElement, type ElementType } from "react";
-import { Account } from "@/components/account/Account";
+import { AccountLoader } from "@/components/account/AccountLoader";
 import { Announcement } from "@/components/announcement/Announcement";
 import { Button } from "@/components/button/Button";
-import { MiniCart } from "@/components/cart/MiniCart";
-import { Contact } from "@/components/contact/Contact";
+import { MiniCartLoader } from "@/components/cart/MiniCartLoader";
+import { ContactLoader } from "@/components/contact/ContactLoader";
 import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
-import { Logo } from "@/components/logo/Logo";
+import { LogoLoader } from "@/components/logo/LogoLoader";
 import { MobileMenuLoader } from "@/components/navigation/MobileMenuLoader";
 import { NavMenu } from "@/components/navigation/NavMenu";
 import { Payment } from "@/components/payment/Payment";
 import { SearchForm } from "@/components/search/SearchForm";
-import { Social } from "@/components/social/Social";
+import { SocialLoader } from "@/components/social/SocialLoader";
 import type { ComponentItem } from "@/interfaces/component.interface";
 import type { ComponentName } from "@/types/component.type";
 
@@ -20,15 +20,15 @@ export const COMPONENT_REGISTRY: Record<ComponentName, ElementType> = {
   button: Button,
   icon: Icon,
   link: CLink,
-  logo: Logo,
+  logo: LogoLoader,
   "search-form": SearchForm,
-  contact: Contact,
-  account: Account,
-  "mini-cart": MiniCart,
+  contact: ContactLoader,
+  account: AccountLoader,
+  "mini-cart": MiniCartLoader,
   "nav-menu": NavMenu,
   "mobile-menu": MobileMenuLoader,
   payment: Payment,
-  social: Social,
+  social: SocialLoader,
 };
 
 export function renderComponent(item: ComponentItem, index: number) {
