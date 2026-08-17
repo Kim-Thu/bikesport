@@ -1,21 +1,21 @@
 import { Heading } from "@/components/heading/Heading";
-import { MediaImage } from "@/components/media/MediaImage";
+import { MediaImageView } from "@/components/media/MediaImageView";
 import type { SectionHeaderProps } from "@/interfaces/section-header.interface";
 import { cn } from "@/lib/classname.utils";
 
 export function FeaturedTemplate({
   title,
-  titleMediaId,
+  titleMedia,
   titleAlt,
   className,
   children,
 }: SectionHeaderProps) {
   return (
     <div className={cn("flex flex-col items-center gap-3 text-center", className)}>
-      {titleMediaId !== undefined ? (
+      {titleMedia ? (
         <div className="flex min-h-10 items-center justify-center">
-          <MediaImage
-            mediaId={titleMediaId}
+          <MediaImageView
+            media={titleMedia}
             alt={titleAlt ?? title ?? "Section heading"}
             width={320}
             height={80}
