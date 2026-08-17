@@ -1,3 +1,4 @@
+import { Heading } from "@/components/heading/Heading";
 import { CLink } from "@/components/link/CLink";
 import { MediaImage } from "@/components/media/MediaImage";
 import type { EmptyContentProps } from "@/interfaces/empty-content.interface";
@@ -17,7 +18,7 @@ export function EmptyContent({
   return (
     <div
       className={cn(
-        "flex min-h-48 w-full flex-col items-center justify-center rounded-xl border border-dashed border-gray-200 bg-gray-50 px-4 py-8 text-center",
+        "flex w-full flex-col items-center justify-center rounded-xl border border-dashed border-gray-200 bg-gray-50 px-4 py-8 text-center",
         className,
       )}
     >
@@ -33,7 +34,9 @@ export function EmptyContent({
         </div>
       ) : null}
 
-      <h3 className="text-base font-semibold text-gray-900 sm:text-lg">{title}</h3>
+      <Heading level={3} className="text-base font-semibold text-gray-900 sm:text-lg">
+        {title}
+      </Heading>
 
       {description ? (
         <p className="mt-2 max-w-xl text-sm leading-6 text-gray-500">{description}</p>
@@ -42,7 +45,7 @@ export function EmptyContent({
       {hasAction ? (
         <CLink
           href={actionHref!}
-          className="mt-5 inline-flex min-h-10 items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+          className="mt-5 inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
         >
           {actionLabel}
         </CLink>
