@@ -3,10 +3,11 @@ import { CLink } from "@/components/link/CLink";
 import { MenuChildren } from "@/components/navigation/partials/MenuChildren";
 import { MenuItemContent } from "@/components/navigation/partials/MenuItemContent";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
-import { createMenuIndex, getMenuById, getMenuHref } from "@/lib/menu.utils";
+import { getMenuById } from "@/lib/menu-data.utils";
+import { createMenuIndex, getMenuHref } from "@/lib/menu-presentation.utils";
 
-export function NavMenu({ menuId }: NavMenuProps) {
-  const menu = getMenuById(menuId);
+export async function NavMenu({ menuId }: NavMenuProps) {
+  const menu = await getMenuById(menuId);
   const items = menu?.items ?? [];
   const { rootItems, childrenByParentId } = createMenuIndex(items);
 
