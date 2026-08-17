@@ -62,6 +62,16 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     minimumCacheTTL: 86400,
+    localPatterns: [
+      {
+        pathname: "/uploads/**",
+        search: "",
+      },
+      {
+        pathname: "/bikesport-logo.svg",
+        search: "",
+      },
+    ],
   },
   async headers() {
     return [
