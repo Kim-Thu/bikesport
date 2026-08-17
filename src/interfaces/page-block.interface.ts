@@ -163,6 +163,7 @@ export interface MediaBlockPayload extends PageBlockBase {
     mediaId?: string | null;
     alt: string;
     href?: string;
+    aspect?: "portrait" | "square" | "landscape" | "video";
   };
 }
 
