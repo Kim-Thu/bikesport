@@ -5,17 +5,15 @@ import { ProductSlider } from "@/components/product/ProductSlider";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { DefaultTemplate } from "@/components/slider/templates/DefaultTemplate";
 import { FeaturedShowcaseTemplate } from "@/components/slider/templates/FeaturedShowcaseTemplate";
-import { Tabs, type TabItem } from "@/components/tabs/Tabs";
+import { Tabs } from "@/components/tabs/Tabs";
 import type { CardTemplate } from "@/interfaces/card.interface";
-import type { ProductCollectionItem } from "@/interfaces/product-collection-item.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
+import type { TabsSliderGroup } from "@/interfaces/tabs-slider.interface";
 import type { ActionLinkTone } from "@/variants/action-link.variant";
 import type { TabsSliderTemplate } from "@/variants/tabs-slider.variant";
 import type { TabsTemplate } from "@/variants/tabs.variant";
 
-export interface TabsSliderGroup extends TabItem {
-  items: ProductCollectionItem[];
-}
+export type { TabsSliderGroup } from "@/interfaces/tabs-slider.interface";
 
 interface TabsSliderProps extends SectionHeadingConfig {
   title: string;
