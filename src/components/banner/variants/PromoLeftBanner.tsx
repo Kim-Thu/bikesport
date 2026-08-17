@@ -124,11 +124,9 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
       </div>
 
       {promotionCards.length ? (
-        <div className="scrollbar-none mt-3 flex w-full snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain sm:hidden">
+        <div className="mt-3 grid gap-2 sm:hidden">
           {promotionCards.map((card) => (
-            <div key={card.promotionId} className="w-5/6 shrink-0 snap-start">
-              <PromotionInfoCard card={card} />
-            </div>
+            <PromotionInfoCard key={card.promotionId} card={card} />
           ))}
         </div>
       ) : null}
