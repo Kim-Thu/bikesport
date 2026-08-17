@@ -1,5 +1,5 @@
-import type { TabsSliderGroup } from "@/components/slider/TabsSlider";
 import type { TabsSliderBlockPayload } from "@/interfaces/page-block.interface";
+import type { TabsSliderGroup } from "@/interfaces/tabs-slider.interface";
 import { getActiveBrands } from "@/lib/brand.utils";
 import {
   getProductCollectionItems,
