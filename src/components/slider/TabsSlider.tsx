@@ -7,6 +7,7 @@ import { DefaultTemplate } from "@/components/slider/templates/DefaultTemplate";
 import { FeaturedShowcaseTemplate } from "@/components/slider/templates/FeaturedShowcaseTemplate";
 import { Tabs } from "@/components/tabs/Tabs";
 import type { CardTemplate } from "@/interfaces/card.interface";
+import type { MediaItem } from "@/interfaces/media.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { TabsSliderGroup } from "@/interfaces/tabs-slider.interface";
 import type { ActionLinkTone } from "@/variants/action-link.variant";
@@ -22,7 +23,8 @@ interface TabsSliderProps extends SectionHeadingConfig {
   tabTemplate?: TabsTemplate;
   layoutTemplate?: TabsSliderTemplate;
   actionTone?: ActionLinkTone;
-  backgroundMediaId?: string | null;
+  titleMedia?: MediaItem | null;
+  backgroundMedia?: MediaItem | null;
   containerClassName?: string;
   trackClassName?: string;
   slideClassName?: string;
@@ -35,7 +37,7 @@ const TEMPLATES = {
 
 export function TabsSlider({
   title,
-  titleMediaId,
+  titleMedia,
   titleAlt,
   href,
   actionLabel,
@@ -45,7 +47,7 @@ export function TabsSlider({
   tabTemplate = "default",
   layoutTemplate = "default",
   actionTone,
-  backgroundMediaId,
+  backgroundMedia,
   containerClassName,
   trackClassName,
   slideClassName,
@@ -63,17 +65,18 @@ export function TabsSlider({
   const header = (
     <SectionHeader
       title={title}
-      titleMediaId={titleMediaId}
+      titleMedia={titleMedia}
       titleAlt={titleAlt}
       href={layoutTemplate === "default" ? href : undefined}
       actionLabel={actionLabel}
       template={headingTemplate}
     >
       <Tabs
-        items={groups.map(({ label, value, mediaId, status, startAt, endAt }) => ({
+        items={groups.map(({ label, value, mediaId, media, status, startAt, endAt }) => ({
           label,
           value,
           mediaId,
+          media,
           status,
           startAt,
           endAt,
@@ -103,7 +106,7 @@ export function TabsSlider({
         href={href}
         actionLabel={actionLabel}
         actionTone={actionTone}
-        backgroundMediaId={backgroundMediaId}
+        backgroundMedia={backgroundMedia}
         containerClassName={containerClassName}
       />
     </div>
