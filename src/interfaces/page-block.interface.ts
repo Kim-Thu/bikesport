@@ -108,6 +108,11 @@ export interface CardGridBlockPayload extends PageBlockBase {
       | {
           type: "store";
           limit?: number;
+        }
+      | {
+          type: "combo";
+          featured?: boolean;
+          limit?: number;
         };
   };
 }
