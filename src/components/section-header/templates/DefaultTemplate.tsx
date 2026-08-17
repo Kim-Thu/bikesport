@@ -13,11 +13,15 @@ export function DefaultTemplate({
 }: SectionHeaderProps) {
   return (
     <div className={cn("flex flex-wrap items-center gap-x-6 gap-y-2", className)}>
-      <Heading level={2} className="shrink-0 text-base font-bold uppercase text-gray-900 sm:text-lg">
+      <Heading level={2} className="min-w-0 flex-1 text-base font-bold uppercase text-gray-900 sm:flex-none sm:shrink-0 sm:text-lg">
         {title}
       </Heading>
 
-      {children ? <div className="min-w-0 flex-1">{children}</div> : <div className="flex-1" />}
+      {children ? (
+        <div className="order-3 min-w-0 basis-full sm:order-none sm:flex-1 sm:basis-auto">{children}</div>
+      ) : (
+        <div className="hidden flex-1 sm:block" />
+      )}
 
       {href ? (
         <CLink
