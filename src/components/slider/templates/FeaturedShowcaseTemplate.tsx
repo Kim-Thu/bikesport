@@ -6,6 +6,7 @@ export function FeaturedShowcaseTemplate({
   slider,
   href,
   actionLabel = "Xem tất cả",
+  actionTone,
   backgroundMediaId,
   containerClassName,
 }: TabsSliderTemplateProps) {
@@ -15,6 +16,7 @@ export function FeaturedShowcaseTemplate({
       content={slider}
       href={href}
       actionLabel={actionLabel}
+      actionTone={actionTone}
       backgroundMediaId={backgroundMediaId}
       containerClassName={containerClassName}
     />
