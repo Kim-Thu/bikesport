@@ -7,7 +7,7 @@ import { Contact } from "@/components/contact/Contact";
 import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
 import { Logo } from "@/components/logo/Logo";
-import { MobileMenu } from "@/components/navigation/MobileMenu";
+import { MobileMenuLoader } from "@/components/navigation/MobileMenuLoader";
 import { NavMenu } from "@/components/navigation/NavMenu";
 import { Payment } from "@/components/payment/Payment";
 import { SearchForm } from "@/components/search/SearchForm";
@@ -26,7 +26,7 @@ export const COMPONENT_REGISTRY: Record<ComponentName, ElementType> = {
   account: Account,
   "mini-cart": MiniCart,
   "nav-menu": NavMenu,
-  "mobile-menu": MobileMenu,
+  "mobile-menu": MobileMenuLoader,
   payment: Payment,
   social: Social,
 };
