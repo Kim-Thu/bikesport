@@ -1,5 +1,6 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
+import type { TabsGridTemplate } from "@/variants/tabs-grid.variant";
 import type { TabsTemplate } from "@/variants/tabs.variant";
 
 export type PageBlockStatus = "active" | "inactive";
@@ -22,36 +23,14 @@ interface PageBlockBase {
 }
 
 export type ProductSource =
-  | {
-      type: "promotion";
-      promotionId: string;
-      limit?: number;
-    }
-  | {
-      type: "campaign";
-      campaignId: string;
-      categoryId?: string;
-      limit?: number;
-    }
-  | {
-      type: "category";
-      categoryId: string;
-      limit?: number;
-    }
-  | {
-      type: "brand";
-      brandId: string;
-      limit?: number;
-    };
+  | { type: "promotion"; promotionId: string; limit?: number }
+  | { type: "campaign"; campaignId: string; categoryId?: string; limit?: number }
+  | { type: "category"; categoryId: string; limit?: number }
+  | { type: "brand"; brandId: string; limit?: number };
 
 export interface AdsBlockPayload extends PageBlockBase {
   component: "ads";
-  props: {
-    source: {
-      type: "ads";
-      placement: string;
-    };
-  };
+  props: { source: { type: "ads"; placement: string } };
 }
 
 export interface CardBlockPayload extends PageBlockBase {
@@ -59,14 +38,8 @@ export interface CardBlockPayload extends PageBlockBase {
   props: {
     template: CardTemplate;
     source:
-      | {
-          type: "promotion";
-          promotionId: string;
-        }
-      | {
-          type: "campaign";
-          campaignId: string;
-        };
+      | { type: "promotion"; promotionId: string }
+      | { type: "campaign"; campaignId: string };
   };
 }
 
@@ -97,20 +70,9 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
     trackClassName?: string;
     slideClassName?: string;
     source:
-      | {
-          type: "best-seller";
-          limit?: number;
-          tabs: Array<{ label: string; categoryId: string }>;
-        }
-      | {
-          type: "combo";
-          tabs: Array<{ label: string; comboId: string }>;
-        }
-      | {
-          type: "brand";
-          limit?: number;
-          tabs: Array<{ label: string; brandId: string }>;
-        };
+      | { type: "best-seller"; limit?: number; tabs: Array<{ label: string; categoryId: string }> }
+      | { type: "combo"; tabs: Array<{ label: string; comboId: string }> }
+      | { type: "brand"; limit?: number; tabs: Array<{ label: string; brandId: string }> };
   };
 }
 
@@ -118,9 +80,15 @@ export interface TabsGridBlockPayload extends PageBlockBase {
   component: "tabs-grid";
   props: {
     title: string;
+    titleMediaId?: string | null;
+    titleAlt?: string;
     href?: string;
     actionLabel?: string;
     template: CardTemplate;
+    headingTemplate?: SectionHeaderTemplate;
+    tabsTemplate?: TabsTemplate;
+    layoutTemplate?: TabsGridTemplate;
+    backgroundMediaId?: string | null;
     gridClassName?: string;
     mobilePageSize?: number;
     tabs: Array<{
@@ -140,35 +108,17 @@ export interface CardGridBlockPayload extends PageBlockBase {
     template: CardTemplate;
     gridClassName?: string;
     source:
-      | {
-          type: "event";
-          limit?: number;
-        }
-      | {
-          type: "post";
-          limit?: number;
-        }
-      | {
-          type: "store";
-          limit?: number;
-        }
-      | {
-          type: "combo";
-          featured?: boolean;
-          limit?: number;
-        };
+      | { type: "event"; limit?: number }
+      | { type: "post"; limit?: number }
+      | { type: "store"; limit?: number }
+      | { type: "combo"; featured?: boolean; limit?: number };
   };
 }
 
 export interface IconListBlockPayload extends PageBlockBase {
   component: "icon-list";
   props: {
-    items: Array<{
-      icon?: string;
-      mediaId?: string;
-      title: string;
-      description?: string;
-    }>;
+    items: Array<{ icon?: string; mediaId?: string; title: string; description?: string }>;
   };
 }
 
