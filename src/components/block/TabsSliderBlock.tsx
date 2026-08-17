@@ -3,11 +3,11 @@ import { TabsSlider } from "@/components/slider/TabsSlider";
 import type { TabsSliderBlockPayload } from "@/interfaces/page-block.interface";
 import { getTabsSliderGroups } from "@/lib/tabs-slider-source.utils";
 
-export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
+export async function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
   const source = block.props.source;
   const isBrandSource = source.type === "brand";
   const isFlashSaleSource = source.type === "flash-sale";
-  const groups = getTabsSliderGroups(source);
+  const groups = await getTabsSliderGroups(source);
 
   if (!groups.some((group) => group.items.length)) {
     return <EmptyContent />;
