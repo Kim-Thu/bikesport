@@ -21,4 +21,5 @@ export const MONGODB_COLLECTIONS = {
   payments: "payments",
   announcements: "announcements",
   options: "options",
+  seo: "seo",
 } as const;
