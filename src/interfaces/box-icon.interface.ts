@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 export interface BoxIconProps {
   icon?: string;
-  iconMediaId?: string;
+  iconMediaUrl?: string;
   title: ReactNode;
   description?: ReactNode;
   className?: string;
