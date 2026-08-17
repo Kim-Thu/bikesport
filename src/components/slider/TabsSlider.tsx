@@ -27,6 +27,7 @@ interface TabsSliderProps {
   tabTemplate?: TabsTemplate;
   layoutTemplate?: TabsSliderTemplate;
   backgroundMediaId?: string | null;
+  containerClassName?: string;
   trackClassName?: string;
   slideClassName?: string;
 }
@@ -48,6 +49,7 @@ export function TabsSlider({
   tabTemplate = "default",
   layoutTemplate = "default",
   backgroundMediaId,
+  containerClassName,
   trackClassName,
   slideClassName,
 }: TabsSliderProps) {
@@ -96,6 +98,7 @@ export function TabsSlider({
         href={href}
         actionLabel={actionLabel}
         backgroundMediaId={backgroundMediaId}
+        containerClassName={containerClassName}
       />
     </div>
   );
