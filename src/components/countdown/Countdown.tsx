@@ -10,7 +10,7 @@ interface RemainingTime {
   seconds: number;
 }
 
-type CountdownVariant = "default" | "compact" | "responsive";
+type CountdownVariant = "default" | "compact" | "responsive" | "session";
 
 function getRemaining(endAt: string): RemainingTime {
   const diff = Math.max(0, new Date(endAt).getTime() - Date.now());
@@ -33,6 +33,17 @@ function CountdownUnit({
   label: string;
   variant: CountdownVariant;
 }) {
+  if (variant === "session") {
+    return (
+      <span
+        className="min-w-6 rounded bg-white px-1 py-0.5 text-center text-xs font-bold tabular-nums text-red-600"
+        aria-label={label}
+      >
+        {value === null ? "--" : String(value).padStart(2, "0")}
+      </span>
+    );
+  }
+
   const compactUnit = variant === "compact" || variant === "responsive";
 
   return (
@@ -66,6 +77,8 @@ export function Countdown({
     return () => window.clearInterval(timer);
   }, [endAt]);
 
+  const totalHours = remaining ? remaining.days * 24 + remaining.hours : null;
+
   return (
     <span
       aria-label={
@@ -78,13 +91,27 @@ export function Countdown({
           ? "grid w-full grid-cols-4 gap-1"
           : variant === "responsive"
             ? "grid w-full grid-cols-4 gap-1 sm:flex sm:w-auto sm:items-center sm:gap-2"
-            : "flex items-center gap-2",
+            : variant === "session"
+              ? "inline-flex items-center gap-1"
+              : "flex items-center gap-2",
       )}
     >
-      <CountdownUnit value={remaining?.days ?? null} label="Ngày" variant={variant} />
-      <CountdownUnit value={remaining?.hours ?? null} label="Giờ" variant={variant} />
-      <CountdownUnit value={remaining?.minutes ?? null} label="Phút" variant={variant} />
-      <CountdownUnit value={remaining?.seconds ?? null} label="Giây" variant={variant} />
+      {variant === "session" ? (
+        <>
+          <CountdownUnit value={totalHours} label="Giờ" variant={variant} />
+          <span className="text-xs font-bold text-current">:</span>
+          <CountdownUnit value={remaining?.minutes ?? null} label="Phút" variant={variant} />
+          <span className="text-xs font-bold text-current">:</span>
+          <CountdownUnit value={remaining?.seconds ?? null} label="Giây" variant={variant} />
+        </>
+      ) : (
+        <>
+          <CountdownUnit value={remaining?.days ?? null} label="Ngày" variant={variant} />
+          <CountdownUnit value={remaining?.hours ?? null} label="Giờ" variant={variant} />
+          <CountdownUnit value={remaining?.minutes ?? null} label="Phút" variant={variant} />
+          <CountdownUnit value={remaining?.seconds ?? null} label="Giây" variant={variant} />
+        </>
+      )}
     </span>
   );
 }
