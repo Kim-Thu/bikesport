@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MediaImage } from "@/components/media/MediaImage";
+import { DefaultTemplate } from "@/components/tabs/templates/DefaultTemplate";
+import { FeaturedTemplate } from "@/components/tabs/templates/FeaturedTemplate";
+import { ImageTemplate } from "@/components/tabs/templates/ImageTemplate";
+import type { TabItem, TabTemplateProps } from "@/interfaces/tabs.interface";
 import { cn } from "@/lib/classname.utils";
 import type { TabsTemplate } from "@/variants/tabs.variant";
 
-export interface TabItem {
-  label: string;
-  value: string;
-  mediaId?: string | null;
-}
+export type { TabItem } from "@/interfaces/tabs.interface";
 
 interface TabsProps {
   items: TabItem[];
@@ -18,6 +17,18 @@ interface TabsProps {
   className?: string;
   template?: TabsTemplate;
 }
+
+const TAB_TEMPLATES: Record<TabsTemplate, (props: TabTemplateProps) => React.ReactNode> = {
+  default: DefaultTemplate,
+  image: ImageTemplate,
+  featured: FeaturedTemplate,
+};
+
+const TEMPLATE_GAPS: Record<TabsTemplate, string> = {
+  default: "gap-5",
+  image: "gap-3",
+  featured: "gap-2",
+};
 
 const DRAG_THRESHOLD = 4;
 const SCROLL_PADDING = 12;
@@ -33,6 +44,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
   });
   const suppressClickRef = useRef(false);
   const [isDragging, setIsDragging] = useState(false);
+  const Template = TAB_TEMPLATES[template];
 
   useEffect(() => {
     const container = containerRef.current;
@@ -119,7 +131,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
       ref={containerRef}
       className={cn(
         "scrollbar-none flex min-w-0 items-center overflow-x-auto overscroll-x-contain scroll-smooth select-none",
-        template === "image" ? "gap-3" : template === "featured" ? "gap-2" : "gap-5",
+        TEMPLATE_GAPS[template],
         isDragging ? "cursor-grabbing" : "cursor-grab",
         className,
       )}
@@ -130,56 +142,14 @@ export function Tabs({ items, value, onChange, className, template = "default" }
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
     >
-      {items.map((item) => {
-        const active = item.value === value;
-
-        return (
-          <button
-            key={item.value}
-            type="button"
-            role="tab"
-            aria-selected={active}
-            data-tab-value={item.value}
-            className={cn(
-              "shrink-0 cursor-pointer transition-colors",
-              template === "image"
-                ? cn(
-                    "overflow-hidden rounded-lg border bg-white p-2 hover:border-blue-200",
-                    active ? "border-blue-300" : "border-gray-100",
-                  )
-                : template === "featured"
-                  ? cn(
-                      "rounded-md border px-3 py-2 text-xs font-semibold sm:px-4 sm:text-sm",
-                      active
-                        ? "border-blue-600 bg-blue-600 text-white"
-                        : "border-gray-200 bg-white text-gray-700 hover:border-blue-200 hover:text-blue-600",
-                    )
-                  : cn(
-                      "border-b-2 px-1 py-2 text-xs font-semibold sm:text-sm",
-                      active
-                        ? "border-blue-600 text-blue-600"
-                        : "border-transparent text-gray-600 hover:text-blue-600",
-                    ),
-            )}
-            onClick={() => handleTabClick(item.value)}
-          >
-            {template === "image" ? (
-              <span className="flex h-10 w-20 items-center justify-center sm:h-12 sm:w-24">
-                <MediaImage
-                  mediaId={item.mediaId}
-                  alt={item.label}
-                  width={96}
-                  height={48}
-                  className="h-full w-full object-contain"
-                />
-                <span className="sr-only">{item.label}</span>
-              </span>
-            ) : (
-              item.label
-            )}
-          </button>
-        );
-      })}
+      {items.map((item) => (
+        <Template
+          key={item.value}
+          item={item}
+          active={item.value === value}
+          onClick={() => handleTabClick(item.value)}
+        />
+      ))}
     </div>
   );
 }
