@@ -15,7 +15,8 @@ export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload
   if (!items.length) return null;
 
   const hasHeader = Boolean(block.props.title) || block.props.titleMediaId !== undefined;
-  const isFlashSale = block.props.headerTemplate === "flash-sale";
+  const headingTemplate = block.props.headingTemplate ?? block.props.headerTemplate;
+  const isFlashSale = headingTemplate === "flash-sale";
   const layoutTemplate = block.props.layoutTemplate ?? (isFlashSale ? "featured-showcase" : "default");
   const LayoutTemplate = LAYOUT_TEMPLATES[layoutTemplate];
 
@@ -26,7 +27,7 @@ export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload
       titleAlt={block.props.titleAlt}
       href={layoutTemplate === "default" ? block.props.href : undefined}
       actionLabel={block.props.actionLabel}
-      template={block.props.headerTemplate}
+      template={headingTemplate}
       countdownAt={block.props.countdownAt}
     />
   ) : undefined;
