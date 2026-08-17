@@ -16,6 +16,7 @@ import type { PostDataSource } from "@/data-access/contracts/post-data-source.in
 import type { ProductDataSource } from "@/data-access/contracts/product-data-source.interface";
 import type { PromotionDataSource } from "@/data-access/contracts/promotion-data-source.interface";
 import type { ReviewDataSource } from "@/data-access/contracts/review-data-source.interface";
+import type { SeoDataSource } from "@/data-access/contracts/seo-data-source.interface";
 import type { StoreDataSource } from "@/data-access/contracts/store-data-source.interface";
 import type { UserDataSource } from "@/data-access/contracts/user-data-source.interface";
 
@@ -40,4 +41,5 @@ export interface DataSources {
   media: MediaDataSource;
   order: OrderDataSource;
   review: ReviewDataSource;
+  seo: SeoDataSource;
 }
