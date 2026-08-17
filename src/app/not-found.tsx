@@ -4,6 +4,7 @@ import { Header } from "@/components/header/Header";
 import { CLink } from "@/components/link/CLink";
 import { Container } from "@/components/layout/Container";
 import { MediaImage } from "@/components/media/MediaImage";
+import { SectionHeader } from "@/components/section-header/SectionHeader";
 import wpOption from "@/data/wp-option.json";
 import type { FooterSettings } from "@/interfaces/footer.interface";
 import type { HeaderSettings } from "@/interfaces/header.interface";
@@ -21,20 +22,14 @@ export default function NotFound() {
       <main aria-labelledby="not-found-title" className="py-10 sm:py-14 lg:py-16">
         <Container>
           <section className="mx-auto flex max-w-4xl flex-col items-center text-center">
-            <div className="relative flex w-full max-w-2xl flex-col items-center">
-              <p className="text-[7rem] leading-none font-black tracking-tight text-blue-600 sm:text-[10rem] lg:text-[12rem]">
-                404
-              </p>
-
-              <div className="-mt-4 w-full max-w-xl sm:-mt-8">
-                <MediaImage
-                  mediaId={NOT_FOUND_MEDIA_ID}
-                  alt="Minh họa trang không tồn tại"
-                  width={720}
-                  height={320}
-                  className="aspect-video w-full rounded-xl object-cover"
-                />
-              </div>
+            <div className="w-full max-w-2xl">
+              <MediaImage
+                mediaId={NOT_FOUND_MEDIA_ID}
+                alt="Minh họa trang không tồn tại"
+                width={720}
+                height={320}
+                className="aspect-video w-full rounded-xl object-cover"
+              />
             </div>
 
             <div className="mt-6 max-w-2xl">
@@ -64,14 +59,12 @@ export default function NotFound() {
           </section>
 
           {suggestions.length ? (
-            <section aria-labelledby="suggestions-title" className="mt-12 sm:mt-14">
-              <div className="mb-5 flex items-center justify-center gap-3">
-                <span className="h-px w-10 bg-blue-100" aria-hidden="true" />
-                <h2 id="suggestions-title" className="text-base font-semibold text-blue-700 sm:text-lg">
-                  Bạn có thể quan tâm
-                </h2>
-                <span className="h-px w-10 bg-blue-100" aria-hidden="true" />
-              </div>
+            <section aria-label="Bạn có thể quan tâm" className="mt-12 sm:mt-14">
+              <SectionHeader
+                title="Bạn có thể quan tâm"
+                template="featured"
+                className="mb-5"
+              />
 
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
                 {suggestions.map((item) => (
