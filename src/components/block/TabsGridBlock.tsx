@@ -3,12 +3,14 @@ import { TabsGrid, type TabsGridGroup } from "@/components/grid/TabsGrid";
 import type { TabsGridBlockPayload } from "@/interfaces/page-block.interface";
 import { getProductCollectionItems } from "@/lib/product-collection-source.utils";
 
-export function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) {
-  const groups: TabsGridGroup[] = block.props.tabs.map((tab) => ({
-    label: tab.label,
-    value: tab.value,
-    items: getProductCollectionItems(tab.source),
-  }));
+export async function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) {
+  const groups: TabsGridGroup[] = await Promise.all(
+    block.props.tabs.map(async (tab) => ({
+      label: tab.label,
+      value: tab.value,
+      items: await getProductCollectionItems(tab.source),
+    })),
+  );
 
   if (!groups.some((group) => group.items.length)) {
     return <EmptyContent />;
