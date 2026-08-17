@@ -3,7 +3,7 @@ import { DefaultTemplate } from "@/components/product-slider-layout/templates/De
 import { FeaturedShowcaseTemplate } from "@/components/product-slider-layout/templates/FeaturedShowcaseTemplate";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import type { ProductSliderBlockPayload } from "@/interfaces/page-block.interface";
-import { getProductSliderItems } from "@/lib/product-slider-source.utils";
+import { getProductCollectionItems } from "@/lib/product-collection-source.utils";
 
 const LAYOUT_TEMPLATES = {
   default: DefaultTemplate,
@@ -11,14 +11,12 @@ const LAYOUT_TEMPLATES = {
 } as const;
 
 export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload }) {
-  const items = getProductSliderItems(block.props.source);
+  const items = getProductCollectionItems(block.props.source);
   if (!items.length) return null;
 
   const hasHeader = Boolean(block.props.title) || block.props.titleMediaId !== undefined;
   const isFlashSale = block.props.headerTemplate === "flash-sale";
-  const layoutTemplate =
-    block.props.layoutTemplate ??
-    (isFlashSale ? "featured-showcase" : "default");
+  const layoutTemplate = block.props.layoutTemplate ?? (isFlashSale ? "featured-showcase" : "default");
   const LayoutTemplate = LAYOUT_TEMPLATES[layoutTemplate];
 
   const header = hasHeader ? (
