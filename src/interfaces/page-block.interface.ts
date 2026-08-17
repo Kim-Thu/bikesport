@@ -2,6 +2,7 @@ import type { CardTemplate } from "@/interfaces/card.interface";
 import type { ProductSource } from "@/interfaces/product-source.interface";
 import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
+import type { ActionLinkTone } from "@/variants/action-link.variant";
 import type { ProductSliderLayoutTemplate } from "@/variants/product-slider.variant";
 import type { TabsGridTemplate } from "@/variants/tabs-grid.variant";
 import type { TabsSliderTemplate } from "@/variants/tabs-slider.variant";
@@ -65,6 +66,7 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
     template: CardTemplate;
     tabTemplate?: TabsTemplate;
     layoutTemplate?: TabsSliderTemplate;
+    actionTone?: ActionLinkTone;
     backgroundMediaId?: string | null;
     containerClassName?: string;
     trackClassName?: string;
@@ -72,7 +74,8 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
     source:
       | { type: "best-seller"; limit?: number; tabs: Array<{ label: string; categoryId: string }> }
       | { type: "combo"; tabs: Array<{ label: string; comboId: string }> }
-      | { type: "brand"; limit?: number; tabs: Array<{ label: string; brandId: string }> };
+      | { type: "brand"; limit?: number; tabs: Array<{ label: string; brandId: string }> }
+      | { type: "flash-sale"; promotionId: string; limit?: number };
   };
 }
 
