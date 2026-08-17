@@ -1,3 +1,9 @@
+import type {
+  ContactLinkOptions,
+  SiteIdentityOptions,
+  SocialLinkOptions,
+} from "@/interfaces/options.interface";
+
 export type NavMenuItemDisplay = "text" | "image" | "image-text";
 
 export interface NavMenuItemSource {
@@ -36,6 +42,9 @@ export interface NavMenuProps {
 
 export interface MobileMenuClientProps {
   menu: NavMenuData;
+  site: SiteIdentityOptions;
+  hotline: ContactLinkOptions;
+  socialItems: SocialLinkOptions[];
 }
 
 export interface MenuChildrenProps {
