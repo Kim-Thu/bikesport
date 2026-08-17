@@ -3,8 +3,8 @@ import { MediaImage } from "@/components/media/MediaImage";
 import type { MediaBlockPayload } from "@/interfaces/page-block.interface";
 import { getMediaPresentation } from "@/lib/media-presentation.utils";
 
-export function MediaBlock({ block }: { block: MediaBlockPayload }) {
-  const presentation = getMediaPresentation(block.props.mediaId, block.props.aspect);
+export async function MediaBlock({ block }: { block: MediaBlockPayload }) {
+  const presentation = await getMediaPresentation(block.props.mediaId, block.props.aspect);
   const media = (
     <div className={`${presentation.aspectClassName} h-full w-full overflow-hidden rounded-lg`}>
       <MediaImage
