@@ -1,10 +1,6 @@
-import postData from "@/data/wp-posts.json";
+import { dataSources } from "@/data-access/data-sources";
 import type { PostRecord } from "@/interfaces/post.interface";
 
-const publishedPosts = (postData.posts as PostRecord[])
-  .filter((post) => post.status === "published")
-  .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
-
-export function getLatestPosts(limit?: number): PostRecord[] {
-  return typeof limit === "number" ? publishedPosts.slice(0, limit) : publishedPosts;
+export async function getLatestPosts(limit?: number): Promise<PostRecord[]> {
+  return dataSources.post.getLatestPublished(limit);
 }
