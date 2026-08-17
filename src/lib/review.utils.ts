@@ -7,7 +7,7 @@ export interface ProductReviewStats {
   averageRating: number;
 }
 
-export function getProductReviewStatsBySku(): Map<string, ProductReviewStats> {
+function buildProductReviewStats(): Map<string, ProductReviewStats> {
   const totals = new Map<string, { count: number; positive: number; sum: number }>();
 
   for (const review of (wpReviews as ReviewData).reviews) {
@@ -30,4 +30,10 @@ export function getProductReviewStatsBySku(): Map<string, ProductReviewStats> {
       },
     ]),
   );
+}
+
+const productReviewStatsBySku = buildProductReviewStats();
+
+export function getProductReviewStatsBySku(): ReadonlyMap<string, ProductReviewStats> {
+  return productReviewStatsBySku;
 }
