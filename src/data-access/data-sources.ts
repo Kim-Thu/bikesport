@@ -18,6 +18,7 @@ import { jsonPaymentDataSource } from "@/data-access/json/json-payment-data-sour
 import { jsonPostDataSource } from "@/data-access/json/json-post-data-source";
 import { jsonProductDataSource } from "@/data-access/json/json-product-data-source";
 import { jsonPromotionDataSource } from "@/data-access/json/json-promotion-data-source";
+import { jsonReviewDataSource } from "@/data-access/json/json-review-data-source";
 import { jsonStoreDataSource } from "@/data-access/json/json-store-data-source";
 import { jsonUserDataSource } from "@/data-access/json/json-user-data-source";
 import { mongodbDataSources } from "@/data-access/mongodb/mongodb-data-sources";
@@ -42,6 +43,7 @@ const jsonDataSources: DataSources = {
   options: jsonOptionsDataSource,
   media: jsonMediaDataSource,
   order: jsonOrderDataSource,
+  review: jsonReviewDataSource,
 };
 
 function createDataSources(): DataSources {
