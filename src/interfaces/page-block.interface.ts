@@ -75,6 +75,7 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
     tabTemplate?: TabsTemplate;
     layoutTemplate?: TabsSliderTemplate;
     backgroundMediaId?: string | null;
+    containerClassName?: string;
     trackClassName?: string;
     slideClassName?: string;
     source:
