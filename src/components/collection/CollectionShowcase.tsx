@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
-import { ActionLink, type ActionLinkTone } from "@/components/link/ActionLink";
+import { ActionLink } from "@/components/link/ActionLink";
 import { MediaImage } from "@/components/media/MediaImage";
 import { cn } from "@/lib/classname.utils";
+import type { ActionLinkTone } from "@/variants/action-link.variant";
 
 interface CollectionShowcaseProps {
   header?: ReactNode;
