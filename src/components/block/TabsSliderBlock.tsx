@@ -1,5 +1,6 @@
 import { TabsSlider, type TabsSliderGroup } from "@/components/slider/TabsSlider";
 import type { TabsSliderBlockPayload } from "@/interfaces/page-block.interface";
+import { getActiveBrands } from "@/lib/brand.utils";
 import { getActiveCombos, getComboProducts } from "@/lib/combo.utils";
 import { getProductSliderItems } from "@/lib/product-slider-source.utils";
 import { getBestSellerProducts, getProductPrimaryMediaId } from "@/lib/product.utils";
@@ -8,6 +9,7 @@ import { getProductReviewStatsBySku } from "@/lib/review.utils";
 
 export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
   const reviewStatsBySku = getProductReviewStatsBySku();
+  const activeBrands = getActiveBrands();
 
   const groups: TabsSliderGroup[] =
     block.props.source.type === "combo"
@@ -41,15 +43,20 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
           };
         })
       : block.props.source.type === "brand"
-        ? block.props.source.tabs.map((tab) => ({
-            label: tab.label,
-            value: tab.brandId,
-            items: getProductSliderItems({
-              type: "brand",
-              brandId: tab.brandId,
-              limit: block.props.source.limit,
-            }),
-          }))
+        ? block.props.source.tabs.map((tab) => {
+            const brand = activeBrands.find((item) => item._id === tab.brandId);
+
+            return {
+              label: tab.label,
+              value: tab.brandId,
+              mediaId: brand?.logoMediaId ?? null,
+              items: getProductSliderItems({
+                type: "brand",
+                brandId: tab.brandId,
+                limit: block.props.source.limit,
+              }),
+            };
+          })
         : block.props.source.tabs.map((tab) => ({
             label: tab.label,
             value: tab.categoryId,
@@ -81,6 +88,7 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
       actionLabel={block.props.actionLabel}
       groups={groups}
       template={block.props.template}
+      tabTemplate={block.props.tabTemplate ?? (block.props.source.type === "brand" ? "image" : "default")}
       trackClassName={block.props.trackClassName}
       slideClassName={block.props.slideClassName}
     />
