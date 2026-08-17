@@ -5,6 +5,7 @@ import { jsonAdsDataSource } from "@/data-access/json/json-ads-data-source";
 import { jsonBannerDataSource } from "@/data-access/json/json-banner-data-source";
 import { jsonBrandDataSource } from "@/data-access/json/json-brand-data-source";
 import { jsonCategoryDataSource } from "@/data-access/json/json-category-data-source";
+import { jsonComboDataSource } from "@/data-access/json/json-combo-data-source";
 import { jsonEventDataSource } from "@/data-access/json/json-event-data-source";
 import { jsonMenuDataSource } from "@/data-access/json/json-menu-data-source";
 import { jsonPageDataSource } from "@/data-access/json/json-page-data-source";
@@ -28,6 +29,7 @@ const jsonDataSources: DataSources = {
   store: jsonStoreDataSource,
   banner: jsonBannerDataSource,
   ads: jsonAdsDataSource,
+  combo: jsonComboDataSource,
 };
 
 function createDataSources(): DataSources {
