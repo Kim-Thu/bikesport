@@ -23,7 +23,7 @@ export function FeaturedTemplate({
           />
         </div>
       ) : title ? (
-        <Heading level={2} className="text-lg font-bold uppercase text-gray-900 sm:text-xl">
+        <Heading level={2} className="text-xl font-bold uppercase leading-tight text-gray-900 sm:text-2xl lg:text-3xl">
           {title}
         </Heading>
       ) : null}
