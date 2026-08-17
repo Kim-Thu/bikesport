@@ -1,10 +1,7 @@
 import { TabsSlider, type TabsSliderGroup } from "@/components/slider/TabsSlider";
 import type { TabsSliderBlockPayload } from "@/interfaces/page-block.interface";
 import { getActiveBrands } from "@/lib/brand.utils";
-import { getActiveCombos, getComboProducts } from "@/lib/combo.utils";
-import { mapProductsToCollectionItems } from "@/lib/product-collection.utils";
-import { getProductSliderItems } from "@/lib/product-slider-source.utils";
-import { getBestSellerProducts } from "@/lib/product.utils";
+import { getProductCollectionItems } from "@/lib/product-collection-source.utils";
 
 export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
   const activeBrands = getActiveBrands();
@@ -12,25 +9,19 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
 
   const groups: TabsSliderGroup[] =
     block.props.source.type === "combo"
-      ? block.props.source.tabs.map((tab) => {
-          const combo = getActiveCombos().find((item) => item._id === tab.comboId);
-          const products = combo ? getComboProducts(combo).map(({ product }) => product) : [];
-
-          return {
-            label: tab.label,
-            value: tab.comboId,
-            items: mapProductsToCollectionItems(products),
-          };
-        })
+      ? block.props.source.tabs.map((tab) => ({
+          label: tab.label,
+          value: tab.comboId,
+          items: getProductCollectionItems({ type: "combo", comboId: tab.comboId }),
+        }))
       : block.props.source.type === "brand"
         ? block.props.source.tabs.map((tab) => {
             const brand = activeBrands.find((item) => item._id === tab.brandId);
-
             return {
               label: tab.label,
               value: tab.brandId,
               mediaId: brand?.logoMediaId ?? null,
-              items: getProductSliderItems({
+              items: getProductCollectionItems({
                 type: "brand",
                 brandId: tab.brandId,
                 limit: block.props.source.limit,
@@ -40,9 +31,11 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
         : block.props.source.tabs.map((tab) => ({
             label: tab.label,
             value: tab.categoryId,
-            items: mapProductsToCollectionItems(
-              getBestSellerProducts(tab.categoryId, block.props.source.limit),
-            ),
+            items: getProductCollectionItems({
+              type: "best-seller",
+              categoryId: tab.categoryId,
+              limit: block.props.source.limit,
+            }),
           }));
 
   return (
