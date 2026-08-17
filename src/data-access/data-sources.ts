@@ -12,6 +12,7 @@ import { jsonEventDataSource } from "@/data-access/json/json-event-data-source";
 import { jsonMediaDataSource } from "@/data-access/json/json-media-data-source";
 import { jsonMenuDataSource } from "@/data-access/json/json-menu-data-source";
 import { jsonOptionsDataSource } from "@/data-access/json/json-options-data-source";
+import { jsonOrderDataSource } from "@/data-access/json/json-order-data-source";
 import { jsonPageDataSource } from "@/data-access/json/json-page-data-source";
 import { jsonPaymentDataSource } from "@/data-access/json/json-payment-data-source";
 import { jsonPostDataSource } from "@/data-access/json/json-post-data-source";
@@ -40,6 +41,7 @@ const jsonDataSources: DataSources = {
   payment: jsonPaymentDataSource,
   options: jsonOptionsDataSource,
   media: jsonMediaDataSource,
+  order: jsonOrderDataSource,
 };
 
 function createDataSources(): DataSources {
