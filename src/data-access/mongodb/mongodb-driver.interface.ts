@@ -9,6 +9,7 @@ export interface MongoCursorLike<T> {
 export interface MongoCollectionLike<T> {
   findOne(filter: Record<string, unknown>): Promise<T | null>;
   find(filter?: Record<string, unknown>): MongoCursorLike<T>;
+  aggregate<TResult>(pipeline: Record<string, unknown>[]): MongoCursorLike<TResult>;
 }
 
 export interface MongoDatabaseLike {
