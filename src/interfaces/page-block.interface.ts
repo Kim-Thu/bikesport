@@ -115,6 +115,7 @@ export interface TabsGridBlockPayload extends PageBlockBase {
     actionLabel?: string;
     template: CardTemplate;
     gridClassName?: string;
+    mobilePageSize?: number;
     tabs: Array<{
       label: string;
       value: string;
