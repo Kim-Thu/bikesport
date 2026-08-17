@@ -4,6 +4,7 @@ import { getDataSourceProvider } from "@/data-access/data-source.config";
 import { jsonAdsDataSource } from "@/data-access/json/json-ads-data-source";
 import { jsonBannerDataSource } from "@/data-access/json/json-banner-data-source";
 import { jsonBrandDataSource } from "@/data-access/json/json-brand-data-source";
+import { jsonCampaignDataSource } from "@/data-access/json/json-campaign-data-source";
 import { jsonCategoryDataSource } from "@/data-access/json/json-category-data-source";
 import { jsonComboDataSource } from "@/data-access/json/json-combo-data-source";
 import { jsonEventDataSource } from "@/data-access/json/json-event-data-source";
@@ -30,6 +31,7 @@ const jsonDataSources: DataSources = {
   banner: jsonBannerDataSource,
   ads: jsonAdsDataSource,
   combo: jsonComboDataSource,
+  campaign: jsonCampaignDataSource,
 };
 
 function createDataSources(): DataSources {
