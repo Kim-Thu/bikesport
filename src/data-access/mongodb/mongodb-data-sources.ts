@@ -4,6 +4,7 @@ import { createMongoAdsDataSource } from "@/data-access/mongodb/mongodb-ads-data
 import { createMongoBannerDataSource } from "@/data-access/mongodb/mongodb-banner-data-source";
 import { createMongoBrandDataSource } from "@/data-access/mongodb/mongodb-brand-data-source";
 import { createMongoCategoryDataSource } from "@/data-access/mongodb/mongodb-category-data-source";
+import { createMongoComboDataSource } from "@/data-access/mongodb/mongodb-combo-data-source";
 import { createMongoEventDataSource } from "@/data-access/mongodb/mongodb-event-data-source";
 import { createMongoMenuDataSource } from "@/data-access/mongodb/mongodb-menu-data-source";
 import { createMongoPageDataSource } from "@/data-access/mongodb/mongodb-page-data-source";
@@ -30,6 +31,7 @@ export function createMongoDataSources(
     store: createMongoStoreDataSource(getDatabase),
     banner: createMongoBannerDataSource(getDatabase),
     ads: createMongoAdsDataSource(getDatabase),
+    combo: createMongoComboDataSource(getDatabase),
   };
 }
 
