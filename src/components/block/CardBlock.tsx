@@ -9,7 +9,7 @@ import {
 
 export async function CardBlock({ block }: { block: CardBlockPayload }) {
   if (block.props.source.type === "campaign") {
-    const campaign = getActiveCampaignById(block.props.source.campaignId);
+    const campaign = await getActiveCampaignById(block.props.source.campaignId);
     if (!campaign) return null;
 
     return (
