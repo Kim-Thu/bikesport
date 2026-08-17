@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Icon } from "@/components/icon/Icon";
@@ -18,6 +18,7 @@ interface CarouselProps {
   loop?: boolean;
   dragFree?: boolean;
   showArrows?: boolean;
+  autoHeight?: boolean;
 }
 
 export function Carousel({
@@ -32,6 +33,7 @@ export function Carousel({
   loop = false,
   dragFree = false,
   showArrows = false,
+  autoHeight = false,
 }: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop,
@@ -40,15 +42,30 @@ export function Carousel({
     containScroll: "trimSnaps",
     skipSnaps: false,
   });
+  const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [canScroll, setCanScroll] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState<number>();
+
+  const syncHeight = useCallback(
+    (index: number) => {
+      if (!autoHeight) return;
+      window.requestAnimationFrame(() => {
+        const slide = slideRefs.current[index];
+        if (slide) setViewportHeight(slide.offsetHeight);
+      });
+    },
+    [autoHeight],
+  );
 
   const syncCarouselState = useCallback(() => {
     if (!emblaApi) return;
 
-    setActiveIndex(emblaApi.selectedScrollSnap());
+    const index = emblaApi.selectedScrollSnap();
+    setActiveIndex(index);
     setCanScroll(emblaApi.scrollSnapList().length > 1);
-  }, [emblaApi]);
+    syncHeight(index);
+  }, [emblaApi, syncHeight]);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -62,6 +79,17 @@ export function Carousel({
       emblaApi.off("reInit", syncCarouselState);
     };
   }, [emblaApi, syncCarouselState]);
+
+  useEffect(() => {
+    if (!autoHeight) return;
+
+    const activeSlide = slideRefs.current[activeIndex];
+    if (!activeSlide) return;
+
+    const observer = new ResizeObserver(() => syncHeight(activeIndex));
+    observer.observe(activeSlide);
+    return () => observer.disconnect();
+  }, [activeIndex, autoHeight, syncHeight]);
 
   const scrollToIndex = useCallback(
     (index: number) => {
@@ -82,17 +110,22 @@ export function Carousel({
     <div className={cn("relative", className)} role="region" aria-label={ariaLabel}>
       <div
         ref={emblaRef}
+        style={autoHeight && viewportHeight ? { height: viewportHeight } : undefined}
         className={cn(
           "overflow-hidden",
+          autoHeight && "transition-[height] duration-300 ease-out",
           canScroll && "cursor-grab active:cursor-grabbing",
           viewportClassName,
         )}
       >
-        <div className={cn("flex touch-pan-y items-stretch", trackClassName)}>
+        <div className={cn("flex touch-pan-y items-start", trackClassName)}>
           {children.map((child, index) => (
             <div
               key={index}
-              className={cn("flex min-w-0 grow-0 shrink-0 basis-full self-stretch", slideClassName)}
+              ref={(node) => {
+                slideRefs.current[index] = node;
+              }}
+              className={cn("flex min-w-0 grow-0 shrink-0 basis-full self-start", slideClassName)}
             >
               {child}
             </div>
