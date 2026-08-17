@@ -6,6 +6,7 @@ import type {
 } from "@/interfaces/options.interface";
 
 export type NavMenuItemDisplay = "text" | "image" | "image-text";
+export type ResolvedMenuMediaMap = Record<string, MediaItem>;
 
 export interface NavMenuItemSource {
   type: "brand";
@@ -45,12 +46,19 @@ export interface MobileMenuClientProps {
   menu: NavMenuData;
   site: SiteIdentityOptions;
   logoMedia: MediaItem | null;
+  menuMediaById: ResolvedMenuMediaMap;
   hotline: ContactLinkOptions;
   socialItems: SocialLinkOptions[];
 }
 
+export interface MenuItemContentProps {
+  item: NavMenuItem;
+  mediaById: ResolvedMenuMediaMap;
+}
+
 export interface MenuChildrenProps {
   items: NavMenuItem[];
+  mediaById: ResolvedMenuMediaMap;
   id?: string;
   listClassName?: string;
   itemClassName?: string;
