@@ -1,6 +1,7 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 import type { TabsGridTemplate } from "@/variants/tabs-grid.variant";
+import type { TabsSliderTemplate } from "@/variants/tabs-slider.variant";
 import type { TabsTemplate } from "@/variants/tabs.variant";
 
 export type PageBlockStatus = "active" | "inactive";
@@ -63,10 +64,15 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
   component: "tabs-slider";
   props: {
     title: string;
+    titleMediaId?: string | null;
+    titleAlt?: string;
     href?: string;
     actionLabel?: string;
     template: CardTemplate;
+    headingTemplate?: SectionHeaderTemplate;
     tabTemplate?: TabsTemplate;
+    layoutTemplate?: TabsSliderTemplate;
+    backgroundMediaId?: string | null;
     trackClassName?: string;
     slideClassName?: string;
     source:
