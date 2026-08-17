@@ -28,7 +28,7 @@ export type PageBlockComponent =
   | "content"
   | "timeline";
 
-interface PageBlockBase {
+export interface PageBlockBase {
   _id: string;
   status: PageBlockStatus;
   component: PageBlockComponent;
@@ -191,3 +191,7 @@ export type PageBlockPayload =
   | SectionHeaderBlockPayload
   | ContentBlockPayload
   | TimelineBlockPayload;
+
+export type PageBlockPayloadMap = {
+  [Component in PageBlockComponent]: Extract<PageBlockPayload, { component: Component }>;
+};
