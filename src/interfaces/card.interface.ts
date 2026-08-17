@@ -1,3 +1,5 @@
+import type { MediaItem } from "@/interfaces/media.interface";
+
 export type CardTemplate =
   | "media-footer"
   | "media-action"
@@ -16,6 +18,7 @@ export interface CardProps {
   title: string;
   href: string;
   mediaId?: string | null;
+  media?: MediaItem | null;
   template?: CardTemplate;
   className?: string;
   description?: string;
@@ -26,6 +29,7 @@ export interface CardProps {
   stockRemaining?: number;
   stockTotal?: number;
   promotionBadgeMediaId?: string | null;
+  promotionBadgeMedia?: MediaItem | null;
   promotionBadgeAlt?: string;
   rating?: number;
   reviewCount?: number;
