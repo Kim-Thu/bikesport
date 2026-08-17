@@ -22,7 +22,7 @@ function isWithinRange(now: Date, startAt?: string, endAt?: string): boolean {
   return true;
 }
 
-function isScheduleActive(schedule: AdsSchedule, now: Date): boolean {
+async function isScheduleActive(schedule: AdsSchedule, now: Date): Promise<boolean> {
   if (schedule.type === "always") return true;
 
   if (schedule.type === "fixed") {
@@ -30,7 +30,7 @@ function isScheduleActive(schedule: AdsSchedule, now: Date): boolean {
   }
 
   if (schedule.type === "promotion") {
-    const promotion = getPromotionById(schedule.promotionId);
+    const promotion = await getPromotionById(schedule.promotionId);
     return Boolean(
       promotion &&
         promotion.status === "active" &&
@@ -46,6 +46,12 @@ function isScheduleActive(schedule: AdsSchedule, now: Date): boolean {
   );
 }
 
-export function getActiveAdByPlacement(placement: string, now = new Date()): AdsRecord | null {
-  return (adsByPlacement.get(placement) ?? []).find((ad) => isScheduleActive(ad.schedule, now)) ?? null;
+export async function getActiveAdByPlacement(
+  placement: string,
+  now = new Date(),
+): Promise<AdsRecord | null> {
+  for (const ad of adsByPlacement.get(placement) ?? []) {
+    if (await isScheduleActive(ad.schedule, now)) return ad;
+  }
+  return null;
 }
