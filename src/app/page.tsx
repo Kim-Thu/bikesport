@@ -1,13 +1,10 @@
 import { PageSections } from "@/components/page/PageSections";
-import wpPages from "@/data/wp-pages.json";
-import type { PageRecord } from "@/interfaces/page.interface";
+import { getPublishedPageByPath } from "@/lib/page.utils";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default function Home() {
-  const homePage = (wpPages.pages as PageRecord[]).find(
-    (page) => page.path === "/" && page.status === "published",
-  );
+  const homePage = getPublishedPageByPath("/");
 
   return (
     <main aria-label="Nội dung trang chủ">
