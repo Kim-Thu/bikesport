@@ -23,6 +23,7 @@ export type PageBlockComponent =
   | "media"
   | "inline-form"
   | "section-header"
+  | "content"
   | "timeline";
 
 interface PageBlockBase {
@@ -158,6 +159,17 @@ export interface SectionHeaderBlockPayload extends PageBlockBase {
   props: SectionHeaderProps;
 }
 
+export interface ContentBlockPayload extends PageBlockBase {
+  component: "content";
+  props: {
+    eyebrow?: string;
+    title?: string;
+    paragraphs?: string[];
+    align?: "left" | "center" | "right";
+    className?: string;
+  };
+}
+
 export interface TimelineBlockPayload extends PageBlockBase {
   component: "timeline";
   props: {
@@ -184,4 +196,5 @@ export type PageBlockPayload =
   | MediaBlockPayload
   | InlineFormBlockPayload
   | SectionHeaderBlockPayload
+  | ContentBlockPayload
   | TimelineBlockPayload;
