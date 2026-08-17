@@ -3,11 +3,18 @@ import { CList } from "@/components/list/CList";
 import { Column } from "@/components/layout/Column";
 import { MediaImage } from "@/components/media/MediaImage";
 import { Row } from "@/components/layout/Row";
-import wpOption from "@/data/wp-option.json";
+import type { ContactOptions, OrganizationOptions } from "@/interfaces/options.interface";
 
-export function CompanyInfo() {
-  const { organization, contact } = wpOption;
-  const verificationAssets = (organization.verificationAssets ?? []).filter((asset) => asset.enabled !== false);
+export function CompanyInfo({
+  organization,
+  contact,
+}: {
+  organization: OrganizationOptions;
+  contact: ContactOptions;
+}) {
+  const verificationAssets = (organization.verificationAssets ?? []).filter(
+    (asset) => asset.enabled !== false,
+  );
 
   const infoItems = [
     organization.legalName
