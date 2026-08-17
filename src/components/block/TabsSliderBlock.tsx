@@ -10,6 +10,7 @@ import { getProductReviewStatsBySku } from "@/lib/review.utils";
 export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
   const reviewStatsBySku = getProductReviewStatsBySku();
   const activeBrands = getActiveBrands();
+  const isBrandSource = block.props.source.type === "brand";
 
   const groups: TabsSliderGroup[] =
     block.props.source.type === "combo"
@@ -90,9 +91,9 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
       actionLabel={block.props.actionLabel}
       groups={groups}
       template={block.props.template}
-      headingTemplate={block.props.headingTemplate}
-      tabTemplate={block.props.tabTemplate ?? (block.props.source.type === "brand" ? "image" : "default")}
-      layoutTemplate={block.props.layoutTemplate}
+      headingTemplate={block.props.headingTemplate ?? (isBrandSource ? "featured" : "default")}
+      tabTemplate={block.props.tabTemplate ?? (isBrandSource ? "image" : "default")}
+      layoutTemplate={block.props.layoutTemplate ?? (isBrandSource ? "featured-showcase" : "default")}
       backgroundMediaId={block.props.backgroundMediaId}
       trackClassName={block.props.trackClassName}
       slideClassName={block.props.slideClassName}
