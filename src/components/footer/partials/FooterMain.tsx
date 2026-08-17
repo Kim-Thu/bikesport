@@ -1,12 +1,12 @@
-import { CompanyInfo } from "@/components/company/CompanyInfo";
+import { CompanyInfoLoader } from "@/components/company/CompanyInfoLoader";
 import { Heading } from "@/components/heading/Heading";
 import { Column } from "@/components/layout/Column";
 import { Container } from "@/components/layout/Container";
 import { Row } from "@/components/layout/Row";
-import { Logo } from "@/components/logo/Logo";
+import { LogoLoader } from "@/components/logo/LogoLoader";
 import { CMenu } from "@/components/menu/CMenu";
 import { Section } from "@/components/section/Section";
-import { Social } from "@/components/social/Social";
+import { SocialLoader } from "@/components/social/SocialLoader";
 import type { FooterSettings } from "@/interfaces/footer.interface";
 import { getMenuById } from "@/lib/menu-data.utils";
 
@@ -21,11 +21,11 @@ export async function FooterMain({ settings }: { settings: FooterSettings }) {
       <Row className="flex-col items-stretch gap-8 md:gap-10 xl:flex-row xl:items-start xl:gap-12">
         <Column className="w-full xl:w-auto xl:basis-112">
           <div className="space-y-4">
-            <Logo href="/" />
+            <LogoLoader href="/" />
             {settings.description ? (
               <p className="max-w-sm text-sm leading-6 text-gray-600">{settings.description}</p>
             ) : null}
-            <Social />
+            <SocialLoader />
           </div>
         </Column>
 
@@ -50,7 +50,7 @@ export async function FooterMain({ settings }: { settings: FooterSettings }) {
       </Row>
 
       <div className="mt-8 border-t border-gray-100 pt-6 sm:mt-10 sm:pt-8">
-        <CompanyInfo />
+        <CompanyInfoLoader />
       </div>
     </Container>
   );
