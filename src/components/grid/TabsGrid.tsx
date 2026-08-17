@@ -1,13 +1,18 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { DefaultTemplate } from "@/components/grid/templates/DefaultTemplate";
+import { FeaturedDealsTemplate } from "@/components/grid/templates/FeaturedDealsTemplate";
 import { Pagination } from "@/components/pagination/Pagination";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { Tabs, type TabItem } from "@/components/tabs/Tabs";
 import type { ProductSliderItem } from "@/components/product/ProductSlider";
 import type { CardTemplate } from "@/interfaces/card.interface";
+import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 import type { PaginationVariant } from "@/variants/pagination.variant";
+import type { TabsGridTemplate } from "@/variants/tabs-grid.variant";
+import type { TabsTemplate } from "@/variants/tabs.variant";
 
 export interface TabsGridGroup extends TabItem {
   items: ProductSliderItem[];
@@ -15,21 +20,38 @@ export interface TabsGridGroup extends TabItem {
 
 interface TabsGridProps {
   title: string;
+  titleMediaId?: string | null;
+  titleAlt?: string;
   href?: string;
   actionLabel?: string;
   groups: TabsGridGroup[];
   template: CardTemplate;
+  headingTemplate?: SectionHeaderTemplate;
+  tabsTemplate?: TabsTemplate;
+  layoutTemplate?: TabsGridTemplate;
+  backgroundMediaId?: string | null;
   gridClassName?: string;
   mobilePageSize?: number;
   paginationVariant?: PaginationVariant;
 }
 
+const TEMPLATES = {
+  default: DefaultTemplate,
+  "featured-deals": FeaturedDealsTemplate,
+} as const;
+
 export function TabsGrid({
   title,
+  titleMediaId,
+  titleAlt,
   href,
   actionLabel,
   groups,
   template,
+  headingTemplate = "default",
+  tabsTemplate = "default",
+  layoutTemplate = "default",
+  backgroundMediaId,
   gridClassName,
   mobilePageSize = 4,
   paginationVariant = "default",
@@ -47,7 +69,6 @@ export function TabsGrid({
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 639px)");
     const syncViewport = () => setIsMobile(mediaQuery.matches);
-
     syncViewport();
     mediaQuery.addEventListener("change", syncViewport);
     return () => mediaQuery.removeEventListener("change", syncViewport);
@@ -78,29 +99,49 @@ export function TabsGrid({
   const visibleItems = isMobile
     ? activeGroup.items.slice(safePage * pageSize, safePage * pageSize + pageSize)
     : activeGroup.items;
+  const LayoutTemplate = TEMPLATES[layoutTemplate];
+
+  const header = (
+    <SectionHeader
+      title={title}
+      titleMediaId={titleMediaId}
+      titleAlt={titleAlt}
+      href={href}
+      actionLabel={actionLabel}
+      template={headingTemplate}
+      className={layoutTemplate === "default" ? "mb-4" : undefined}
+    >
+      <Tabs
+        items={groups.map(({ label, value, mediaId }) => ({ label, value, mediaId }))}
+        value={activeGroup.value}
+        onChange={handleTabChange}
+        template={tabsTemplate}
+      />
+    </SectionHeader>
+  );
+
+  const grid = <ProductGrid items={visibleItems} template={template} className={gridClassName} />;
+  const pagination = isMobile ? (
+    <Pagination
+      page={safePage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+      ariaLabel={`Phân trang ${title}`}
+      variant={paginationVariant}
+      className="mt-4"
+    />
+  ) : undefined;
 
   return (
     <div ref={sectionStartRef} className="min-w-0 scroll-mt-8 sm:scroll-mt-6">
-      <SectionHeader title={title} href={href} actionLabel={actionLabel} className="mb-4">
-        <Tabs
-          items={groups.map(({ label, value }) => ({ label, value }))}
-          value={activeGroup.value}
-          onChange={handleTabChange}
-        />
-      </SectionHeader>
-
-      <ProductGrid items={visibleItems} template={template} className={gridClassName} />
-
-      {isMobile ? (
-        <Pagination
-          page={safePage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-          ariaLabel={`Phân trang ${title}`}
-          variant={paginationVariant}
-          className="mt-4"
-        />
-      ) : null}
+      <LayoutTemplate
+        header={header}
+        grid={grid}
+        pagination={pagination}
+        href={href}
+        actionLabel={actionLabel}
+        backgroundMediaId={backgroundMediaId}
+      />
     </div>
   );
 }
