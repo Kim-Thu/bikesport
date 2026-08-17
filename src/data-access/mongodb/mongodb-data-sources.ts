@@ -9,6 +9,7 @@ import { createMongoCategoryDataSource } from "@/data-access/mongodb/mongodb-cat
 import { createMongoComboDataSource } from "@/data-access/mongodb/mongodb-combo-data-source";
 import { createMongoEventDataSource } from "@/data-access/mongodb/mongodb-event-data-source";
 import { createMongoMenuDataSource } from "@/data-access/mongodb/mongodb-menu-data-source";
+import { createMongoOptionsDataSource } from "@/data-access/mongodb/mongodb-options-data-source";
 import { createMongoPageDataSource } from "@/data-access/mongodb/mongodb-page-data-source";
 import { createMongoPaymentDataSource } from "@/data-access/mongodb/mongodb-payment-data-source";
 import { createMongoPostDataSource } from "@/data-access/mongodb/mongodb-post-data-source";
@@ -38,6 +39,7 @@ export function createMongoDataSources(
     campaign: createMongoCampaignDataSource(getDatabase),
     announcement: createMongoAnnouncementDataSource(getDatabase),
     payment: createMongoPaymentDataSource(getDatabase),
+    options: createMongoOptionsDataSource(getDatabase),
   };
 }
 
