@@ -1,10 +1,8 @@
 import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
-import wpOption from "@/data/wp-option.json";
+import type { SocialLinkOptions } from "@/interfaces/options.interface";
 
-export function Social() {
-  const items = wpOption.contact.social ?? [];
-
+export function Social({ items }: { items: SocialLinkOptions[] }) {
   if (!items.length) return null;
 
   return (
