@@ -1,18 +1,34 @@
 import { EmptyContent } from "@/components/empty-content/EmptyContent";
 import { TabsGrid, type TabsGridGroup } from "@/components/grid/TabsGrid";
 import type { TabsGridBlockPayload } from "@/interfaces/page-block.interface";
+import { getMediaWithFallbackByIds } from "@/lib/media.utils";
 import { getProductCollectionItems } from "@/lib/product-collection-source.utils";
 
 export async function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) {
-  const groups: TabsGridGroup[] = await Promise.all(
-    block.props.tabs.map(async (tab) => ({
-      label: tab.label,
-      value: tab.value,
-      items: await getProductCollectionItems(tab.source),
-    })),
-  );
+  const mediaIds = [
+    block.props.titleMediaId,
+    block.props.backgroundMediaId,
+    ...block.props.tabs.map((tab) => tab.mediaId),
+  ].filter((mediaId): mediaId is string => Boolean(mediaId));
 
-  if (!groups.some((group) => group.items.length)) {
+  const [mediaById, groups] = await Promise.all([
+    getMediaWithFallbackByIds(mediaIds),
+    Promise.all(
+      block.props.tabs.map(async (tab) => ({
+        label: tab.label,
+        value: tab.value,
+        mediaId: tab.mediaId,
+        items: await getProductCollectionItems(tab.source),
+      })),
+    ),
+  ]);
+
+  const resolvedGroups: TabsGridGroup[] = groups.map((group) => ({
+    ...group,
+    media: group.mediaId ? mediaById[group.mediaId] ?? null : null,
+  }));
+
+  if (!resolvedGroups.some((group) => group.items.length)) {
     return <EmptyContent />;
   }
 
@@ -20,15 +36,17 @@ export async function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) 
     <TabsGrid
       title={block.props.title}
       titleMediaId={block.props.titleMediaId}
+      titleMedia={block.props.titleMediaId ? mediaById[block.props.titleMediaId] ?? null : null}
       titleAlt={block.props.titleAlt}
       href={block.props.href}
       actionLabel={block.props.actionLabel}
-      groups={groups}
+      groups={resolvedGroups}
       template={block.props.template}
       headingTemplate={block.props.headingTemplate}
       tabsTemplate={block.props.tabsTemplate}
       layoutTemplate={block.props.layoutTemplate}
       backgroundMediaId={block.props.backgroundMediaId}
+      backgroundMedia={block.props.backgroundMediaId ? mediaById[block.props.backgroundMediaId] ?? null : null}
       gridClassName={block.props.gridClassName}
       mobilePageSize={block.props.mobilePageSize}
     />
