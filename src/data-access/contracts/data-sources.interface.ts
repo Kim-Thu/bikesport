@@ -15,6 +15,7 @@ import type { PaymentDataSource } from "@/data-access/contracts/payment-data-sou
 import type { PostDataSource } from "@/data-access/contracts/post-data-source.interface";
 import type { ProductDataSource } from "@/data-access/contracts/product-data-source.interface";
 import type { PromotionDataSource } from "@/data-access/contracts/promotion-data-source.interface";
+import type { ReviewDataSource } from "@/data-access/contracts/review-data-source.interface";
 import type { StoreDataSource } from "@/data-access/contracts/store-data-source.interface";
 import type { UserDataSource } from "@/data-access/contracts/user-data-source.interface";
 
@@ -38,4 +39,5 @@ export interface DataSources {
   options: OptionsDataSource;
   media: MediaDataSource;
   order: OrderDataSource;
+  review: ReviewDataSource;
 }
