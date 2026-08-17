@@ -1,17 +1,6 @@
 import { BoxIcon } from "@/components/box/BoxIcon";
 import { Panel } from "@/components/panel/Panel";
-
-export interface IconListItem {
-  icon?: string;
-  mediaId?: string;
-  title: string;
-  description?: string;
-}
-
-interface IconListProps {
-  items: IconListItem[];
-  layout?: "list" | "grid";
-}
+import type { IconListItem, IconListProps } from "@/interfaces/icon-list.interface";
 
 function IconListItemContent({ item }: { item: IconListItem }) {
   return (
