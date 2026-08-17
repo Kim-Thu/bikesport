@@ -7,6 +7,8 @@ export const MONGODB_COLLECTIONS = {
   banners: "banners",
   menus: "menus",
   stores: "stores",
+  storeRegions: "store_regions",
+  storeLocations: "store_locations",
   media: "media",
   posts: "posts",
   events: "events",
