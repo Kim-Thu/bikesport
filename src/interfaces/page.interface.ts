@@ -93,6 +93,10 @@ export type PageSectionPayload =
   | CardGridSectionPayload
   | LayoutSectionPayload;
 
+export type PageSectionPayloadMap = {
+  [Component in PageSectionComponent]: Extract<PageSectionPayload, { component: Component }>;
+};
+
 export interface PagePayload {
   sections: PageSectionPayload[];
 }
