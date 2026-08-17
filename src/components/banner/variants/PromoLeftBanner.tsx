@@ -85,7 +85,7 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
               ) : null}
 
               {banner.description ? (
-                <p className="mt-2 text-base font-bold uppercase text-gray-800 sm:text-lg">{banner.description}</p>
+                <p className="mt-4 max-w-lg text-base leading-7 text-gray-700 sm:text-base sm:leading-7">{banner.description}</p>
               ) : null}
 
               {features.length ? (
