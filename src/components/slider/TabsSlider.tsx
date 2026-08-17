@@ -8,7 +8,7 @@ import { FeaturedShowcaseTemplate } from "@/components/slider/templates/Featured
 import { Tabs, type TabItem } from "@/components/tabs/Tabs";
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { ProductCollectionItem } from "@/interfaces/product-collection-item.interface";
-import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
+import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { TabsSliderTemplate } from "@/variants/tabs-slider.variant";
 import type { TabsTemplate } from "@/variants/tabs.variant";
 
@@ -16,15 +16,10 @@ export interface TabsSliderGroup extends TabItem {
   items: ProductCollectionItem[];
 }
 
-interface TabsSliderProps {
+interface TabsSliderProps extends SectionHeadingConfig {
   title: string;
-  titleMediaId?: string | null;
-  titleAlt?: string;
-  href?: string;
-  actionLabel?: string;
   groups: TabsSliderGroup[];
   template: CardTemplate;
-  headingTemplate?: SectionHeaderTemplate;
   tabTemplate?: TabsTemplate;
   layoutTemplate?: TabsSliderTemplate;
   backgroundMediaId?: string | null;
