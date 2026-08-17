@@ -1,6 +1,7 @@
 import type { ProductRecord } from "@/interfaces/product.interface";
 
 export interface ProductDataFilter {
+  ids?: string[];
   skus?: string[];
   categoryIds?: string[];
   tagIds?: string[];
