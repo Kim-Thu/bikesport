@@ -37,7 +37,7 @@ export function TabsGrid({
   const [activeValue, setActiveValue] = useState(groups[0]?.value ?? "");
   const [mobilePage, setMobilePage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const gridStartRef = useRef<HTMLDivElement>(null);
+  const sectionStartRef = useRef<HTMLDivElement>(null);
 
   const activeGroup = useMemo(
     () => groups.find((group) => group.value === activeValue) ?? groups[0],
@@ -53,21 +53,21 @@ export function TabsGrid({
     return () => mediaQuery.removeEventListener("change", syncViewport);
   }, []);
 
-  function scrollToGrid() {
+  function scrollToSectionStart() {
     window.requestAnimationFrame(() => {
-      gridStartRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      sectionStartRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
 
   function handleTabChange(value: string) {
     setActiveValue(value);
     setMobilePage(0);
-    if (isMobile) scrollToGrid();
+    if (isMobile) scrollToSectionStart();
   }
 
   function handlePageChange(page: number) {
     setMobilePage(page);
-    scrollToGrid();
+    scrollToSectionStart();
   }
 
   if (!activeGroup) return null;
@@ -80,7 +80,7 @@ export function TabsGrid({
     : activeGroup.items;
 
   return (
-    <div className="min-w-0">
+    <div ref={sectionStartRef} className="min-w-0 scroll-mt-4">
       <SectionHeader title={title} href={href} actionLabel={actionLabel} className="mb-4">
         <Tabs
           items={groups.map(({ label, value }) => ({ label, value }))}
@@ -89,9 +89,7 @@ export function TabsGrid({
         />
       </SectionHeader>
 
-      <div ref={gridStartRef} className="scroll-mt-4">
-        <ProductGrid items={visibleItems} template={template} className={gridClassName} />
-      </div>
+      <ProductGrid items={visibleItems} template={template} className={gridClassName} />
 
       {isMobile ? (
         <Pagination
