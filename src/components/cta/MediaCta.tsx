@@ -1,4 +1,4 @@
-import { CLink } from "@/components/link/CLink";
+import { ActionLink } from "@/components/link/ActionLink";
 import { MediaImage } from "@/components/media/MediaImage";
 import { Panel } from "@/components/panel/Panel";
 import type { MediaCtaProps } from "@/interfaces/media-cta.interface";
@@ -23,18 +23,13 @@ export function MediaCta({
 
       <div className="absolute inset-0 bg-linear-to-r from-blue-50 via-blue-50/95 to-transparent" />
 
-      <div className="relative z-10 p-6 sm:w-3/5 sm:p-8">
+      <div className="relative z-10 max-w-3xl p-6 sm:p-8">
         {eyebrow ? <div className="text-xs font-bold uppercase text-blue-600">{eyebrow}</div> : null}
         <div className="mt-1 text-xl font-black uppercase leading-tight text-blue-700 sm:text-2xl">{title}</div>
         {description ? <div className="mt-2 text-sm leading-relaxed text-gray-600 sm:text-base">{description}</div> : null}
-        <div>
-          <CLink
-            href={href}
-            className="mt-4 inline-flex rounded-md bg-blue-600 px-3 py-2 text-xs font-bold uppercase text-white hover:bg-blue-700"
-          >
-            {actionLabel}
-          </CLink>
-        </div>
+        <ActionLink href={href} size="sm" showArrow={false} className="mt-4">
+          {actionLabel}
+        </ActionLink>
       </div>
     </Panel>
   );
