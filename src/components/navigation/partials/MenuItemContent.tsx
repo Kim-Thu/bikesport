@@ -1,17 +1,18 @@
-import { MediaImage } from "@/components/media/MediaImage";
-import type { NavMenuItem } from "@/interfaces/navigation.interface";
+import Image from "next/image";
+import type { MenuItemContentProps } from "@/interfaces/navigation.interface";
 
-export function MenuItemContent({ item }: { item: NavMenuItem }) {
+export function MenuItemContent({ item, mediaById }: MenuItemContentProps) {
   const display = item.display ?? "text";
   const showImage = display === "image" || display === "image-text";
   const showText = display === "text" || display === "image-text";
+  const media = item.mediaId ? mediaById[item.mediaId] : undefined;
 
   return (
     <>
-      {showImage && item.mediaId ? (
-        <MediaImage
-          mediaId={item.mediaId}
-          alt={item.label}
+      {showImage && media ? (
+        <Image
+          src={media.src}
+          alt={item.label ?? media.alt ?? media.name}
           width={120}
           height={48}
           className="h-8 w-auto max-w-28 object-contain"
