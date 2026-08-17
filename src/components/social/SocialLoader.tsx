@@ -7,6 +7,9 @@ export async function SocialLoader() {
   const items = options.contact.social ?? [];
   const mediaIds = items.flatMap((item) => (item.iconMediaId ? [item.iconMediaId] : []));
   const mediaById = await getMediaWithFallbackByIds(mediaIds);
+  const mediaUrlById = Object.fromEntries(
+    Object.entries(mediaById).flatMap(([mediaId, media]) => (media.src ? [[mediaId, media.src]] : [])),
+  );
 
-  return <Social items={items} mediaById={mediaById} />;
+  return <Social items={items} mediaUrlById={mediaUrlById} />;
 }
