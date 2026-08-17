@@ -38,7 +38,7 @@ async function isScheduleActive(schedule: AdsSchedule, now: Date): Promise<boole
     );
   }
 
-  const event = getEventById(schedule.eventId);
+  const event = await getEventById(schedule.eventId);
   return Boolean(
     event &&
       event.status === "published" &&
