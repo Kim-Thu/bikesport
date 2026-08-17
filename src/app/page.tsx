@@ -3,8 +3,8 @@ import { getPublishedPageByPath } from "@/lib/page.utils";
 
 export const revalidate = 300;
 
-export default function Home() {
-  const homePage = getPublishedPageByPath("/");
+export default async function Home() {
+  const homePage = await getPublishedPageByPath("/");
 
   return (
     <main aria-label="Nội dung trang chủ">
