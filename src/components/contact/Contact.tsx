@@ -1,13 +1,14 @@
 import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
-import wpOption from "@/data/wp-option.json";
+import type { ContactLinkOptions } from "@/interfaces/options.interface";
 
-type ContactProps = {
+export type ContactProps = {
   variant?: "desktop" | "mobile";
+  hotline: ContactLinkOptions;
 };
 
-export function Contact({ variant = "desktop" }: ContactProps) {
-  const { label, value, href } = wpOption.contact.hotline;
+export function Contact({ variant = "desktop", hotline }: ContactProps) {
+  const { label, value, href } = hotline;
 
   if (!value) return null;
 
