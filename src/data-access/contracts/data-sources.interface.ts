@@ -1,5 +1,6 @@
 import type { AdsDataSource } from "@/data-access/contracts/ads-data-source.interface";
 import type { AnnouncementDataSource } from "@/data-access/contracts/announcement-data-source.interface";
+import type { AttributeDataSource } from "@/data-access/contracts/attribute-data-source.interface";
 import type { BannerDataSource } from "@/data-access/contracts/banner-data-source.interface";
 import type { BrandDataSource } from "@/data-access/contracts/brand-data-source.interface";
 import type { CampaignDataSource } from "@/data-access/contracts/campaign-data-source.interface";
@@ -44,4 +45,5 @@ export interface DataSources {
   review: ReviewDataSource;
   seo: SeoDataSource;
   meta: MetaDataSource;
+  attribute: AttributeDataSource;
 }
