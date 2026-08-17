@@ -3,6 +3,7 @@ import type { LinkInfo } from "@/interfaces/link.interface";
 const NATIVE_PROTOCOL_PATTERN = /^(tel:|mailto:|sms:)/i;
 const HTTP_PROTOCOL_PATTERN = /^https?:\/\//i;
 const PROTOCOL_RELATIVE_PATTERN = /^\/\//;
+const BACKSLASH_PROTOCOL_RELATIVE_PATTERN = /^\\\\/;
 const BLOCKED_PROTOCOL_PATTERN = /^[a-z][a-z\d+.-]*:/i;
 
 function createSafeFallback(): LinkInfo {
@@ -61,6 +62,10 @@ export function getLinkInfo(href?: string): LinkInfo {
       isExternal: false,
       useNativeAnchor: true,
     };
+  }
+
+  if (BACKSLASH_PROTOCOL_RELATIVE_PATTERN.test(normalizedHref)) {
+    return createSafeFallback();
   }
 
   if (PROTOCOL_RELATIVE_PATTERN.test(normalizedHref) || HTTP_PROTOCOL_PATTERN.test(normalizedHref)) {
