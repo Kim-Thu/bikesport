@@ -32,9 +32,9 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T14:38:00+07:00",
-      "updatedAt": "2026-08-16T14:38:00+07:00",
+      "updatedAt": "2026-08-17T12:18:00+07:00",
       "items": [
-        { "_id": "66bf4e8c9f2a4d7b8c1e3511", "label": "Giới thiệu", "href": "#about", "parentId": null, "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3511", "label": "Giới thiệu", "href": "/gioi-thieu", "parentId": null, "order": 1 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3512", "label": "Hệ thống cửa hàng", "href": "#stores", "parentId": null, "order": 2 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3513", "label": "Tin tức & sự kiện", "href": "#blog", "parentId": null, "order": 3 },
         { "_id": "66bf4e8c9f2a4d7b8c1e3514", "label": "Liên hệ", "href": "#contact", "parentId": null, "order": 4 }
