@@ -29,6 +29,7 @@ export function ProductSlider({
       loop
       dragFree
       showArrows
+      stretchSlides
       ariaLabel={ariaLabel}
       trackClassName={trackClassName}
       slideClassName={cn("max-sm:basis-full", slideClassName)}
