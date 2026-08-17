@@ -29,7 +29,6 @@ import {
 import type { CSSProperties } from "react";
 import type { IconProps } from "@/interfaces/icon.interface";
 import { cn } from "@/lib/classname.utils";
-import { getMediaUrl } from "@/lib/media.utils";
 
 const ICONS: Record<string, LucideIcon> = {
   menu: Menu,
@@ -59,9 +58,7 @@ const ICONS: Record<string, LucideIcon> = {
   "arrow-right": ArrowRight,
 };
 
-export function Icon({ name, mediaId, size = 24, className = "", style, ...props }: IconProps) {
-  const mediaUrl = getMediaUrl(mediaId);
-
+export function Icon({ name, mediaUrl, size = 24, className = "", style, ...props }: IconProps) {
   if (mediaUrl) {
     const maskStyle: CSSProperties = {
       backgroundColor: "currentColor",
