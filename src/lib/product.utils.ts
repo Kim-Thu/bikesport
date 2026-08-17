@@ -35,7 +35,7 @@ const getBestSellerProductsCached = cache(async (categoryId?: string | null): Pr
   const products = categoryIds
     ? await dataSources.product.getPublishedByCategoryIds(categoryIds)
     : await dataSources.product.getPublished();
-  const salesBySku = getProductSalesStatsBySku();
+  const salesBySku = await getProductSalesStatsBySku(products.map((product) => product.sku));
 
   return products
     .filter((product) => salesBySku.has(product.sku))
