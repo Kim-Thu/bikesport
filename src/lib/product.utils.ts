@@ -8,11 +8,22 @@ export async function getPublishedProducts(limit?: number): Promise<ProductRecor
   return dataSources.product.getPublished(limit);
 }
 
+export async function getPublishedProductsByIds(ids: string[], limit?: number): Promise<ProductRecord[]> {
+  return dataSources.product.getPublishedByFilter({ ids }, limit);
+}
+
 export async function getPublishedProductsByBrandId(
   brandId: string,
   limit?: number,
 ): Promise<ProductRecord[]> {
   return dataSources.product.getPublishedByBrandId(brandId, limit);
+}
+
+export async function getPublishedProductsByCategoryIds(
+  categoryIds: string[],
+  limit?: number,
+): Promise<ProductRecord[]> {
+  return dataSources.product.getPublishedByCategoryIds(categoryIds, limit);
 }
 
 export async function getFeaturedProducts(limit?: number): Promise<ProductRecord[]> {
