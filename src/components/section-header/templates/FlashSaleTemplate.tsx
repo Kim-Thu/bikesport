@@ -1,12 +1,12 @@
 import { Heading } from "@/components/heading/Heading";
 import { Icon } from "@/components/icon/Icon";
-import { MediaImage } from "@/components/media/MediaImage";
+import { MediaImageView } from "@/components/media/MediaImageView";
 import type { SectionHeaderProps } from "@/interfaces/section-header.interface";
 import { cn } from "@/lib/classname.utils";
 
 export function FlashSaleTemplate({
   title,
-  titleMediaId,
+  titleMedia,
   titleAlt,
   className,
   children,
@@ -15,9 +15,9 @@ export function FlashSaleTemplate({
     <div className={cn("space-y-3", className)}>
       <div className="flex min-h-20 items-center justify-center rounded-lg bg-red-500 p-4 text-center text-white">
         <div className="flex min-w-0 items-center justify-center gap-2">
-          {titleMediaId !== undefined ? (
-            <MediaImage
-              mediaId={titleMediaId}
+          {titleMedia ? (
+            <MediaImageView
+              media={titleMedia}
               alt={titleAlt ?? title ?? "Flash Sale"}
               width={240}
               height={64}
