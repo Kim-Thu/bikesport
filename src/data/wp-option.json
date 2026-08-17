@@ -3,13 +3,24 @@
   "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
   "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
   "createdAt": "2026-08-15T14:30:00+07:00",
-  "updatedAt": "2026-08-16T16:49:00+07:00",
+  "updatedAt": "2026-08-17T13:23:00+07:00",
   "site": {
     "siteTitle": "BikeSport",
     "tagLine": "",
     "logoMediaId": "66bf4e8c9f2a4d7b8c1e3701",
     "showSiteTitle": false,
-    "showTagLine": false
+    "showTagLine": false,
+    "theme": {
+      "themeColor": "#FFFFFF",
+      "backgroundColor": "#FFFFFF"
+    },
+    "icons": {
+      "faviconMediaId": "66bf4e8c9f2a4d7b8c1e3708",
+      "favicon32MediaId": "66bf4e8c9f2a4d7b8c1e3709",
+      "appleTouchIconMediaId": "66bf4e8c9f2a4d7b8c1e3710",
+      "pwa192MediaId": "66bf4e8c9f2a4d7b8c1e3711",
+      "pwa512MediaId": "66bf4e8c9f2a4d7b8c1e3712"
+    }
   },
   "seo": {
     "titleFormat": "%title% | %siteName%",
@@ -100,9 +111,11 @@
         "enabled": true,
         "rows": [
           {
+            "className": "justify-center",
             "columns": [
               {
                 "grow": true,
+                "className": "flex items-center justify-center gap-4",
                 "items": [
                   {
                     "component": "announcement",
@@ -122,8 +135,10 @@
         "enabled": true,
         "rows": [
           {
+            "className": "flex-wrap gap-3 py-3 md:flex-nowrap md:gap-4 md:py-4 lg:gap-9",
             "columns": [
               {
+                "className": "flex shrink-0 items-center gap-4",
                 "items": [
                   {
                     "component": "logo",
@@ -135,6 +150,7 @@
               },
               {
                 "grow": true,
+                "className": "hidden min-w-0 flex-1 items-center gap-4 lg:flex",
                 "items": [
                   {
                     "component": "search-form",
@@ -146,6 +162,7 @@
                 ]
               },
               {
+                "className": "ml-auto flex shrink-0 items-center gap-4",
                 "items": [
                   { "component": "contact" },
                   { "component": "account" },
@@ -161,9 +178,11 @@
         "enabled": true,
         "rows": [
           {
+            "className": "gap-2 py-2 lg:gap-4 lg:py-0",
             "columns": [
               {
                 "grow": true,
+                "className": "flex min-w-0 items-center gap-2 lg:gap-4",
                 "items": [
                   {
                     "component": "mobile-menu",
