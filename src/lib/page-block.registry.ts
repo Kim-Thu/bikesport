@@ -8,6 +8,7 @@ import { MediaCtaBlock } from "@/components/block/MediaCtaBlock";
 import { ProductSliderBlock } from "@/components/block/ProductSliderBlock";
 import { TabsGridBlock } from "@/components/block/TabsGridBlock";
 import { TabsSliderBlock } from "@/components/block/TabsSliderBlock";
+import { TimelineBlock } from "@/components/block/TimelineBlock";
 import type { PageBlockComponent } from "@/interfaces/page-block.interface";
 
 export const PAGE_BLOCK_COMPONENTS = {
@@ -21,4 +22,5 @@ export const PAGE_BLOCK_COMPONENTS = {
   "media-cta": MediaCtaBlock,
   media: MediaBlock,
   "inline-form": InlineFormBlock,
+  timeline: TimelineBlock,
 } satisfies Record<PageBlockComponent, unknown>;
