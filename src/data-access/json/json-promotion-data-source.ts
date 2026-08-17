@@ -1,6 +1,6 @@
 import promotionData from "@/data/wp-promotion.json";
 import type { PromotionDataSource } from "@/data-access/contracts/promotion-data-source.interface";
-import type { PromotionData, PromotionRecord } from "@/interfaces/promotion.interface";
+import type { PromotionData } from "@/interfaces/promotion.interface";
 
 const promotions = (promotionData as PromotionData).promotions;
 const promotionById = new Map(promotions.map((promotion) => [promotion._id, promotion]));
