@@ -19,11 +19,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteIcons = options.site.icons;
   const siteUrl = getHomeUrl();
   const metadataBase = siteUrl ? new URL(siteUrl) : undefined;
-  const faviconUrl = getMediaUrl(siteIcons.faviconMediaId);
-  const favicon32Url = getMediaUrl(siteIcons.favicon32MediaId);
-  const appleTouchIconUrl = getMediaUrl(siteIcons.appleTouchIconMediaId);
-  const defaultOgImageUrl = getMediaUrl(globalSeo.openGraph?.defaultImageMediaId);
-  const defaultTwitterImageUrl = getMediaUrl(globalSeo.twitter?.defaultImageMediaId);
+  const [faviconUrl, favicon32Url, appleTouchIconUrl, defaultOgImageUrl, defaultTwitterImageUrl] = await Promise.all([
+    getMediaUrl(siteIcons.faviconMediaId),
+    getMediaUrl(siteIcons.favicon32MediaId),
+    getMediaUrl(siteIcons.appleTouchIconMediaId),
+    getMediaUrl(globalSeo.openGraph?.defaultImageMediaId),
+    getMediaUrl(globalSeo.twitter?.defaultImageMediaId),
+  ]);
 
   return {
     metadataBase,
