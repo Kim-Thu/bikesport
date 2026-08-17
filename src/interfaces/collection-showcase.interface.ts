@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { MediaItem } from "@/interfaces/media.interface";
 import type { ActionLinkTone } from "@/variants/action-link.variant";
 
 export interface CollectionShowcaseConfig {
@@ -7,5 +8,6 @@ export interface CollectionShowcaseConfig {
   actionLabel?: string;
   actionTone?: ActionLinkTone;
   backgroundMediaId?: string | null;
+  backgroundMedia?: MediaItem | null;
   containerClassName?: string;
 }
