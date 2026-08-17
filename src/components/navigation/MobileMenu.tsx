@@ -21,7 +21,7 @@ export function MobileMenu({
   menuMediaById,
   hotline,
   socialItems,
-  socialMediaById,
+  socialMediaUrlById,
 }: MobileMenuClientProps) {
   const isOpen = useUiStore((state) => state.isMobileMenuOpen);
   const openMobileMenu = useUiStore((state) => state.openMobileMenu);
@@ -150,7 +150,7 @@ export function MobileMenu({
           <Contact variant="mobile" hotline={hotline} />
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Theo dõi BikeSport</p>
-            <Social items={socialItems} mediaById={socialMediaById} />
+            <Social items={socialItems} mediaUrlById={socialMediaUrlById} />
           </div>
         </div>
       </nav>
