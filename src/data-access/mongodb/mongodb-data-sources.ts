@@ -10,6 +10,7 @@ import { createMongoComboDataSource } from "@/data-access/mongodb/mongodb-combo-
 import { createMongoEventDataSource } from "@/data-access/mongodb/mongodb-event-data-source";
 import { createMongoMenuDataSource } from "@/data-access/mongodb/mongodb-menu-data-source";
 import { createMongoPageDataSource } from "@/data-access/mongodb/mongodb-page-data-source";
+import { createMongoPaymentDataSource } from "@/data-access/mongodb/mongodb-payment-data-source";
 import { createMongoPostDataSource } from "@/data-access/mongodb/mongodb-post-data-source";
 import { createMongoProductDataSource } from "@/data-access/mongodb/mongodb-product-data-source";
 import { createMongoPromotionDataSource } from "@/data-access/mongodb/mongodb-promotion-data-source";
@@ -36,6 +37,7 @@ export function createMongoDataSources(
     combo: createMongoComboDataSource(getDatabase),
     campaign: createMongoCampaignDataSource(getDatabase),
     announcement: createMongoAnnouncementDataSource(getDatabase),
+    payment: createMongoPaymentDataSource(getDatabase),
   };
 }
 
