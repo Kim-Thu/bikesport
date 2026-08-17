@@ -2,11 +2,12 @@ import { Column } from "@/components/layout/Column";
 import { Container } from "@/components/layout/Container";
 import { Row } from "@/components/layout/Row";
 import { Payment } from "@/components/payment/Payment";
-import wpOption from "@/data/wp-option.json";
+import { getSiteOptions } from "@/lib/options.utils";
 
-export function FooterBottom() {
+export async function FooterBottom() {
   const currentYear = new Date().getFullYear();
-  const siteTitle = wpOption.site.siteTitle;
+  const options = await getSiteOptions();
+  const siteTitle = options.site.siteTitle;
 
   return (
     <div className="border-t border-gray-200">
