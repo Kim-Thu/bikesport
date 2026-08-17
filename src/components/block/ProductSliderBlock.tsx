@@ -7,11 +7,15 @@ export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload
   const items = getProductSliderItems(block.props.source);
   if (!items.length) return null;
 
+  const hasHeader = Boolean(block.props.title) || block.props.titleMediaId !== undefined;
+
   return (
     <div>
-      {block.props.title ? (
+      {hasHeader ? (
         <SectionHeader
           title={block.props.title}
+          titleMediaId={block.props.titleMediaId}
+          titleAlt={block.props.titleAlt}
           href={block.props.href}
           actionLabel={block.props.actionLabel}
           template={block.props.headerTemplate}
