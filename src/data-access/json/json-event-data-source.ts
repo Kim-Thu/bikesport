@@ -1,6 +1,6 @@
 import eventData from "@/data/wp-event.json";
 import type { EventDataSource } from "@/data-access/contracts/event-data-source.interface";
-import type { EventData, EventRecord } from "@/interfaces/event.interface";
+import type { EventData } from "@/interfaces/event.interface";
 
 const events = (eventData as EventData).events;
 const eventById = new Map(events.map((event) => [event._id, event]));
