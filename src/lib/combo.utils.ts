@@ -1,22 +1,24 @@
 import comboData from "@/data/wp-combo.json";
 import type { ComboRecord } from "@/interfaces/combo.interface";
-import { getPublishedProducts, getProductPrimaryMediaId } from "@/lib/product.utils";
+import { getPublishedProductsByIds, getProductPrimaryMediaId } from "@/lib/product.utils";
+
+const activeCombos = (comboData.combos as ComboRecord[])
+  .filter((combo) => combo.status === "active")
+  .sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+const featuredCombos = activeCombos.filter((combo) => combo.featured);
 
 export function getActiveCombos(limit?: number) {
-  const combos = (comboData.combos as ComboRecord[])
-    .filter((combo) => combo.status === "active")
-    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
-
-  return typeof limit === "number" ? combos.slice(0, limit) : combos;
+  return typeof limit === "number" ? activeCombos.slice(0, limit) : activeCombos;
 }
 
 export function getFeaturedCombos(limit?: number) {
-  const combos = getActiveCombos().filter((combo) => combo.featured);
-  return typeof limit === "number" ? combos.slice(0, limit) : combos;
+  return typeof limit === "number" ? featuredCombos.slice(0, limit) : featuredCombos;
 }
 
-export function getComboProducts(combo: ComboRecord) {
-  const productsById = new Map(getPublishedProducts().map((product) => [product._id, product]));
+export async function getComboProducts(combo: ComboRecord) {
+  const productIds = combo.items.map((item) => item.productId);
+  const products = await getPublishedProductsByIds(productIds);
+  const productsById = new Map(products.map((product) => [product._id, product]));
 
   return combo.items
     .map((item) => {
@@ -26,10 +28,10 @@ export function getComboProducts(combo: ComboRecord) {
     .filter((item): item is NonNullable<typeof item> => item !== null);
 }
 
-export function getComboPrimaryMediaId(combo: ComboRecord) {
+export async function getComboPrimaryMediaId(combo: ComboRecord) {
   if (combo.mediaId) return combo.mediaId;
 
-  const firstProduct = getComboProducts(combo)[0]?.product;
+  const firstProduct = (await getComboProducts(combo))[0]?.product;
   return firstProduct ? getProductPrimaryMediaId(firstProduct) : undefined;
 }
 
