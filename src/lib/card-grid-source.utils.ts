@@ -9,7 +9,7 @@ import {
 } from "@/lib/combo.utils";
 import { getFeaturedEvents } from "@/lib/event.utils";
 import { getLatestPosts } from "@/lib/post.utils";
-import { getFeaturedStores } from "@/lib/store.utils";
+import { formatStoreAddress, getFeaturedStores } from "@/lib/store.utils";
 import { getUserById } from "@/lib/user.utils";
 
 export function getCardGridItems(source: CardGridBlockPayload["props"]["source"]): CardProps[] {
@@ -52,7 +52,7 @@ export function getCardGridItems(source: CardGridBlockPayload["props"]["source"]
       href: `/cua-hang/${store.slug}`,
       mediaId: store.mediaId,
       metaItems: [
-        { icon: "location", text: store.address },
+        { icon: "location", text: formatStoreAddress(store) },
         ...(store.phone ? [{ icon: "phone", text: store.phone }] : []),
         ...(store.openingHours ? [{ icon: "clock", text: store.openingHours }] : []),
       ],
