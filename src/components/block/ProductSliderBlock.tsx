@@ -5,10 +5,7 @@ import { FeaturedShowcaseTemplate } from "@/components/product-slider-layout/tem
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { TabsSlider } from "@/components/slider/TabsSlider";
 import type { ProductSliderBlockPayload } from "@/interfaces/page-block.interface";
-import {
-  getProductCollectionItems,
-  getPromotionSessionCollectionGroups,
-} from "@/lib/product-collection-source.utils";
+import { resolveProductSliderBlock } from "@/lib/product-slider-block.utils";
 
 const LAYOUT_TEMPLATES = {
   default: DefaultTemplate,
@@ -16,57 +13,47 @@ const LAYOUT_TEMPLATES = {
 } as const;
 
 export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload }) {
-  const headingTemplate = block.props.headingTemplate ?? block.props.headerTemplate;
-  const isFlashSale = headingTemplate === "flash-sale";
+  const viewModel = resolveProductSliderBlock(block);
 
-  if (isFlashSale && block.props.source.type === "promotion") {
-    const groups = getPromotionSessionCollectionGroups(
-      block.props.source.promotionId,
-      block.props.source.limit,
+  if (viewModel.kind === "tabs") {
+    return (
+      <TabsSlider
+        title={viewModel.title}
+        titleMediaId={block.props.titleMediaId}
+        titleAlt={block.props.titleAlt}
+        href={block.props.href}
+        actionLabel={block.props.actionLabel}
+        groups={viewModel.groups}
+        template={block.props.template}
+        headingTemplate={viewModel.headingTemplate}
+        tabTemplate={viewModel.tabTemplate}
+        layoutTemplate={viewModel.layoutTemplate}
+        actionTone={viewModel.actionTone}
+        trackClassName={block.props.trackClassName}
+        slideClassName={block.props.slideClassName}
+      />
     );
-
-    if (groups.some((group) => group.items.length)) {
-      return (
-        <TabsSlider
-          title={block.props.title ?? "Flash Sale"}
-          titleMediaId={block.props.titleMediaId}
-          titleAlt={block.props.titleAlt}
-          href={block.props.href}
-          actionLabel={block.props.actionLabel}
-          groups={groups}
-          template={block.props.template}
-          headingTemplate="flash-sale"
-          tabTemplate="flash-sale"
-          layoutTemplate="featured-showcase"
-          actionTone="danger"
-          trackClassName={block.props.trackClassName}
-          slideClassName={block.props.slideClassName}
-        />
-      );
-    }
   }
 
-  const items = getProductCollectionItems(block.props.source);
-  if (!items.length) return <EmptyContent />;
+  if (!viewModel.items.length) return <EmptyContent />;
 
   const hasHeader = Boolean(block.props.title) || block.props.titleMediaId !== undefined;
-  const layoutTemplate = block.props.layoutTemplate ?? (isFlashSale ? "featured-showcase" : "default");
-  const LayoutTemplate = LAYOUT_TEMPLATES[layoutTemplate];
+  const LayoutTemplate = LAYOUT_TEMPLATES[viewModel.layoutTemplate];
 
   const header = hasHeader ? (
     <SectionHeader
       title={block.props.title}
       titleMediaId={block.props.titleMediaId}
       titleAlt={block.props.titleAlt}
-      href={layoutTemplate === "default" ? block.props.href : undefined}
+      href={viewModel.layoutTemplate === "default" ? block.props.href : undefined}
       actionLabel={block.props.actionLabel}
-      template={headingTemplate}
+      template={viewModel.headingTemplate}
     />
   ) : undefined;
 
   const slider = (
     <ProductSlider
-      items={items}
+      items={viewModel.items}
       template={block.props.template}
       ariaLabel={block.props.ariaLabel ?? block.props.title ?? "Danh sách sản phẩm"}
       trackClassName={block.props.trackClassName}
@@ -80,7 +67,7 @@ export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload
       slider={slider}
       href={block.props.href}
       actionLabel={block.props.actionLabel}
-      tone={isFlashSale ? "danger" : "primary"}
+      tone={viewModel.actionTone}
     />
   );
 }
