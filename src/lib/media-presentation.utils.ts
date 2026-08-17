@@ -19,8 +19,8 @@ const VIDEO_RATIO_MIN = 1.6;
 const LANDSCAPE_RATIO_MIN = 1.05;
 const SQUARE_RATIO_MIN = 0.95;
 
-function inferMediaAspect(mediaId?: string | null): MediaAspect {
-  const media = getMediaWithFallback(mediaId);
+async function inferMediaAspect(mediaId?: string | null): Promise<MediaAspect> {
+  const media = await getMediaWithFallback(mediaId);
   if (!media?.width || !media.height) return "landscape";
 
   const ratio = media.width / media.height;
@@ -30,11 +30,11 @@ function inferMediaAspect(mediaId?: string | null): MediaAspect {
   return "portrait";
 }
 
-export function getMediaPresentation(
+export async function getMediaPresentation(
   mediaId?: string | null,
   requestedAspect?: MediaAspect,
 ) {
-  const aspect = requestedAspect ?? inferMediaAspect(mediaId);
+  const aspect = requestedAspect ?? (await inferMediaAspect(mediaId));
 
   return {
     aspect,
