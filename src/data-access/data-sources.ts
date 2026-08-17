@@ -4,6 +4,7 @@ import { jsonBrandDataSource } from "@/data-access/json/json-brand-data-source";
 import { jsonCategoryDataSource } from "@/data-access/json/json-category-data-source";
 import { jsonPageDataSource } from "@/data-access/json/json-page-data-source";
 import { jsonProductDataSource } from "@/data-access/json/json-product-data-source";
+import { jsonPromotionDataSource } from "@/data-access/json/json-promotion-data-source";
 import { mongodbDataSources } from "@/data-access/mongodb/mongodb-data-sources";
 
 const jsonDataSources: DataSources = {
@@ -11,6 +12,7 @@ const jsonDataSources: DataSources = {
   category: jsonCategoryDataSource,
   brand: jsonBrandDataSource,
   product: jsonProductDataSource,
+  promotion: jsonPromotionDataSource,
 };
 
 function createDataSources(): DataSources {
