@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { Pagination } from "@/components/pagination/Pagination";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { Tabs, type TabItem } from "@/components/tabs/Tabs";
 import type { ProductSliderItem } from "@/components/product/ProductSlider";
 import type { CardTemplate } from "@/interfaces/card.interface";
+import type { PaginationVariant } from "@/variants/pagination.variant";
 
 export interface TabsGridGroup extends TabItem {
   items: ProductSliderItem[];
@@ -19,6 +21,7 @@ interface TabsGridProps {
   template: CardTemplate;
   gridClassName?: string;
   mobilePageSize?: number;
+  paginationVariant?: PaginationVariant;
 }
 
 export function TabsGrid({
@@ -29,6 +32,7 @@ export function TabsGrid({
   template,
   gridClassName,
   mobilePageSize = 4,
+  paginationVariant = "default",
 }: TabsGridProps) {
   const [activeValue, setActiveValue] = useState(groups[0]?.value ?? "");
   const [mobilePage, setMobilePage] = useState(0);
@@ -73,28 +77,15 @@ export function TabsGrid({
 
       <ProductGrid items={visibleItems} template={template} className={gridClassName} />
 
-      {isMobile && totalPages > 1 ? (
-        <div className="mt-4 flex items-center justify-between gap-3" aria-label={`Phân trang ${title}`}>
-          <button
-            type="button"
-            className="cursor-pointer rounded-md border border-gray-200 px-3 py-2 text-sm font-semibold text-gray-700 disabled:cursor-not-allowed disabled:opacity-40"
-            disabled={safePage === 0}
-            onClick={() => setMobilePage((page) => Math.max(0, page - 1))}
-          >
-            Trước
-          </button>
-          <span className="text-sm font-medium text-gray-600">
-            {safePage + 1} / {totalPages}
-          </span>
-          <button
-            type="button"
-            className="cursor-pointer rounded-md border border-gray-200 px-3 py-2 text-sm font-semibold text-gray-700 disabled:cursor-not-allowed disabled:opacity-40"
-            disabled={safePage >= totalPages - 1}
-            onClick={() => setMobilePage((page) => Math.min(totalPages - 1, page + 1))}
-          >
-            Sau
-          </button>
-        </div>
+      {isMobile ? (
+        <Pagination
+          page={safePage}
+          totalPages={totalPages}
+          onPageChange={setMobilePage}
+          ariaLabel={`Phân trang ${title}`}
+          variant={paginationVariant}
+          className="mt-4"
+        />
       ) : null}
     </div>
   );
