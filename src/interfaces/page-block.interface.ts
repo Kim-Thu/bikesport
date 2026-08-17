@@ -21,7 +21,8 @@ export type PageBlockComponent =
   | "icon-list"
   | "media-cta"
   | "media"
-  | "inline-form";
+  | "inline-form"
+  | "timeline";
 
 interface PageBlockBase {
   _id: string;
@@ -151,6 +152,20 @@ export interface InlineFormBlockPayload extends PageBlockBase {
   };
 }
 
+export interface TimelineBlockPayload extends PageBlockBase {
+  component: "timeline";
+  props: {
+    className?: string;
+    items: Array<{
+      label: string;
+      title: string;
+      description?: string;
+      mediaId?: string | null;
+      mediaAlt?: string;
+    }>;
+  };
+}
+
 export type PageBlockPayload =
   | AdsBlockPayload
   | CardBlockPayload
@@ -161,4 +176,5 @@ export type PageBlockPayload =
   | IconListBlockPayload
   | MediaCtaBlockPayload
   | MediaBlockPayload
-  | InlineFormBlockPayload;
+  | InlineFormBlockPayload
+  | TimelineBlockPayload;
