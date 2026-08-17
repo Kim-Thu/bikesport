@@ -7,6 +7,7 @@ import type { CategoryDataSource } from "@/data-access/contracts/category-data-s
 import type { ComboDataSource } from "@/data-access/contracts/combo-data-source.interface";
 import type { EventDataSource } from "@/data-access/contracts/event-data-source.interface";
 import type { MenuDataSource } from "@/data-access/contracts/menu-data-source.interface";
+import type { OptionsDataSource } from "@/data-access/contracts/options-data-source.interface";
 import type { PageDataSource } from "@/data-access/contracts/page-data-source.interface";
 import type { PaymentDataSource } from "@/data-access/contracts/payment-data-source.interface";
 import type { PostDataSource } from "@/data-access/contracts/post-data-source.interface";
@@ -32,4 +33,5 @@ export interface DataSources {
   campaign: CampaignDataSource;
   announcement: AnnouncementDataSource;
   payment: PaymentDataSource;
+  options: OptionsDataSource;
 }
