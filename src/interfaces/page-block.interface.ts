@@ -1,6 +1,6 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { ProductSource } from "@/interfaces/product-source.interface";
-import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
+import type { SectionHeaderProps, SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { ActionLinkTone } from "@/variants/action-link.variant";
 import type { ProductSliderLayoutTemplate } from "@/variants/product-slider.variant";
@@ -22,6 +22,7 @@ export type PageBlockComponent =
   | "media-cta"
   | "media"
   | "inline-form"
+  | "section-header"
   | "timeline";
 
 interface PageBlockBase {
@@ -152,6 +153,11 @@ export interface InlineFormBlockPayload extends PageBlockBase {
   };
 }
 
+export interface SectionHeaderBlockPayload extends PageBlockBase {
+  component: "section-header";
+  props: SectionHeaderProps;
+}
+
 export interface TimelineBlockPayload extends PageBlockBase {
   component: "timeline";
   props: {
@@ -177,4 +183,5 @@ export type PageBlockPayload =
   | MediaCtaBlockPayload
   | MediaBlockPayload
   | InlineFormBlockPayload
+  | SectionHeaderBlockPayload
   | TimelineBlockPayload;
