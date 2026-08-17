@@ -1,10 +1,9 @@
 import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
-import wpOption from "@/data/wp-option.json";
 import type { MiniCartProps } from "@/interfaces/cart.interface";
 
-export function MiniCart({ count = 0 }: MiniCartProps) {
-  const { label, href } = wpOption.cart;
+export function MiniCart({ count = 0, cart }: MiniCartProps) {
+  const { label, href } = cart;
 
   return (
     <CLink href={href} className="flex min-w-8 flex-col items-center gap-1 whitespace-nowrap text-xs font-semibold lg:min-w-16" aria-label={`${label}, ${count} sản phẩm`}>
