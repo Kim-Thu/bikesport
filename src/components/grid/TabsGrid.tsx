@@ -7,6 +7,7 @@ import { Pagination } from "@/components/pagination/Pagination";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { Tabs, type TabItem } from "@/components/tabs/Tabs";
+import { MEDIA_QUERIES } from "@/constants/breakpoint.constant";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { ProductCollectionItem } from "@/interfaces/product-collection-item.interface";
@@ -59,7 +60,7 @@ export function TabsGrid({
 }: TabsGridProps) {
   const [activeValue, setActiveValue] = useState(groups[0]?.value ?? "");
   const [mobilePage, setMobilePage] = useState(0);
-  const isMobile = useMediaQuery("(max-width: 639px)");
+  const isMobile = useMediaQuery(MEDIA_QUERIES.mobile);
   const sectionStartRef = useRef<HTMLDivElement>(null);
 
   const activeGroup = useMemo(
