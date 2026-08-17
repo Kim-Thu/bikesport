@@ -5,37 +5,14 @@ import { Countdown } from "@/components/countdown/Countdown";
 import { FeatureItem } from "@/components/feature/FeatureItem";
 import { Heading } from "@/components/heading/Heading";
 import type { BannerRecord } from "@/interfaces/banner.interface";
-import type { PromotionBenefit } from "@/interfaces/promotion.interface";
+import { getPromotionBenefitLabel } from "@/lib/promotion-presentation.utils";
 import { getActivePromotionById } from "@/lib/promotion.utils";
-
-function formatMoney(value: number) {
-  return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(value) + "đ";
-}
-
-function getBenefitValue(benefit?: PromotionBenefit): string | undefined {
-  if (!benefit) return undefined;
-
-  switch (benefit.type) {
-    case "percentage_discount":
-      return `-${benefit.percentage}%`;
-    case "fixed_discount":
-      return `-${formatMoney(benefit.amount)}`;
-    case "voucher":
-      return benefit.valueType === "percentage" ? `-${benefit.value}%` : `-${formatMoney(benefit.value)}`;
-    case "buy_x_get_y":
-      return `Mua ${benefit.buyQuantity} tặng ${benefit.getQuantity}`;
-    case "gift":
-      return `Tặng ${benefit.quantity} sản phẩm`;
-    case "free_shipping":
-      return "Miễn phí giao hàng";
-  }
-}
 
 function PromotionInfoCard({ card }: { card: NonNullable<BannerRecord["promotionCards"]>[number] }) {
   const promotion = getActivePromotionById(card.promotionId);
   if (!promotion) return null;
 
-  const value = getBenefitValue(promotion.benefits[0]);
+  const value = getPromotionBenefitLabel(promotion.benefits[0]);
 
   return (
     <InfoCard
