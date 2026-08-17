@@ -1,5 +1,6 @@
 import "server-only";
 import type { DataSources } from "@/data-access/contracts/data-sources.interface";
+import { getDataSourceProvider } from "@/data-access/data-source.config";
 import { jsonBrandDataSource } from "@/data-access/json/json-brand-data-source";
 import { jsonCategoryDataSource } from "@/data-access/json/json-category-data-source";
 import { jsonEventDataSource } from "@/data-access/json/json-event-data-source";
@@ -24,12 +25,9 @@ const jsonDataSources: DataSources = {
 };
 
 function createDataSources(): DataSources {
-  const provider = process.env.DATA_SOURCE?.trim().toLowerCase() || "json";
+  const provider = getDataSourceProvider();
 
-  if (provider === "json") return jsonDataSources;
-  if (provider === "mongodb") return mongodbDataSources;
-
-  throw new Error(`Unsupported DATA_SOURCE: ${provider}`);
+  return provider === "mongodb" ? mongodbDataSources : jsonDataSources;
 }
 
 export const dataSources = createDataSources();
