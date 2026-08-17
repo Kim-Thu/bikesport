@@ -7,6 +7,7 @@ export type PageBlockComponent =
   | "card"
   | "product-slider"
   | "tabs-slider"
+  | "tabs-grid"
   | "card-grid"
   | "icon-list"
   | "media-cta"
@@ -18,6 +19,29 @@ interface PageBlockBase {
   status: PageBlockStatus;
   component: PageBlockComponent;
 }
+
+export type ProductSource =
+  | {
+      type: "promotion";
+      promotionId: string;
+      limit?: number;
+    }
+  | {
+      type: "campaign";
+      campaignId: string;
+      categoryId?: string;
+      limit?: number;
+    }
+  | {
+      type: "category";
+      categoryId: string;
+      limit?: number;
+    }
+  | {
+      type: "brand";
+      brandId: string;
+      limit?: number;
+    };
 
 export interface AdsBlockPayload extends PageBlockBase {
   component: "ads";
@@ -57,28 +81,7 @@ export interface ProductSliderBlockPayload extends PageBlockBase {
     ariaLabel?: string;
     trackClassName?: string;
     slideClassName?: string;
-    source:
-      | {
-          type: "promotion";
-          promotionId: string;
-          limit?: number;
-        }
-      | {
-          type: "campaign";
-          campaignId: string;
-          categoryId?: string;
-          limit?: number;
-        }
-      | {
-          type: "category";
-          categoryId: string;
-          limit?: number;
-        }
-      | {
-          type: "brand";
-          brandId: string;
-          limit?: number;
-        };
+    source: ProductSource;
   };
 }
 
@@ -101,6 +104,22 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
           type: "combo";
           tabs: Array<{ label: string; comboId: string }>;
         };
+  };
+}
+
+export interface TabsGridBlockPayload extends PageBlockBase {
+  component: "tabs-grid";
+  props: {
+    title: string;
+    href?: string;
+    actionLabel?: string;
+    template: CardTemplate;
+    gridClassName?: string;
+    tabs: Array<{
+      label: string;
+      value: string;
+      source: ProductSource;
+    }>;
   };
 }
 
@@ -183,6 +202,7 @@ export type PageBlockPayload =
   | CardBlockPayload
   | ProductSliderBlockPayload
   | TabsSliderBlockPayload
+  | TabsGridBlockPayload
   | CardGridBlockPayload
   | IconListBlockPayload
   | MediaCtaBlockPayload
