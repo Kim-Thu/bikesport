@@ -11,6 +11,7 @@ import { jsonComboDataSource } from "@/data-access/json/json-combo-data-source";
 import { jsonEventDataSource } from "@/data-access/json/json-event-data-source";
 import { jsonMediaDataSource } from "@/data-access/json/json-media-data-source";
 import { jsonMenuDataSource } from "@/data-access/json/json-menu-data-source";
+import { jsonMetaDataSource } from "@/data-access/json/json-meta-data-source";
 import { jsonOptionsDataSource } from "@/data-access/json/json-options-data-source";
 import { jsonOrderDataSource } from "@/data-access/json/json-order-data-source";
 import { jsonPageDataSource } from "@/data-access/json/json-page-data-source";
@@ -46,11 +47,11 @@ const jsonDataSources: DataSources = {
   order: jsonOrderDataSource,
   review: jsonReviewDataSource,
   seo: jsonSeoDataSource,
+  meta: jsonMetaDataSource,
 };
 
 function createDataSources(): DataSources {
   const provider = getDataSourceProvider();
-
   return provider === "mongodb" ? mongodbDataSources : jsonDataSources;
 }
 
