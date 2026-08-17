@@ -4,12 +4,12 @@ import type { AdsRecord } from "@/interfaces/ads.interface";
 
 export function Ads({ ad }: { ad: AdsRecord }) {
   const media = (
-    <div className="aspect-1/2 w-full overflow-hidden rounded-lg">
+    <div className="aspect-video w-full overflow-hidden rounded-lg lg:aspect-1/2">
       <MediaImage
         mediaId={ad.mediaId}
         alt={ad.alt}
-        width={300}
-        height={600}
+        width={600}
+        height={338}
         className="h-full w-full object-cover"
       />
     </div>
