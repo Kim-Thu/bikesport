@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { BannerBackground } from "@/components/banner/BannerBackground";
 import { InfoCard } from "@/components/card/InfoCard";
 import { Countdown } from "@/components/countdown/Countdown";
@@ -67,7 +66,7 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
   const promotionCards = banner.promotionCards ?? [];
 
   return (
-    <Fragment>
+    <div className="w-full min-w-0">
       <div className="relative flex w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent sm:aspect-hero-tablet lg:aspect-8/3">
         <BannerBackground banner={banner} imageClassName="lg:object-right" />
 
@@ -125,7 +124,7 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
       </div>
 
       {promotionCards.length ? (
-        <div className="scrollbar-none mt-3 flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain sm:hidden">
+        <div className="scrollbar-none mt-3 flex w-full snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain sm:hidden">
           {promotionCards.map((card) => (
             <div key={card.promotionId} className="w-5/6 shrink-0 snap-start">
               <PromotionInfoCard card={card} />
@@ -133,6 +132,6 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
           ))}
         </div>
       ) : null}
-    </Fragment>
+    </div>
   );
 }
