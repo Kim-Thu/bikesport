@@ -1,64 +1,55 @@
-import productData from "@/data/wp-products.json";
+import { cache } from "react";
+import { dataSources } from "@/data-access/data-sources";
 import type { ProductRecord } from "@/interfaces/product.interface";
 import { getCategoryTreeIds } from "@/lib/category.utils";
 import { getProductSalesStatsBySku } from "@/lib/order.utils";
 
-const products = productData.products as ProductRecord[];
-const publishedProducts = products.filter((product) => product.status === "published");
-const featuredProducts = publishedProducts.filter((product) => product.featured);
-const publishedProductsByBrandId = new Map<string, ProductRecord[]>();
-const bestSellerCache = new Map<string, ProductRecord[]>();
-
-for (const product of publishedProducts) {
-  if (!product.brandId) continue;
-  const brandProducts = publishedProductsByBrandId.get(product.brandId) ?? [];
-  brandProducts.push(product);
-  publishedProductsByBrandId.set(product.brandId, brandProducts);
+export async function getPublishedProducts(limit?: number): Promise<ProductRecord[]> {
+  return dataSources.product.getPublished(limit);
 }
 
-export function getPublishedProducts(): ProductRecord[] {
-  return publishedProducts;
+export async function getPublishedProductsByBrandId(
+  brandId: string,
+  limit?: number,
+): Promise<ProductRecord[]> {
+  return dataSources.product.getPublishedByBrandId(brandId, limit);
 }
 
-export function getPublishedProductsByBrandId(brandId: string, limit?: number): ProductRecord[] {
-  const items = publishedProductsByBrandId.get(brandId) ?? [];
-  return typeof limit === "number" ? items.slice(0, limit) : items;
+export async function getFeaturedProducts(limit?: number): Promise<ProductRecord[]> {
+  return dataSources.product.getFeatured(limit);
 }
 
-export function getFeaturedProducts(limit?: number): ProductRecord[] {
-  return typeof limit === "number" ? featuredProducts.slice(0, limit) : featuredProducts;
-}
+const getBestSellerProductsCached = cache(async (categoryId?: string | null): Promise<ProductRecord[]> => {
+  const categoryIds = categoryId ? await getCategoryTreeIds(categoryId) : null;
+  const products = categoryIds
+    ? await dataSources.product.getPublishedByCategoryIds(categoryIds)
+    : await dataSources.product.getPublished();
+  const salesBySku = getProductSalesStatsBySku();
 
-export function getBestSellerProducts(categoryId?: string | null, limit?: number) {
-  const cacheKey = categoryId ?? "*";
-  let items = bestSellerCache.get(cacheKey);
+  return products
+    .filter((product) => salesBySku.has(product.sku))
+    .sort((a, b) => {
+      const aSales = salesBySku.get(a.sku);
+      const bSales = salesBySku.get(b.sku);
+      const quantityDifference = (bSales?.quantity ?? 0) - (aSales?.quantity ?? 0);
 
-  if (!items) {
-    const categoryIds = categoryId ? new Set(getCategoryTreeIds(categoryId)) : null;
-    const salesBySku = getProductSalesStatsBySku();
+      if (quantityDifference !== 0) return quantityDifference;
 
-    items = publishedProducts
-      .filter((product) => !categoryIds || product.categoryIds.some((id) => categoryIds.has(id)))
-      .filter((product) => salesBySku.has(product.sku))
-      .sort((a, b) => {
-        const aSales = salesBySku.get(a.sku);
-        const bSales = salesBySku.get(b.sku);
-        const quantityDifference = (bSales?.quantity ?? 0) - (aSales?.quantity ?? 0);
+      const purchaseRecencyDifference =
+        new Date(bSales?.lastPurchasedAt ?? 0).getTime() -
+        new Date(aSales?.lastPurchasedAt ?? 0).getTime();
 
-        if (quantityDifference !== 0) return quantityDifference;
+      if (purchaseRecencyDifference !== 0) return purchaseRecencyDifference;
 
-        const purchaseRecencyDifference =
-          new Date(bSales?.lastPurchasedAt ?? 0).getTime() -
-          new Date(aSales?.lastPurchasedAt ?? 0).getTime();
+      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+    });
+});
 
-        if (purchaseRecencyDifference !== 0) return purchaseRecencyDifference;
-
-        return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
-      });
-
-    bestSellerCache.set(cacheKey, items);
-  }
-
+export async function getBestSellerProducts(
+  categoryId?: string | null,
+  limit?: number,
+): Promise<ProductRecord[]> {
+  const items = await getBestSellerProductsCached(categoryId);
   return typeof limit === "number" ? items.slice(0, limit) : items;
 }
 
