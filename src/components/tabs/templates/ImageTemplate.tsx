@@ -1,4 +1,4 @@
-import { MediaImage } from "@/components/media/MediaImage";
+import { MediaImageView } from "@/components/media/MediaImageView";
 import type { TabTemplateProps } from "@/interfaces/tabs.interface";
 import { cn } from "@/lib/classname.utils";
 
@@ -16,8 +16,8 @@ export function ImageTemplate({ item, active, onClick }: TabTemplateProps) {
       onClick={onClick}
     >
       <span className="flex h-10 w-20 items-center justify-center sm:h-12 sm:w-24">
-        <MediaImage
-          mediaId={item.mediaId}
+        <MediaImageView
+          media={item.media ?? null}
           alt={item.label}
           width={96}
           height={48}
