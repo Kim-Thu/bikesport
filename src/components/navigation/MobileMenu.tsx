@@ -10,21 +10,20 @@ import { Logo } from "@/components/logo/Logo";
 import { MenuChildren } from "@/components/navigation/partials/MenuChildren";
 import { MenuItemContent } from "@/components/navigation/partials/MenuItemContent";
 import { Social } from "@/components/social/Social";
-import type { NavMenuProps } from "@/interfaces/navigation.interface";
-import { createMenuIndex, getMenuById, getMenuHref } from "@/lib/menu.utils";
+import type { MobileMenuClientProps } from "@/interfaces/navigation.interface";
+import { createMenuIndex, getMenuHref } from "@/lib/menu-presentation.utils";
 import { useUiStore } from "@/stores/ui.store";
 
-export function MobileMenu({ menuId }: NavMenuProps) {
+export function MobileMenu({ menu }: MobileMenuClientProps) {
   const isOpen = useUiStore((state) => state.isMobileMenuOpen);
   const openMobileMenu = useUiStore((state) => state.openMobileMenu);
   const closeMobileMenu = useUiStore((state) => state.closeMobileMenu);
   const [isMounted, setIsMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [expandedItemId, setExpandedItemId] = useState<string | null>(null);
-  const menu = getMenuById(menuId);
   const { rootItems, childrenByParentId } = useMemo(
-    () => createMenuIndex(menu?.items ?? []),
-    [menu?.items],
+    () => createMenuIndex(menu.items),
+    [menu.items],
   );
 
   useEffect(() => {
@@ -84,7 +83,7 @@ export function MobileMenu({ menuId }: NavMenuProps) {
       <nav
         id="mobile-navigation"
         className={`fixed inset-0 flex h-dvh w-full flex-col overflow-hidden bg-white p-4 transition-transform duration-300 ease-out sm:p-5 ${isVisible ? "translate-x-0" : "-translate-x-full"}`}
-        aria-label={menu?.name || "Điều hướng di động"}
+        aria-label={menu.name || "Điều hướng di động"}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="mb-4 flex shrink-0 items-center justify-between bg-white py-1">
