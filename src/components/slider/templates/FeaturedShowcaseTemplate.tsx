@@ -7,7 +7,7 @@ export function FeaturedShowcaseTemplate({
   href,
   actionLabel = "Xem tất cả",
   actionTone,
-  backgroundMediaId,
+  backgroundMedia,
   containerClassName,
 }: TabsSliderTemplateProps) {
   return (
@@ -17,7 +17,7 @@ export function FeaturedShowcaseTemplate({
       href={href}
       actionLabel={actionLabel}
       actionTone={actionTone}
-      backgroundMediaId={backgroundMediaId}
+      backgroundMedia={backgroundMedia}
       containerClassName={containerClassName}
     />
   );
