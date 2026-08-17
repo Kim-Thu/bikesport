@@ -1,18 +1,17 @@
-import comboData from "@/data/wp-combo.json";
+import { dataSources } from "@/data-access/data-sources";
 import type { ComboRecord } from "@/interfaces/combo.interface";
 import { getPublishedProductsByIds, getProductPrimaryMediaId } from "@/lib/product.utils";
 
-const activeCombos = (comboData.combos as ComboRecord[])
-  .filter((combo) => combo.status === "active")
-  .sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
-const featuredCombos = activeCombos.filter((combo) => combo.featured);
-
-export function getActiveCombos(limit?: number) {
-  return typeof limit === "number" ? activeCombos.slice(0, limit) : activeCombos;
+export async function getComboById(comboId: string): Promise<ComboRecord | null> {
+  return dataSources.combo.getById(comboId);
 }
 
-export function getFeaturedCombos(limit?: number) {
-  return typeof limit === "number" ? featuredCombos.slice(0, limit) : featuredCombos;
+export async function getActiveCombos(limit?: number): Promise<ComboRecord[]> {
+  return dataSources.combo.getActive(limit);
+}
+
+export async function getFeaturedCombos(limit?: number): Promise<ComboRecord[]> {
+  return dataSources.combo.getFeatured(limit);
 }
 
 export async function getComboProducts(combo: ComboRecord) {
