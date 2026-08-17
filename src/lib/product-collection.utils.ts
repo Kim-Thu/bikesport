@@ -2,17 +2,23 @@ import type { ProductCollectionItem } from "@/interfaces/product-collection-item
 import type { ProductRecord } from "@/interfaces/product.interface";
 import type { PromotionRecord } from "@/interfaces/promotion.interface";
 import { getProductDiscountPercentage, getProductPrimaryMediaId } from "@/lib/product.utils";
-import { getActivePromotionsForSku, getPromotionProductPricing } from "@/lib/promotion.utils";
+import {
+  findActivePromotionForProduct,
+  getActivePromotions,
+  getPromotionProductPricing,
+} from "@/lib/promotion.utils";
 import { getProductReviewStatsBySku } from "@/lib/review.utils";
 
 const REVIEW_STATS_BY_SKU = getProductReviewStatsBySku();
 
-export function mapProductsToCollectionItems(
+export async function mapProductsToCollectionItems(
   products: ProductRecord[],
   explicitPromotion?: PromotionRecord | null,
-): ProductCollectionItem[] {
+): Promise<ProductCollectionItem[]> {
+  const activePromotions = explicitPromotion ? [] : await getActivePromotions();
+
   return products.map((product) => {
-    const promotion = explicitPromotion ?? getActivePromotionsForSku(product.sku)[0] ?? null;
+    const promotion = explicitPromotion ?? findActivePromotionForProduct(product, activePromotions);
     const pricing = promotion
       ? getPromotionProductPricing(product, promotion)
       : {
