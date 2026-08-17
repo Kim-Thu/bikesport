@@ -12,8 +12,11 @@ export function CardGridBlock({ block }: { block: CardGridBlockPayload }) {
     <div>
       <SectionHeader
         title={block.props.title}
+        titleMediaId={block.props.titleMediaId}
+        titleAlt={block.props.titleAlt}
         href={block.props.href}
         actionLabel={block.props.actionLabel}
+        template={block.props.headingTemplate}
         className="mb-4"
       />
       <div className={cn("grid gap-4 sm:grid-cols-2 xl:grid-cols-3", block.props.gridClassName)}>
