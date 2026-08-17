@@ -1,3 +1,4 @@
+import { EmptyContent } from "@/components/empty-content/EmptyContent";
 import { TabsSlider, type TabsSliderGroup } from "@/components/slider/TabsSlider";
 import type { TabsSliderBlockPayload } from "@/interfaces/page-block.interface";
 import { getActiveBrands } from "@/lib/brand.utils";
@@ -43,7 +44,9 @@ export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
     }));
   }
 
-  if (!groups.some((group) => group.items.length)) return null;
+  if (!groups.some((group) => group.items.length)) {
+    return <EmptyContent />;
+  }
 
   return (
     <TabsSlider
