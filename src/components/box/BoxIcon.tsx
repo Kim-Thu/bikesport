@@ -6,7 +6,7 @@ import { cn } from "@/lib/classname.utils";
 
 export function BoxIcon({
   icon,
-  iconMediaId,
+  iconMediaUrl,
   title,
   description,
   className,
@@ -19,7 +19,7 @@ export function BoxIcon({
     <Row className={cn("gap-3", className)}>
       <Icon
         name={icon}
-        mediaId={iconMediaId}
+        mediaUrl={iconMediaUrl}
         className={cn("h-9 w-9 shrink-0", iconClassName)}
       />
 
