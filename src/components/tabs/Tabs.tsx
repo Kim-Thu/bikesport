@@ -110,9 +110,11 @@ export function Tabs({ items, value, onChange, className, template = "default" }
     <div
       ref={containerRef}
       className={cn(
-        "scrollbar-none flex min-w-0 items-center overflow-x-auto overscroll-x-contain scroll-smooth select-none",
+        "scrollbar-none flex min-w-0 overflow-x-auto overscroll-x-contain scroll-smooth select-none",
         TEMPLATE_GAPS[template],
-        template === "flash-sale" && "mx-auto w-fit max-w-full rounded-xl border border-red-100 bg-white p-1",
+        template === "flash-sale"
+          ? "mx-auto w-fit max-w-full items-stretch rounded-xl border border-red-100 bg-white p-1"
+          : "items-center",
         isDragging ? "cursor-grabbing" : "cursor-grab",
         className,
       )}
