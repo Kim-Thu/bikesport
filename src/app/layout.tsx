@@ -15,6 +15,8 @@ const favicon32Url = getMediaUrl("66bf4e8c9f2a4d7b8c1e3709");
 const appleTouchIconUrl = getMediaUrl("66bf4e8c9f2a4d7b8c1e3710");
 const defaultOgImageUrl = getMediaUrl(wpOption.seo.openGraph.defaultImageMediaId);
 const defaultTwitterImageUrl = getMediaUrl(wpOption.seo.twitter.defaultImageMediaId);
+const openGraphType = wpOption.seo.openGraph.type as NonNullable<Metadata["openGraph"]>["type"];
+const twitterCard = wpOption.seo.twitter.card as NonNullable<Metadata["twitter"]>["card"];
 
 export const metadata: Metadata = {
   title: wpOption.site.siteTitle,
@@ -24,13 +26,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: wpOption.site.siteTitle,
     description: wpOption.seo.defaultDescription,
-    type: wpOption.seo.openGraph.type,
+    type: openGraphType,
     locale: wpOption.seo.openGraph.locale,
     siteName: wpOption.site.siteTitle,
     images: defaultOgImageUrl ? [{ url: defaultOgImageUrl }] : undefined,
   },
   twitter: {
-    card: wpOption.seo.twitter.card,
+    card: twitterCard,
     title: wpOption.site.siteTitle,
     description: wpOption.seo.defaultDescription,
     images: defaultTwitterImageUrl ? [defaultTwitterImageUrl] : undefined,
