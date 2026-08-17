@@ -5,6 +5,7 @@ import { Countdown } from "@/components/countdown/Countdown";
 import { FeatureItem } from "@/components/feature/FeatureItem";
 import { Heading } from "@/components/heading/Heading";
 import type { BannerRecord } from "@/interfaces/banner.interface";
+import { getMediaWithFallbackByIds } from "@/lib/media.utils";
 import { getPromotionBenefitLabel } from "@/lib/promotion-presentation.utils";
 import { getActivePromotionById } from "@/lib/promotion.utils";
 
@@ -31,10 +32,12 @@ async function PromotionInfoCard({ card }: { card: NonNullable<BannerRecord["pro
   );
 }
 
-export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
+export async function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
   const features = banner.features ?? [];
   const actions = banner.actions ?? [];
   const promotionCards = banner.promotionCards ?? [];
+  const featureMediaIds = features.flatMap((feature) => (feature.iconMediaId ? [feature.iconMediaId] : []));
+  const featureMediaById = await getMediaWithFallbackByIds(featureMediaIds);
 
   return (
     <div className="w-full min-w-0">
@@ -61,7 +64,13 @@ export function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
 
               {features.length ? (
                 <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  {features.map((feature, index) => <FeatureItem key={`${feature.title}-${index}`} {...feature} />)}
+                  {features.map((feature, index) => (
+                    <FeatureItem
+                      key={`${feature.title}-${index}`}
+                      {...feature}
+                      iconMedia={feature.iconMediaId ? featureMediaById[feature.iconMediaId] ?? null : null}
+                    />
+                  ))}
                 </div>
               ) : null}
 
