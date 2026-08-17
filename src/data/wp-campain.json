@@ -1,0 +1,33 @@
+{
+  "campaigns": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3801",
+      "name": "Summer Ride 2026",
+      "slug": "summer-ride-2026",
+      "status": "active",
+      "type": "sales",
+      "description": "Chiến dịch mua sắm mùa hè dành cho xe đạp, phụ kiện và các ưu đãi theo chương trình trong tháng 8/2026.",
+      "promotionIds": [
+        "66bf4e8c9f2a4d7b8c1e3901",
+        "66bf4e8c9f2a4d7b8c1e3902",
+        "66bf4e8c9f2a4d7b8c1e3903",
+        "66bf4e8c9f2a4d7b8c1e3904",
+        "66bf4e8c9f2a4d7b8c1e3905",
+        "66bf4e8c9f2a4d7b8c1e3906"
+      ],
+      "display": {
+        "title": "Summer Ride 2026",
+        "subtitle": "Ưu đãi mùa hè cho mọi hành trình",
+        "href": "/khuyen-mai/summer-ride-2026",
+        "actionLabel": "Khám phá ưu đãi",
+        "mediaId": null
+      },
+      "startAt": "2026-08-01T00:00:00+07:00",
+      "endAt": "2026-08-31T23:59:59+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T07:41:00+07:00",
+      "updatedAt": "2026-08-17T07:41:00+07:00"
+    }
+  ]
+}
