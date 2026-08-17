@@ -13,12 +13,12 @@ export function StackSection({ section }: { section: StackSectionPayload }) {
     <Section className={section.props.sectionClassName}>
       <Container>
         <Stack variant={section.props.variant}>
-          <Row className={cn("items-stretch", section.props.rowClassName)}>
+          <Row className={cn("flex-col items-stretch lg:flex-row", section.props.rowClassName)}>
             {section.columns.map((column, index) => (
               <Column
                 key={column._id}
                 className={cn(
-                  "w-full px-5 py-5 sm:w-1/2 lg:w-1/4 lg:px-6",
+                  "w-full px-5 py-5 lg:min-w-0 lg:flex-1 lg:px-6",
                   getStackColumnDividerClass(index, section.props.variant),
                 )}
               >
