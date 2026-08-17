@@ -19,6 +19,7 @@ export function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) {
       groups={groups}
       template={block.props.template}
       gridClassName={block.props.gridClassName}
+      mobilePageSize={block.props.mobilePageSize}
     />
   );
 }
