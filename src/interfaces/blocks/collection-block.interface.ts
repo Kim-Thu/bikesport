@@ -1,4 +1,5 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
+import type { CategoryType } from "@/interfaces/category.interface";
 import type { ProductSource } from "@/interfaces/product-source.interface";
 import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
@@ -84,6 +85,7 @@ export interface CardGridBlockPayload extends PageBlockBase {
     template: CardTemplate;
     gridClassName?: string;
     source:
+      | { type: "category"; categoryType: CategoryType; limit?: number }
       | { type: "event"; limit?: number }
       | { type: "post"; limit?: number }
       | { type: "store"; limit?: number }
