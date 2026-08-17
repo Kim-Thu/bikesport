@@ -10,6 +10,7 @@ import { Tabs, type TabItem } from "@/components/tabs/Tabs";
 import { MEDIA_QUERIES } from "@/constants/breakpoint.constant";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { CardTemplate } from "@/interfaces/card.interface";
+import type { MediaItem } from "@/interfaces/media.interface";
 import type { ProductCollectionItem } from "@/interfaces/product-collection-item.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { PaginationVariant } from "@/variants/pagination.variant";
@@ -22,11 +23,13 @@ export interface TabsGridGroup extends TabItem {
 
 interface TabsGridProps extends SectionHeadingConfig {
   title: string;
+  titleMedia?: MediaItem | null;
   groups: TabsGridGroup[];
   template: CardTemplate;
   tabsTemplate?: TabsTemplate;
   layoutTemplate?: TabsGridTemplate;
   backgroundMediaId?: string | null;
+  backgroundMedia?: MediaItem | null;
   gridClassName?: string;
   mobilePageSize?: number;
   paginationVariant?: PaginationVariant;
@@ -40,6 +43,7 @@ const TEMPLATES = {
 export function TabsGrid({
   title,
   titleMediaId,
+  titleMedia,
   titleAlt,
   href,
   actionLabel,
@@ -49,6 +53,7 @@ export function TabsGrid({
   tabsTemplate = "default",
   layoutTemplate = "default",
   backgroundMediaId,
+  backgroundMedia,
   gridClassName,
   mobilePageSize = 4,
   paginationVariant = "default",
@@ -94,6 +99,7 @@ export function TabsGrid({
     <SectionHeader
       title={title}
       titleMediaId={titleMediaId}
+      titleMedia={titleMedia}
       titleAlt={titleAlt}
       href={href}
       actionLabel={actionLabel}
@@ -101,7 +107,7 @@ export function TabsGrid({
       className={layoutTemplate === "default" ? "mb-4" : undefined}
     >
       <Tabs
-        items={groups.map(({ label, value, mediaId }) => ({ label, value, mediaId }))}
+        items={groups.map(({ label, value, mediaId, media }) => ({ label, value, mediaId, media }))}
         value={activeGroup.value}
         onChange={handleTabChange}
         template={tabsTemplate}
@@ -130,6 +136,7 @@ export function TabsGrid({
         href={href}
         actionLabel={actionLabel}
         backgroundMediaId={backgroundMediaId}
+        backgroundMedia={backgroundMedia}
       />
     </div>
   );
