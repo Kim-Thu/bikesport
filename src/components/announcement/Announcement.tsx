@@ -4,8 +4,8 @@ import { MediaImage } from "@/components/media/MediaImage";
 import type { AnnouncementProps } from "@/interfaces/announcement.interface";
 import { getActiveAnnouncementById } from "@/lib/announcement.utils";
 
-export function Announcement({ announcementId }: AnnouncementProps) {
-  const announcement = getActiveAnnouncementById(announcementId);
+export async function Announcement({ announcementId }: AnnouncementProps) {
+  const announcement = await getActiveAnnouncementById(announcementId);
   if (!announcement) return null;
 
   const {
