@@ -7,8 +7,8 @@ import { getActiveCombos, getComboProducts } from "@/lib/combo.utils";
 import { mapProductsToCollectionItems } from "@/lib/product-collection.utils";
 import {
   getBestSellerProducts,
-  getPublishedProducts,
   getPublishedProductsByBrandId,
+  getPublishedProductsByCategoryIds,
 } from "@/lib/product.utils";
 import { getActivePromotionById, getPromotionById, getPromotionProducts } from "@/lib/promotion.utils";
 
@@ -25,14 +25,14 @@ function takeLimit<T>(items: T[], limit?: number): T[] {
   return typeof limit === "number" ? items.slice(0, limit) : items;
 }
 
-export function getPromotionSessionCollectionGroups(
+export async function getPromotionSessionCollectionGroups(
   promotionId: string,
   limit?: number,
-): PromotionSessionCollectionGroup[] {
-  const promotion = getPromotionById(promotionId);
+): Promise<PromotionSessionCollectionGroup[]> {
+  const promotion = await getPromotionById(promotionId);
   if (!promotion) return [];
 
-  const promotionProducts = getPromotionProducts(promotion);
+  const promotionProducts = await getPromotionProducts(promotion);
   const sessions = promotion.sessions ?? [];
 
   if (!sessions.length) {
@@ -43,76 +43,80 @@ export function getPromotionSessionCollectionGroups(
         status: "active",
         startAt: promotion.startAt,
         endAt: promotion.endAt,
-        items: mapProductsToCollectionItems(takeLimit(promotionProducts, limit), promotion),
+        items: await mapProductsToCollectionItems(takeLimit(promotionProducts, limit), promotion),
       },
     ];
   }
 
-  return sessions.map((session) => {
-    const sessionProducts = session.skus?.length
-      ? promotionProducts.filter((product) => session.skus?.includes(product.sku))
-      : promotionProducts;
+  return Promise.all(
+    sessions.map(async (session) => {
+      const sessionProducts = session.skus?.length
+        ? promotionProducts.filter((product) => session.skus?.includes(product.sku))
+        : promotionProducts;
 
-    return {
-      label: session.label,
-      value: session._id,
-      status: session.status,
-      startAt: session.startAt,
-      endAt: session.endAt,
-      items: mapProductsToCollectionItems(takeLimit(sessionProducts, limit), promotion),
-    };
-  });
+      return {
+        label: session.label,
+        value: session._id,
+        status: session.status,
+        startAt: session.startAt,
+        endAt: session.endAt,
+        items: await mapProductsToCollectionItems(takeLimit(sessionProducts, limit), promotion),
+      };
+    }),
+  );
 }
 
-function resolveComboCollection(source: Extract<ProductCollectionSource, { type: "combo" }>): ProductCollectionItem[] {
+async function resolveComboCollection(
+  source: Extract<ProductCollectionSource, { type: "combo" }>,
+): Promise<ProductCollectionItem[]> {
   const combo = getActiveCombos().find((item) => item._id === source.comboId);
-  const products = combo ? getComboProducts(combo).map(({ product }) => product) : [];
+  const products = combo ? (await getComboProducts(combo)).map(({ product }) => product) : [];
   return mapProductsToCollectionItems(products);
 }
 
-function resolveBestSellerCollection(
+async function resolveBestSellerCollection(
   source: Extract<ProductCollectionSource, { type: "best-seller" }>,
-): ProductCollectionItem[] {
-  return mapProductsToCollectionItems(getBestSellerProducts(source.categoryId, source.limit));
+): Promise<ProductCollectionItem[]> {
+  return mapProductsToCollectionItems(await getBestSellerProducts(source.categoryId, source.limit));
 }
 
-function resolvePromotionCollection(
+async function resolvePromotionCollection(
   source: Extract<ProductCollectionSource, { type: "promotion" }>,
-): ProductCollectionItem[] {
-  const promotion = getActivePromotionById(source.promotionId);
+): Promise<ProductCollectionItem[]> {
+  const promotion = await getActivePromotionById(source.promotionId);
   if (!promotion) return [];
 
-  return mapProductsToCollectionItems(takeLimit(getPromotionProducts(promotion), source.limit), promotion);
+  const products = await getPromotionProducts(promotion, source.limit);
+  return mapProductsToCollectionItems(products, promotion);
 }
 
-function resolveCampaignCollection(
+async function resolveCampaignCollection(
   source: Extract<ProductCollectionSource, { type: "campaign" }>,
-): ProductCollectionItem[] {
+): Promise<ProductCollectionItem[]> {
   return mapProductsToCollectionItems(
-    getCampaignProducts(source.campaignId, source.categoryId, source.limit),
+    await getCampaignProducts(source.campaignId, source.categoryId, source.limit),
   );
 }
 
-function resolveCategoryCollection(
+async function resolveCategoryCollection(
   source: Extract<ProductCollectionSource, { type: "category" }>,
-): ProductCollectionItem[] {
-  const categoryIds = new Set(getCategoryTreeIds(source.categoryId));
-  const products = getPublishedProducts().filter((product) =>
-    product.categoryIds.some((categoryId) => categoryIds.has(categoryId)),
-  );
-
-  return mapProductsToCollectionItems(takeLimit(products, source.limit));
+): Promise<ProductCollectionItem[]> {
+  const categoryIds = await getCategoryTreeIds(source.categoryId);
+  const products = await getPublishedProductsByCategoryIds(categoryIds, source.limit);
+  return mapProductsToCollectionItems(products);
 }
 
-function resolveBrandCollection(
+async function resolveBrandCollection(
   source: Extract<ProductCollectionSource, { type: "brand" }>,
-): ProductCollectionItem[] {
+): Promise<ProductCollectionItem[]> {
   return mapProductsToCollectionItems(
-    getPublishedProductsByBrandId(source.brandId, source.limit),
+    await getPublishedProductsByBrandId(source.brandId, source.limit),
   );
 }
 
-export function getProductCollectionItems(source: ProductCollectionSource): ProductCollectionItem[] {
+export async function getProductCollectionItems(
+  source: ProductCollectionSource,
+): Promise<ProductCollectionItem[]> {
   switch (source.type) {
     case "combo":
       return resolveComboCollection(source);
