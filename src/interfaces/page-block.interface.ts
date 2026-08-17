@@ -103,6 +103,11 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
       | {
           type: "combo";
           tabs: Array<{ label: string; comboId: string }>;
+        }
+      | {
+          type: "brand";
+          limit?: number;
+          tabs: Array<{ label: string; brandId: string }>;
         };
   };
 }
