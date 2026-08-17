@@ -48,22 +48,12 @@
                 { "_id": "66bf4e8c9f2a4d7b8c1e4231", "status": "active", "component": "tabs-slider", "props": { "title": "Sản phẩm bán chạy", "href": "/san-pham", "actionLabel": "Xem tất cả", "template": "media-action", "trackClassName": "-ml-4", "slideClassName": "basis-48 pl-4 sm:basis-52 lg:basis-1/4", "source": { "type": "best-seller", "limit": 8, "tabs": [
                   { "label": "Xe đạp", "categoryId": "66bf4e8c9f2a4d7b8c1e3c02" }, { "label": "Phụ kiện", "categoryId": "66bf4e8c9f2a4d7b8c1e3c03" }, { "label": "Thiết bị thể thao", "categoryId": "66bf4e8c9f2a4d7b8c1e3c16" }
                 ] } } },
-                { "_id": "66bf4e8c9f2a4d7b8c1e42g2", "status": "active", "component": "tabs-grid", "props": {
-                  "title": "Deal ngon - Giá hời",
-                  "href": "/khuyen-mai",
-                  "actionLabel": "Xem thêm ưu đãi",
-                  "template": "media-action",
-                  "headingTemplate": "featured",
-                  "tabsTemplate": "featured",
-                  "layoutTemplate": "featured-deals",
-                  "gridClassName": "grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
-                  "tabs": [
-                    { "label": "Flash Sale", "value": "flash-sale", "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3906", "limit": 12 } },
-                    { "label": "Xe địa hình", "value": "mountain-bike", "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3903", "limit": 12 } },
-                    { "label": "Phụ kiện", "value": "accessories", "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3904", "limit": 12 } },
-                    { "label": "Summer Ride", "value": "summer-ride", "source": { "type": "campaign", "campaignId": "66bf4e8c9f2a4d7b8c1e3801", "limit": 12 } }
-                  ]
-                } }
+                { "_id": "66bf4e8c9f2a4d7b8c1e42g2", "status": "active", "component": "tabs-grid", "props": { "title": "Deal ngon - Giá hời", "href": "/khuyen-mai", "actionLabel": "Xem thêm ưu đãi", "template": "media-action", "headingTemplate": "featured", "tabsTemplate": "featured", "layoutTemplate": "featured-deals", "gridClassName": "grid-cols-2 lg:grid-cols-3 xl:grid-cols-4", "tabs": [
+                  { "label": "Flash Sale", "value": "flash-sale", "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3906", "limit": 12 } },
+                  { "label": "Xe địa hình", "value": "mountain-bike", "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3903", "limit": 12 } },
+                  { "label": "Phụ kiện", "value": "accessories", "source": { "type": "promotion", "promotionId": "66bf4e8c9f2a4d7b8c1e3904", "limit": 12 } },
+                  { "label": "Summer Ride", "value": "summer-ride", "source": { "type": "campaign", "campaignId": "66bf4e8c9f2a4d7b8c1e3801", "limit": 12 } }
+                ] } }
               ] },
               { "_id": "66bf4e8c9f2a4d7b8c1e4262", "props": { "className": "w-full space-y-8 lg:w-1/4" }, "blocks": [
                 { "_id": "66bf4e8c9f2a4d7b8c1e4241", "status": "active", "component": "icon-list", "props": { "items": [
@@ -117,7 +107,80 @@
     { "_id": "66bf4e8c9f2a4d7b8c1e4106", "title": "Dịch vụ", "slug": "dich-vu", "path": "/dich-vu", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4107", "title": "Blog", "slug": "blog", "path": "/blog", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4108", "title": "Hệ thống cửa hàng", "slug": "cua-hang", "path": "/cua-hang", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
-    { "_id": "66bf4e8c9f2a4d7b8c1e4109", "title": "Giới thiệu", "slug": "gioi-thieu", "path": "/gioi-thieu", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4109",
+      "title": "Giới thiệu",
+      "slug": "gioi-thieu",
+      "path": "/gioi-thieu",
+      "status": "published",
+      "payload": {
+        "sections": [
+          { "_id": "66bf4e8c9f2a4d7b8c1e4501", "name": "About hero", "order": 1, "status": "active", "component": "banner", "props": { "bannerId": "66bf4e8c9f2a4d7b8c1e3a10" } },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4502", "name": "Mission heading", "order": 2, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-0" },
+            "rows": [{ "_id": "66bf4e8c9f2a4d7b8c1e4510", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4511", "props": { "className": "w-full" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4512", "status": "active", "component": "section-header", "props": { "title": "Sứ mệnh của chúng tôi", "template": "featured" } }] }] }]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4503", "name": "Mission values", "order": 3, "status": "active", "component": "stack",
+            "props": { "variant": "surface", "sectionClassName": "pt-4 pb-4 sm:pt-4 sm:pb-6", "rowClassName": "flex-wrap items-stretch" },
+            "columns": [
+              { "_id": "66bf4e8c9f2a4d7b8c1e4521", "component": "box-icon", "props": { "icon": "click", "title": "Sứ mệnh", "description": "Truyền cảm hứng và đồng hành cùng mọi người trên hành trình chinh phục đam mê xe đạp.", "iconClassName": "text-blue-600", "titleClassName": "normal-case text-base", "descriptionClassName": "text-sm" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4522", "component": "box-icon", "props": { "icon": "search", "title": "Tầm nhìn", "description": "Trở thành hệ sinh thái xe đạp hàng đầu Việt Nam, được tin yêu bởi cộng đồng.", "iconClassName": "text-blue-600", "titleClassName": "normal-case text-base", "descriptionClassName": "text-sm" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4523", "component": "box-icon", "props": { "icon": "badge-percent", "title": "Giá trị cốt lõi", "description": "Chính trực - Chất lượng - Đam mê - Kết nối - Không ngừng cải tiến.", "iconClassName": "text-blue-600", "titleClassName": "normal-case text-base", "descriptionClassName": "text-sm" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4524", "component": "box-icon", "props": { "icon": "users", "title": "Cộng đồng", "description": "Xây dựng cộng đồng người yêu xe đạp lớn mạnh, văn minh và tích cực.", "iconClassName": "text-blue-600", "titleClassName": "normal-case text-base", "descriptionClassName": "text-sm" } }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4504", "name": "Company numbers", "order": 4, "status": "active", "component": "stack",
+            "props": { "variant": "primary", "sectionClassName": "pb-4 sm:pb-6", "rowClassName": "flex-wrap items-stretch" },
+            "columns": [
+              { "_id": "66bf4e8c9f2a4d7b8c1e4531", "component": "box-icon", "props": { "icon": "location", "title": "30+", "description": "Cửa hàng toàn quốc", "iconClassName": "text-white", "titleClassName": "text-2xl", "descriptionClassName": "text-sm" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4532", "component": "box-icon", "props": { "icon": "users", "title": "200.000+", "description": "Khách hàng tin tưởng", "iconClassName": "text-white", "titleClassName": "text-2xl", "descriptionClassName": "text-sm" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4533", "component": "box-icon", "props": { "icon": "package", "title": "15.000+", "description": "Sản phẩm đa dạng", "iconClassName": "text-white", "titleClassName": "text-2xl", "descriptionClassName": "text-sm" } },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4534", "component": "box-icon", "props": { "icon": "badge-percent", "title": "10+", "description": "Năm đồng hành", "iconClassName": "text-white", "titleClassName": "text-2xl", "descriptionClassName": "text-sm" } }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4505", "name": "Development journey", "order": 5, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-4 sm:pb-6" },
+            "rows": [
+              { "_id": "66bf4e8c9f2a4d7b8c1e4540", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4541", "props": { "className": "w-full" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4542", "status": "active", "component": "section-header", "props": { "title": "Hành trình phát triển", "template": "featured" } }] }] },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4543", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4544", "props": { "className": "w-full" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4545", "status": "active", "component": "timeline", "props": { "items": [
+                { "label": "2014", "title": "Những bước đi đầu tiên", "description": "BikeSport được thành lập với cửa hàng đầu tiên tại Hà Nội.", "mediaId": null, "mediaAlt": "Cửa hàng BikeSport đầu tiên" },
+                { "label": "2016", "title": "Mở rộng quy mô", "description": "Phát triển thêm nhiều cửa hàng tại các thành phố lớn.", "mediaId": null, "mediaAlt": "Đội ngũ BikeSport" },
+                { "label": "2018", "title": "Xây dựng cộng đồng", "description": "Tổ chức nhiều sự kiện, giải đua kết nối cộng đồng đam mê.", "mediaId": null, "mediaAlt": "Cộng đồng xe đạp BikeSport" },
+                { "label": "2021", "title": "Chuyển đổi & phát triển", "description": "Đầu tư hệ thống online, nâng cao trải nghiệm khách hàng.", "mediaId": null, "mediaAlt": "Nền tảng trực tuyến BikeSport" },
+                { "label": "2024+", "title": "Vươn xa hơn nữa", "description": "Không ngừng đổi mới để mang đến giá trị tốt nhất cho khách hàng.", "mediaId": null, "mediaAlt": "Hành trình BikeSport tương lai" }
+              ] } }] }] }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4506", "name": "Why BikeSport", "order": 6, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-4 sm:pb-6" },
+            "rows": [
+              { "_id": "66bf4e8c9f2a4d7b8c1e4550", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4551", "props": { "className": "w-full" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4552", "status": "active", "component": "section-header", "props": { "title": "Vì sao chọn BikeSport?", "template": "default" } }] }] },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4553", "props": { "className": "flex-col items-stretch gap-6 lg:flex-row" }, "columns": [
+                { "_id": "66bf4e8c9f2a4d7b8c1e4554", "props": { "className": "w-full lg:w-1/2" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4555", "status": "active", "component": "icon-list", "props": { "items": [
+                  { "icon": "package", "title": "Sản phẩm chính hãng", "description": "Cam kết 100% sản phẩm chính hãng, đầy đủ giấy tờ." },
+                  { "icon": "payment", "title": "Giá tốt & minh bạch", "description": "Giá cạnh tranh, nhiều ưu đãi hấp dẫn và công khai." },
+                  { "icon": "support", "title": "Tư vấn chuyên nghiệp", "description": "Đội ngũ am hiểu sản phẩm, tư vấn tận tâm, đúng nhu cầu." },
+                  { "icon": "wrench", "title": "Dịch vụ tận tâm", "description": "Hỗ trợ nhanh chóng, bảo hành chu đáo, hậu mãi dài lâu." },
+                  { "icon": "truck", "title": "Giao hàng toàn quốc", "description": "Giao hàng nhanh chóng, đóng gói cẩn thận." },
+                  { "icon": "users", "title": "Cộng đồng lớn mạnh", "description": "Tham gia cộng đồng để chia sẻ và truyền cảm hứng mỗi ngày." }
+                ] } }] },
+                { "_id": "66bf4e8c9f2a4d7b8c1e4556", "props": { "grow": true, "className": "w-full lg:w-1/2" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4557", "status": "active", "component": "media", "props": { "mediaId": null, "alt": "Không gian cửa hàng BikeSport", "aspect": "landscape" } }] }
+              ] }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4507", "name": "About CTA", "order": 7, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-6 sm:pb-8" },
+            "rows": [{ "_id": "66bf4e8c9f2a4d7b8c1e4560", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4561", "props": { "className": "w-full" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4562", "status": "active", "component": "media-cta", "props": { "title": "Cùng BikeSport chinh phục mọi hành trình!", "description": "Dù bạn là người mới bắt đầu hay vận động viên chuyên nghiệp, BikeSport luôn sẵn sàng đồng hành cùng bạn.", "href": "/san-pham", "actionLabel": "Khám phá ngay", "mediaId": null } }] }] }]
+          }
+        ]
+      },
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T20:02:00+07:00",
+      "updatedAt": "2026-08-17T12:12:00+07:00"
+    },
     { "_id": "66bf4e8c9f2a4d7b8c1e4110", "title": "Liên hệ", "slug": "lien-he", "path": "/lien-he", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4111", "title": "Hướng dẫn mua hàng", "slug": "huong-dan-mua-hang", "path": "/huong-dan-mua-hang", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4112", "title": "Hướng dẫn thanh toán", "slug": "huong-dan-thanh-toan", "path": "/huong-dan-thanh-toan", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
