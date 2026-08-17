@@ -1,6 +1,8 @@
 export type ComponentName =
-  | "promotion"
+  | "announcement"
   | "button"
+  | "icon"
+  | "link"
   | "logo"
   | "search-form"
   | "contact"
@@ -8,6 +10,7 @@ export type ComponentName =
   | "mini-cart"
   | "nav-menu"
   | "mobile-menu"
-  | string;
+  | "payment"
+  | "social";
 
 export type ComponentProps = Record<string, unknown>;
