@@ -12,8 +12,8 @@ const LAYOUT_TEMPLATES = {
   "featured-showcase": FeaturedShowcaseTemplate,
 } as const;
 
-export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload }) {
-  const viewModel = resolveProductSliderBlock(block);
+export async function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload }) {
+  const viewModel = await resolveProductSliderBlock(block);
 
   if (viewModel.kind === "tabs") {
     return (
