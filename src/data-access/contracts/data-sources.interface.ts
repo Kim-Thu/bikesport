@@ -2,6 +2,7 @@ import type { AdsDataSource } from "@/data-access/contracts/ads-data-source.inte
 import type { BannerDataSource } from "@/data-access/contracts/banner-data-source.interface";
 import type { BrandDataSource } from "@/data-access/contracts/brand-data-source.interface";
 import type { CategoryDataSource } from "@/data-access/contracts/category-data-source.interface";
+import type { ComboDataSource } from "@/data-access/contracts/combo-data-source.interface";
 import type { EventDataSource } from "@/data-access/contracts/event-data-source.interface";
 import type { MenuDataSource } from "@/data-access/contracts/menu-data-source.interface";
 import type { PageDataSource } from "@/data-access/contracts/page-data-source.interface";
@@ -24,4 +25,5 @@ export interface DataSources {
   store: StoreDataSource;
   banner: BannerDataSource;
   ads: AdsDataSource;
+  combo: ComboDataSource;
 }
