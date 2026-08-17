@@ -13,7 +13,7 @@ export function FeaturedTemplate({
   return (
     <div className={cn("flex flex-col items-center gap-3 text-center", className)}>
       {titleMedia ? (
-        <div className="flex min-h-10 items-center justify-center">
+        <div className="flex items-center justify-center">
           <MediaImageView
             media={titleMedia}
             alt={titleAlt ?? title ?? "Section heading"}
