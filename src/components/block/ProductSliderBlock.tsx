@@ -15,7 +15,9 @@ export function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload
   if (!items.length) return null;
 
   const hasHeader = Boolean(block.props.title) || block.props.titleMediaId !== undefined;
-  const layoutTemplate = block.props.layoutTemplate ?? "default";
+  const layoutTemplate =
+    block.props.layoutTemplate ??
+    (block.props.headerTemplate === "flash-sale" ? "featured-showcase" : "default");
   const LayoutTemplate = LAYOUT_TEMPLATES[layoutTemplate];
 
   const header = hasHeader ? (
