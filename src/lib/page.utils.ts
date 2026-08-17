@@ -1,21 +1,14 @@
-import wpPages from "@/data/wp-pages.json";
+import { dataSources } from "@/data-access/data-sources";
 import type { PageRecord } from "@/interfaces/page.interface";
 
-const pages = wpPages.pages as PageRecord[];
-const publishedPages = pages.filter((page) => page.status === "published");
-const publishedPageByPath = new Map(publishedPages.map((page) => [page.path, page]));
-const publishedPageBySlug = new Map(publishedPages.map((page) => [page.slug, page]));
-
-export function getPublishedPageByPath(path: string): PageRecord | null {
-  return publishedPageByPath.get(path) ?? null;
+export async function getPublishedPageByPath(path: string): Promise<PageRecord | null> {
+  return dataSources.page.getPublishedByPath(path);
 }
 
-export function getPublishedPageBySlug(slug: string): PageRecord | null {
-  return publishedPageBySlug.get(slug) ?? null;
+export async function getPublishedPageBySlug(slug: string): Promise<PageRecord | null> {
+  return dataSources.page.getPublishedBySlug(slug);
 }
 
-export function getPublishedPageSlugs(): string[] {
-  return publishedPages
-    .filter((page) => page.path !== "/")
-    .map((page) => page.slug);
+export async function getPublishedPageSlugs(): Promise<string[]> {
+  return dataSources.page.getPublishedSlugs();
 }
