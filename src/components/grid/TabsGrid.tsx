@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Pagination } from "@/components/pagination/Pagination";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
@@ -37,6 +37,7 @@ export function TabsGrid({
   const [activeValue, setActiveValue] = useState(groups[0]?.value ?? "");
   const [mobilePage, setMobilePage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const gridStartRef = useRef<HTMLDivElement>(null);
 
   const activeGroup = useMemo(
     () => groups.find((group) => group.value === activeValue) ?? groups[0],
@@ -52,9 +53,22 @@ export function TabsGrid({
     return () => mediaQuery.removeEventListener("change", syncViewport);
   }, []);
 
-  useEffect(() => {
+  function scrollToGrid() {
+    window.requestAnimationFrame(() => {
+      gridStartRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  function handleTabChange(value: string) {
+    setActiveValue(value);
     setMobilePage(0);
-  }, [activeValue]);
+    if (isMobile) scrollToGrid();
+  }
+
+  function handlePageChange(page: number) {
+    setMobilePage(page);
+    scrollToGrid();
+  }
 
   if (!activeGroup) return null;
 
@@ -71,17 +85,19 @@ export function TabsGrid({
         <Tabs
           items={groups.map(({ label, value }) => ({ label, value }))}
           value={activeGroup.value}
-          onChange={setActiveValue}
+          onChange={handleTabChange}
         />
       </SectionHeader>
 
-      <ProductGrid items={visibleItems} template={template} className={gridClassName} />
+      <div ref={gridStartRef} className="scroll-mt-4">
+        <ProductGrid items={visibleItems} template={template} className={gridClassName} />
+      </div>
 
       {isMobile ? (
         <Pagination
           page={safePage}
           totalPages={totalPages}
-          onPageChange={setMobilePage}
+          onPageChange={handlePageChange}
           ariaLabel={`Phân trang ${title}`}
           variant={paginationVariant}
           className="mt-4"
