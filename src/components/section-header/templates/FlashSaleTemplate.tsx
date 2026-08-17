@@ -13,7 +13,7 @@ export function FlashSaleTemplate({
 }: SectionHeaderProps) {
   return (
     <div className={cn("space-y-3", className)}>
-      <div className="flex min-h-20 items-center justify-center rounded-lg bg-red-500 p-4 text-center text-white">
+      <div className="flex items-center justify-center rounded-lg bg-red-500 p-4 text-center text-white">
         <div className="flex min-w-0 items-center justify-center gap-2">
           {titleMedia ? (
             <MediaImageView
