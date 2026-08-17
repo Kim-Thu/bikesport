@@ -13,7 +13,10 @@ export function DefaultTemplate({
 }: SectionHeaderProps) {
   return (
     <div className={cn("flex flex-wrap items-center gap-x-6 gap-y-2", className)}>
-      <Heading level={2} className="min-w-0 flex-1 text-base font-bold uppercase text-gray-900 sm:flex-none sm:shrink-0 sm:text-lg">
+      <Heading
+        level={2}
+        className="min-w-0 flex-1 text-lg font-bold uppercase leading-tight text-gray-900 sm:flex-none sm:shrink-0 sm:text-xl lg:text-2xl"
+      >
         {title}
       </Heading>
 
