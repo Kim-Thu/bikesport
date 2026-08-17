@@ -2,6 +2,7 @@ import "server-only";
 import type { DataSources } from "@/data-access/contracts/data-sources.interface";
 import { getDataSourceProvider } from "@/data-access/data-source.config";
 import { jsonAdsDataSource } from "@/data-access/json/json-ads-data-source";
+import { jsonAnnouncementDataSource } from "@/data-access/json/json-announcement-data-source";
 import { jsonBannerDataSource } from "@/data-access/json/json-banner-data-source";
 import { jsonBrandDataSource } from "@/data-access/json/json-brand-data-source";
 import { jsonCampaignDataSource } from "@/data-access/json/json-campaign-data-source";
@@ -32,6 +33,7 @@ const jsonDataSources: DataSources = {
   ads: jsonAdsDataSource,
   combo: jsonComboDataSource,
   campaign: jsonCampaignDataSource,
+  announcement: jsonAnnouncementDataSource,
 };
 
 function createDataSources(): DataSources {
