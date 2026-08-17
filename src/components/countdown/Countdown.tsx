@@ -10,7 +10,7 @@ interface RemainingTime {
   seconds: number;
 }
 
-type CountdownVariant = "default" | "compact";
+type CountdownVariant = "default" | "compact" | "responsive";
 
 function getRemaining(endAt: string): RemainingTime {
   const diff = Math.max(0, new Date(endAt).getTime() - Date.now());
@@ -33,11 +33,13 @@ function CountdownUnit({
   label: string;
   variant: CountdownVariant;
 }) {
+  const compactUnit = variant === "compact" || variant === "responsive";
+
   return (
     <span
       className={cn(
         "rounded-md bg-white py-1 text-center text-red-600",
-        variant === "compact" ? "min-w-0 px-1" : "min-w-12 px-2",
+        compactUnit ? "min-w-0 px-1 sm:px-2" : "min-w-12 px-2",
       )}
     >
       <span className="block text-sm font-bold tabular-nums sm:text-base">
@@ -74,7 +76,9 @@ export function Countdown({
       className={cn(
         variant === "compact"
           ? "grid w-full grid-cols-4 gap-1"
-          : "flex items-center gap-2",
+          : variant === "responsive"
+            ? "grid w-full grid-cols-4 gap-1 sm:flex sm:w-auto sm:items-center sm:gap-2"
+            : "flex items-center gap-2",
       )}
     >
       <CountdownUnit value={remaining?.days ?? null} label="Ngày" variant={variant} />
