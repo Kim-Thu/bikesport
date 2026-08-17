@@ -147,10 +147,8 @@ export function Tabs({ items, value, onChange, className, template = "default" }
               "shrink-0 cursor-pointer transition-colors",
               template === "image"
                 ? cn(
-                    "border-b-2 px-1 py-2",
-                    active
-                      ? "border-blue-600"
-                      : "border-transparent opacity-70 hover:opacity-100",
+                    "overflow-hidden rounded-lg border bg-white p-2 hover:border-blue-200",
+                    active ? "border-blue-300" : "border-gray-100",
                   )
                 : cn(
                     "border-b-2 px-1 py-2 text-xs font-semibold sm:text-sm",
