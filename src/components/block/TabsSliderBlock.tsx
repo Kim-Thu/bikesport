@@ -5,38 +5,41 @@ import { getProductCollectionItems } from "@/lib/product-collection-source.utils
 
 export function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
   const activeBrands = getActiveBrands();
-  const isBrandSource = block.props.source.type === "brand";
+  const source = block.props.source;
+  const isBrandSource = source.type === "brand";
+  let groups: TabsSliderGroup[];
 
-  const groups: TabsSliderGroup[] =
-    block.props.source.type === "combo"
-      ? block.props.source.tabs.map((tab) => ({
-          label: tab.label,
-          value: tab.comboId,
-          items: getProductCollectionItems({ type: "combo", comboId: tab.comboId }),
-        }))
-      : block.props.source.type === "brand"
-        ? block.props.source.tabs.map((tab) => {
-            const brand = activeBrands.find((item) => item._id === tab.brandId);
-            return {
-              label: tab.label,
-              value: tab.brandId,
-              mediaId: brand?.logoMediaId ?? null,
-              items: getProductCollectionItems({
-                type: "brand",
-                brandId: tab.brandId,
-                limit: block.props.source.limit,
-              }),
-            };
-          })
-        : block.props.source.tabs.map((tab) => ({
-            label: tab.label,
-            value: tab.categoryId,
-            items: getProductCollectionItems({
-              type: "best-seller",
-              categoryId: tab.categoryId,
-              limit: block.props.source.limit,
-            }),
-          }));
+  if (source.type === "combo") {
+    groups = source.tabs.map((tab) => ({
+      label: tab.label,
+      value: tab.comboId,
+      items: getProductCollectionItems({ type: "combo", comboId: tab.comboId }),
+    }));
+  } else if (source.type === "brand") {
+    groups = source.tabs.map((tab) => {
+      const brand = activeBrands.find((item) => item._id === tab.brandId);
+      return {
+        label: tab.label,
+        value: tab.brandId,
+        mediaId: brand?.logoMediaId ?? null,
+        items: getProductCollectionItems({
+          type: "brand",
+          brandId: tab.brandId,
+          limit: source.limit,
+        }),
+      };
+    });
+  } else {
+    groups = source.tabs.map((tab) => ({
+      label: tab.label,
+      value: tab.categoryId,
+      items: getProductCollectionItems({
+        type: "best-seller",
+        categoryId: tab.categoryId,
+        limit: source.limit,
+      }),
+    }));
+  }
 
   return (
     <TabsSlider
