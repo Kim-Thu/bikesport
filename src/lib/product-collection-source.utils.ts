@@ -3,7 +3,7 @@ import type { ProductCollectionSource } from "@/interfaces/product-source.interf
 import type { PromotionSessionStatus } from "@/interfaces/promotion.interface";
 import { getCampaignProducts } from "@/lib/campaign.utils";
 import { getCategoryTreeIds } from "@/lib/category.utils";
-import { getActiveCombos, getComboProducts } from "@/lib/combo.utils";
+import { getComboById, getComboProducts } from "@/lib/combo.utils";
 import { mapProductsToCollectionItems } from "@/lib/product-collection.utils";
 import {
   getBestSellerProducts,
@@ -69,8 +69,10 @@ export async function getPromotionSessionCollectionGroups(
 async function resolveComboCollection(
   source: Extract<ProductCollectionSource, { type: "combo" }>,
 ): Promise<ProductCollectionItem[]> {
-  const combo = getActiveCombos().find((item) => item._id === source.comboId);
-  const products = combo ? (await getComboProducts(combo)).map(({ product }) => product) : [];
+  const combo = await getComboById(source.comboId);
+  if (!combo || combo.status !== "active") return [];
+
+  const products = (await getComboProducts(combo)).map(({ product }) => product);
   return mapProductsToCollectionItems(products);
 }
 
