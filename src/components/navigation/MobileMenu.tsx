@@ -101,7 +101,7 @@ export function MobileMenu({
           </Button>
         </div>
 
-        <div className="site-scrollbar min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
+        <div className="site-scrollbar flex-1 overflow-y-auto overscroll-contain pr-1">
           <ul className="m-0 list-none p-0 pb-6">
             {rootItems.map((item) => {
               if (!item.label && !item.mediaId) return null;
