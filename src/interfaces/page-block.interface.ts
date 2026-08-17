@@ -85,11 +85,16 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
     template: CardTemplate;
     trackClassName?: string;
     slideClassName?: string;
-    source: {
-      type: "best-seller";
-      limit?: number;
-      tabs: Array<{ label: string; categoryId: string }>;
-    };
+    source:
+      | {
+          type: "best-seller";
+          limit?: number;
+          tabs: Array<{ label: string; categoryId: string }>;
+        }
+      | {
+          type: "combo";
+          tabs: Array<{ label: string; comboId: string }>;
+        };
   };
 }
 
