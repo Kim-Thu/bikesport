@@ -5,9 +5,9 @@ import type { TabTemplateProps } from "@/interfaces/tabs.interface";
 import { cn } from "@/lib/classname.utils";
 
 const STATUS_LABELS = {
-  active: "ĐANG",
-  upcoming: "SẮP",
-  ended: "XONG",
+  active: "Còn",
+  upcoming: "Sắp",
+  ended: "Xong",
 } as const;
 
 export function FlashSaleTemplate({ item, active, onClick }: TabTemplateProps) {
@@ -28,32 +28,23 @@ export function FlashSaleTemplate({ item, active, onClick }: TabTemplateProps) {
       data-tab-value={item.value}
       onClick={onClick}
       className={cn(
-        "flex min-w-40 shrink-0 cursor-pointer flex-col items-center rounded-lg border bg-white px-3 py-3 text-center transition-colors sm:px-4",
+        "flex min-w-32 shrink-0 cursor-pointer flex-col items-center justify-center rounded-lg px-3 py-2 text-center transition-colors sm:min-w-36 sm:px-4",
         active
-          ? "border-red-400 text-red-600"
-          : "border-gray-200 text-gray-700 hover:border-red-200 hover:text-red-600",
+          ? "bg-red-500 text-white"
+          : "text-gray-700 hover:bg-red-50 hover:text-red-600",
       )}
     >
-      <span className="text-sm font-bold sm:text-base">{item.label}</span>
+      <span className={cn("text-xs font-medium", active ? "text-white/90" : "text-gray-500")}>{statusLabel}</span>
 
-      {statusLabel ? (
-        <span
-          className={cn(
-            "mt-1 text-2xs font-semibold uppercase",
-            item.status === "active"
-              ? "text-red-500"
-              : item.status === "upcoming"
-                ? "text-gray-500"
-                : "text-gray-400",
-          )}
-        >
-          {statusLabel}
-        </span>
+      {item.status === "upcoming" ? (
+        <span className="mt-0.5 text-sm font-semibold sm:text-base">{item.label}</span>
+      ) : item.status === "ended" ? (
+        <span className="mt-0.5 text-sm font-semibold text-gray-400 sm:text-base">{item.label}</span>
       ) : null}
 
       {countdownAt ? (
-        <span className="mt-2 w-full border-t border-gray-100 pt-2">
-          <Countdown endAt={countdownAt} variant="compact" />
+        <span className="mt-1">
+          <Countdown endAt={countdownAt} variant="session" />
         </span>
       ) : null}
     </button>
