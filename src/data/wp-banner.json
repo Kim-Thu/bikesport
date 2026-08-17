@@ -75,12 +75,18 @@
       "description": "BikeSport được thành lập với sứ mệnh mang đến những sản phẩm và dịch vụ tốt nhất cho người yêu xe đạp. Chúng tôi không chỉ bán sản phẩm, mà còn xây dựng một cộng đồng đam mê và gắn kết.",
       "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3726",
       "actions": [
-        { "label": "Xem video hành trình", "href": "#hanh-trinh-phat-trien", "variant": "primary" }
+        {
+          "label": "Xem video hành trình",
+          "href": "https://www.youtube.com/",
+          "variant": "primary",
+          "icon": "play",
+          "iconPosition": "left"
+        }
       ],
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-17T12:12:00+07:00",
-      "updatedAt": "2026-08-17T12:12:00+07:00"
+      "updatedAt": "2026-08-17T12:51:00+07:00"
     }
   ]
 }
