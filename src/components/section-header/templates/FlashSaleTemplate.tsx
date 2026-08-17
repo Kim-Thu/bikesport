@@ -2,11 +2,14 @@ import { Countdown } from "@/components/countdown/Countdown";
 import { Heading } from "@/components/heading/Heading";
 import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
+import { MediaImage } from "@/components/media/MediaImage";
 import type { SectionHeaderProps } from "@/interfaces/section-header.interface";
 import { cn } from "@/lib/classname.utils";
 
 export function FlashSaleTemplate({
   title,
+  titleMediaId,
+  titleAlt,
   href,
   actionLabel = "Xem tất cả",
   countdownAt,
@@ -14,11 +17,25 @@ export function FlashSaleTemplate({
 }: SectionHeaderProps) {
   return (
     <div className={cn("flex flex-col gap-3 rounded-lg bg-red-500 p-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4", className)}>
-      <div className="flex min-w-0 items-center gap-2 text-white sm:shrink-0">
-        <Icon name="flame" className="h-6 w-6 shrink-0" strokeWidth={2} />
-        <Heading level={2} className="min-w-0 text-base font-bold uppercase sm:text-xl">
-          {title}
-        </Heading>
+      <div className="flex min-w-0 items-center text-white sm:shrink-0">
+        {titleMediaId !== undefined ? (
+          <div className="flex min-h-8 items-center">
+            <MediaImage
+              mediaId={titleMediaId}
+              alt={titleAlt ?? title ?? "Flash Sale"}
+              width={240}
+              height={64}
+              className="max-h-10 w-auto object-contain sm:max-h-12"
+            />
+          </div>
+        ) : (
+          <div className="flex min-w-0 items-center gap-2">
+            <Icon name="flame" className="h-6 w-6 shrink-0" strokeWidth={2} />
+            <Heading level={2} className="min-w-0 text-base font-bold uppercase sm:text-xl">
+              {title}
+            </Heading>
+          </div>
+        )}
       </div>
 
       {countdownAt ? (
