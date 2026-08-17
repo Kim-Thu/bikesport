@@ -1,76 +1,64 @@
-import storeData from "@/data/wp-stores.json";
+import { cache } from "react";
+import { dataSources } from "@/data-access/data-sources";
 import type {
-  StoreData,
   StoreLocationRecord,
   StoreRecord,
   StoreRegionRecord,
 } from "@/interfaces/store.interface";
 
-const data = storeData as StoreData;
-const activeRegions = data.regions
-  .filter((region) => region.status === "active")
-  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-const regionById = new Map(data.regions.map((region) => [region._id, region]));
+interface StoreLocationIndex {
+  locationById: Map<string, StoreLocationRecord>;
+  childrenByParentId: Map<string, StoreLocationRecord[]>;
+}
 
-const activeLocations = data.locations
-  .filter((location) => location.status === "active")
-  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-const locationById = new Map(data.locations.map((location) => [location._id, location]));
-const activeLocationsByType = new Map<StoreLocationRecord["type"], StoreLocationRecord[]>();
-const childrenByParentId = new Map<string, StoreLocationRecord[]>();
+const getStoreLocationIndex = cache(async (): Promise<StoreLocationIndex> => {
+  const locations = await dataSources.store.getActiveLocations();
+  const locationById = new Map(locations.map((location) => [location._id, location]));
+  const childrenByParentId = new Map<string, StoreLocationRecord[]>();
 
-for (const location of activeLocations) {
-  const typeItems = activeLocationsByType.get(location.type) ?? [];
-  typeItems.push(location);
-  activeLocationsByType.set(location.type, typeItems);
-
-  if (location.parentId) {
+  for (const location of locations) {
+    if (!location.parentId) continue;
     const children = childrenByParentId.get(location.parentId) ?? [];
     children.push(location);
     childrenByParentId.set(location.parentId, children);
   }
+
+  return { locationById, childrenByParentId };
+});
+
+export async function getStoreRegions(): Promise<StoreRegionRecord[]> {
+  return dataSources.store.getActiveRegions();
 }
 
-const activeStores = data.stores
-  .filter((store) => store.status === "active")
-  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-const featuredStores = activeStores.filter((store) => store.featured === true);
-const storesByRegionId = new Map<string, StoreRecord[]>();
-
-for (const store of activeStores) {
-  const stores = storesByRegionId.get(store.regionId) ?? [];
-  stores.push(store);
-  storesByRegionId.set(store.regionId, stores);
+export async function getStoreRegionById(regionId: string): Promise<StoreRegionRecord | null> {
+  return dataSources.store.getActiveRegionById(regionId);
 }
 
-export function getStoreRegions(): StoreRegionRecord[] {
-  return activeRegions;
+export async function getStoreLocations(
+  type?: StoreLocationRecord["type"],
+): Promise<StoreLocationRecord[]> {
+  return dataSources.store.getActiveLocations(type);
 }
 
-export function getStoreRegionById(regionId: string): StoreRegionRecord | null {
-  return regionById.get(regionId) ?? null;
-}
-
-export function getStoreLocations(type?: StoreLocationRecord["type"]): StoreLocationRecord[] {
-  return type ? activeLocationsByType.get(type) ?? [] : activeLocations;
-}
-
-export function getStoreLocationById(locationId: string): StoreLocationRecord | null {
+export async function getStoreLocationById(locationId: string): Promise<StoreLocationRecord | null> {
+  const { locationById } = await getStoreLocationIndex();
   return locationById.get(locationId) ?? null;
 }
 
-export function getStoreLocationChildren(parentId: string): StoreLocationRecord[] {
+export async function getStoreLocationChildren(parentId: string): Promise<StoreLocationRecord[]> {
+  const { childrenByParentId } = await getStoreLocationIndex();
   return childrenByParentId.get(parentId) ?? [];
 }
 
-export function getStoreLocationAncestors(locationId: string): StoreLocationRecord[] {
+export async function getStoreLocationAncestors(locationId: string): Promise<StoreLocationRecord[]> {
+  const { locationById } = await getStoreLocationIndex();
   const ancestors: StoreLocationRecord[] = [];
   const seen = new Set<string>([locationId]);
-  let current = getStoreLocationById(locationId);
+  let current = locationById.get(locationId);
 
   while (current?.parentId && !seen.has(current.parentId)) {
     seen.add(current.parentId);
-    const parent = getStoreLocationById(current.parentId);
+    const parent = locationById.get(current.parentId);
     if (!parent) break;
     ancestors.push(parent);
     current = parent;
@@ -79,7 +67,8 @@ export function getStoreLocationAncestors(locationId: string): StoreLocationReco
   return ancestors;
 }
 
-export function getStoreLocationTreeIds(locationId: string): string[] {
+export async function getStoreLocationTreeIds(locationId: string): Promise<string[]> {
+  const { childrenByParentId } = await getStoreLocationIndex();
   const ids: string[] = [];
   const queue = [locationId];
   const seen = new Set<string>();
@@ -89,38 +78,50 @@ export function getStoreLocationTreeIds(locationId: string): string[] {
     if (!currentId || seen.has(currentId)) continue;
     seen.add(currentId);
     ids.push(currentId);
-    queue.push(...getStoreLocationChildren(currentId).map((location) => location._id));
+    queue.push(...(childrenByParentId.get(currentId) ?? []).map((location) => location._id));
   }
 
   return ids;
 }
 
-export function getStoreLocationPath(locationId: string): StoreLocationRecord[] {
-  const current = getStoreLocationById(locationId);
+export async function getStoreLocationPath(locationId: string): Promise<StoreLocationRecord[]> {
+  const { locationById } = await getStoreLocationIndex();
+  const current = locationById.get(locationId);
   if (!current) return [];
-  return [...getStoreLocationAncestors(locationId).reverse(), current];
+
+  const ancestors: StoreLocationRecord[] = [];
+  const seen = new Set<string>([locationId]);
+  let node = current;
+
+  while (node.parentId && !seen.has(node.parentId)) {
+    seen.add(node.parentId);
+    const parent = locationById.get(node.parentId);
+    if (!parent) break;
+    ancestors.push(parent);
+    node = parent;
+  }
+
+  return [...ancestors.reverse(), current];
 }
 
-export function formatStoreAddress(store: StoreRecord) {
-  const locationNames = getStoreLocationPath(store.locationId).map((location) => location.name);
+export async function formatStoreAddress(store: StoreRecord): Promise<string> {
+  const locationNames = (await getStoreLocationPath(store.locationId)).map((location) => location.name);
   return [store.addressLine, ...locationNames].filter(Boolean).join(", ");
 }
 
-export function getActiveStores(limit?: number): StoreRecord[] {
-  return typeof limit === "number" ? activeStores.slice(0, limit) : activeStores;
+export async function getActiveStores(limit?: number): Promise<StoreRecord[]> {
+  return dataSources.store.getActiveStores(limit);
 }
 
-export function getFeaturedStores(limit?: number): StoreRecord[] {
-  return typeof limit === "number" ? featuredStores.slice(0, limit) : featuredStores;
+export async function getFeaturedStores(limit?: number): Promise<StoreRecord[]> {
+  return dataSources.store.getFeaturedStores(limit);
 }
 
-export function getStoresByRegion(regionId: string, limit?: number): StoreRecord[] {
-  const stores = storesByRegionId.get(regionId) ?? [];
-  return typeof limit === "number" ? stores.slice(0, limit) : stores;
+export async function getStoresByRegion(regionId: string, limit?: number): Promise<StoreRecord[]> {
+  return dataSources.store.getActiveStoresByRegion(regionId, limit);
 }
 
-export function getStoresByLocation(locationId: string, limit?: number): StoreRecord[] {
-  const locationIds = new Set(getStoreLocationTreeIds(locationId));
-  const stores = activeStores.filter((store) => locationIds.has(store.locationId));
-  return typeof limit === "number" ? stores.slice(0, limit) : stores;
+export async function getStoresByLocation(locationId: string, limit?: number): Promise<StoreRecord[]> {
+  const locationIds = await getStoreLocationTreeIds(locationId);
+  return dataSources.store.getActiveStoresByLocationIds(locationIds, limit);
 }
