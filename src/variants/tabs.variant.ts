@@ -1,1 +1,1 @@
-export type TabsTemplate = "default" | "image" | "featured";
+export type TabsTemplate = "default" | "image" | "featured" | "flash-sale";
