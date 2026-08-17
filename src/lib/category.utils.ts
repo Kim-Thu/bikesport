@@ -1,45 +1,31 @@
-import categoryData from "@/data/wp-category.json";
+import { cache } from "react";
+import { dataSources } from "@/data-access/data-sources";
 import type { CategoryRecord, CategoryType } from "@/interfaces/category.interface";
 
-const categories = categoryData.categories as CategoryRecord[];
-const activeCategories = categories.filter((category) => category.status === "active");
-const activeCategoryById = new Map(activeCategories.map((category) => [category._id, category]));
-const activeCategoriesByType = new Map<CategoryType, CategoryRecord[]>();
-const childCategoryIdsByParentId = new Map<string, string[]>();
-const categoryTreeIdsCache = new Map<string, string[]>();
+const getActiveHierarchy = cache(() => dataSources.category.getActiveHierarchy());
 
-for (const category of activeCategories) {
-  const typeItems = activeCategoriesByType.get(category.type) ?? [];
-  typeItems.push(category);
-  activeCategoriesByType.set(category.type, typeItems);
+export async function getCategoryById(categoryId: string): Promise<CategoryRecord | null> {
+  return dataSources.category.getActiveById(categoryId);
+}
 
-  if (category.parentId) {
-    const childIds = childCategoryIdsByParentId.get(category.parentId) ?? [];
+export async function getCategoriesByType(type: CategoryType): Promise<CategoryRecord[]> {
+  return dataSources.category.getActiveByType(type);
+}
+
+export async function getFeaturedCategoriesByType(type: CategoryType, limit?: number) {
+  return dataSources.category.getFeaturedByType(type, limit);
+}
+
+export async function getCategoryTreeIds(categoryId: string): Promise<string[]> {
+  const categories = await getActiveHierarchy();
+  const childIdsByParentId = new Map<string, string[]>();
+
+  for (const category of categories) {
+    if (!category.parentId) continue;
+    const childIds = childIdsByParentId.get(category.parentId) ?? [];
     childIds.push(category._id);
-    childCategoryIdsByParentId.set(category.parentId, childIds);
+    childIdsByParentId.set(category.parentId, childIds);
   }
-}
-
-for (const typeItems of activeCategoriesByType.values()) {
-  typeItems.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-}
-
-export function getCategoryById(categoryId: string): CategoryRecord | null {
-  return activeCategoryById.get(categoryId) ?? null;
-}
-
-export function getCategoriesByType(type: CategoryType): CategoryRecord[] {
-  return activeCategoriesByType.get(type) ?? [];
-}
-
-export function getFeaturedCategoriesByType(type: CategoryType, limit?: number) {
-  const items = getCategoriesByType(type).filter((category) => category.featured === true);
-  return typeof limit === "number" ? items.slice(0, limit) : items;
-}
-
-export function getCategoryTreeIds(categoryId: string): string[] {
-  const cached = categoryTreeIdsCache.get(categoryId);
-  if (cached) return cached;
 
   const ids: string[] = [];
   const queue = [categoryId];
@@ -51,9 +37,8 @@ export function getCategoryTreeIds(categoryId: string): string[] {
 
     seen.add(currentId);
     ids.push(currentId);
-    queue.push(...(childCategoryIdsByParentId.get(currentId) ?? []));
+    queue.push(...(childIdsByParentId.get(currentId) ?? []));
   }
 
-  categoryTreeIdsCache.set(categoryId, ids);
   return ids;
 }
