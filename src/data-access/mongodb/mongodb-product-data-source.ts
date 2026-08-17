@@ -11,6 +11,7 @@ function buildPublishedFilter(filter: ProductDataFilter): Record<string, unknown
   const selectors: Record<string, unknown>[] = [];
 
   if (filter.excludeSkus?.length) clauses.push({ sku: { $nin: filter.excludeSkus } });
+  if (filter.ids?.length) selectors.push({ _id: { $in: filter.ids } });
   if (filter.skus?.length) selectors.push({ sku: { $in: filter.skus } });
   if (filter.categoryIds?.length) selectors.push({ categoryIds: { $in: filter.categoryIds } });
   if (filter.tagIds?.length) selectors.push({ tagIds: { $in: filter.tagIds } });
