@@ -1,6 +1,7 @@
 import { EmptyContent } from "@/components/empty-content/EmptyContent";
 import { TabsSlider } from "@/components/slider/TabsSlider";
 import type { TabsSliderBlockPayload } from "@/interfaces/page-block.interface";
+import { getMediaWithFallbackByIds } from "@/lib/media.utils";
 import { getTabsSliderGroups } from "@/lib/tabs-slider-source.utils";
 
 export async function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload }) {
@@ -13,14 +14,25 @@ export async function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload
     return <EmptyContent />;
   }
 
+  const mediaIds = [
+    block.props.titleMediaId,
+    block.props.backgroundMediaId,
+    ...groups.map((group) => group.mediaId),
+  ].filter((mediaId): mediaId is string => Boolean(mediaId));
+  const mediaById = await getMediaWithFallbackByIds(mediaIds);
+  const resolvedGroups = groups.map((group) => ({
+    ...group,
+    media: group.mediaId ? mediaById[group.mediaId] ?? null : null,
+  }));
+
   return (
     <TabsSlider
       title={block.props.title}
-      titleMediaId={block.props.titleMediaId}
+      titleMedia={block.props.titleMediaId ? mediaById[block.props.titleMediaId] ?? null : null}
       titleAlt={block.props.titleAlt}
       href={block.props.href}
       actionLabel={block.props.actionLabel}
-      groups={groups}
+      groups={resolvedGroups}
       template={block.props.template}
       headingTemplate={
         block.props.headingTemplate ?? (isFlashSaleSource ? "flash-sale" : isBrandSource ? "featured" : "default")
@@ -32,7 +44,7 @@ export async function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload
         block.props.layoutTemplate ?? (isFlashSaleSource || isBrandSource ? "featured-showcase" : "default")
       }
       actionTone={block.props.actionTone ?? (isFlashSaleSource ? "danger" : "primary")}
-      backgroundMediaId={block.props.backgroundMediaId}
+      backgroundMedia={block.props.backgroundMediaId ? mediaById[block.props.backgroundMediaId] ?? null : null}
       containerClassName={block.props.containerClassName}
       trackClassName={block.props.trackClassName}
       slideClassName={block.props.slideClassName}
