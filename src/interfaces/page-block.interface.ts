@@ -33,10 +33,15 @@ export interface CardBlockPayload extends PageBlockBase {
   component: "card";
   props: {
     template: CardTemplate;
-    source: {
-      type: "promotion";
-      promotionId: string;
-    };
+    source:
+      | {
+          type: "promotion";
+          promotionId: string;
+        }
+      | {
+          type: "campaign";
+          campaignId: string;
+        };
   };
 }
 
