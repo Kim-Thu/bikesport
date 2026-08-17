@@ -1,8 +1,18 @@
-export interface StoreCategoryRecord {
+export type StoreLocationType = "province" | "district" | "ward";
+
+export interface StoreRegionRecord {
   _id: string;
   name: string;
   slug: string;
-  type: "region" | "province";
+  status: "active" | "inactive";
+  order?: number;
+}
+
+export interface StoreLocationRecord {
+  _id: string;
+  name: string;
+  slug: string;
+  type: StoreLocationType;
   parentId: string | null;
   status: "active" | "inactive";
   order?: number;
@@ -14,8 +24,9 @@ export interface StoreRecord {
   slug: string;
   status: "active" | "inactive";
   featured?: boolean;
-  categoryIds: string[];
-  address: string;
+  regionId: string;
+  locationId: string;
+  addressLine: string;
   phone?: string;
   openingHours?: string;
   mediaId?: string | null;
@@ -29,6 +40,7 @@ export interface StoreRecord {
 }
 
 export interface StoreData {
-  categories: StoreCategoryRecord[];
+  regions: StoreRegionRecord[];
+  locations: StoreLocationRecord[];
   stores: StoreRecord[];
 }
