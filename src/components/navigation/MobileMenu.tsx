@@ -14,7 +14,7 @@ import type { MobileMenuClientProps } from "@/interfaces/navigation.interface";
 import { createMenuIndex, getMenuHref } from "@/lib/menu-presentation.utils";
 import { useUiStore } from "@/stores/ui.store";
 
-export function MobileMenu({ menu, site, hotline, socialItems }: MobileMenuClientProps) {
+export function MobileMenu({ menu, site, logoMedia, hotline, socialItems }: MobileMenuClientProps) {
   const isOpen = useUiStore((state) => state.isMobileMenuOpen);
   const openMobileMenu = useUiStore((state) => state.openMobileMenu);
   const closeMobileMenu = useUiStore((state) => state.closeMobileMenu);
@@ -87,7 +87,7 @@ export function MobileMenu({ menu, site, hotline, socialItems }: MobileMenuClien
         onClick={(event) => event.stopPropagation()}
       >
         <div className="mb-4 flex shrink-0 items-center justify-between bg-white py-1">
-          <Logo href="/" site={site} />
+          <Logo href="/" site={site} logoMedia={logoMedia} />
           <Button variant="icon" aria-label="Đóng menu" onClick={closeMenu}>
             <Icon name="close" className="h-6 w-6" strokeWidth={1.8} />
           </Button>
