@@ -14,7 +14,14 @@ import type { MobileMenuClientProps } from "@/interfaces/navigation.interface";
 import { createMenuIndex, getMenuHref } from "@/lib/menu-presentation.utils";
 import { useUiStore } from "@/stores/ui.store";
 
-export function MobileMenu({ menu, site, logoMedia, hotline, socialItems }: MobileMenuClientProps) {
+export function MobileMenu({
+  menu,
+  site,
+  logoMedia,
+  menuMediaById,
+  hotline,
+  socialItems,
+}: MobileMenuClientProps) {
   const isOpen = useUiStore((state) => state.isMobileMenuOpen);
   const openMobileMenu = useUiStore((state) => state.openMobileMenu);
   const closeMobileMenu = useUiStore((state) => state.closeMobileMenu);
@@ -113,12 +120,12 @@ export function MobileMenu({ menu, site, logoMedia, hotline, socialItems }: Mobi
                       aria-controls={`mobile-submenu-${item._id}`}
                       onClick={() => setExpandedItemId(isExpanded ? null : item._id)}
                     >
-                      <MenuItemContent item={item} />
+                      <MenuItemContent item={item} mediaById={menuMediaById} />
                       <Icon name="chevron-down" className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} strokeWidth={2} />
                     </button>
                   ) : (
                     <CLink href={getMenuHref(item)} className={itemClass} onClick={closeMenu}>
-                      <MenuItemContent item={item} />
+                      <MenuItemContent item={item} mediaById={menuMediaById} />
                     </CLink>
                   )}
 
@@ -126,6 +133,7 @@ export function MobileMenu({ menu, site, logoMedia, hotline, socialItems }: Mobi
                     <MenuChildren
                       id={`mobile-submenu-${item._id}`}
                       items={children}
+                      mediaById={menuMediaById}
                       listClassName="m-0 list-none bg-gray-50 p-0"
                       itemClassName="flex items-center gap-2 px-4 py-3 text-sm text-gray-700"
                       onItemClick={closeMenu}
