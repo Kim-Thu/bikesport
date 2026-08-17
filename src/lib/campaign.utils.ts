@@ -1,20 +1,18 @@
-import campaignData from "@/data/wp-campain.json";
+import { dataSources } from "@/data-access/data-sources";
 import type { CampaignRecord } from "@/interfaces/campaign.interface";
 import type { ProductRecord } from "@/interfaces/product.interface";
 import { getCategoryTreeIds } from "@/lib/category.utils";
 import { getActivePromotionById, getPromotionProducts } from "@/lib/promotion.utils";
 
-const campaigns = campaignData.campaigns as CampaignRecord[];
-const activeCampaignById = new Map(
-  campaigns.filter((campaign) => campaign.status === "active").map((campaign) => [campaign._id, campaign]),
-);
-
-export function getCampaigns() {
-  return campaigns;
+export async function getCampaigns(): Promise<CampaignRecord[]> {
+  return dataSources.campaign.getAll();
 }
 
-export function getActiveCampaignById(campaignId: string) {
-  return activeCampaignById.get(campaignId) ?? null;
+export async function getActiveCampaignById(
+  campaignId: string,
+): Promise<CampaignRecord | null> {
+  const campaign = await dataSources.campaign.getById(campaignId);
+  return campaign?.status === "active" ? campaign : null;
 }
 
 export async function getCampaignProducts(
@@ -22,7 +20,7 @@ export async function getCampaignProducts(
   categoryId?: string,
   limit?: number,
 ): Promise<ProductRecord[]> {
-  const campaign = getActiveCampaignById(campaignId);
+  const campaign = await getActiveCampaignById(campaignId);
   if (!campaign) return [];
 
   const categoryIds = categoryId ? new Set(await getCategoryTreeIds(categoryId)) : null;
