@@ -23,7 +23,7 @@ async function resolveComboGroups(
 async function resolveBrandGroups(
   source: Extract<TabsSliderSource, { type: "brand" }>,
 ): Promise<TabsSliderGroup[]> {
-  const brands = new Map(getActiveBrands().map((brand) => [brand._id, brand]));
+  const brands = new Map((await getActiveBrands()).map((brand) => [brand._id, brand]));
 
   return Promise.all(
     source.tabs.map(async (tab) => ({
