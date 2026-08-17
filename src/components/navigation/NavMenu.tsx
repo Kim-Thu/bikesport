@@ -3,12 +3,15 @@ import { CLink } from "@/components/link/CLink";
 import { MenuChildren } from "@/components/navigation/partials/MenuChildren";
 import { MenuItemContent } from "@/components/navigation/partials/MenuItemContent";
 import type { NavMenuProps } from "@/interfaces/navigation.interface";
+import { getMediaWithFallbackByIds } from "@/lib/media.utils";
 import { getMenuById } from "@/lib/menu-data.utils";
 import { createMenuIndex, getMenuHref } from "@/lib/menu-presentation.utils";
 
 export async function NavMenu({ menuId }: NavMenuProps) {
   const menu = await getMenuById(menuId);
   const items = menu?.items ?? [];
+  const mediaIds = items.flatMap((item) => (item.mediaId ? [item.mediaId] : []));
+  const mediaById = await getMediaWithFallbackByIds(mediaIds);
   const { rootItems, childrenByParentId } = createMenuIndex(items);
 
   if (!rootItems.length) return null;
@@ -28,13 +31,14 @@ export async function NavMenu({ menuId }: NavMenuProps) {
                 href={getMenuHref(item)}
                 className={`inline-flex items-center gap-1 whitespace-nowrap py-4 text-xs font-bold tracking-wide ${item.highlight ? "text-red-500" : "text-gray-900"}`}
               >
-                <MenuItemContent item={item} />
+                <MenuItemContent item={item} mediaById={mediaById} />
                 {hasDropdown ? <Icon name="chevron-down" className="h-3 w-3 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" strokeWidth={2} /> : null}
               </CLink>
 
               {children.length ? (
                 <MenuChildren
                   items={children}
+                  mediaById={mediaById}
                   listClassName="invisible absolute left-0 top-full z-50 min-w-56 list-none border border-gray-100 bg-white p-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
                   itemClassName="flex items-center gap-2 whitespace-nowrap px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 focus:bg-gray-50 focus:text-blue-600"
                 />
