@@ -157,20 +157,20 @@
           },
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4506", "name": "Why BikeSport", "order": 5, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-4 sm:pb-6" },
-            "rows": [
-              { "_id": "66bf4e8c9f2a4d7b8c1e4550", "columns": [{ "_id": "66bf4e8c9f2a4d7b8c1e4551", "props": { "className": "w-full" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4552", "status": "active", "component": "section-header", "props": { "title": "Vì sao chọn BikeSport?", "template": "default" } }] }] },
-              { "_id": "66bf4e8c9f2a4d7b8c1e4553", "props": { "className": "flex-col items-stretch gap-6 lg:flex-row" }, "columns": [
-                { "_id": "66bf4e8c9f2a4d7b8c1e4554", "props": { "className": "w-full lg:w-1/2" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4555", "status": "active", "component": "icon-list", "props": { "items": [
+            "rows": [{ "_id": "66bf4e8c9f2a4d7b8c1e4553", "props": { "className": "flex-col items-stretch gap-6 lg:flex-row" }, "columns": [
+              { "_id": "66bf4e8c9f2a4d7b8c1e4554", "props": { "className": "w-full space-y-6 rounded-xl bg-blue-50 p-6 lg:w-1/2" }, "blocks": [
+                { "_id": "66bf4e8c9f2a4d7b8c1e4552", "status": "active", "component": "section-header", "props": { "title": "Vì sao chọn BikeSport?", "template": "default" } },
+                { "_id": "66bf4e8c9f2a4d7b8c1e4555", "status": "active", "component": "icon-list", "props": { "layout": "grid", "items": [
                   { "icon": "package", "title": "Sản phẩm chính hãng", "description": "Cam kết 100% sản phẩm chính hãng, đầy đủ giấy tờ." },
                   { "icon": "payment", "title": "Giá tốt & minh bạch", "description": "Giá cạnh tranh, nhiều ưu đãi hấp dẫn và công khai." },
                   { "icon": "support", "title": "Tư vấn chuyên nghiệp", "description": "Đội ngũ am hiểu sản phẩm, tư vấn tận tâm, đúng nhu cầu." },
                   { "icon": "wrench", "title": "Dịch vụ tận tâm", "description": "Hỗ trợ nhanh chóng, bảo hành chu đáo, hậu mãi dài lâu." },
                   { "icon": "truck", "title": "Giao hàng toàn quốc", "description": "Giao hàng nhanh chóng, đóng gói cẩn thận." },
                   { "icon": "users", "title": "Cộng đồng lớn mạnh", "description": "Tham gia cộng đồng để chia sẻ và truyền cảm hứng mỗi ngày." }
-                ] } }] },
-                { "_id": "66bf4e8c9f2a4d7b8c1e4556", "props": { "grow": true, "className": "w-full lg:w-1/2" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4557", "status": "active", "component": "media", "props": { "mediaId": null, "alt": "Không gian cửa hàng BikeSport", "aspect": "landscape" } }] }
-              ] }
-            ]
+                ] } }
+              ] },
+              { "_id": "66bf4e8c9f2a4d7b8c1e4556", "props": { "grow": true, "className": "w-full lg:w-1/2" }, "blocks": [{ "_id": "66bf4e8c9f2a4d7b8c1e4557", "status": "active", "component": "media", "props": { "mediaId": null, "alt": "Không gian cửa hàng BikeSport", "aspect": "landscape" } }] }
+            ] }]
           },
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4507", "name": "About CTA", "order": 6, "status": "active", "component": "layout", "props": { "sectionClassName": "pb-6 sm:pb-8" },
@@ -181,7 +181,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
-      "updatedAt": "2026-08-17T12:26:00+07:00"
+      "updatedAt": "2026-08-17T12:32:00+07:00"
     },
     { "_id": "66bf4e8c9f2a4d7b8c1e4110", "title": "Liên hệ", "slug": "lien-he", "path": "/lien-he", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
     { "_id": "66bf4e8c9f2a4d7b8c1e4111", "title": "Hướng dẫn mua hàng", "slug": "huong-dan-mua-hang", "path": "/huong-dan-mua-hang", "status": "published", "payload": { "sections": [] }, "createdBy": "66bf4e8c9f2a4d7b8c1e1111", "updatedBy": "66bf4e8c9f2a4d7b8c1e1111", "createdAt": "2026-08-16T20:02:00+07:00", "updatedAt": "2026-08-16T20:02:00+07:00" },
