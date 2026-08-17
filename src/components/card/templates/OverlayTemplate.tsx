@@ -1,6 +1,6 @@
 import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
-import { MediaImage } from "@/components/media/MediaImage";
+import { MediaImageView } from "@/components/media/MediaImageView";
 import type { CardProps } from "@/interfaces/card.interface";
 import { cn } from "@/lib/classname.utils";
 import { formatShortDate } from "@/lib/date.utils";
@@ -8,7 +8,7 @@ import { formatShortDate } from "@/lib/date.utils";
 export function OverlayTemplate({
   title,
   href,
-  mediaId,
+  media,
   startAt,
   location,
   attendees,
@@ -20,13 +20,15 @@ export function OverlayTemplate({
   return (
     <article className={cn("group relative overflow-hidden rounded-lg border border-gray-100 bg-white", className)}>
       <CLink href={href} className="relative block aspect-video overflow-hidden">
-        <MediaImage
-          mediaId={mediaId}
-          alt={title}
-          width={480}
-          height={270}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
+        {media ? (
+          <MediaImageView
+            media={media}
+            alt={title}
+            width={480}
+            height={270}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : null}
 
         <div className="absolute inset-0 flex flex-col bg-gradient-to-t from-black/75 via-black/25 to-transparent p-4 text-white">
           <div className="flex flex-col items-start gap-4">
