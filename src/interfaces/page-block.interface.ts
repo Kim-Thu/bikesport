@@ -1,4 +1,6 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
+import type { IconListProps } from "@/interfaces/icon-list.interface";
+import type { MediaCtaProps } from "@/interfaces/media-cta.interface";
 import type { ProductSource } from "@/interfaces/product-source.interface";
 import type { SectionHeaderProps, SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
@@ -116,22 +118,12 @@ export interface CardGridBlockPayload extends PageBlockBase {
 
 export interface IconListBlockPayload extends PageBlockBase {
   component: "icon-list";
-  props: {
-    layout?: "list" | "grid";
-    items: Array<{ icon?: string; mediaId?: string; title: string; description?: string }>;
-  };
+  props: IconListProps;
 }
 
 export interface MediaCtaBlockPayload extends PageBlockBase {
   component: "media-cta";
-  props: {
-    eyebrow?: string;
-    title: string;
-    description?: string;
-    href: string;
-    actionLabel?: string;
-    mediaId?: string | null;
-  };
+  props: MediaCtaProps;
 }
 
 export interface MediaBlockPayload extends PageBlockBase {
