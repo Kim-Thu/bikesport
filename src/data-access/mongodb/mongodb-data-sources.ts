@@ -8,6 +8,7 @@ import { createMongoPageDataSource } from "@/data-access/mongodb/mongodb-page-da
 import { createMongoPostDataSource } from "@/data-access/mongodb/mongodb-post-data-source";
 import { createMongoProductDataSource } from "@/data-access/mongodb/mongodb-product-data-source";
 import { createMongoPromotionDataSource } from "@/data-access/mongodb/mongodb-promotion-data-source";
+import { createMongoStoreDataSource } from "@/data-access/mongodb/mongodb-store-data-source";
 import { createMongoUserDataSource } from "@/data-access/mongodb/mongodb-user-data-source";
 import type { MongoDatabaseProvider } from "@/data-access/mongodb/mongodb-driver.interface";
 
@@ -24,6 +25,7 @@ export function createMongoDataSources(
     post: createMongoPostDataSource(getDatabase),
     event: createMongoEventDataSource(getDatabase),
     user: createMongoUserDataSource(getDatabase),
+    store: createMongoStoreDataSource(getDatabase),
   };
 }
 
