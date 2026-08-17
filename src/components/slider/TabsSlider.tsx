@@ -5,6 +5,7 @@ import { ProductSlider, type ProductSliderItem } from "@/components/product/Prod
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { Tabs, type TabItem } from "@/components/tabs/Tabs";
 import type { CardTemplate } from "@/interfaces/card.interface";
+import type { TabsTemplate } from "@/variants/tabs.variant";
 
 export interface TabsSliderGroup extends TabItem {
   items: ProductSliderItem[];
@@ -16,6 +17,7 @@ interface TabsSliderProps {
   actionLabel?: string;
   groups: TabsSliderGroup[];
   template: CardTemplate;
+  tabTemplate?: TabsTemplate;
   trackClassName?: string;
   slideClassName?: string;
 }
@@ -26,6 +28,7 @@ export function TabsSlider({
   actionLabel,
   groups,
   template,
+  tabTemplate = "default",
   trackClassName,
   slideClassName,
 }: TabsSliderProps) {
@@ -41,9 +44,10 @@ export function TabsSlider({
     <div className="min-w-0">
       <SectionHeader title={title} href={href} actionLabel={actionLabel} className="mb-3">
         <Tabs
-          items={groups.map(({ label, value }) => ({ label, value }))}
+          items={groups.map(({ label, value, mediaId }) => ({ label, value, mediaId }))}
           value={activeGroup.value}
           onChange={setActiveValue}
+          template={tabTemplate}
         />
       </SectionHeader>
 
