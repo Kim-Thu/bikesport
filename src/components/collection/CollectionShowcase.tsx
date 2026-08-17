@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ActionLink } from "@/components/link/ActionLink";
-import { MediaImage } from "@/components/media/MediaImage";
+import { MediaImageView } from "@/components/media/MediaImageView";
+import type { MediaItem } from "@/interfaces/media.interface";
 import { cn } from "@/lib/classname.utils";
 import type { ActionLinkTone } from "@/variants/action-link.variant";
 
@@ -11,7 +12,7 @@ interface CollectionShowcaseProps {
   href?: string;
   actionLabel?: string;
   actionTone?: ActionLinkTone;
-  backgroundMediaId?: string | null;
+  backgroundMedia?: MediaItem | null;
   containerClassName?: string;
   headerClassName?: string;
 }
@@ -23,16 +24,16 @@ export function CollectionShowcase({
   href,
   actionLabel = "Xem tất cả",
   actionTone = "primary",
-  backgroundMediaId,
+  backgroundMedia,
   containerClassName,
   headerClassName = "mb-5",
 }: CollectionShowcaseProps) {
   return (
     <div className={cn("relative overflow-hidden", containerClassName)}>
-      {backgroundMediaId !== undefined ? (
+      {backgroundMedia ? (
         <div className="pointer-events-none absolute inset-0 opacity-10">
-          <MediaImage
-            mediaId={backgroundMediaId}
+          <MediaImageView
+            media={backgroundMedia}
             alt=""
             width={1440}
             height={480}
