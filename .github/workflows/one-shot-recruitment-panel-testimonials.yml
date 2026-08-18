@@ -1,0 +1,131 @@
+name: One-shot Recruitment Panel Testimonials
+
+on:
+  push:
+    branches:
+      - security/post-merge-hardening
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: security/post-merge-hardening
+
+      - name: Update recruitment panel and testimonial data
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const pagesPath = 'src/data/wp-pages.json';
+          const postsPath = 'src/data/wp-posts.json';
+          const pagesData = JSON.parse(fs.readFileSync(pagesPath, 'utf8'));
+          const postsData = JSON.parse(fs.readFileSync(postsPath, 'utf8'));
+
+          const page = pagesData.pages.find((item) => item.slug === 'tuyen-dung');
+          if (!page) throw new Error('Recruitment page not found.');
+
+          const whyJoin = page.payload.sections.find((section) => section._id === '66bf4e8c9f2a4d7b8c1e4450');
+          if (!whyJoin) throw new Error('Why join section not found.');
+          whyJoin.props = {
+            ...whyJoin.props,
+            surface: 'panel',
+          };
+          const row = whyJoin.rows?.[0];
+          if (!row) throw new Error('Why join row not found.');
+          row.props = { ...(row.props ?? {}), layout: 'split-equal' };
+          if (!row.columns?.[0] || !row.columns?.[1]) throw new Error('Why join columns not found.');
+          row.columns[0].props = { ...(row.columns[0].props ?? {}), layout: 'half-panel-soft' };
+          row.columns[1].props = { ...(row.columns[1].props ?? {}), layout: 'half-media' };
+
+          const extraTestimonials = [
+            {
+              _id: '66bf4e8c9f2a4d7b8c1e5104',
+              type: 'testimonial',
+              title: 'Lê Ngọc Mai',
+              slug: 'le-ngoc-mai-bikesporter',
+              status: 'published',
+              excerpt: 'BikeSport cho tôi cơ hội học hỏi từ đồng đội và chủ động thử nghiệm những cách làm mới để phục vụ khách hàng tốt hơn.',
+              categoryIds: [],
+              tagIds: [],
+              authorId: '66bf4e8c9f2a4d7b8c1e1111',
+              mediaId: null,
+              testimonial: { role: 'Chuyên viên Chăm sóc khách hàng' },
+              publishedAt: '2026-08-18T08:00:00+07:00',
+              createdBy: '66bf4e8c9f2a4d7b8c1e1111',
+              updatedBy: '66bf4e8c9f2a4d7b8c1e1111',
+              createdAt: '2026-08-18T08:00:00+07:00',
+              updatedAt: '2026-08-18T08:00:00+07:00'
+            },
+            {
+              _id: '66bf4e8c9f2a4d7b8c1e5105',
+              type: 'testimonial',
+              title: 'Võ Quốc Huy',
+              slug: 'vo-quoc-huy-bikesporter',
+              status: 'published',
+              excerpt: 'Điều tôi thích nhất là tinh thần phối hợp giữa các bộ phận, mọi người luôn cùng nhau tìm cách giải quyết vấn đề nhanh và rõ ràng.',
+              categoryIds: [],
+              tagIds: [],
+              authorId: '66bf4e8c9f2a4d7b8c1e1111',
+              mediaId: null,
+              testimonial: { role: 'Nhân viên Vận hành' },
+              publishedAt: '2026-08-18T07:50:00+07:00',
+              createdBy: '66bf4e8c9f2a4d7b8c1e1111',
+              updatedBy: '66bf4e8c9f2a4d7b8c1e1111',
+              createdAt: '2026-08-18T07:50:00+07:00',
+              updatedAt: '2026-08-18T07:50:00+07:00'
+            },
+            {
+              _id: '66bf4e8c9f2a4d7b8c1e5106',
+              type: 'testimonial',
+              title: 'Đặng Khánh Vy',
+              slug: 'dang-khanh-vy-bikesporter',
+              status: 'published',
+              excerpt: 'Tôi có không gian để phát triển chuyên môn, nhận phản hồi thẳng thắn và nhìn thấy đóng góp của mình tạo ra kết quả thực tế.',
+              categoryIds: [],
+              tagIds: [],
+              authorId: '66bf4e8c9f2a4d7b8c1e1111',
+              mediaId: null,
+              testimonial: { role: 'Thiết kế nội dung' },
+              publishedAt: '2026-08-18T07:40:00+07:00',
+              createdBy: '66bf4e8c9f2a4d7b8c1e1111',
+              updatedBy: '66bf4e8c9f2a4d7b8c1e1111',
+              createdAt: '2026-08-18T07:40:00+07:00',
+              updatedAt: '2026-08-18T07:40:00+07:00'
+            }
+          ];
+
+          const ids = new Set(extraTestimonials.map((item) => item._id));
+          postsData.posts = postsData.posts.filter((post) => !ids.has(post._id));
+          postsData.posts.push(...extraTestimonials);
+
+          const stories = page.payload.sections
+            .flatMap((section) => section.rows ?? [])
+            .flatMap((row) => row.columns ?? [])
+            .flatMap((column) => column.blocks ?? [])
+            .find((block) => block._id === '66bf4e8c9f2a4d7b8c1e4473');
+          if (!stories) throw new Error('Stories block not found.');
+          stories.props.source.limit = 6;
+
+          page.updatedAt = '2026-08-18T11:24:00+07:00';
+
+          fs.writeFileSync(pagesPath, `${JSON.stringify(pagesData, null, 2)}\n`);
+          fs.writeFileSync(postsPath, `${JSON.stringify(postsData, null, 2)}\n`);
+          NODE
+
+          rm .github/workflows/one-shot-recruitment-panel-testimonials.yml
+
+      - name: Commit recruitment layout and data
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/wp-pages.json src/data/wp-posts.json .github/workflows/one-shot-recruitment-panel-testimonials.yml
+          git commit -m 'fix(recruitment): apply panel layout and expand slider data'
+          git push origin HEAD:security/post-merge-hardening
