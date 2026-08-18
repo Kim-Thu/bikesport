@@ -2,7 +2,9 @@ import { cache } from "react";
 import { dataSources } from "@/data-access/data-sources";
 import type { ProductDataFilter } from "@/data-access/contracts/product-data-source.interface";
 import type {
+  FixedDiscountBenefit,
   PercentageDiscountBenefit,
+  PromotionBenefit,
   PromotionRecord,
 } from "@/interfaces/promotion.interface";
 import type { ProductRecord } from "@/interfaces/product.interface";
@@ -59,6 +61,14 @@ function getPercentageBenefit(promotion: PromotionRecord): PercentageDiscountBen
   return (
     promotion.benefits.find(
       (benefit): benefit is PercentageDiscountBenefit => benefit.type === "percentage_discount",
+    ) ?? null
+  );
+}
+
+function getFixedDiscountBenefit(promotion: PromotionRecord): FixedDiscountBenefit | null {
+  return (
+    promotion.benefits.find(
+      (benefit): benefit is FixedDiscountBenefit => benefit.type === "fixed_discount",
     ) ?? null
   );
 }
@@ -136,6 +146,92 @@ function sortPromotionProducts(items: ProductRecord[], promotion: PromotionRecor
   });
 }
 
+function formatMoney(amount: number): string {
+  return new Intl.NumberFormat("vi-VN").format(amount);
+}
+
+function getBenefitDescription(benefit: PromotionBenefit): string | undefined {
+  switch (benefit.type) {
+    case "percentage_discount":
+      return `Giảm ${benefit.percentage}%`;
+    case "fixed_discount":
+      return `Giảm ${formatMoney(benefit.amount)}đ`;
+    case "voucher":
+      return `Voucher ${benefit.code}`;
+    case "buy_x_get_y":
+      return `Mua ${benefit.buyQuantity} tặng ${benefit.getQuantity}`;
+    case "gift":
+      return `Tặng ${benefit.quantity} sản phẩm`;
+    case "free_shipping":
+      return "Miễn phí vận chuyển";
+  }
+}
+
+export function getPromotionTitle(promotion: PromotionRecord): string {
+  return promotion.display?.title?.trim() || promotion.name;
+}
+
+export function getPromotionDescription(promotion: PromotionRecord): string | undefined {
+  const descriptions = promotion.benefits
+    .map(getBenefitDescription)
+    .filter((value): value is string => Boolean(value));
+
+  return descriptions.length ? descriptions.join(" · ") : undefined;
+}
+
+export function findActivePromotionForProduct(
+  product: ProductRecord,
+  promotions: PromotionRecord[],
+  now: Date = new Date(),
+): PromotionRecord | null {
+  return (
+    promotions
+      .filter((promotion) => isPromotionActive(promotion, now) && matchesTarget(product, promotion))
+      .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0))[0] ?? null
+  );
+}
+
+export function getPromotionProductPricing(
+  product: ProductRecord,
+  promotion: PromotionRecord,
+): { salePrice?: number; discountPercentage: number | null } {
+  const intrinsicSalePrice =
+    product.salePrice && product.salePrice < product.price ? product.salePrice : undefined;
+
+  if (!matchesTarget(product, promotion)) {
+    return {
+      salePrice: intrinsicSalePrice,
+      discountPercentage: getIntrinsicDiscountPercentage(product),
+    };
+  }
+
+  const percentageBenefit = getPercentageBenefit(promotion);
+  const fixedBenefit = getFixedDiscountBenefit(promotion);
+  let promotionSalePrice: number | undefined;
+
+  if (percentageBenefit) {
+    const rawDiscount = (product.price * percentageBenefit.percentage) / 100;
+    const discount = percentageBenefit.maxDiscountAmount
+      ? Math.min(rawDiscount, percentageBenefit.maxDiscountAmount)
+      : rawDiscount;
+    promotionSalePrice = Math.max(0, product.price - discount);
+  } else if (fixedBenefit) {
+    promotionSalePrice = Math.max(0, product.price - fixedBenefit.amount);
+  }
+
+  const salePrice = [intrinsicSalePrice, promotionSalePrice]
+    .filter((value): value is number => typeof value === "number")
+    .reduce<number | undefined>((lowest, value) => (lowest === undefined ? value : Math.min(lowest, value)), undefined);
+
+  return {
+    salePrice,
+    discountPercentage:
+      salePrice !== undefined && salePrice < product.price
+        ? Math.round(((product.price - salePrice) / product.price) * 100)
+        : null,
+  };
+}
+
 export async function getPromotionProducts(
   promotion: PromotionRecord,
   limit?: number,
@@ -172,6 +268,5 @@ export async function getPromotionDiscountPercentageBySku(
 
   if (!promotion || !product || !matchesTarget(product, promotion)) return null;
 
-  const percentageBenefit = getPercentageBenefit(promotion);
-  return percentageBenefit?.value ?? getIntrinsicDiscountPercentage(product);
+  return getPromotionProductPricing(product, promotion).discountPercentage;
 }
