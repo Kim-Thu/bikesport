@@ -9,6 +9,11 @@ import { cn } from "@/lib/classname.utils";
 import { getMediaWithFallbackByIds } from "@/lib/media.utils";
 import { getStackColumnDividerClass } from "@/lib/stack-section.utils";
 import {
+  PAGE_BOX_ICON_DESCRIPTION_SIZE_CLASS,
+  PAGE_BOX_ICON_TITLE_SIZE_CLASS,
+  PAGE_BOX_ICON_TONE_CLASS,
+} from "@/variants/box-icon.variant";
+import {
   PAGE_ROW_LAYOUT_CLASS,
   PAGE_SECTION_SPACING_CLASS,
 } from "@/variants/page-layout.variant";
@@ -44,7 +49,20 @@ export async function StackSection({ section }: { section: StackSectionPayload }
                   iconMediaUrl={column.props.mediaId ? mediaById[column.props.mediaId]?.src : undefined}
                   title={column.props.title}
                   description={column.props.description}
-                  iconClassName={column.props.iconClassName}
+                  iconClassName={cn(
+                    column.props.iconTone ? PAGE_BOX_ICON_TONE_CLASS[column.props.iconTone] : undefined,
+                    column.props.iconClassName,
+                  )}
+                  titleClassName={cn(
+                    column.props.titleSize ? PAGE_BOX_ICON_TITLE_SIZE_CLASS[column.props.titleSize] : undefined,
+                    column.props.titleClassName,
+                  )}
+                  descriptionClassName={cn(
+                    column.props.descriptionSize
+                      ? PAGE_BOX_ICON_DESCRIPTION_SIZE_CLASS[column.props.descriptionSize]
+                      : undefined,
+                    column.props.descriptionClassName,
+                  )}
                 />
               </Column>
             ))}
