@@ -1274,9 +1274,19 @@
       "payload": {
         "sections": [
           {
+            "_id": "66bf4e8c9f2a4d7b8c1e4400",
+            "name": "Recruitment hero",
+            "order": 1,
+            "status": "active",
+            "component": "banner",
+            "props": {
+              "bannerId": "66bf4e8c9f2a4d7b8c1e3a20"
+            }
+          },
+          {
             "_id": "66bf4e8c9f2a4d7b8c1e4411",
             "name": "Core values",
-            "order": 1,
+            "order": 2,
             "status": "active",
             "component": "stack",
             "props": {
@@ -1338,7 +1348,7 @@
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4421",
             "name": "Company metrics",
-            "order": 2,
+            "order": 3,
             "status": "active",
             "component": "stack",
             "props": {
@@ -1404,7 +1414,7 @@
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4430",
             "name": "Open positions",
-            "order": 3,
+            "order": 4,
             "status": "active",
             "component": "layout",
             "props": {
@@ -1444,7 +1454,7 @@
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4440",
             "name": "Career closing",
-            "order": 4,
+            "order": 5,
             "status": "active",
             "component": "layout",
             "props": {
