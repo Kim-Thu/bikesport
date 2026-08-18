@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { CardGrid } from "@/components/grid/CardGrid";
 import { Container } from "@/components/layout/Container";
 import { PageSections } from "@/components/page/PageSections";
-import { PaginationLinks } from "@/components/pagination/PaginationLinks";
+import { Pagination } from "@/components/pagination/Pagination";
 import { LiveSearchForm } from "@/components/search/LiveSearchForm";
 import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
@@ -88,7 +88,8 @@ export default async function RecruitmentPage({ searchParams }: RecruitmentPageP
               gridClassName="grid grid-cols-1 gap-4 lg:grid-cols-3"
             />
 
-            <PaginationLinks
+            <Pagination
+              variant="numbered"
               page={page}
               totalPages={totalPages}
               pathname="/tuyen-dung"
