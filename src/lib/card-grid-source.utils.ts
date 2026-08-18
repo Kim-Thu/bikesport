@@ -1,4 +1,4 @@
-import type { CardProps } from "@/interfaces/card.interface";
+import type { CardGridItem } from "@/interfaces/card-grid.interface";
 import type { CardGridBlockPayload } from "@/interfaces/page-block.interface";
 import { getCategoryById, getFeaturedCategoriesByType } from "@/lib/category.utils";
 import {
@@ -16,9 +16,10 @@ type CardGridSource = CardGridBlockPayload["props"]["source"];
 
 async function resolveCategoryCards(
   source: Extract<CardGridSource, { type: "category" }>,
-): Promise<CardProps[]> {
+): Promise<CardGridItem[]> {
   const categories = await getFeaturedCategoriesByType(source.categoryType, source.limit);
   return categories.map((category) => ({
+    _key: category._id,
     title: category.name,
     href: `/danh-muc/${category.slug}`,
     mediaId: category.mediaId,
@@ -27,13 +28,14 @@ async function resolveCategoryCards(
 
 async function resolveComboCards(
   source: Extract<CardGridSource, { type: "combo" }>,
-): Promise<CardProps[]> {
+): Promise<CardGridItem[]> {
   const combos = await (source.featured === false
     ? getActiveCombos(source.limit)
     : getFeaturedCombos(source.limit));
 
   return Promise.all(
     combos.map(async (combo) => ({
+      _key: combo._id,
       title: combo.name,
       href: `/combo/${combo.slug}`,
       mediaId: await getComboPrimaryMediaId(combo),
@@ -60,7 +62,7 @@ function formatRecruitmentDeadline(deadline?: string): string | undefined {
 
 async function resolvePostCards(
   source: Extract<CardGridSource, { type: "post" }>,
-): Promise<CardProps[]> {
+): Promise<CardGridItem[]> {
   const posts = source.postType
     ? await getLatestPostsByType(source.postType, source.limit)
     : await getLatestPosts(source.limit);
@@ -72,6 +74,7 @@ async function resolvePostCards(
         const deadline = formatRecruitmentDeadline(recruitment.deadline);
 
         return {
+          _key: post._id,
           title: post.title,
           eyebrow: recruitment.department,
           icon: "users",
@@ -96,6 +99,7 @@ async function resolvePostCards(
       ]);
 
       return {
+        _key: post._id,
         title: post.title,
         href: `/blog/${post.slug}`,
         mediaId: post.mediaId,
@@ -112,11 +116,12 @@ async function resolvePostCards(
 
 async function resolveStoreCards(
   source: Extract<CardGridSource, { type: "store" }>,
-): Promise<CardProps[]> {
+): Promise<CardGridItem[]> {
   const stores = await getFeaturedStores(source.limit);
 
   return Promise.all(
     stores.map(async (store) => ({
+      _key: store._id,
       title: store.name,
       href: `/cua-hang/${store.slug}`,
       mediaId: store.mediaId,
@@ -132,9 +137,10 @@ async function resolveStoreCards(
 
 async function resolveEventCards(
   source: Extract<CardGridSource, { type: "event" }>,
-): Promise<CardProps[]> {
+): Promise<CardGridItem[]> {
   const events = await getFeaturedEvents(source.limit);
   return events.map((event) => ({
+    _key: event._id,
     title: event.title,
     href: `/su-kien/${event.slug}`,
     mediaId: event.mediaId,
@@ -144,7 +150,7 @@ async function resolveEventCards(
   }));
 }
 
-export async function getCardGridItems(source: CardGridSource): Promise<CardProps[]> {
+export async function getCardGridItems(source: CardGridSource): Promise<CardGridItem[]> {
   switch (source.type) {
     case "category":
       return resolveCategoryCards(source);
