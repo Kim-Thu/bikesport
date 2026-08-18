@@ -30,5 +30,12 @@ export function createMongoBrandDataSource(getDatabase: MongoDatabaseProvider): 
         status: "active",
       });
     },
+    async getActiveBySlug(slug) {
+      const db = await getDatabase();
+      return db.collection<BrandRecord>(MONGODB_COLLECTIONS.brands).findOne({
+        slug,
+        status: "active",
+      });
+    },
   };
 }
