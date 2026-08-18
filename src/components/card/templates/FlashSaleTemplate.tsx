@@ -53,15 +53,13 @@ export function FlashSaleTemplate({
         ) : null}
 
         <div className="aspect-product w-full overflow-hidden rounded-md bg-red-50">
-          {media ? (
-            <MediaImageView
-              media={media}
-              alt={title}
-              width={320}
-              height={240}
-              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          ) : null}
+          <MediaImageView
+            media={media ?? null}
+            alt={title}
+            width={320}
+            height={240}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
         </div>
       </CLink>
 
