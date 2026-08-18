@@ -1284,9 +1284,48 @@
             }
           },
           {
+            "_id": "66bf4e8c9f2a4d7b8c1e4490",
+            "name": "Recruitment introduction",
+            "order": 2,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "comfortable"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4491",
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4492",
+                    "props": {
+                      "layout": "full"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4493",
+                        "status": "active",
+                        "component": "content",
+                        "props": {
+                          "eyebrow": "Gia nhập BikeSport",
+                          "title": "Cùng nhau tạo nên những hành trình tốt hơn",
+                          "align": "center",
+                          "paragraphs": [
+                            "BikeSport không chỉ xây dựng nơi làm việc cho những người yêu xe đạp. Chúng tôi tìm những người muốn học hỏi, chủ động và cùng tạo ra trải nghiệm tốt hơn cho khách hàng.",
+                            "Mỗi vị trí đều là một phần của hành trình đưa lối sống năng động đến gần hơn với cộng đồng."
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "_id": "66bf4e8c9f2a4d7b8c1e4411",
             "name": "Core values",
-            "order": 2,
+            "order": 3,
             "status": "active",
             "component": "stack",
             "props": {
@@ -1348,7 +1387,7 @@
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4421",
             "name": "Company metrics",
-            "order": 3,
+            "order": 4,
             "status": "active",
             "component": "stack",
             "props": {
@@ -1414,7 +1453,7 @@
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4450",
             "name": "Why join BikeSport",
-            "order": 4,
+            "order": 5,
             "status": "active",
             "component": "layout",
             "props": {
@@ -1509,7 +1548,7 @@
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4460",
             "name": "Recruitment process",
-            "order": 5,
+            "order": 6,
             "status": "active",
             "component": "layout",
             "props": {
@@ -1578,7 +1617,7 @@
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4430",
             "name": "Open positions",
-            "order": 6,
+            "order": 7,
             "status": "active",
             "component": "layout",
             "props": {
@@ -1618,7 +1657,7 @@
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4470",
             "name": "Bikesporter stories",
-            "order": 7,
+            "order": 8,
             "status": "active",
             "component": "layout",
             "props": {
@@ -1662,7 +1701,7 @@
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4440",
             "name": "Recruitment CTA",
-            "order": 8,
+            "order": 9,
             "status": "active",
             "component": "layout",
             "props": {
@@ -1702,7 +1741,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-18T10:00:00+07:00",
-      "updatedAt": "2026-08-18T11:32:00+07:00"
+      "updatedAt": "2026-08-18T12:00:00+07:00"
     }
   ]
 }
