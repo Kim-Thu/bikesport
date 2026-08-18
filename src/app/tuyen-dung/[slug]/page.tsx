@@ -181,18 +181,19 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
       {relatedCards.length > 0 ? (
         <Section>
           <Container>
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4">
               <SectionHeader title="Các vị trí khác bạn có thể quan tâm" />
               <CardGrid
                 items={relatedCards}
                 template="listing"
                 gridClassName="grid grid-cols-1 gap-4 lg:grid-cols-3"
               />
-              <div>
-                <CLink href="/tuyen-dung#vi-tri-dang-tuyen" className="text-sm font-semibold text-blue-700">
-                  Xem tất cả vị trí tuyển dụng →
-                </CLink>
-              </div>
+              <CLink
+                href="/tuyen-dung#vi-tri-dang-tuyen"
+                className="mt-2 text-sm font-semibold text-blue-700"
+              >
+                Xem tất cả vị trí tuyển dụng →
+              </CLink>
             </div>
           </Container>
         </Section>
