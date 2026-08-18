@@ -1,40 +1,70 @@
 import { cache } from "react";
 import { dataSources } from "@/data-access/data-sources";
 import type { ProductRecord } from "@/interfaces/product.interface";
+import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 import { getCategoryTreeIds } from "@/lib/category.utils";
 import { getProductSalesStatsBySku } from "@/lib/order.utils";
 
 export async function getPublishedProducts(limit?: number): Promise<ProductRecord[]> {
-  return dataSources.product.getPublished(limit);
+  return cachedDomain(
+    "product",
+    ["published", String(limit ?? "all")],
+    () => dataSources.product.getPublished(limit),
+  );
 }
 
 export async function getPublishedProductsByIds(ids: string[], limit?: number): Promise<ProductRecord[]> {
-  return dataSources.product.getPublishedByFilter({ ids }, limit);
+  const uniqueIds = [...new Set(ids)].sort();
+  if (!uniqueIds.length) return [];
+
+  return cachedDomain(
+    "product",
+    ["by-ids", ...uniqueIds, "limit", String(limit ?? "all")],
+    () => dataSources.product.getPublishedByFilter({ ids: uniqueIds }, limit),
+    uniqueIds.map((id) => CACHE_TAG.entity("product", id)),
+  );
 }
 
 export async function getPublishedProductsByBrandId(
   brandId: string,
   limit?: number,
 ): Promise<ProductRecord[]> {
-  return dataSources.product.getPublishedByBrandId(brandId, limit);
+  return cachedDomain(
+    "product",
+    ["brand", brandId, "limit", String(limit ?? "all")],
+    () => dataSources.product.getPublishedByBrandId(brandId, limit),
+    [CACHE_TAG.entity("brand", brandId)],
+  );
 }
 
 export async function getPublishedProductsByCategoryIds(
   categoryIds: string[],
   limit?: number,
 ): Promise<ProductRecord[]> {
-  return dataSources.product.getPublishedByCategoryIds(categoryIds, limit);
+  const uniqueCategoryIds = [...new Set(categoryIds)].sort();
+  if (!uniqueCategoryIds.length) return [];
+
+  return cachedDomain(
+    "product",
+    ["categories", ...uniqueCategoryIds, "limit", String(limit ?? "all")],
+    () => dataSources.product.getPublishedByCategoryIds(uniqueCategoryIds, limit),
+    uniqueCategoryIds.map((categoryId) => CACHE_TAG.entity("category", categoryId)),
+  );
 }
 
 export async function getFeaturedProducts(limit?: number): Promise<ProductRecord[]> {
-  return dataSources.product.getFeatured(limit);
+  return cachedDomain(
+    "product",
+    ["featured", String(limit ?? "all")],
+    () => dataSources.product.getFeatured(limit),
+  );
 }
 
 const getBestSellerProductsCached = cache(async (categoryId?: string | null): Promise<ProductRecord[]> => {
   const categoryIds = categoryId ? await getCategoryTreeIds(categoryId) : null;
   const products = categoryIds
-    ? await dataSources.product.getPublishedByCategoryIds(categoryIds)
-    : await dataSources.product.getPublished();
+    ? await getPublishedProductsByCategoryIds(categoryIds)
+    : await getPublishedProducts();
   const salesBySku = await getProductSalesStatsBySku(products.map((product) => product.sku));
 
   return products
