@@ -4,6 +4,11 @@ import type { PageBlockPayload } from "@/interfaces/page-block.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { SectionTemplate } from "@/interfaces/section.interface";
 import type {
+  PageBoxIconDescriptionSize,
+  PageBoxIconTitleSize,
+  PageBoxIconTone,
+} from "@/variants/box-icon.variant";
+import type {
   PageColumnLayoutPreset,
   PageGridLayoutPreset,
   PageRowLayoutPreset,
@@ -19,7 +24,15 @@ export interface PageBoxIconProps {
   mediaId?: string;
   title: string;
   description?: string;
+  iconTone?: PageBoxIconTone;
+  titleSize?: PageBoxIconTitleSize;
+  descriptionSize?: PageBoxIconDescriptionSize;
+  /** @deprecated Use iconTone. */
   iconClassName?: string;
+  /** @deprecated Use titleSize. */
+  titleClassName?: string;
+  /** @deprecated Use descriptionSize. */
+  descriptionClassName?: string;
 }
 
 export interface PageColumnPayload {
