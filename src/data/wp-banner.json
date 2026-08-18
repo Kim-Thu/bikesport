@@ -87,6 +87,29 @@
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-17T12:12:00+07:00",
       "updatedAt": "2026-08-17T12:51:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3a20",
+      "categoryId": "66bf4e8c9f2a4d7b8c1e3c01",
+      "order": 1,
+      "name": "Recruitment Hero",
+      "status": "active",
+      "variant": "content-left",
+      "breadcrumbs": [
+        { "label": "Trang chủ", "href": "/" },
+        { "label": "Tuyển dụng" }
+      ],
+      "title": "Cùng BikeSport",
+      "titleHighlight": "Kiến tạo hành trình",
+      "description": "BikeSport không chỉ là nơi cung cấp những sản phẩm xe đạp chất lượng, mà còn là nơi hội tụ những con người đam mê, năng động và luôn muốn tạo ra giá trị tốt nhất cho cộng đồng.",
+      "backgroundMediaId": "66bf4e8c9f2a4d7b8c1e3726",
+      "actions": [
+        { "label": "Xem các vị trí đang tuyển dụng", "href": "#vi-tri-dang-tuyen", "variant": "primary", "icon": "arrow-right", "iconPosition": "right" }
+      ],
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T10:45:00+07:00",
+      "updatedAt": "2026-08-18T10:45:00+07:00"
     }
   ]
 }
