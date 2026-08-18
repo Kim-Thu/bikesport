@@ -18,6 +18,11 @@ export interface BannerAction {
   iconPosition?: BannerActionIconPosition;
 }
 
+export interface BannerBreadcrumb {
+  label: string;
+  href?: string;
+}
+
 export interface BannerPromotionCard {
   label: string;
   description?: string;
@@ -38,6 +43,7 @@ export interface BannerRecord {
   status: BannerStatus;
   variant: BannerVariant;
   overlay?: BannerOverlay;
+  breadcrumbs?: BannerBreadcrumb[];
   eyebrow?: string;
   title?: string;
   titleHighlight?: string;
