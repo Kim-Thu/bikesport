@@ -58,11 +58,12 @@ export function Carousel({
   useEffect(() => {
     if (!emblaApi) return;
 
-    syncCarouselState();
+    const initialFrame = window.requestAnimationFrame(syncCarouselState);
     emblaApi.on("select", syncCarouselState);
     emblaApi.on("reInit", syncCarouselState);
 
     return () => {
+      window.cancelAnimationFrame(initialFrame);
       emblaApi.off("select", syncCarouselState);
       emblaApi.off("reInit", syncCarouselState);
     };
