@@ -18,6 +18,7 @@ export interface CardMetaItem {
 export interface CardProps {
   title: string;
   href: string;
+  eyebrow?: string;
   mediaId?: string | null;
   media?: MediaItem | null;
   template?: CardTemplate;
