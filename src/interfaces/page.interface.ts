@@ -3,6 +3,12 @@ import type { CategoryType } from "@/interfaces/category.interface";
 import type { PageBlockPayload } from "@/interfaces/page-block.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { SectionTemplate } from "@/interfaces/section.interface";
+import type {
+  PageColumnLayoutPreset,
+  PageGridLayoutPreset,
+  PageRowLayoutPreset,
+  PageSectionSpacingPreset,
+} from "@/variants/page-layout.variant";
 
 export type PageStatus = "draft" | "published";
 export type PageSectionStatus = "active" | "inactive";
@@ -39,7 +45,11 @@ export interface StackSectionPayload extends PageSectionBase {
   component: "stack";
   props: {
     variant: "surface" | "primary";
+    spacing?: PageSectionSpacingPreset;
+    rowLayout?: PageRowLayoutPreset;
+    /** @deprecated Use spacing. */
     sectionClassName?: string;
+    /** @deprecated Use rowLayout. */
     rowClassName?: string;
   };
   columns: PageColumnPayload[];
@@ -50,7 +60,11 @@ export interface CardGridSectionPayload extends PageSectionBase {
   props: SectionHeadingConfig & {
     title: string;
     template: CardTemplate;
+    gridLayout?: PageGridLayoutPreset;
+    spacing?: PageSectionSpacingPreset;
+    /** @deprecated Use gridLayout. */
     gridClassName?: string;
+    /** @deprecated Use spacing. */
     sectionClassName?: string;
     source: {
       type: "category";
@@ -63,8 +77,10 @@ export interface CardGridSectionPayload extends PageSectionBase {
 export interface LayoutColumnPayload {
   _id: string;
   props?: {
-    className?: string;
+    layout?: PageColumnLayoutPreset;
     grow?: boolean;
+    /** @deprecated Use layout. */
+    className?: string;
   };
   blocks: PageBlockPayload[];
 }
@@ -72,6 +88,8 @@ export interface LayoutColumnPayload {
 export interface LayoutRowPayload {
   _id: string;
   props?: {
+    layout?: PageRowLayoutPreset;
+    /** @deprecated Use layout. */
     className?: string;
   };
   columns: LayoutColumnPayload[];
@@ -81,6 +99,8 @@ export interface LayoutSectionPayload extends PageSectionBase {
   component: "layout";
   props: {
     sectionTemplate?: SectionTemplate;
+    spacing?: PageSectionSpacingPreset;
+    /** @deprecated Use spacing. */
     sectionClassName?: string;
     containerClassName?: string;
   };
