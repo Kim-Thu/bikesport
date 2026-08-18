@@ -7,6 +7,7 @@ import { MediaDetailsTemplate } from "@/components/card/templates/MediaDetailsTe
 import { MediaFooterTemplate } from "@/components/card/templates/MediaFooterTemplate";
 import { MediaMetaTemplate } from "@/components/card/templates/MediaMetaTemplate";
 import { OverlayTemplate } from "@/components/card/templates/OverlayTemplate";
+import { TestimonialTemplate } from "@/components/card/templates/TestimonialTemplate";
 import type { CardProps, CardTemplate } from "@/interfaces/card.interface";
 
 const CARD_TEMPLATES: Record<CardTemplate, (props: CardProps) => ReactNode> = {
@@ -18,6 +19,7 @@ const CARD_TEMPLATES: Record<CardTemplate, (props: CardProps) => ReactNode> = {
   accent: AccentTemplate,
   overlay: OverlayTemplate,
   listing: ListingTemplate,
+  testimonial: TestimonialTemplate,
 };
 
 export function Card({ template = "media-footer", ...props }: CardProps) {
