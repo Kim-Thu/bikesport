@@ -3,6 +3,7 @@ import { Carousel } from "@/components/carousel/Carousel";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/section/Section";
 import { CenteredBanner } from "@/components/banner/variants/CenteredBanner";
+import { ContentLeftBanner } from "@/components/banner/variants/ContentLeftBanner";
 import { ImageOnlyBanner } from "@/components/banner/variants/ImageOnlyBanner";
 import { PromoLeftBanner } from "@/components/banner/variants/PromoLeftBanner";
 import type { BannerProps, BannerRecord } from "@/interfaces/banner.interface";
@@ -11,6 +12,7 @@ import type { BannerVariant } from "@/variants/banner.variant";
 
 const BANNER_VARIANT_COMPONENTS: Record<BannerVariant, ComponentType<{ banner: BannerRecord }>> = {
   "promo-left": PromoLeftBanner,
+  "content-left": ContentLeftBanner,
   centered: CenteredBanner,
   "image-only": ImageOnlyBanner,
 };
