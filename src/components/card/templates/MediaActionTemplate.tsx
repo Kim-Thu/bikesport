@@ -23,7 +23,7 @@ export function MediaActionTemplate({
       <CLink href={href} className="relative block p-4">
         {discountPercentage ? <Badge className="absolute left-4 top-4 z-10">-{discountPercentage}%</Badge> : null}
         <div className="aspect-product w-full overflow-hidden">
-          {media ? <MediaImageView media={media} alt={title} width={320} height={240} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" /> : null}
+          <MediaImageView media={media ?? null} alt={title} width={320} height={240} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
         </div>
       </CLink>
       <div className="flex flex-1 flex-col gap-2 px-4 pb-4">
