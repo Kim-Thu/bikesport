@@ -1530,7 +1530,8 @@
                         "component": "section-header",
                         "props": {
                           "title": "Quy trình tuyển dụng",
-                          "description": "Quy trình rõ ràng, minh bạch để ứng viên chủ động trong từng bước."
+                          "description": "Quy trình rõ ràng, minh bạch để ứng viên chủ động trong từng bước.",
+                          "align": "center"
                         }
                       },
                       {
@@ -1641,12 +1642,14 @@
                           "href": "/tuyen-dung#cau-chuyen-bikesporter",
                           "actionLabel": "Xem tất cả",
                           "template": "testimonial",
-                          "gridLayout": "one-two-three",
                           "source": {
                             "type": "post",
                             "postType": "testimonial",
                             "limit": 3
-                          }
+                          },
+                          "presentation": "slider",
+                          "trackLayout": "standard",
+                          "slideLayout": "responsive-three"
                         }
                       }
                     ]
@@ -1698,7 +1701,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-18T10:00:00+07:00",
-      "updatedAt": "2026-08-18T11:00:00+07:00"
+      "updatedAt": "2026-08-18T11:08:00+07:00"
     }
   ]
 }
