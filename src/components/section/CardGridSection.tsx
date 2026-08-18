@@ -21,7 +21,7 @@ export async function CardGridSection({ section }: { section: CardGridSectionPay
           actionLabel={section.props.actionLabel}
           headingTemplate={section.props.headingTemplate}
           gridClassName={resolvePageGridLayout(section.props.gridLayout)}
-          defaultGridClassName="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6"
+          defaultGridClassName="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6"
         />
       </Container>
     </Section>

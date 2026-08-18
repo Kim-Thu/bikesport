@@ -9,7 +9,7 @@ export function Logo({ href = "/", site, logoMedia = null }: LogoProps) {
   const shouldShowTagLine = showTagLine && Boolean(tagLine);
 
   return (
-    <CLink href={href} className="inline-flex shrink-0 items-center gap-3" aria-label={siteTitle || "Trang chủ"}>
+    <CLink href={href} className="inline-flex shrink-0 items-center gap-4" aria-label={siteTitle || "Trang chủ"}>
       {hasLogo && logoMedia ? (
         <Image
           src={logoMedia.src}

@@ -16,7 +16,7 @@ export function TestimonialTemplate({
         className,
       )}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border border-gray-200 bg-gray-50">
           <MediaImageView
             media={media}

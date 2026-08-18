@@ -13,7 +13,7 @@ export function MediaDetailsTemplate({ title, href, media, description, metaItem
         </div>
       </CLink>
       <div className="flex flex-1 flex-col gap-4 p-4">
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           <CLink href={href} className="block text-sm font-semibold text-gray-950">{title}</CLink>
           {description ? <p className="text-xs text-gray-600">{description}</p> : null}
           {metaItems?.length ? (

@@ -29,7 +29,7 @@ const TAB_TEMPLATES: Record<TabsTemplate, ComponentType<TabTemplateProps>> = {
 
 const TEMPLATE_GAPS: Record<TabsTemplate, string> = {
   default: "gap-5",
-  image: "gap-3",
+  image: "gap-4",
   featured: "gap-2",
   "flash-sale": "gap-1",
 };

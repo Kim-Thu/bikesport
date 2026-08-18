@@ -19,7 +19,7 @@ export function SectionSkeleton({
         <Skeleton className="h-9 w-24 rounded-md" />
       </div>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         {Array.from({ length: count }, (_, index) => (
           <CardSkeleton key={index} template={template} />
         ))}

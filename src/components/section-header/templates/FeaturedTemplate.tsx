@@ -11,7 +11,7 @@ export function FeaturedTemplate({
   children,
 }: SectionHeaderProps) {
   return (
-    <div className={cn("flex flex-col items-center gap-3 text-center", className)}>
+    <div className={cn("flex flex-col items-center gap-4 text-center", className)}>
       {titleMedia ? (
         <div className="flex items-center justify-center">
           <MediaImageView

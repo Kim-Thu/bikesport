@@ -70,7 +70,7 @@ export async function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
               ) : null}
 
               {features.length ? (
-                <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
                   {features.map((feature, index) => (
                     <FeatureItem
                       key={`${feature.title}-${index}`}
@@ -86,7 +86,7 @@ export async function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
           </div>
 
           {promotionCards.length ? (
-            <div className="order-2 hidden content-center gap-3 sm:grid sm:grid-cols-3 lg:col-span-2 lg:grid-cols-1">
+            <div className="order-2 hidden content-center gap-4 sm:grid sm:grid-cols-3 lg:col-span-2 lg:grid-cols-1">
               {promotionCards.map((card) => (
                 <PromotionInfoCard key={card.promotionId} card={card} />
               ))}

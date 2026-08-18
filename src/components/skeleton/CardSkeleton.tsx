@@ -7,7 +7,7 @@ export function CardSkeleton({ template = "product", className }: CardSkeletonPr
     return (
       <div className={cn("overflow-hidden rounded-lg border border-gray-100 bg-white", className)}>
         <Skeleton className="aspect-card-media w-full rounded-none" />
-        <div className="flex items-center justify-between gap-3 border-t border-gray-100 p-4">
+        <div className="flex items-center justify-between gap-4 border-t border-gray-100 p-4">
           <Skeleton className="h-4 w-2/3" />
           <Skeleton className="h-5 w-5 shrink-0 rounded-full" />
         </div>

@@ -33,7 +33,7 @@ export default async function NotFound() {
             </p>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <ActionLink href="/" showArrow={false}>
               Về trang chủ
             </ActionLink>
@@ -49,7 +49,7 @@ export default async function NotFound() {
             template="media-footer"
             title="Bạn có thể quan tâm"
             headingTemplate="featured"
-            defaultGridClassName="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-flow-col lg:grid-cols-none lg:auto-cols-fr"
+            defaultGridClassName="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-flow-col lg:grid-cols-none lg:auto-cols-fr"
           />
         </section>
       </Container>

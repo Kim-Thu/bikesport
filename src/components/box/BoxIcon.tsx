@@ -16,7 +16,7 @@ export function BoxIcon({
   descriptionClassName,
 }: BoxIconProps) {
   return (
-    <Row className={cn("gap-3", className)}>
+    <Row className={cn("gap-4", className)}>
       <Icon
         name={icon}
         mediaUrl={iconMediaUrl}

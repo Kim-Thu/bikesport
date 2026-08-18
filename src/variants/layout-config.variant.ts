@@ -1,6 +1,6 @@
 export const LAYOUT_ROW_CLASS = {
   centered: "justify-center",
-  "responsive-wrap-spaced": "flex-wrap gap-3 py-3 md:flex-nowrap md:gap-4 md:py-4 lg:gap-9",
+  "responsive-wrap-spaced": "flex-wrap gap-4 py-3 md:flex-nowrap md:gap-4 md:py-4 lg:gap-9",
   "responsive-compact": "gap-2 py-2 lg:gap-4 lg:py-0",
 } as const;
 

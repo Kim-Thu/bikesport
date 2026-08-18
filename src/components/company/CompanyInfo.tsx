@@ -78,7 +78,7 @@ export function CompanyInfo({
 
       {verificationAssets.length ? (
         <Column className="w-full sm:w-auto sm:min-w-40">
-          <div className="flex flex-wrap items-center gap-3 sm:justify-end">
+          <div className="flex flex-wrap items-center gap-4 sm:justify-end">
             {verificationAssets.map((asset) => (
               <MediaImage
                 key={asset.mediaId}

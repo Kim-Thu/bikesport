@@ -14,7 +14,7 @@ export function DefaultTemplate({
 
   return (
     <nav
-      className={cn("flex items-center justify-between gap-3", className)}
+      className={cn("flex items-center justify-between gap-4", className)}
       aria-label={ariaLabel}
     >
       <button

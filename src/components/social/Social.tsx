@@ -11,7 +11,7 @@ export function Social({ items, mediaUrlById = {} }: SocialProps) {
   if (!items.length) return null;
 
   return (
-    <div className="flex items-center gap-3" aria-label="Mạng xã hội">
+    <div className="flex items-center gap-4" aria-label="Mạng xã hội">
       {items.map((item) => {
         const mediaUrl = item.iconMediaId ? mediaUrlById[item.iconMediaId] : undefined;
 

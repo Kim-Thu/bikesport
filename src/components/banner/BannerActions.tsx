@@ -14,7 +14,7 @@ export function BannerActions({ actions, align = "left", className }: BannerActi
   return (
     <div
       className={cn(
-        "mt-6 flex flex-wrap gap-3",
+        "mt-6 flex flex-wrap gap-4",
         align === "center" && "justify-center",
         className,
       )}

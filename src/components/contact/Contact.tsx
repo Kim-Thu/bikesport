@@ -18,7 +18,7 @@ export function Contact({ variant = "desktop", hotline }: ContactProps) {
     return (
       <CLink
         href={hotlineHref}
-        className="flex items-center gap-3 rounded-lg bg-gray-50 px-4 py-3 text-gray-900"
+        className="flex items-center gap-4 rounded-lg bg-gray-50 px-4 py-3 text-gray-900"
       >
         <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-700 text-white">
           <Icon name="phone" className="h-4 w-4" strokeWidth={1.8} />
