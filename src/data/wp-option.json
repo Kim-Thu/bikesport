@@ -111,11 +111,9 @@
         "enabled": true,
         "rows": [
           {
-            "className": "justify-center",
             "columns": [
               {
                 "grow": true,
-                "className": "flex items-center justify-center gap-4",
                 "items": [
                   {
                     "component": "announcement",
@@ -124,9 +122,11 @@
                       "announcementId": "66bf4e8c9f2a4d7b8c1e3901"
                     }
                   }
-                ]
+                ],
+                "layout": "centered-spaced"
               }
-            ]
+            ],
+            "layout": "centered"
           }
         ]
       },
@@ -135,10 +135,8 @@
         "enabled": true,
         "rows": [
           {
-            "className": "flex-wrap gap-3 py-3 md:flex-nowrap md:gap-4 md:py-4 lg:gap-9",
             "columns": [
               {
-                "className": "flex shrink-0 items-center gap-4",
                 "items": [
                   {
                     "component": "logo",
@@ -146,11 +144,11 @@
                       "href": "/"
                     }
                   }
-                ]
+                ],
+                "layout": "shrink-spaced"
               },
               {
                 "grow": true,
-                "className": "hidden min-w-0 flex-1 items-center gap-4 lg:flex",
                 "items": [
                   {
                     "component": "search-form",
@@ -159,17 +157,25 @@
                       "placeholder": "Tìm kiếm xe đạp, phụ kiện..."
                     }
                   }
-                ]
+                ],
+                "layout": "desktop-grow"
               },
               {
-                "className": "ml-auto flex shrink-0 items-center gap-4",
                 "items": [
-                  { "component": "contact" },
-                  { "component": "account" },
-                  { "component": "mini-cart" }
-                ]
+                  {
+                    "component": "contact"
+                  },
+                  {
+                    "component": "account"
+                  },
+                  {
+                    "component": "mini-cart"
+                  }
+                ],
+                "layout": "trailing-actions"
               }
-            ]
+            ],
+            "layout": "responsive-wrap-spaced"
           }
         ]
       },
@@ -178,11 +184,9 @@
         "enabled": true,
         "rows": [
           {
-            "className": "gap-2 py-2 lg:gap-4 lg:py-0",
             "columns": [
               {
                 "grow": true,
-                "className": "flex min-w-0 items-center gap-2 lg:gap-4",
                 "items": [
                   {
                     "component": "mobile-menu",
@@ -203,9 +207,11 @@
                       "menuId": "66bf4e8c9f2a4d7b8c1e3301"
                     }
                   }
-                ]
+                ],
+                "layout": "responsive-nav"
               }
-            ]
+            ],
+            "layout": "responsive-compact"
           }
         ]
       }
