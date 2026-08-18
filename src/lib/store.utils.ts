@@ -5,14 +5,24 @@ import type {
   StoreRecord,
   StoreRegionRecord,
 } from "@/interfaces/store.interface";
+import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 
 interface StoreLocationIndex {
   locationById: Map<string, StoreLocationRecord>;
   childrenByParentId: Map<string, StoreLocationRecord[]>;
 }
 
+const getStoreLocationsCached = (
+  type?: StoreLocationRecord["type"],
+): Promise<StoreLocationRecord[]> =>
+  cachedDomain(
+    "store",
+    ["locations", type ?? "all"],
+    () => dataSources.store.getActiveLocations(type),
+  );
+
 const getStoreLocationIndex = cache(async (): Promise<StoreLocationIndex> => {
-  const locations = await dataSources.store.getActiveLocations();
+  const locations = await getStoreLocationsCached();
   const locationById = new Map(locations.map((location) => [location._id, location]));
   const childrenByParentId = new Map<string, StoreLocationRecord[]>();
 
@@ -27,17 +37,22 @@ const getStoreLocationIndex = cache(async (): Promise<StoreLocationIndex> => {
 });
 
 export async function getStoreRegions(): Promise<StoreRegionRecord[]> {
-  return dataSources.store.getActiveRegions();
+  return cachedDomain("store", ["regions"], () => dataSources.store.getActiveRegions());
 }
 
 export async function getStoreRegionById(regionId: string): Promise<StoreRegionRecord | null> {
-  return dataSources.store.getActiveRegionById(regionId);
+  return cachedDomain(
+    "store",
+    ["region", regionId],
+    () => dataSources.store.getActiveRegionById(regionId),
+    [CACHE_TAG.entity("store", regionId)],
+  );
 }
 
 export async function getStoreLocations(
   type?: StoreLocationRecord["type"],
 ): Promise<StoreLocationRecord[]> {
-  return dataSources.store.getActiveLocations(type);
+  return getStoreLocationsCached(type);
 }
 
 export async function getStoreLocationById(locationId: string): Promise<StoreLocationRecord | null> {
@@ -110,18 +125,36 @@ export async function formatStoreAddress(store: StoreRecord): Promise<string> {
 }
 
 export async function getActiveStores(limit?: number): Promise<StoreRecord[]> {
-  return dataSources.store.getActiveStores(limit);
+  return cachedDomain(
+    "store",
+    ["active-stores", String(limit ?? "all")],
+    () => dataSources.store.getActiveStores(limit),
+  );
 }
 
 export async function getFeaturedStores(limit?: number): Promise<StoreRecord[]> {
-  return dataSources.store.getFeaturedStores(limit);
+  return cachedDomain(
+    "store",
+    ["featured-stores", String(limit ?? "all")],
+    () => dataSources.store.getFeaturedStores(limit),
+  );
 }
 
 export async function getStoresByRegion(regionId: string, limit?: number): Promise<StoreRecord[]> {
-  return dataSources.store.getActiveStoresByRegion(regionId, limit);
+  return cachedDomain(
+    "store",
+    ["by-region", regionId, String(limit ?? "all")],
+    () => dataSources.store.getActiveStoresByRegion(regionId, limit),
+    [CACHE_TAG.entity("store", regionId)],
+  );
 }
 
 export async function getStoresByLocation(locationId: string, limit?: number): Promise<StoreRecord[]> {
   const locationIds = await getStoreLocationTreeIds(locationId);
-  return dataSources.store.getActiveStoresByLocationIds(locationIds, limit);
+  return cachedDomain(
+    "store",
+    ["by-location", locationId, String(limit ?? "all")],
+    () => dataSources.store.getActiveStoresByLocationIds(locationIds, limit),
+    [CACHE_TAG.entity("store", locationId)],
+  );
 }
