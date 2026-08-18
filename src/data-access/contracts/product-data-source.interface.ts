@@ -12,6 +12,7 @@ export interface ProductDataFilter {
 
 export interface ProductDataSource {
   getPublished(limit?: number): Promise<ProductRecord[]>;
+  getPublishedBySlug(slug: string): Promise<ProductRecord | null>;
   getPublishedSkus(categoryIds?: string[]): Promise<string[]>;
   getFeatured(limit?: number): Promise<ProductRecord[]>;
   getPublishedByBrandId(brandId: string, limit?: number): Promise<ProductRecord[]>;
