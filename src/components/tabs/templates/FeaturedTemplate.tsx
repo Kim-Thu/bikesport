@@ -11,8 +11,8 @@ export function FeaturedTemplate({ item, active, onClick }: TabTemplateProps) {
       className={cn(
         "shrink-0 cursor-pointer rounded-md border px-3 py-2 text-xs font-semibold transition-colors sm:px-4 sm:text-sm",
         active
-          ? "border-blue-600 bg-blue-600 text-white"
-          : "border-gray-200 bg-white text-gray-700 hover:border-blue-200 hover:text-blue-600",
+          ? "border-blue-700 bg-blue-700 text-white"
+          : "border-gray-200 bg-white text-gray-700 hover:border-blue-200 hover:text-blue-700",
       )}
       onClick={onClick}
     >

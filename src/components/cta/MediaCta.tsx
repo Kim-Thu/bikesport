@@ -24,7 +24,7 @@ export function MediaCta({
       <div className="absolute inset-0 bg-linear-to-r from-blue-50 via-blue-50/95 to-transparent" />
 
       <div className="relative z-10 max-w-3xl p-6 sm:p-8">
-        {eyebrow ? <div className="text-xs font-bold uppercase text-blue-600">{eyebrow}</div> : null}
+        {eyebrow ? <div className="text-xs font-bold uppercase text-blue-700">{eyebrow}</div> : null}
         <div className="mt-1 text-xl font-black uppercase leading-tight text-blue-700 sm:text-2xl">{title}</div>
         {description ? <div className="mt-2 text-sm leading-relaxed text-gray-600 sm:text-base">{description}</div> : null}
         <ActionLink href={href} size="sm" showArrow={false} className="mt-4">

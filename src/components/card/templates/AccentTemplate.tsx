@@ -9,7 +9,7 @@ export function AccentTemplate({ title, description, href, actionLabel = "Xem tá
     <CLink
       href={href}
       className={cn(
-        "relative flex h-full flex-col overflow-hidden rounded-lg bg-blue-600 p-5 text-white sm:p-6",
+        "relative flex h-full flex-col overflow-hidden rounded-lg bg-blue-700 p-5 text-white sm:p-6",
         className,
       )}
     >

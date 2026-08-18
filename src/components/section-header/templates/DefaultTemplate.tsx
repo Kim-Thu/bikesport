@@ -29,7 +29,7 @@ export function DefaultTemplate({
       {href ? (
         <CLink
           href={href}
-          className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-blue-600 hover:text-blue-700 sm:text-sm"
+          className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-blue-700 hover:text-blue-700 sm:text-sm"
         >
           <span>{actionLabel}</span>
           <Icon name="arrow-right" className="h-3.5 w-3.5" strokeWidth={2} />

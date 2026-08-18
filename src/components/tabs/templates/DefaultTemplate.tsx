@@ -11,8 +11,8 @@ export function DefaultTemplate({ item, active, onClick }: TabTemplateProps) {
       className={cn(
         "shrink-0 cursor-pointer border-b-2 px-1 py-2 text-xs font-semibold transition-colors sm:text-sm",
         active
-          ? "border-blue-600 text-blue-600"
-          : "border-transparent text-gray-600 hover:text-blue-600",
+          ? "border-blue-700 text-blue-700"
+          : "border-transparent text-gray-600 hover:text-blue-700",
       )}
       onClick={onClick}
     >

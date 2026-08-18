@@ -33,7 +33,7 @@ export function SearchForm({ action = "/search", placeholder = "Tìm kiếm...",
       />
       <button
         type="submit"
-        className="inline-flex w-12 items-center justify-center bg-blue-600 text-white"
+        className="inline-flex w-12 items-center justify-center bg-blue-700 text-white"
         aria-label="Tìm kiếm"
       >
         <Icon name="search" size={24} />

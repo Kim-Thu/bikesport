@@ -30,7 +30,7 @@ export function OverlayTemplate({
 
         <div className="absolute inset-0 flex flex-col bg-gradient-to-t from-black/75 via-black/25 to-transparent p-4 text-white">
           <div className="flex flex-col items-start gap-4">
-            <div className="flex h-12 w-12 flex-col items-center justify-center rounded-md bg-white text-center text-blue-600">
+            <div className="flex h-12 w-12 flex-col items-center justify-center rounded-md bg-white text-center text-blue-700">
               <div className="text-lg font-black leading-none">{date.day}</div>
               <div className="mt-1 text-2xs font-bold uppercase leading-none">{date.month}</div>
             </div>

@@ -5,9 +5,9 @@ import { cn } from "@/lib/classname.utils";
 import type { ActionLinkSize, ActionLinkTone } from "@/variants/action-link.variant";
 
 const TONES: Record<ActionLinkTone, string> = {
-  primary: "border-transparent bg-blue-600 text-white hover:bg-blue-700",
+  primary: "border-transparent bg-blue-700 text-white hover:bg-blue-700",
   danger: "border-transparent bg-red-500 text-white hover:bg-red-600",
-  outline: "border-blue-200 bg-white text-blue-600 hover:border-blue-300 hover:bg-blue-50",
+  outline: "border-blue-200 bg-white text-blue-700 hover:border-blue-300 hover:bg-blue-50",
 };
 
 const SIZES: Record<ActionLinkSize, string> = {
@@ -31,7 +31,7 @@ export function ActionLink({
     <CLink
       href={href}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-md border font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
+        "inline-flex items-center justify-center gap-2 rounded-md border font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700",
         TONES[tone],
         SIZES[size],
         className,

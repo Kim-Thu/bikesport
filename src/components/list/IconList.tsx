@@ -9,7 +9,7 @@ function IconListItemContent({ item, mediaUrlById }: { item: IconListItem; media
       iconMediaUrl={item.mediaId ? mediaUrlById[item.mediaId] : undefined}
       title={item.title}
       description={item.description}
-      iconClassName="h-8 w-8 text-blue-600"
+      iconClassName="h-8 w-8 text-blue-700"
       titleClassName="text-sm normal-case text-gray-900"
       descriptionClassName="text-sm text-gray-500 opacity-100"
     />

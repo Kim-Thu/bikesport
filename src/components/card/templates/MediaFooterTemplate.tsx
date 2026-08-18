@@ -12,7 +12,7 @@ export function MediaFooterTemplate({ title, href, media, className }: CardProps
       </div>
       <div className="flex items-center justify-between gap-2 border-t border-gray-100 bg-white p-4">
         <span className="min-w-0 text-xs font-semibold text-gray-900 sm:text-sm">{title}</span>
-        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-gray-300 text-gray-500 transition-colors group-hover:border-blue-600 group-hover:text-blue-600">
+        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-gray-300 text-gray-500 transition-colors group-hover:border-blue-700 group-hover:text-blue-700">
           <Icon name="arrow-right" className="h-3 w-3" strokeWidth={2} />
         </span>
       </div>

@@ -127,10 +127,10 @@ export function Carousel({
 
       {showArrows && canScroll ? (
         <div className={cn("pointer-events-none absolute inset-y-0 left-0 right-0 z-30 flex items-center justify-between", arrowsClassName)}>
-          <button type="button" className="pointer-events-auto ml-2 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 hover:border-blue-200 hover:text-blue-600" aria-label={prevAriaLabel} onClick={scrollPrev}>
+          <button type="button" className="pointer-events-auto ml-2 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 hover:border-blue-200 hover:text-blue-700" aria-label={prevAriaLabel} onClick={scrollPrev}>
             <Icon name="chevron-left" size={18} strokeWidth={2} />
           </button>
-          <button type="button" className="pointer-events-auto mr-2 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 hover:border-blue-200 hover:text-blue-600" aria-label={nextAriaLabel} onClick={scrollNext}>
+          <button type="button" className="pointer-events-auto mr-2 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 hover:border-blue-200 hover:text-blue-700" aria-label={nextAriaLabel} onClick={scrollNext}>
             <Icon name="chevron-right" size={18} strokeWidth={2} />
           </button>
         </div>

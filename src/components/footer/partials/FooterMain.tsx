@@ -46,7 +46,7 @@ export async function FooterMain({ settings }: { settings: FooterSettings }) {
                     menu={menu}
                     mediaById={mediaById}
                     listClassName="space-y-3 text-sm text-gray-600"
-                    linkClassName="transition hover:text-blue-600 focus:text-blue-600"
+                    linkClassName="transition hover:text-blue-700 focus:text-blue-700"
                   />
                 </Section>
               </Column>

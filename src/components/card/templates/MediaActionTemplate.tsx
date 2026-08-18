@@ -31,7 +31,7 @@ export function MediaActionTemplate({
         {typeof rating === "number" && rating > 0 ? <Rating value={rating} count={reviewCount} /> : null}
         <div className="mt-auto flex items-end justify-between gap-2">
           {typeof price === "number" ? <Price price={price} salePrice={salePrice} /> : null}
-          <Button variant="icon" icon="cart" iconSize={18} aria-label={`Thêm ${title} vào giỏ hàng`} className="h-9 w-9 shrink-0 rounded-md bg-blue-600 text-white hover:bg-blue-700" />
+          <Button variant="icon" icon="cart" iconSize={18} aria-label={`Thêm ${title} vào giỏ hàng`} className="h-9 w-9 shrink-0 rounded-md bg-blue-700 text-white hover:bg-blue-700" />
         </div>
       </div>
     </article>

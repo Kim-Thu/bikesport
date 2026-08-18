@@ -41,7 +41,7 @@ export function CompanyInfo({
           content: (
             <span>
               Email:{" "}
-              <CLink href={contact.email.href || `mailto:${contact.email.value}`} className="hover:text-blue-600">
+              <CLink href={contact.email.href || `mailto:${contact.email.value}`} className="hover:text-blue-700">
                 {contact.email.value}
               </CLink>
             </span>
@@ -56,7 +56,7 @@ export function CompanyInfo({
               {contact.hotline.label}:{" "}
               <CLink
                 href={contact.hotline.href || `tel:${contact.hotline.value.replace(/\s+/g, "")}`}
-                className="font-semibold text-gray-900 hover:text-blue-600"
+                className="font-semibold text-gray-900 hover:text-blue-700"
               >
                 {contact.hotline.value}
               </CLink>

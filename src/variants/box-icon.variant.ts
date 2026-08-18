@@ -1,5 +1,5 @@
 export const PAGE_BOX_ICON_TONE_CLASS = {
-  primary: "text-blue-600",
+  primary: "text-blue-700",
   inverse: "text-white",
 } as const;
 
