@@ -3,12 +3,13 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/section/Section";
 import type { CardGridSectionPayload } from "@/interfaces/page.interface";
 import { getCardGridItems } from "@/lib/card-grid-source.utils";
+import { resolvePageGridLayout, resolvePageSectionSpacing } from "@/variants/page-layout.variant";
 
 export async function CardGridSection({ section }: { section: CardGridSectionPayload }) {
   const items = await getCardGridItems(section.props.source);
 
   return (
-    <Section className={section.props.sectionClassName}>
+    <Section className={resolvePageSectionSpacing(section.props.spacing, section.props.sectionClassName)}>
       <Container>
         <CardGrid
           items={items}
@@ -19,7 +20,7 @@ export async function CardGridSection({ section }: { section: CardGridSectionPay
           href={section.props.href}
           actionLabel={section.props.actionLabel}
           headingTemplate={section.props.headingTemplate}
-          gridClassName={section.props.gridClassName}
+          gridClassName={resolvePageGridLayout(section.props.gridLayout, section.props.gridClassName)}
           defaultGridClassName="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6"
         />
       </Container>
