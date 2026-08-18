@@ -3,6 +3,7 @@ import { TabsGrid, type TabsGridGroup } from "@/components/grid/TabsGrid";
 import type { TabsGridBlockPayload } from "@/interfaces/page-block.interface";
 import { getMediaWithFallbackByIds } from "@/lib/media.utils";
 import { getProductCollectionItems } from "@/lib/product-collection-source.utils";
+import { resolvePageGridLayout } from "@/variants/page-layout.variant";
 
 export async function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) {
   const mediaIds = [block.props.titleMediaId, block.props.backgroundMediaId].filter(
@@ -41,7 +42,7 @@ export async function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) 
       layoutTemplate={block.props.layoutTemplate}
       backgroundMediaId={block.props.backgroundMediaId}
       backgroundMedia={block.props.backgroundMediaId ? mediaById[block.props.backgroundMediaId] ?? null : null}
-      gridClassName={block.props.gridClassName}
+      gridClassName={resolvePageGridLayout(block.props.gridLayout, block.props.gridClassName)}
       mobilePageSize={block.props.mobilePageSize}
     />
   );
