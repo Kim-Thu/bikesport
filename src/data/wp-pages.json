@@ -1614,8 +1614,8 @@
             ]
           },
           {
-            "_id": "66bf4e8c9f2a4d7b8c1e4440",
-            "name": "Career closing",
+            "_id": "66bf4e8c9f2a4d7b8c1e4470",
+            "name": "Bikesporter stories",
             "order": 7,
             "status": "active",
             "component": "layout",
@@ -1624,25 +1624,67 @@
             },
             "rows": [
               {
-                "_id": "66bf4e8c9f2a4d7b8c1e4441",
+                "_id": "66bf4e8c9f2a4d7b8c1e4471",
                 "columns": [
                   {
-                    "_id": "66bf4e8c9f2a4d7b8c1e4442",
+                    "_id": "66bf4e8c9f2a4d7b8c1e4472",
                     "props": {
                       "layout": "full"
                     },
                     "blocks": [
                       {
-                        "_id": "66bf4e8c9f2a4d7b8c1e4443",
+                        "_id": "66bf4e8c9f2a4d7b8c1e4473",
                         "status": "active",
-                        "component": "content",
+                        "component": "card-grid",
                         "props": {
-                          "eyebrow": "Kết nối với BikeSport",
-                          "title": "Chưa thấy vị trí phù hợp?",
-                          "paragraphs": [
-                            "Bạn vẫn có thể gửi thông tin qua trang Liên hệ. Khi có vị trí phù hợp, đội ngũ BikeSport có thể chủ động kết nối lại."
-                          ],
-                          "align": "center"
+                          "title": "Câu chuyện từ BikeSporter",
+                          "href": "/tuyen-dung#cau-chuyen-bikesporter",
+                          "actionLabel": "Xem tất cả",
+                          "template": "testimonial",
+                          "gridLayout": "one-two-three",
+                          "source": {
+                            "type": "post",
+                            "postType": "testimonial",
+                            "limit": 3
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4440",
+            "name": "Recruitment CTA",
+            "order": 8,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "compact"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4481",
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4482",
+                    "props": {
+                      "layout": "full"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4483",
+                        "status": "active",
+                        "component": "media-cta",
+                        "props": {
+                          "variant": "primary-inline",
+                          "title": "Sẵn sàng gia nhập đội ngũ BikeSport?",
+                          "description": "Cùng chúng tôi tạo nên những hành trình ý nghĩa mỗi ngày.",
+                          "href": "/tuyen-dung#vi-tri-dang-tuyen",
+                          "actionLabel": "Ứng tuyển ngay",
+                          "mediaId": null
                         }
                       }
                     ]
@@ -1656,7 +1698,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-18T10:00:00+07:00",
-      "updatedAt": "2026-08-18T10:57:00+07:00"
+      "updatedAt": "2026-08-18T11:00:00+07:00"
     }
   ]
 }
