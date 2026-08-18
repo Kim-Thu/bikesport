@@ -15,9 +15,38 @@ on:
       - ".github/workflows/storefront-ci.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
+  migrate-header-config:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: feat/issue-1-storefront-header
+
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+
+      - name: Migrate Header semantic config
+        run: node scripts/migrate-header-semantic-config.mjs
+
+      - name: Commit migrated option data
+        run: |
+          if git diff --quiet -- src/data/wp-option.json; then
+            echo "No header migration changes required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/wp-option.json
+          git commit -m "refactor(config): migrate header layout to semantic presets"
+          git push origin HEAD:feat/issue-1-storefront-header
+
   validate:
     runs-on: ubuntu-latest
     services:
