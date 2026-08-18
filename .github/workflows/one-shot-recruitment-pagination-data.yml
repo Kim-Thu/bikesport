@@ -1,0 +1,125 @@
+name: One-shot Recruitment Pagination Data
+
+on:
+  push:
+    branches:
+      - security/post-merge-hardening
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: security/post-merge-hardening
+
+      - name: Expand recruitment demo data
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('src/data/wp-posts.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          posts = data['posts']
+
+          details = {
+            'nhan-vien-kinh-doanh-xe-dap': {
+              'responsibilities': ['Tư vấn xe đạp và phụ kiện theo nhu cầu thực tế của khách hàng.', 'Theo dõi khách hàng từ lúc tư vấn đến sau bán hàng.', 'Phối hợp cùng cửa hàng triển khai chương trình bán hàng và trưng bày sản phẩm.'],
+              'requirements': ['Giao tiếp tốt, chủ động và có tinh thần phục vụ khách hàng.', 'Ưu tiên ứng viên yêu thích xe đạp, thể thao hoặc bán lẻ.', 'Có thể làm việc theo ca và cuối tuần theo lịch cửa hàng.'],
+              'benefits': ['Thu nhập theo năng lực và hiệu quả bán hàng.', 'Được đào tạo kiến thức sản phẩm và kỹ năng tư vấn.', 'Chính sách mua sản phẩm nội bộ và hoạt động đội nhóm.'],
+            },
+            'ky-thuat-vien-xe-dap': {
+              'responsibilities': ['Lắp ráp, kiểm tra và bàn giao xe theo tiêu chuẩn kỹ thuật.', 'Bảo dưỡng, sửa chữa và chẩn đoán lỗi xe đạp.', 'Tư vấn khách hàng về bảo quản và sử dụng xe an toàn.'],
+              'requirements': ['Có kiến thức cơ khí hoặc kinh nghiệm sửa chữa xe đạp là lợi thế.', 'Cẩn thận, có trách nhiệm và yêu thích công việc kỹ thuật.', 'Sẵn sàng học quy trình kỹ thuật và sản phẩm mới.'],
+              'benefits': ['Được đào tạo kỹ thuật từ cơ bản đến nâng cao.', 'Môi trường thực hành với nhiều dòng xe và linh kiện.', 'Thưởng hiệu quả và đầy đủ chế độ theo chính sách công ty.'],
+            },
+            'nhan-vien-digital-marketing': {
+              'responsibilities': ['Lập kế hoạch và triển khai nội dung trên các kênh digital.', 'Phối hợp chạy chiến dịch sản phẩm, khuyến mãi và sự kiện.', 'Theo dõi chỉ số, báo cáo và đề xuất tối ưu hiệu quả nội dung.'],
+              'requirements': ['Có khả năng viết nội dung và tư duy hình ảnh tốt.', 'Hiểu các nền tảng social, quảng cáo hoặc analytics là lợi thế.', 'Chủ động, có khả năng phối hợp nhiều bộ phận.'],
+              'benefits': ['Có không gian thử nghiệm ý tưởng và chiến dịch thực tế.', 'Được tiếp cận sản phẩm, sự kiện và cộng đồng xe đạp.', 'Lộ trình phát triển theo năng lực và kết quả công việc.'],
+            },
+            'nhan-vien-kho-va-dieu-phoi': {
+              'responsibilities': ['Theo dõi nhập, xuất và tồn kho theo chứng từ hệ thống.', 'Điều phối hàng giữa kho, cửa hàng và đơn vị vận chuyển.', 'Kiểm tra tình trạng hàng và phối hợp xử lý chênh lệch.'],
+              'requirements': ['Cẩn thận, có khả năng tổ chức và theo dõi số liệu.', 'Ưu tiên có kinh nghiệm kho, logistics hoặc bán lẻ.', 'Có thể sử dụng công cụ văn phòng và hệ thống quản lý kho.'],
+              'benefits': ['Quy trình vận hành rõ ràng và được hướng dẫn khi nhận việc.', 'Thưởng theo hiệu quả công việc và chính sách phúc lợi.', 'Cơ hội phát triển trong mảng vận hành bán lẻ.'],
+            },
+          }
+
+          for post in posts:
+            if post.get('type') == 'recruitment' and post.get('slug') in details:
+              post['recruitment'].update(details[post['slug']])
+
+          extra = [
+            ('66bf4e8c9f2a4d7b8c1e5305','Nhân viên Chăm sóc khách hàng','nhan-vien-cham-soc-khach-hang','Chăm sóc khách hàng','TP. Hồ Chí Minh','10 - 15 triệu',1,'2026-09-28T23:59:59+07:00','Tiếp nhận và hỗ trợ khách hàng trước, trong và sau quá trình mua sắm.'),
+            ('66bf4e8c9f2a4d7b8c1e5306','Nhân viên Content Creator','nhan-vien-content-creator','Marketing','TP. Hồ Chí Minh','12 - 18 triệu',1,'2026-09-30T23:59:59+07:00','Sản xuất nội dung hình ảnh, video và câu chuyện sản phẩm cho các kênh truyền thông.'),
+            ('66bf4e8c9f2a4d7b8c1e5307','Nhân viên Mua hàng','nhan-vien-mua-hang','Mua hàng','TP. Hồ Chí Minh','12 - 17 triệu',1,'2026-10-02T23:59:59+07:00','Theo dõi kế hoạch mua hàng, nhà cung cấp và tiến độ hàng hóa.'),
+            ('66bf4e8c9f2a4d7b8c1e5308','Nhân viên E-commerce','nhan-vien-ecommerce','Thương mại điện tử','TP. Hồ Chí Minh','13 - 19 triệu',2,'2026-10-05T23:59:59+07:00','Vận hành nội dung, sản phẩm và chương trình bán hàng trên các kênh trực tuyến.'),
+            ('66bf4e8c9f2a4d7b8c1e5309','Nhân viên Kế toán bán hàng','nhan-vien-ke-toan-ban-hang','Tài chính - Kế toán','TP. Hồ Chí Minh','11 - 16 triệu',1,'2026-10-08T23:59:59+07:00','Kiểm soát chứng từ bán hàng, đối soát và hỗ trợ báo cáo doanh thu cửa hàng.'),
+            ('66bf4e8c9f2a4d7b8c1e5310','Nhân viên Visual Merchandising','nhan-vien-visual-merchandising','Bán lẻ','TP. Hồ Chí Minh','Thỏa thuận',1,'2026-10-10T23:59:59+07:00','Triển khai trưng bày sản phẩm và hình ảnh cửa hàng theo định hướng thương hiệu.'),
+            ('66bf4e8c9f2a4d7b8c1e5311','Chuyên viên Tuyển dụng','chuyen-vien-tuyen-dung','Nhân sự','TP. Hồ Chí Minh','13 - 18 triệu',1,'2026-10-12T23:59:59+07:00','Phụ trách nguồn ứng viên, phỏng vấn và phối hợp tuyển dụng cho hệ thống cửa hàng.'),
+            ('66bf4e8c9f2a4d7b8c1e5312','Nhân viên Tổ chức sự kiện','nhan-vien-to-chuc-su-kien','Marketing - Sự kiện','TP. Hồ Chí Minh','12 - 18 triệu',1,'2026-10-15T23:59:59+07:00','Phối hợp tổ chức hoạt động cộng đồng, workshop và sự kiện trải nghiệm xe đạp.'),
+          ]
+
+          existing = {post.get('slug') for post in posts}
+          for index, (pid,title,slug,department,location,salary,openings,deadline,excerpt) in enumerate(extra, start=1):
+            if slug in existing:
+              continue
+            posts.append({
+              '_id': pid,
+              'type': 'recruitment',
+              'title': title,
+              'slug': slug,
+              'status': 'published',
+              'excerpt': excerpt,
+              'categoryIds': [],
+              'tagIds': [],
+              'authorId': '66bf4e8c9f2a4d7b8c1e1111',
+              'mediaId': None,
+              'recruitment': {
+                'department': department,
+                'location': location,
+                'employmentType': 'Toàn thời gian',
+                'salary': salary,
+                'deadline': deadline,
+                'openings': openings,
+                'applyUrl': '/lien-he',
+                'responsibilities': [f'Thực hiện các công việc chính của vị trí {title}.', 'Phối hợp với các bộ phận liên quan để hoàn thành mục tiêu công việc.', 'Theo dõi kết quả và chủ động đề xuất cải tiến khi cần.'],
+                'requirements': ['Chủ động, có trách nhiệm và khả năng phối hợp tốt.', 'Có kinh nghiệm phù hợp là lợi thế; sẵn sàng học hỏi nếu chưa có đầy đủ kinh nghiệm.', 'Phù hợp với môi trường bán lẻ năng động và định hướng khách hàng.'],
+                'benefits': ['Thu nhập cạnh tranh theo năng lực.', 'Đầy đủ chính sách phúc lợi và hoạt động nội bộ.', 'Cơ hội học hỏi sản phẩm và phát triển cùng hệ thống BikeSport.'],
+              },
+              'publishedAt': f'2026-08-{16 - index:02d}T10:00:00+07:00',
+              'createdBy': '66bf4e8c9f2a4d7b8c1e1111',
+              'updatedBy': '66bf4e8c9f2a4d7b8c1e1111',
+              'createdAt': f'2026-08-{16 - index:02d}T09:30:00+07:00',
+              'updatedAt': f'2026-08-{16 - index:02d}T10:00:00+07:00',
+            })
+
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          source_path = Path('src/lib/card-grid-source.utils.ts')
+          text = source_path.read_text(encoding='utf-8')
+          text = text.replace('href: recruitment.applyUrl ?? "/lien-he",', 'href: `/tuyen-dung/${post.slug}`,')
+          text = text.replace('actionLabel: "Ứng tuyển",', 'actionLabel: "Xem chi tiết",')
+          source_path.write_text(text, encoding='utf-8')
+          PY
+
+          rm .github/workflows/one-shot-recruitment-pagination-data.yml
+
+      - name: Commit recruitment data migration
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/wp-posts.json src/lib/card-grid-source.utils.ts .github/workflows/one-shot-recruitment-pagination-data.yml
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'feat(recruitment): add paginated job demo data and detail links'
+          git push origin HEAD:security/post-merge-hardening
