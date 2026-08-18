@@ -18,6 +18,10 @@
     @apply box-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   html,
   body {
     @apply m-0 max-w-full overflow-x-clip p-0;
@@ -34,6 +38,12 @@
   button,
   input {
     font: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
