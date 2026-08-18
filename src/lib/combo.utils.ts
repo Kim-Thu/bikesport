@@ -1,17 +1,31 @@
 import { dataSources } from "@/data-access/data-sources";
 import type { ComboRecord } from "@/interfaces/combo.interface";
+import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 import { getPublishedProductsByIds, getProductPrimaryMediaId } from "@/lib/product.utils";
 
 export async function getComboById(comboId: string): Promise<ComboRecord | null> {
-  return dataSources.combo.getById(comboId);
+  return cachedDomain(
+    "combo",
+    ["id", comboId],
+    () => dataSources.combo.getById(comboId),
+    [CACHE_TAG.entity("combo", comboId)],
+  );
 }
 
 export async function getActiveCombos(limit?: number): Promise<ComboRecord[]> {
-  return dataSources.combo.getActive(limit);
+  return cachedDomain(
+    "combo",
+    ["active", String(limit ?? "all")],
+    () => dataSources.combo.getActive(limit),
+  );
 }
 
 export async function getFeaturedCombos(limit?: number): Promise<ComboRecord[]> {
-  return dataSources.combo.getFeatured(limit);
+  return cachedDomain(
+    "combo",
+    ["featured", String(limit ?? "all")],
+    () => dataSources.combo.getFeatured(limit),
+  );
 }
 
 export async function getComboProducts(combo: ComboRecord) {
