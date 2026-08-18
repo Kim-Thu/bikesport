@@ -35,13 +35,25 @@ export const COMPONENT_REGISTRY = {
   social: SocialLoader,
 } satisfies ComponentRegistry;
 
+function getRegisteredComponent<Name extends ComponentName>(name: Name): ComponentRegistry[Name] {
+  return COMPONENT_REGISTRY[name];
+}
+
+function renderRegisteredComponent<Name extends ComponentName>(
+  component: Name,
+  props: ComponentPropsMap[Name] | undefined,
+  key: string,
+) {
+  const Component = getRegisteredComponent(component);
+  return createElement(Component, { key, ...(props ?? {}) } as ComponentPropsMap[Name]);
+}
+
 export function renderComponent(item: ComponentItem, index: number) {
   if (item.enabled === false) return null;
 
-  const Component = COMPONENT_REGISTRY[item.component] as ComponentType<Record<string, unknown>>;
-
-  return createElement(Component, {
-    key: `${item.component}-${index}`,
-    ...(item.props ?? {}),
-  });
+  return renderRegisteredComponent(
+    item.component,
+    item.props,
+    `${item.component}-${index}`,
+  );
 }
