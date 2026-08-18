@@ -6,6 +6,10 @@ const DATA_DIR = path.join(ROOT, "src", "data");
 const SOURCE_DIR = path.join(ROOT, "src");
 const PUBLIC_PREFIXES = ["/uploads/", "/icons/", "/bikesport-logo.svg"];
 const missing = new Map();
+const missingMediaIds = new Map();
+
+const mediaData = JSON.parse(fs.readFileSync(path.join(DATA_DIR, "wp-media.json"), "utf8"));
+const mediaIds = new Set((mediaData.media ?? []).map((item) => item?._id).filter(Boolean));
 
 function isPublicAsset(value) {
   return PUBLIC_PREFIXES.some((prefix) => value.startsWith(prefix));
@@ -22,17 +26,30 @@ function verifyAsset(value, source) {
   }
 }
 
-function walkJson(value, source) {
+function verifyMediaId(value, source, key) {
+  if (typeof value !== "string" || !value.trim() || mediaIds.has(value)) return;
+  const sources = missingMediaIds.get(value) ?? [];
+  sources.push(`${source}:${key}`);
+  missingMediaIds.set(value, sources);
+}
+
+function walkJson(value, source, key = "") {
   if (typeof value === "string") {
     verifyAsset(value, source);
+    if (/mediaId$/i.test(key)) verifyMediaId(value, source, key);
     return;
   }
+
   if (Array.isArray(value)) {
-    value.forEach((item) => walkJson(item, source));
+    if (/mediaIds$/i.test(key)) {
+      value.forEach((item) => verifyMediaId(item, source, key));
+    }
+    value.forEach((item) => walkJson(item, source, key));
     return;
   }
+
   if (value && typeof value === "object") {
-    Object.values(value).forEach((item) => walkJson(item, source));
+    Object.entries(value).forEach(([childKey, item]) => walkJson(item, source, childKey));
   }
 }
 
@@ -60,12 +77,15 @@ function walkSource(directory) {
 
 walkSource(SOURCE_DIR);
 
-if (missing.size) {
+if (missing.size || missingMediaIds.size) {
   console.error("Public asset audit failed:");
   for (const [asset, sources] of missing) {
-    console.error(`- ${asset} referenced by ${[...new Set(sources)].join(", ")}`);
+    console.error(`- missing file ${asset} referenced by ${[...new Set(sources)].join(", ")}`);
+  }
+  for (const [mediaId, sources] of missingMediaIds) {
+    console.error(`- missing mediaId ${mediaId} referenced by ${[...new Set(sources)].join(", ")}`);
   }
   process.exit(1);
 }
 
-console.log("Public asset audit passed: all local public asset references resolve to files.");
+console.log(`Public asset audit passed: local files resolve and ${mediaIds.size} media records cover all mediaId references.`);
