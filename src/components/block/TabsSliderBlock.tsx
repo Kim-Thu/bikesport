@@ -46,9 +46,8 @@ export async function TabsSliderBlock({ block }: { block: TabsSliderBlockPayload
       }
       actionTone={block.props.actionTone ?? (isFlashSaleSource ? "danger" : "primary")}
       backgroundMedia={block.props.backgroundMediaId ? mediaById[block.props.backgroundMediaId] ?? null : null}
-      containerClassName={block.props.containerClassName}
-      trackClassName={resolvePageSliderTrack(block.props.trackLayout, block.props.trackClassName)}
-      slideClassName={resolvePageSliderSlide(block.props.slideLayout, block.props.slideClassName)}
+      trackClassName={resolvePageSliderTrack(block.props.trackLayout)}
+      slideClassName={resolvePageSliderSlide(block.props.slideLayout)}
     />
   );
 }
