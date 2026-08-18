@@ -69,7 +69,7 @@ export function CompanyInfo({
   if (!infoItems.length && !verificationAssets.length) return null;
 
   return (
-    <Row className="flex-col items-stretch gap-5 sm:flex-row sm:items-start">
+    <Row className="flex-col items-stretch gap-4 sm:flex-row sm:items-start">
       {infoItems.length ? (
         <Column grow className="w-full">
           <CList items={infoItems} className="space-y-2 text-sm leading-6 text-gray-600" />
@@ -84,8 +84,6 @@ export function CompanyInfo({
                 key={asset.mediaId}
                 mediaId={asset.mediaId}
                 alt={asset.label}
-                width={160}
-                height={60}
                 className="h-auto max-h-12 w-auto object-contain"
               />
             ))}
