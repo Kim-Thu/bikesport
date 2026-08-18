@@ -5,6 +5,11 @@ import type { SectionHeaderTemplate } from "@/interfaces/section-header.interfac
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { PageBlockBase } from "@/interfaces/blocks/page-block-base.interface";
 import type { ActionLinkTone } from "@/variants/action-link.variant";
+import type {
+  PageGridLayoutPreset,
+  PageSliderSlidePreset,
+  PageSliderTrackPreset,
+} from "@/variants/page-layout.variant";
 import type { ProductSliderLayoutTemplate } from "@/variants/product-slider.variant";
 import type { TabsGridTemplate } from "@/variants/tabs-grid.variant";
 import type { TabsSliderTemplate } from "@/variants/tabs-slider.variant";
@@ -34,7 +39,11 @@ export interface ProductSliderBlockPayload extends PageBlockBase {
     countdownAt?: string;
     template: CardTemplate;
     ariaLabel?: string;
+    trackLayout?: PageSliderTrackPreset;
+    slideLayout?: PageSliderSlidePreset;
+    /** @deprecated Use trackLayout. */
     trackClassName?: string;
+    /** @deprecated Use slideLayout. */
     slideClassName?: string;
     source: ProductSource;
   };
@@ -50,7 +59,11 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
     actionTone?: ActionLinkTone;
     backgroundMediaId?: string | null;
     containerClassName?: string;
+    trackLayout?: PageSliderTrackPreset;
+    slideLayout?: PageSliderSlidePreset;
+    /** @deprecated Use trackLayout. */
     trackClassName?: string;
+    /** @deprecated Use slideLayout. */
     slideClassName?: string;
     source:
       | { type: "best-seller"; limit?: number; tabs: Array<{ label: string; categoryId: string }> }
@@ -68,6 +81,8 @@ export interface TabsGridBlockPayload extends PageBlockBase {
     tabsTemplate?: TabsTemplate;
     layoutTemplate?: TabsGridTemplate;
     backgroundMediaId?: string | null;
+    gridLayout?: PageGridLayoutPreset;
+    /** @deprecated Use gridLayout. */
     gridClassName?: string;
     mobilePageSize?: number;
     tabs: Array<{
@@ -83,6 +98,8 @@ export interface CardGridBlockPayload extends PageBlockBase {
   props: SectionHeadingConfig & {
     title: string;
     template: CardTemplate;
+    gridLayout?: PageGridLayoutPreset;
+    /** @deprecated Use gridLayout. */
     gridClassName?: string;
     source:
       | { type: "category"; categoryType: CategoryType; limit?: number }
