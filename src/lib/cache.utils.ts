@@ -1,7 +1,11 @@
 import { revalidateTag, unstable_cache } from "next/cache";
+import type { DataSources } from "@/data-access/contracts/data-sources.interface";
+
+export type CacheDomain = keyof DataSources;
 
 export const CACHE_TAG = {
-  pages: "pages",
+  domain: (domain: CacheDomain) => `domain:${domain}`,
+  entity: (domain: CacheDomain, id: string) => `domain:${domain}:id:${id}`,
   pageBySlug: (slug: string) => `page:slug:${slug}`,
   pageByPath: (path: string) => `page:path:${path}`,
 } as const;
@@ -14,12 +18,34 @@ export function cachedByTags<T>(
   return unstable_cache(loader, keyParts, { tags })();
 }
 
+export function cachedDomain<T>(
+  domain: CacheDomain,
+  keyParts: string[],
+  loader: () => Promise<T>,
+  extraTags: string[] = [],
+): Promise<T> {
+  return cachedByTags(
+    [domain, ...keyParts],
+    [CACHE_TAG.domain(domain), ...extraTags],
+    loader,
+  );
+}
+
+export function invalidateDomainCache(domain: CacheDomain) {
+  revalidateTag(CACHE_TAG.domain(domain));
+}
+
+export function invalidateEntityCache(domain: CacheDomain, id: string) {
+  revalidateTag(CACHE_TAG.domain(domain));
+  revalidateTag(CACHE_TAG.entity(domain, id));
+}
+
 export function invalidatePagesCache() {
-  revalidateTag(CACHE_TAG.pages);
+  invalidateDomainCache("page");
 }
 
 export function invalidatePageCache(input: { slug?: string; path?: string }) {
-  revalidateTag(CACHE_TAG.pages);
+  invalidateDomainCache("page");
 
   if (input.slug) {
     revalidateTag(CACHE_TAG.pageBySlug(input.slug));
