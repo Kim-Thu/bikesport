@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, useTransition } from "react";
+import { useCallback, useEffect, useId, useRef, useState, useTransition } from "react";
 import type { FormEvent } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { SearchFormView } from "@/components/search/SearchFormView";
@@ -29,14 +29,15 @@ export function LiveSearchForm({
   const [value, setValue] = useState(defaultValue);
   const [isPending, startTransition] = useTransition();
   const didMount = useRef(false);
+  const searchParamsValue = searchParams.toString();
 
-  const navigate = (nextValue: string) => {
+  const navigate = useCallback((nextValue: string) => {
     const normalizedValue = nextValue.trim();
-    const currentValue = searchParams.get("q")?.trim() ?? "";
+    const params = new URLSearchParams(searchParamsValue);
+    const currentValue = params.get("q")?.trim() ?? "";
 
-    if (normalizedValue === currentValue && !searchParams.has("page")) return;
+    if (normalizedValue === currentValue && !params.has("page")) return;
 
-    const params = new URLSearchParams(searchParams.toString());
     if (normalizedValue) params.set("q", normalizedValue);
     else params.delete("q");
     params.delete("page");
@@ -48,7 +49,7 @@ export function LiveSearchForm({
     startTransition(() => {
       router.replace(href, { scroll: false });
     });
-  };
+  }, [anchor, pathname, router, searchParamsValue]);
 
   useEffect(() => {
     if (!didMount.current) {
@@ -58,9 +59,7 @@ export function LiveSearchForm({
 
     const timeoutId = window.setTimeout(() => navigate(value), debounceMs);
     return () => window.clearTimeout(timeoutId);
-    // searchParams is intentionally read inside navigate so each navigation preserves current URL state.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, debounceMs]);
+  }, [debounceMs, navigate, value]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
