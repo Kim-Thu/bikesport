@@ -1,3 +1,5 @@
+import type { IconListLayout } from "@/variants/icon-list.variant";
+
 export interface IconListItem {
   icon?: string;
   mediaId?: string;
@@ -7,6 +9,6 @@ export interface IconListItem {
 
 export interface IconListProps {
   items: IconListItem[];
-  layout?: "list" | "grid";
+  layout?: IconListLayout;
   mediaUrlById?: Record<string, string>;
 }
