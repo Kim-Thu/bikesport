@@ -30,7 +30,7 @@ export function Badge({ children, media, alt = "Badge", className, imageClassNam
   if (!children) return null;
 
   return (
-    <span className={cn("inline-flex items-center rounded bg-red-500 px-2 py-1 text-2xs font-bold text-white", className)}>
+    <span className={cn("inline-flex items-center rounded bg-red-700 px-2 py-1 text-2xs font-bold text-white", className)}>
       {children}
     </span>
   );
