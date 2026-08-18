@@ -9,6 +9,20 @@ export function createMongoEventDataSource(getDatabase: MongoDatabaseProvider): 
       const db = await getDatabase();
       return db.collection<EventRecord>(MONGODB_COLLECTIONS.events).findOne({ _id: eventId });
     },
+    async getBySlug(slug) {
+      const db = await getDatabase();
+      return db
+        .collection<EventRecord>(MONGODB_COLLECTIONS.events)
+        .findOne({ slug, status: "published" });
+    },
+    async getPublished() {
+      const db = await getDatabase();
+      return db
+        .collection<EventRecord>(MONGODB_COLLECTIONS.events)
+        .find({ status: "published" })
+        .sort({ startAt: 1 })
+        .toArray();
+    },
     async getFeaturedPublished(limit) {
       const db = await getDatabase();
       let cursor = db
