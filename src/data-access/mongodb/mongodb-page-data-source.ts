@@ -5,6 +5,15 @@ import type { PageRecord } from "@/interfaces/page.interface";
 
 export function createMongoPageDataSource(getDatabase: MongoDatabaseProvider): PageDataSource {
   return {
+    async getPublished() {
+      const database = await getDatabase();
+      return database
+        .collection<PageRecord>(MONGODB_COLLECTIONS.pages)
+        .find({ status: "published" })
+        .sort({ path: 1 })
+        .toArray();
+    },
+
     async getPublishedByPath(path) {
       const database = await getDatabase();
       return database.collection<PageRecord>(MONGODB_COLLECTIONS.pages).findOne({
