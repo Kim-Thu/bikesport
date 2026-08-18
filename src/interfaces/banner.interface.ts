@@ -1,4 +1,4 @@
-import type { BannerOverlayVariant, BannerVariant } from "@/variants/banner.variant";
+import type { BannerOverlayVariant, BannerSize, BannerVariant } from "@/variants/banner.variant";
 
 export type BannerStatus = "draft" | "scheduled" | "active" | "expired" | "disabled";
 export type BannerActionVariant = "primary" | "outline";
@@ -42,6 +42,7 @@ export interface BannerRecord {
   name: string;
   status: BannerStatus;
   variant: BannerVariant;
+  size?: BannerSize;
   overlay?: BannerOverlay;
   breadcrumbs?: BannerBreadcrumb[];
   eyebrow?: string;
