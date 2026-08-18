@@ -12,7 +12,7 @@ export function TestimonialTemplate({
   return (
     <article
       className={cn(
-        "flex h-full flex-col rounded-xl border border-gray-200 bg-white p-5 shadow-sm",
+        "flex h-full flex-col rounded-xl border border-gray-200 bg-white p-5",
         className,
       )}
     >
