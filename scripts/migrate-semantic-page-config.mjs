@@ -17,11 +17,11 @@ const exactMigrations = {
     ["xl:grid-cols-4", ["gridLayout", "four-xl"]],
   ]),
   trackClassName: new Map([
-    ["-ml-4", ["track", "standard"]],
+    ["-ml-4", ["trackLayout", "standard"]],
   ]),
   slideClassName: new Map([
-    ["basis-48 pl-4 sm:basis-52 lg:basis-1/5", ["slide", "compact"]],
-    ["basis-48 pl-4 sm:basis-52 lg:basis-1/4", ["slide", "compact-four"]],
+    ["basis-48 pl-4 sm:basis-52 lg:basis-1/5", ["slideLayout", "compact"]],
+    ["basis-48 pl-4 sm:basis-52 lg:basis-1/4", ["slideLayout", "compact-four"]],
   ]),
   iconClassName: new Map([
     ["text-blue-600", ["iconTone", "primary"]],
@@ -50,6 +50,15 @@ const genericClassMigrations = new Map([
 const unresolved = [];
 let migrated = 0;
 
+function assignSemantic(value, sourceKey, semanticKey, semanticValue, childPath) {
+  if (value[semanticKey] !== undefined && value[semanticKey] !== semanticValue) {
+    throw new Error(`${childPath}: ${semanticKey} already exists with a different value`);
+  }
+  value[semanticKey] = semanticValue;
+  delete value[sourceKey];
+  migrated += 1;
+}
+
 function visit(value, path = "$") {
   if (Array.isArray(value)) {
     value.forEach((item, index) => visit(item, `${path}[${index}]`));
@@ -57,6 +66,13 @@ function visit(value, path = "$") {
   }
 
   if (!value || typeof value !== "object") return;
+
+  if (typeof value.track === "string" && value.trackLayout === undefined) {
+    assignSemantic(value, "track", "trackLayout", value.track, `${path}.track`);
+  }
+  if (typeof value.slide === "string" && value.slideLayout === undefined) {
+    assignSemantic(value, "slide", "slideLayout", value.slide, `${path}.slide`);
+  }
 
   for (const key of Object.keys(value)) {
     const childPath = `${path}.${key}`;
@@ -69,12 +85,7 @@ function visit(value, path = "$") {
 
       if (migration) {
         const [semanticKey, semanticValue] = migration;
-        if (value[semanticKey] !== undefined && value[semanticKey] !== semanticValue) {
-          throw new Error(`${childPath}: ${semanticKey} already exists with a different value`);
-        }
-        value[semanticKey] = semanticValue;
-        delete value[key];
-        migrated += 1;
+        assignSemantic(value, key, semanticKey, semanticValue, childPath);
         continue;
       }
     }
