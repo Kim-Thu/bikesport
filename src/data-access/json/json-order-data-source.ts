@@ -12,7 +12,10 @@ const ordersByCreatedAtDesc = [...orders].sort((a, b) =>
   b.createdAt.localeCompare(a.createdAt),
 );
 
-function getCompletedProductSalesStats(skus?: string[]): ProductSalesStatsRecord[] {
+function getCompletedProductSalesStats(
+  skus?: string[],
+  limit?: number,
+): ProductSalesStatsRecord[] {
   const skuFilter = skus?.length ? new Set(skus) : null;
   const sales = new Map<string, ProductSalesStatsRecord>();
 
@@ -34,11 +37,13 @@ function getCompletedProductSalesStats(skus?: string[]): ProductSalesStatsRecord
     }
   }
 
-  return [...sales.values()].sort((a, b) => {
+  const ranked = [...sales.values()].sort((a, b) => {
     const quantityDifference = b.quantity - a.quantity;
     if (quantityDifference !== 0) return quantityDifference;
     return b.lastPurchasedAt.localeCompare(a.lastPurchasedAt);
   });
+
+  return typeof limit === "number" ? ranked.slice(0, Math.max(0, limit)) : ranked;
 }
 
 export const jsonOrderDataSource: OrderDataSource = {
@@ -54,7 +59,7 @@ export const jsonOrderDataSource: OrderDataSource = {
   async getRecent(limit = 20) {
     return ordersByCreatedAtDesc.slice(0, Math.max(0, limit));
   },
-  async getCompletedProductSalesStats(skus) {
-    return getCompletedProductSalesStats(skus);
+  async getCompletedProductSalesStats(skus, limit) {
+    return getCompletedProductSalesStats(skus, limit);
   },
 };
