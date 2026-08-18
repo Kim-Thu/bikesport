@@ -19,7 +19,7 @@ export type PageBoxIconDescriptionSize = keyof typeof PAGE_BOX_ICON_DESCRIPTION_
 
 export const PAGE_BOX_ICON_LAYOUT_CLASS = {
   inline: {
-    root: "items-start gap-3",
+    root: "items-start justify-center gap-3",
     icon: "h-9 w-9",
     content: "",
     title: "",
