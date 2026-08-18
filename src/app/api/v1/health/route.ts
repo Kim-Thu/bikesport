@@ -3,17 +3,19 @@ import { checkMongoRuntime } from "@/data-access/mongodb/mongodb-database-provid
 
 export async function GET() {
   const provider = getDataSourceProvider();
-  const mongoRuntimeReady = provider === "mongodb" ? await checkMongoRuntime() : true;
-  const ready = provider === "json" || mongoRuntimeReady;
+  const ready = provider === "json" || (provider === "mongodb" && (await checkMongoRuntime()));
 
   return Response.json(
     {
       data: {
         status: ready ? "ready" : "not-ready",
-        dataSource: provider,
-        mongoRuntimeReady,
       },
     },
-    { status: ready ? 200 : 503 },
+    {
+      status: ready ? 200 : 503,
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    },
   );
 }
