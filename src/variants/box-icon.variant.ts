@@ -21,7 +21,7 @@ export const PAGE_BOX_ICON_LAYOUT_CLASS = {
   inline: {
     root: "items-start justify-center gap-3",
     icon: "h-9 w-9",
-    content: "",
+    content: "flex-none",
     title: "",
     description: "",
   },
