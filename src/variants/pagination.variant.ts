@@ -1,1 +1,1 @@
-export type PaginationVariant = "default";
+export type PaginationVariant = "default" | "numbered";
