@@ -19,6 +19,7 @@ export interface CardProps {
   title: string;
   href: string;
   eyebrow?: string;
+  icon?: string;
   mediaId?: string | null;
   media?: MediaItem | null;
   template?: CardTemplate;
