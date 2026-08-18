@@ -20,6 +20,11 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports:
+          - 27017:27017
     steps:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -48,3 +53,34 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Smoke test MongoDB runtime
+        env:
+          DATA_SOURCE: mongodb
+          MONGODB_URI: mongodb://127.0.0.1:27017
+          MONGODB_DB_NAME: bikesport_ci
+          NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
+        run: |
+          npm start > /tmp/bikesport-next.log 2>&1 &
+          APP_PID=$!
+          cleanup() {
+            kill "$APP_PID" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          for attempt in {1..30}; do
+            if RESPONSE="$(curl --silent --fail http://127.0.0.1:3000/api/v1/health)"; then
+              echo "$RESPONSE"
+              node -e '
+                const body = JSON.parse(process.argv[1]);
+                if (body?.data?.status !== "ready" || body?.data?.dataSource !== "mongodb" || body?.data?.mongoRuntimeReady !== true) {
+                  process.exit(1);
+                }
+              ' "$RESPONSE"
+              exit 0
+            fi
+            sleep 1
+          done
+
+          cat /tmp/bikesport-next.log
+          exit 1
