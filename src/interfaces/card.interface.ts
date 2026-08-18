@@ -7,7 +7,8 @@ export type CardTemplate =
   | "media-details"
   | "flash-sale"
   | "accent"
-  | "overlay";
+  | "overlay"
+  | "listing";
 
 export interface CardMetaItem {
   icon?: string;
