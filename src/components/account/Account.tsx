@@ -4,9 +4,14 @@ import type { NavigationOption } from "@/interfaces/options.interface";
 
 export function Account({ account }: { account: NavigationOption }) {
   const { label, href } = account;
+  const accessibleLabel = label || "Tài khoản";
 
   return (
-    <CLink href={href} className="flex min-w-8 flex-col items-center gap-1 whitespace-nowrap text-xs font-semibold lg:min-w-16">
+    <CLink
+      href={href}
+      aria-label={accessibleLabel}
+      className="flex min-w-8 flex-col items-center gap-1 whitespace-nowrap text-xs font-semibold lg:min-w-16"
+    >
       <Icon name="account" size={26} strokeWidth={1.6} />
       {label ? <span className="hidden lg:block">{label}</span> : null}
     </CLink>
