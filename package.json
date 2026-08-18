@@ -9,6 +9,8 @@
     "lint": "eslint .",
     "audit:semantic-config": "node scripts/audit-semantic-config.mjs",
     "audit:design-rules": "node scripts/audit-design-rules.mjs",
+    "audit:assets": "node scripts/audit-public-assets.mjs",
+    "test:browser": "node scripts/storefront-browser-e2e.mjs",
     "db:indexes": "node scripts/apply-mongodb-indexes.mjs"
   },
   "dependencies": {
