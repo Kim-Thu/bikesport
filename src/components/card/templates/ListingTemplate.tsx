@@ -7,6 +7,7 @@ export function ListingTemplate({
   title,
   href,
   eyebrow,
+  icon,
   description,
   metaItems,
   actionLabel = "Xem chi tiết",
@@ -30,9 +31,11 @@ export function ListingTemplate({
             </CLink>
           </h3>
         </div>
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-700">
-          <Icon name="users" size={18} strokeWidth={2} />
-        </span>
+        {icon ? (
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-700">
+            <Icon name={icon} size={18} strokeWidth={2} />
+          </span>
+        ) : null}
       </div>
 
       {description ? (
