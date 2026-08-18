@@ -12,6 +12,7 @@ const routes = [
   "/tuyen-dung",
   "/tuyen-dung/nhan-vien-kinh-doanh-xe-dap",
 ];
+const verifiedInternalUrls = new Set();
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -31,12 +32,61 @@ function reportAccessibilityViolations(viewportName, route, violations) {
   }
 }
 
+function assertSecurityHeaders(response, viewportName, route) {
+  const headers = response.headers();
+  const csp = headers["content-security-policy"] ?? "";
+  assert(csp.includes("default-src 'self'"), `${viewportName} ${route}: missing restrictive CSP default-src`);
+  assert(csp.includes("frame-ancestors 'none'"), `${viewportName} ${route}: CSP must block framing`);
+  assert(headers["x-frame-options"] === "DENY", `${viewportName} ${route}: X-Frame-Options must be DENY`);
+  assert(headers["x-content-type-options"] === "nosniff", `${viewportName} ${route}: X-Content-Type-Options must be nosniff`);
+  assert(headers["referrer-policy"] === "strict-origin-when-cross-origin", `${viewportName} ${route}: unexpected Referrer-Policy`);
+  assert((headers["permissions-policy"] ?? "").includes("camera=()"), `${viewportName} ${route}: missing restrictive Permissions-Policy`);
+  assert(headers["cross-origin-opener-policy"] === "same-origin", `${viewportName} ${route}: Cross-Origin-Opener-Policy must be same-origin`);
+  assert((headers["strict-transport-security"] ?? "").includes("max-age=31536000"), `${viewportName} ${route}: missing production HSTS`);
+}
+
+async function assertSeoRuntime(page, route, viewportName) {
+  const description = await page.locator('meta[name="description"]').getAttribute("content");
+  assert(description?.trim(), `${viewportName} ${route}: missing meta description`);
+
+  const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
+  assert(canonical, `${viewportName} ${route}: missing canonical link`);
+  const canonicalUrl = new URL(canonical, BASE_URL);
+  assert(canonicalUrl.pathname === route, `${viewportName} ${route}: canonical path is ${canonicalUrl.pathname}`);
+
+  const structuredData = page.locator('script[type="application/ld+json"]');
+  assert(await structuredData.count() > 0, `${viewportName} ${route}: missing structured data`);
+  const structuredDataValues = await structuredData.allTextContents();
+  for (const value of structuredDataValues) {
+    JSON.parse(value);
+  }
+}
+
+async function assertInternalLinks(page, route, viewportName) {
+  const internalHrefs = await page.locator('a[href^="/"]').evaluateAll((links) =>
+    [...new Set(links.map((link) => link.getAttribute("href")).filter(Boolean))],
+  );
+
+  for (const href of internalHrefs) {
+    const url = new URL(href, BASE_URL);
+    if (url.hash && url.pathname === new URL(page.url()).pathname) continue;
+    const normalizedUrl = `${url.origin}${url.pathname}${url.search}`;
+    if (verifiedInternalUrls.has(normalizedUrl)) continue;
+
+    const linkResponse = await page.request.get(normalizedUrl, { maxRedirects: 5 });
+    assert(linkResponse.status() < 400, `${viewportName} ${route}: broken internal link ${href} -> ${linkResponse.status()}`);
+    verifiedInternalUrls.add(normalizedUrl);
+  }
+}
+
 async function assertPageBasics(page, route, viewportName) {
   const response = await page.goto(`${BASE_URL}${route}`, { waitUntil: "networkidle" });
   assert(response && response.status() < 400, `${viewportName} ${route}: HTTP ${response?.status()}`);
+  assertSecurityHeaders(response, viewportName, route);
 
   const title = await page.title();
   assert(title.trim().length > 0, `${viewportName} ${route}: missing document title`);
+  await assertSeoRuntime(page, route, viewportName);
 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   assert(overflow <= 1, `${viewportName} ${route}: horizontal overflow ${overflow}px`);
@@ -57,18 +107,35 @@ async function assertPageBasics(page, route, viewportName) {
     `${viewportName} ${route}: accessibility violations: ${blockingViolations.map((item) => `${item.id} (${item.nodes.length})`).join(", ")}`,
   );
 
-  const internalHrefs = await page.locator('a[href^="/"]').evaluateAll((links) =>
-    [...new Set(links.map((link) => link.getAttribute("href")).filter(Boolean))].slice(0, 20),
-  );
-  for (const href of internalHrefs) {
-    const url = new URL(href, BASE_URL);
-    if (url.hash && url.pathname === new URL(page.url()).pathname) continue;
-    const linkResponse = await page.request.get(url.toString(), { maxRedirects: 5 });
-    assert(linkResponse.status() < 400, `${viewportName} ${route}: broken internal link ${href} -> ${linkResponse.status()}`);
+  await assertInternalLinks(page, route, viewportName);
+}
+
+async function assertKeyboardFocus(page) {
+  await page.goto(`${BASE_URL}/tuyen-dung`, { waitUntil: "networkidle" });
+  await page.evaluate(() => {
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+  });
+
+  let reachedSearch = false;
+  for (let attempt = 0; attempt < 60; attempt += 1) {
+    await page.keyboard.press("Tab");
+    reachedSearch = await page.evaluate(() => {
+      const active = document.activeElement;
+      return active instanceof HTMLInputElement && active.type === "search";
+    });
+    if (reachedSearch) break;
   }
+  assert(reachedSearch, "keyboard: recruitment searchbox must be reachable with Tab");
+
+  await page.keyboard.press("Shift+Tab");
+  const previousIsInteractive = await page.evaluate(() =>
+    document.activeElement?.matches('a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled)') ?? false,
+  );
+  assert(previousIsInteractive, "keyboard: Shift+Tab should move focus to another interactive control");
 }
 
 async function assertSearchFlow(page) {
+  await page.goto(BASE_URL, { waitUntil: "networkidle" });
   await page.goto(`${BASE_URL}/tuyen-dung?page=2`, { waitUntil: "networkidle" });
   const searchbox = page.getByRole("searchbox", { name: "Tìm vị trí tuyển dụng" });
   await searchbox.fill("Kỹ thuật");
@@ -79,7 +146,11 @@ async function assertSearchFlow(page) {
   await page.waitForURL((url) => !url.searchParams.has("q") && !url.searchParams.has("page"));
 
   await page.goBack({ waitUntil: "networkidle" });
-  assert(new URL(page.url()).searchParams.get("q") === "Kỹ thuật", "search: browser back should restore query URL state");
+  assert(new URL(page.url()).pathname === "/", "search: browser back should return to the route before live search");
+
+  await page.goForward({ waitUntil: "networkidle" });
+  const forwardUrl = new URL(page.url());
+  assert(forwardUrl.pathname === "/tuyen-dung" && !forwardUrl.searchParams.has("q") && !forwardUrl.searchParams.has("page"), "search: browser forward should restore the final live-search URL");
 }
 
 async function assertPagination(page) {
@@ -103,6 +174,11 @@ async function assertCarousel(page) {
   });
 }
 
+async function assertNotFound(page) {
+  const response = await page.goto(`${BASE_URL}/__storefront_e2e_missing_route__`, { waitUntil: "networkidle" });
+  assert(response?.status() === 404, `404: expected 404 status, received ${response?.status()}`);
+}
+
 const browser = await chromium.launch({ headless: true });
 try {
   for (const viewport of viewports) {
@@ -116,12 +192,14 @@ try {
 
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
+  await assertKeyboardFocus(page);
   await assertSearchFlow(page);
   await assertPagination(page);
   await assertCarousel(page);
+  await assertNotFound(page);
   await context.close();
 
-  console.log("Browser E2E passed: responsive routes, accessibility, links, search, pagination and carousel verified.");
+  console.log("Browser E2E passed: responsive routes, security headers, SEO metadata, structured data, accessibility, keyboard focus, internal links, search history, pagination, carousel and 404 verified.");
 } finally {
   await browser.close();
 }
