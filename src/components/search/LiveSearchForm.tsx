@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState, useTransition } from "react";
+import { useEffect, useId, useRef, useState, useTransition } from "react";
+import type { FormEvent } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Icon } from "@/components/icon/Icon";
 import { cn } from "@/lib/classname.utils";
@@ -22,6 +23,7 @@ export function LiveSearchForm({
   debounceMs = 300,
   className,
 }: LiveSearchFormProps) {
+  const inputId = useId();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -80,11 +82,11 @@ export function LiveSearchForm({
       role="search"
       aria-busy={isPending}
     >
-      <label htmlFor="live-site-search" className="sr-only">
+      <label htmlFor={inputId} className="sr-only">
         {submitLabel}
       </label>
       <input
-        id="live-site-search"
+        id={inputId}
         name="q"
         type="search"
         value={value}
