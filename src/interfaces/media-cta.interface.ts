@@ -1,3 +1,5 @@
+export type MediaCtaVariant = "surface" | "primary-inline";
+
 export interface MediaCtaProps {
   eyebrow?: string;
   title: string;
@@ -5,4 +7,5 @@ export interface MediaCtaProps {
   href: string;
   actionLabel?: string;
   mediaId?: string | null;
+  variant?: MediaCtaVariant;
 }
