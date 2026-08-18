@@ -87,6 +87,7 @@ const indexManifest = {
       key: { status: 1, featured: 1, startAt: 1 },
       name: "events_status_featured_start_at",
     },
+    { key: { status: 1, slug: 1 }, name: "events_status_slug" },
   ],
   combos: [
     { key: { status: 1, order: 1 }, name: "combos_status_order" },
