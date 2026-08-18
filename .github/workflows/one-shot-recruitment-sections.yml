@@ -1,0 +1,177 @@
+name: One-shot Recruitment Sections
+
+on:
+  push:
+    branches:
+      - security/post-merge-hardening
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: security/post-merge-hardening
+
+      - name: Update recruitment sections
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'src/data/wp-pages.json';
+          const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const page = data.pages.find((item) => item.slug === 'tuyen-dung');
+          if (!page) throw new Error('Recruitment page not found.');
+
+          const remainingSections = page.payload.sections.slice(2);
+
+          page.payload.sections = [
+            {
+              _id: '66bf4e8c9f2a4d7b8c1e4411',
+              name: 'Core values',
+              order: 1,
+              status: 'active',
+              component: 'stack',
+              props: {
+                variant: 'cards',
+                spacing: 'comfortable',
+                rowLayout: 'wrap-stretch'
+              },
+              columns: [
+                {
+                  _id: '66bf4e8c9f2a4d7b8c1e4412',
+                  component: 'box-icon',
+                  props: {
+                    icon: 'users',
+                    title: 'Con người là trọng tâm',
+                    description: 'Chúng tôi tôn trọng sự khác biệt, đề cao tinh thần hợp tác và phát triển cá nhân.',
+                    layout: 'centered',
+                    iconTone: 'primary',
+                    descriptionSize: 'sm'
+                  }
+                },
+                {
+                  _id: '66bf4e8c9f2a4d7b8c1e4413',
+                  component: 'box-icon',
+                  props: {
+                    icon: 'target',
+                    title: 'Đam mê & cam kết',
+                    description: 'BikeSport đề cao tinh thần đam mê và cam kết mang đến giá trị tốt nhất cho khách hàng.',
+                    layout: 'centered',
+                    iconTone: 'primary',
+                    descriptionSize: 'sm'
+                  }
+                },
+                {
+                  _id: '66bf4e8c9f2a4d7b8c1e4414',
+                  component: 'box-icon',
+                  props: {
+                    icon: 'growth',
+                    title: 'Phát triển bền vững',
+                    description: 'Chúng tôi tạo môi trường để mỗi thành viên phát triển lâu dài và đạt được mục tiêu.',
+                    layout: 'centered',
+                    iconTone: 'primary',
+                    descriptionSize: 'sm'
+                  }
+                },
+                {
+                  _id: '66bf4e8c9f2a4d7b8c1e4415',
+                  component: 'box-icon',
+                  props: {
+                    icon: 'values',
+                    title: 'Lan tỏa giá trị',
+                    description: 'Cùng nhau lan tỏa lối sống khỏe mạnh, tích cực và trách nhiệm với cộng đồng.',
+                    layout: 'centered',
+                    iconTone: 'primary',
+                    descriptionSize: 'sm'
+                  }
+                }
+              ]
+            },
+            {
+              _id: '66bf4e8c9f2a4d7b8c1e4421',
+              name: 'Company metrics',
+              order: 2,
+              status: 'active',
+              component: 'stack',
+              props: {
+                variant: 'primary',
+                spacing: 'compact',
+                rowLayout: 'wrap-stretch'
+              },
+              columns: [
+                {
+                  _id: '66bf4e8c9f2a4d7b8c1e4422',
+                  component: 'box-icon',
+                  props: {
+                    icon: 'users',
+                    title: '10+',
+                    description: 'Năm phát triển',
+                    layout: 'inline',
+                    iconTone: 'inverse',
+                    titleSize: 'metric',
+                    descriptionSize: 'sm'
+                  }
+                },
+                {
+                  _id: '66bf4e8c9f2a4d7b8c1e4423',
+                  component: 'box-icon',
+                  props: {
+                    icon: 'location',
+                    title: '30+',
+                    description: 'Cửa hàng toàn quốc',
+                    layout: 'inline',
+                    iconTone: 'inverse',
+                    titleSize: 'metric',
+                    descriptionSize: 'sm'
+                  }
+                },
+                {
+                  _id: '66bf4e8c9f2a4d7b8c1e4424',
+                  component: 'box-icon',
+                  props: {
+                    icon: 'growth',
+                    title: '200+',
+                    description: 'Nhân sự tài năng',
+                    layout: 'inline',
+                    iconTone: 'inverse',
+                    titleSize: 'metric',
+                    descriptionSize: 'sm'
+                  }
+                },
+                {
+                  _id: '66bf4e8c9f2a4d7b8c1e4425',
+                  component: 'box-icon',
+                  props: {
+                    icon: 'settings',
+                    title: '100%',
+                    description: 'Môi trường chuyên nghiệp',
+                    layout: 'inline',
+                    iconTone: 'inverse',
+                    titleSize: 'metric',
+                    descriptionSize: 'sm'
+                  }
+                }
+              ]
+            },
+            ...remainingSections.map((section, index) => ({ ...section, order: index + 3 }))
+          ];
+
+          fs.writeFileSync(path, `${JSON.stringify(data, null, 2)}\n`);
+          NODE
+
+          rm .github/workflows/one-shot-recruitment-sections.yml
+
+      - name: Commit recruitment sections and remove bootstrap workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/wp-pages.json .github/workflows/one-shot-recruitment-sections.yml
+          git commit -m 'feat(recruitment): match value and metric references'
+          git push origin HEAD:security/post-merge-hardening
