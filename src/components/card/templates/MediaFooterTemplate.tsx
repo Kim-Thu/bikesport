@@ -8,7 +8,7 @@ export function MediaFooterTemplate({ title, href, media, className }: CardProps
   return (
     <CLink href={href} className={cn("group flex h-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white transition-colors hover:border-blue-200", className)}>
       <div className="aspect-card-media w-full overflow-hidden bg-white p-4">
-        {media ? <MediaImageView media={media} alt={title} width={320} height={240} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" /> : null}
+        <MediaImageView media={media} alt={title} width={320} height={240} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
       </div>
       <div className="flex items-center justify-between gap-2 border-t border-gray-100 bg-white p-4">
         <span className="min-w-0 text-xs font-semibold text-gray-900 sm:text-sm">{title}</span>
