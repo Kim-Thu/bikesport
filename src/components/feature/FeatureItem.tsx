@@ -1,9 +1,5 @@
 import { Icon } from "@/components/icon/Icon";
-import type { BannerFeature } from "@/interfaces/banner.interface";
-
-interface FeatureItemProps extends BannerFeature {
-  iconMediaUrl?: string;
-}
+import type { FeatureItemProps } from "@/interfaces/feature.interface";
 
 export function FeatureItem({ iconMediaUrl, title, description }: FeatureItemProps) {
   return (
