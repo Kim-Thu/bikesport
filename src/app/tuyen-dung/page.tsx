@@ -73,6 +73,7 @@ export default async function RecruitmentPage({ searchParams }: RecruitmentPageP
 
               <div className="w-full md:max-w-2xl">
                 <LiveSearchForm
+                  key={query}
                   defaultValue={query}
                   placeholder="Tìm theo vị trí, phòng ban, địa điểm..."
                   submitLabel="Tìm vị trí tuyển dụng"
