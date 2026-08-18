@@ -1,7 +1,9 @@
-import type { ComponentName, ComponentProps } from "@/types/component.type";
+import type { ComponentName, ComponentPropsMap } from "@/types/component.type";
 
-export interface ComponentItem {
-  component: ComponentName;
-  enabled?: boolean;
-  props?: ComponentProps;
-}
+export type ComponentItem = {
+  [Name in ComponentName]: {
+    component: Name;
+    enabled?: boolean;
+    props?: ComponentPropsMap[Name];
+  };
+}[ComponentName];
