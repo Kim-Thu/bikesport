@@ -1,0 +1,187 @@
+name: One-shot Recruitment Stories CTA
+
+on:
+  push:
+    branches:
+      - security/post-merge-hardening
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: security/post-merge-hardening
+
+      - name: Add testimonial posts and recruitment sections
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const postsPath = 'src/data/wp-posts.json';
+          const pagesPath = 'src/data/wp-pages.json';
+          const postsData = JSON.parse(fs.readFileSync(postsPath, 'utf8'));
+          const pagesData = JSON.parse(fs.readFileSync(pagesPath, 'utf8'));
+
+          const testimonials = [
+            {
+              _id: '66bf4e8c9f2a4d7b8c1e5101',
+              type: 'testimonial',
+              title: 'Nguyễn Minh Hoàng',
+              slug: 'nguyen-minh-hoang-bikesporter',
+              status: 'published',
+              excerpt: 'BikeSport là nơi tôi được trao cơ hội để phát triển bản thân và chinh phục những thử thách mới mỗi ngày.',
+              categoryIds: [],
+              tagIds: [],
+              authorId: '66bf4e8c9f2a4d7b8c1e1111',
+              mediaId: null,
+              testimonial: { role: 'Trưởng nhóm Kinh doanh' },
+              publishedAt: '2026-08-18T08:30:00+07:00',
+              createdBy: '66bf4e8c9f2a4d7b8c1e1111',
+              updatedBy: '66bf4e8c9f2a4d7b8c1e1111',
+              createdAt: '2026-08-18T08:30:00+07:00',
+              updatedAt: '2026-08-18T08:30:00+07:00'
+            },
+            {
+              _id: '66bf4e8c9f2a4d7b8c1e5102',
+              type: 'testimonial',
+              title: 'Phạm Thùy Linh',
+              slug: 'pham-thuy-linh-bikesporter',
+              status: 'published',
+              excerpt: 'Môi trường trẻ trung, đồng nghiệp thân thiện và luôn hỗ trợ nhau để cùng tạo ra những chiến dịch ý nghĩa.',
+              categoryIds: [],
+              tagIds: [],
+              authorId: '66bf4e8c9f2a4d7b8c1e1111',
+              mediaId: null,
+              testimonial: { role: 'Nhân viên Marketing' },
+              publishedAt: '2026-08-18T08:20:00+07:00',
+              createdBy: '66bf4e8c9f2a4d7b8c1e1111',
+              updatedBy: '66bf4e8c9f2a4d7b8c1e1111',
+              createdAt: '2026-08-18T08:20:00+07:00',
+              updatedAt: '2026-08-18T08:20:00+07:00'
+            },
+            {
+              _id: '66bf4e8c9f2a4d7b8c1e5103',
+              type: 'testimonial',
+              title: 'Trần Đức Anh',
+              slug: 'tran-duc-anh-bikesporter',
+              status: 'published',
+              excerpt: 'Tôi yêu thích công việc của mình vì được làm việc với sản phẩm chất lượng và giúp khách hàng có trải nghiệm tốt nhất.',
+              categoryIds: [],
+              tagIds: [],
+              authorId: '66bf4e8c9f2a4d7b8c1e1111',
+              mediaId: null,
+              testimonial: { role: 'Kỹ thuật viên' },
+              publishedAt: '2026-08-18T08:10:00+07:00',
+              createdBy: '66bf4e8c9f2a4d7b8c1e1111',
+              updatedBy: '66bf4e8c9f2a4d7b8c1e1111',
+              createdAt: '2026-08-18T08:10:00+07:00',
+              updatedAt: '2026-08-18T08:10:00+07:00'
+            }
+          ];
+
+          postsData.posts = postsData.posts.filter((post) => !testimonials.some((item) => item._id === post._id));
+          postsData.posts.push(...testimonials);
+
+          const page = pagesData.pages.find((item) => item.slug === 'tuyen-dung');
+          if (!page) throw new Error('Recruitment page not found.');
+
+          const storiesId = '66bf4e8c9f2a4d7b8c1e4470';
+          const closingId = '66bf4e8c9f2a4d7b8c1e4440';
+          const sections = page.payload.sections.filter((section) => section._id !== storiesId);
+          const closingIndex = sections.findIndex((section) => section._id === closingId);
+          if (closingIndex < 0) throw new Error('Recruitment closing section not found.');
+
+          const storiesSection = {
+            _id: storiesId,
+            name: 'Bikesporter stories',
+            order: 0,
+            status: 'active',
+            component: 'layout',
+            props: { spacing: 'comfortable' },
+            rows: [
+              {
+                _id: '66bf4e8c9f2a4d7b8c1e4471',
+                columns: [
+                  {
+                    _id: '66bf4e8c9f2a4d7b8c1e4472',
+                    props: { layout: 'full' },
+                    blocks: [
+                      {
+                        _id: '66bf4e8c9f2a4d7b8c1e4473',
+                        status: 'active',
+                        component: 'card-grid',
+                        props: {
+                          title: 'Câu chuyện từ BikeSporter',
+                          href: '/tuyen-dung#cau-chuyen-bikesporter',
+                          actionLabel: 'Xem tất cả',
+                          template: 'testimonial',
+                          gridLayout: 'one-two-three',
+                          source: {
+                            type: 'post',
+                            postType: 'testimonial',
+                            limit: 3
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          };
+
+          sections.splice(closingIndex, 0, storiesSection);
+          const closing = sections.find((section) => section._id === closingId);
+          closing.name = 'Recruitment CTA';
+          closing.component = 'layout';
+          closing.props = { spacing: 'compact' };
+          closing.rows = [
+            {
+              _id: '66bf4e8c9f2a4d7b8c1e4481',
+              columns: [
+                {
+                  _id: '66bf4e8c9f2a4d7b8c1e4482',
+                  props: { layout: 'full' },
+                  blocks: [
+                    {
+                      _id: '66bf4e8c9f2a4d7b8c1e4483',
+                      status: 'active',
+                      component: 'media-cta',
+                      props: {
+                        variant: 'primary-inline',
+                        title: 'Sẵn sàng gia nhập đội ngũ BikeSport?',
+                        description: 'Cùng chúng tôi tạo nên những hành trình ý nghĩa mỗi ngày.',
+                        href: '/tuyen-dung#vi-tri-dang-tuyen',
+                        actionLabel: 'Ứng tuyển ngay',
+                        mediaId: null
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ];
+
+          page.payload.sections = sections.map((section, index) => ({ ...section, order: index + 1 }));
+          page.updatedAt = '2026-08-18T11:00:00+07:00';
+
+          fs.writeFileSync(postsPath, `${JSON.stringify(postsData, null, 2)}\n`);
+          fs.writeFileSync(pagesPath, `${JSON.stringify(pagesData, null, 2)}\n`);
+          NODE
+
+          rm .github/workflows/one-shot-recruitment-stories-cta.yml
+
+      - name: Commit recruitment stories and CTA
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/wp-posts.json src/data/wp-pages.json .github/workflows/one-shot-recruitment-stories-cta.yml
+          git commit -m 'feat(recruitment): add stories and CTA'
+          git push origin HEAD:security/post-merge-hardening
