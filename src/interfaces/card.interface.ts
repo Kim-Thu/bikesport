@@ -8,7 +8,8 @@ export type CardTemplate =
   | "flash-sale"
   | "accent"
   | "overlay"
-  | "listing";
+  | "listing"
+  | "testimonial";
 
 export interface CardMetaItem {
   icon?: string;
