@@ -6,6 +6,7 @@ import { cn } from "@/lib/classname.utils";
 export function ListingTemplate({
   title,
   href,
+  eyebrow,
   description,
   metaItems,
   actionLabel = "Xem chi tiết",
@@ -20,7 +21,9 @@ export function ListingTemplate({
     >
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-blue-700">Cơ hội nghề nghiệp</p>
+          {eyebrow ? (
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-blue-700">{eyebrow}</p>
+          ) : null}
           <h3 className="text-base font-bold text-gray-950 sm:text-lg">
             <CLink href={href} className="transition-colors group-hover:text-blue-700">
               {title}
