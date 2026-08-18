@@ -3,7 +3,7 @@ import { dataSources } from "@/data-access/data-sources";
 import type { ProductRecord } from "@/interfaces/product.interface";
 import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 import { getCategoryTreeIds } from "@/lib/category.utils";
-import { getProductSalesStatsBySku } from "@/lib/order.utils";
+import { getRankedProductSalesStats } from "@/lib/order.utils";
 
 export async function getPublishedProducts(limit?: number): Promise<ProductRecord[]> {
   return cachedDomain(
@@ -62,28 +62,31 @@ export async function getFeaturedProducts(limit?: number): Promise<ProductRecord
 
 const getBestSellerProductsCached = cache(async (categoryId?: string | null): Promise<ProductRecord[]> => {
   const categoryIds = categoryId ? await getCategoryTreeIds(categoryId) : null;
-  const products = categoryIds
-    ? await getPublishedProductsByCategoryIds(categoryIds)
-    : await getPublishedProducts();
-  const salesBySku = await getProductSalesStatsBySku(products.map((product) => product.sku));
+  const rankedSales = await getRankedProductSalesStats();
+  if (!rankedSales.length) return [];
 
-  return products
-    .filter((product) => salesBySku.has(product.sku))
-    .sort((a, b) => {
-      const aSales = salesBySku.get(a.sku);
-      const bSales = salesBySku.get(b.sku);
-      const quantityDifference = (bSales?.quantity ?? 0) - (aSales?.quantity ?? 0);
+  const rankedSkus = rankedSales.map((row) => row.sku);
+  const products = await dataSources.product.getPublishedByFilter({
+    skus: rankedSkus,
+    ...(categoryIds?.length ? { categoryIds, match: "all" as const } : {}),
+  });
+  const salesBySku = new Map(rankedSales.map((row) => [row.sku, row]));
 
-      if (quantityDifference !== 0) return quantityDifference;
+  return products.sort((a, b) => {
+    const aSales = salesBySku.get(a.sku);
+    const bSales = salesBySku.get(b.sku);
+    const quantityDifference = (bSales?.quantity ?? 0) - (aSales?.quantity ?? 0);
 
-      const purchaseRecencyDifference =
-        new Date(bSales?.lastPurchasedAt ?? 0).getTime() -
-        new Date(aSales?.lastPurchasedAt ?? 0).getTime();
+    if (quantityDifference !== 0) return quantityDifference;
 
-      if (purchaseRecencyDifference !== 0) return purchaseRecencyDifference;
+    const purchaseRecencyDifference =
+      new Date(bSales?.lastPurchasedAt ?? 0).getTime() -
+      new Date(aSales?.lastPurchasedAt ?? 0).getTime();
 
-      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
-    });
+    if (purchaseRecencyDifference !== 0) return purchaseRecencyDifference;
+
+    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+  });
 });
 
 export async function getBestSellerProducts(
