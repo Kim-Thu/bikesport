@@ -1,6 +1,7 @@
 import { dataSources } from "@/data-access/data-sources";
 import type { PaymentMethod } from "@/interfaces/payment.interface";
+import { cachedDomain } from "@/lib/cache.utils";
 
 export async function getEnabledPaymentMethods(): Promise<PaymentMethod[]> {
-  return dataSources.payment.getEnabled();
+  return cachedDomain("payment", ["enabled"], () => dataSources.payment.getEnabled());
 }
