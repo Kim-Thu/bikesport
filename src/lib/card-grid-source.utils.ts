@@ -84,7 +84,7 @@ async function resolvePostCards(
           title: post.title,
           eyebrow: recruitment.department,
           icon: "users",
-          href: recruitment.applyUrl ?? "/lien-he",
+          href: `/tuyen-dung/${post.slug}`,
           description: post.excerpt,
           metaItems: [
             { icon: "location", text: recruitment.location },
@@ -95,7 +95,7 @@ async function resolvePostCards(
               ? [{ icon: "users", text: `${recruitment.openings} vị trí` }]
               : []),
           ],
-          actionLabel: "Ứng tuyển",
+          actionLabel: "Xem chi tiết",
         };
       }
 
