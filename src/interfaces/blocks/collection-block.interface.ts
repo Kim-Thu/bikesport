@@ -41,10 +41,6 @@ export interface ProductSliderBlockPayload extends PageBlockBase {
     ariaLabel?: string;
     trackLayout?: PageSliderTrackPreset;
     slideLayout?: PageSliderSlidePreset;
-    /** @deprecated Use trackLayout. */
-    trackClassName?: string;
-    /** @deprecated Use slideLayout. */
-    slideClassName?: string;
     source: ProductSource;
   };
 }
@@ -58,13 +54,8 @@ export interface TabsSliderBlockPayload extends PageBlockBase {
     layoutTemplate?: TabsSliderTemplate;
     actionTone?: ActionLinkTone;
     backgroundMediaId?: string | null;
-    containerClassName?: string;
     trackLayout?: PageSliderTrackPreset;
     slideLayout?: PageSliderSlidePreset;
-    /** @deprecated Use trackLayout. */
-    trackClassName?: string;
-    /** @deprecated Use slideLayout. */
-    slideClassName?: string;
     source:
       | { type: "best-seller"; limit?: number; tabs: Array<{ label: string; categoryId: string }> }
       | { type: "combo"; tabs: Array<{ label: string; comboId: string }> }
@@ -82,8 +73,6 @@ export interface TabsGridBlockPayload extends PageBlockBase {
     layoutTemplate?: TabsGridTemplate;
     backgroundMediaId?: string | null;
     gridLayout?: PageGridLayoutPreset;
-    /** @deprecated Use gridLayout. */
-    gridClassName?: string;
     mobilePageSize?: number;
     tabs: Array<{
       label: string;
@@ -99,8 +88,6 @@ export interface CardGridBlockPayload extends PageBlockBase {
     title: string;
     template: CardTemplate;
     gridLayout?: PageGridLayoutPreset;
-    /** @deprecated Use gridLayout. */
-    gridClassName?: string;
     source:
       | { type: "category"; categoryType: CategoryType; limit?: number }
       | { type: "event"; limit?: number }
