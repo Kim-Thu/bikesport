@@ -1,6 +1,7 @@
 import { CardGrid } from "@/components/grid/CardGrid";
 import type { CardGridBlockPayload } from "@/interfaces/page-block.interface";
 import { getCardGridItems } from "@/lib/card-grid-source.utils";
+import { resolvePageGridLayout } from "@/variants/page-layout.variant";
 
 export async function CardGridBlock({ block }: { block: CardGridBlockPayload }) {
   const items = await getCardGridItems(block.props.source);
@@ -15,7 +16,7 @@ export async function CardGridBlock({ block }: { block: CardGridBlockPayload }) 
       href={block.props.href}
       actionLabel={block.props.actionLabel}
       headingTemplate={block.props.headingTemplate}
-      gridClassName={block.props.gridClassName}
+      gridClassName={resolvePageGridLayout(block.props.gridLayout, block.props.gridClassName)}
     />
   );
 }
