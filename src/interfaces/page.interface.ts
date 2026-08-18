@@ -125,3 +125,8 @@ export interface PageRecord {
   createdAt: string;
   updatedAt: string;
 }
+
+export type PageSummary = Pick<
+  PageRecord,
+  "_id" | "title" | "slug" | "path" | "status" | "updatedAt"
+>;
