@@ -1412,9 +1412,171 @@
             ]
           },
           {
+            "_id": "66bf4e8c9f2a4d7b8c1e4450",
+            "name": "Why join BikeSport",
+            "order": 4,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "comfortable"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4451",
+                "props": {
+                  "layout": "stack-responsive-wide"
+                },
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4452",
+                    "props": {
+                      "layout": "half"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4453",
+                        "status": "active",
+                        "component": "section-header",
+                        "props": {
+                          "title": "Vì sao bạn nên gia nhập BikeSport?"
+                        }
+                      },
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4454",
+                        "status": "active",
+                        "component": "icon-list",
+                        "props": {
+                          "layout": "grid",
+                          "items": [
+                            {
+                              "icon": "payment",
+                              "title": "Thu nhập cạnh tranh",
+                              "description": "Lương thưởng xứng đáng với năng lực và hiệu quả công việc."
+                            },
+                            {
+                              "icon": "package",
+                              "title": "Phúc lợi toàn diện",
+                              "description": "BHXH, BHYT, du lịch, teambuilding, quà tặng và nhiều phúc lợi khác."
+                            },
+                            {
+                              "icon": "users",
+                              "title": "Môi trường năng động",
+                              "description": "Không khí trẻ trung, cởi mở, khuyến khích sáng tạo và chủ động."
+                            },
+                            {
+                              "icon": "values",
+                              "title": "Cân bằng cuộc sống",
+                              "description": "Thời gian làm việc linh hoạt, quan tâm đến sức khỏe nhân viên."
+                            },
+                            {
+                              "icon": "growth",
+                              "title": "Đào tạo & phát triển",
+                              "description": "Được hỗ trợ học tập, nâng cao kỹ năng và phát triển sự nghiệp."
+                            },
+                            {
+                              "icon": "target",
+                              "title": "Sản phẩm truyền cảm hứng",
+                              "description": "Làm việc với sản phẩm giúp nâng cao sức khỏe và kết nối cộng đồng."
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4455",
+                    "props": {
+                      "layout": "half"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4456",
+                        "status": "active",
+                        "component": "media",
+                        "props": {
+                          "mediaId": null,
+                          "alt": "Đội ngũ BikeSport",
+                          "aspect": "landscape"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4460",
+            "name": "Recruitment process",
+            "order": 5,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "comfortable"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4461",
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4462",
+                    "props": {
+                      "layout": "full"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4463",
+                        "status": "active",
+                        "component": "section-header",
+                        "props": {
+                          "title": "Quy trình tuyển dụng",
+                          "description": "Quy trình rõ ràng, minh bạch để ứng viên chủ động trong từng bước."
+                        }
+                      },
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4464",
+                        "status": "active",
+                        "component": "timeline",
+                        "props": {
+                          "items": [
+                            {
+                              "label": "Bước 01",
+                              "title": "Gửi hồ sơ ứng tuyển",
+                              "description": "Chọn vị trí phù hợp và gửi CV cùng thông tin liên hệ."
+                            },
+                            {
+                              "label": "Bước 02",
+                              "title": "Sàng lọc hồ sơ",
+                              "description": "Đội ngũ tuyển dụng đánh giá kinh nghiệm và mức độ phù hợp."
+                            },
+                            {
+                              "label": "Bước 03",
+                              "title": "Phỏng vấn",
+                              "description": "Trao đổi với HR và bộ phận chuyên môn về năng lực, công việc và kỳ vọng."
+                            },
+                            {
+                              "label": "Bước 04",
+                              "title": "Đề nghị nhận việc",
+                              "description": "Thống nhất vị trí, thu nhập, phúc lợi và thời gian bắt đầu."
+                            },
+                            {
+                              "label": "Bước 05",
+                              "title": "Gia nhập BikeSport",
+                              "description": "Hoàn tất thủ tục và bắt đầu chương trình hội nhập cùng đội ngũ."
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "_id": "66bf4e8c9f2a4d7b8c1e4430",
             "name": "Open positions",
-            "order": 4,
+            "order": 6,
             "status": "active",
             "component": "layout",
             "props": {
@@ -1454,7 +1616,7 @@
           {
             "_id": "66bf4e8c9f2a4d7b8c1e4440",
             "name": "Career closing",
-            "order": 5,
+            "order": 7,
             "status": "active",
             "component": "layout",
             "props": {
@@ -1494,7 +1656,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-18T10:00:00+07:00",
-      "updatedAt": "2026-08-18T10:00:00+07:00"
+      "updatedAt": "2026-08-18T10:57:00+07:00"
     }
   ]
 }
