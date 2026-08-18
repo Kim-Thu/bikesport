@@ -8,8 +8,9 @@ export interface ProductSalesStats {
 
 export async function getRankedProductSalesStats(
   skus?: string[],
+  limit?: number,
 ): Promise<ProductSalesStatsRecord[]> {
-  return dataSources.order.getCompletedProductSalesStats(skus);
+  return dataSources.order.getCompletedProductSalesStats(skus, limit);
 }
 
 export async function getProductSalesStatsBySku(
