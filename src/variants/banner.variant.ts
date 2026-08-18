@@ -6,7 +6,7 @@ export type BannerOverlayVariant = (typeof BANNER_OVERLAY_VARIANTS)[number];
 
 export const BANNER_SIZE_CLASS = {
   hero: "sm:aspect-hero-tablet lg:aspect-8/3",
-  page: "aspect-[16/5]",
+  page: "aspect-8/3",
 } as const;
 
 export type BannerSize = keyof typeof BANNER_SIZE_CLASS;
