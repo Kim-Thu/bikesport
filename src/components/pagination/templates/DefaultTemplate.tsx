@@ -10,7 +10,7 @@ export function DefaultTemplate({
   ariaLabel = "Phân trang",
   className,
 }: PaginationProps) {
-  if (totalPages <= 1) return null;
+  if (totalPages <= 1 || !onPageChange) return null;
 
   return (
     <nav
@@ -19,7 +19,7 @@ export function DefaultTemplate({
     >
       <button
         type="button"
-        className="cursor-pointer rounded-md border border-gray-200 px-3 py-2 text-sm font-semibold text-gray-700 disabled:cursor-not-allowed disabled:opacity-40"
+        className="cursor-pointer rounded-md border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 disabled:cursor-not-allowed disabled:opacity-40"
         disabled={page <= 0}
         onClick={() => onPageChange(Math.max(0, page - 1))}
       >
@@ -32,7 +32,7 @@ export function DefaultTemplate({
 
       <button
         type="button"
-        className="cursor-pointer rounded-md border border-gray-200 px-3 py-2 text-sm font-semibold text-gray-700 disabled:cursor-not-allowed disabled:opacity-40"
+        className="cursor-pointer rounded-md border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 disabled:cursor-not-allowed disabled:opacity-40"
         disabled={page >= totalPages - 1}
         onClick={() => onPageChange(Math.min(totalPages - 1, page + 1))}
       >
