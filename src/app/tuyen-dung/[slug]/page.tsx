@@ -7,11 +7,13 @@ import { Icon } from "@/components/icon/Icon";
 import { ActionLink } from "@/components/link/ActionLink";
 import { CLink } from "@/components/link/CLink";
 import { Container } from "@/components/layout/Container";
+import { IconList } from "@/components/list/IconList";
 import { PageSections } from "@/components/page/PageSections";
 import { Panel } from "@/components/panel/Panel";
 import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { ShareActions } from "@/components/share/ShareActions";
+import type { IconListItem } from "@/interfaces/icon-list.interface";
 import { getSiteOptions } from "@/lib/options.utils";
 import { getPublishedPageBySlug } from "@/lib/page.utils";
 import {
@@ -90,6 +92,15 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
   const recruitmentCtaSection = recruitmentPage?.payload.sections.find(
     (section) => section.name === "Recruitment CTA",
   );
+  const positionItems = [
+    { icon: "location", title: recruitment.location },
+    { icon: "clock", title: recruitment.employmentType },
+    recruitment.salary ? { icon: "payment", title: recruitment.salary } : null,
+    deadline ? { icon: "clock", title: deadline } : null,
+    typeof recruitment.openings === "number"
+      ? { icon: "users", title: `${recruitment.openings} vị trí` }
+      : null,
+  ].filter(Boolean) as IconListItem[];
 
   return (
     <main aria-label={post.title}>
@@ -138,36 +149,7 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
                     <Heading level={2} className="text-lg font-bold uppercase text-gray-950">
                       Thông tin vị trí
                     </Heading>
-
-                    <div className="flex flex-col gap-4 text-sm text-gray-600">
-                      <div className="flex items-start gap-4">
-                        <Icon name="location" className="h-5 w-5 shrink-0 text-blue-700" />
-                        <span>{recruitment.location}</span>
-                      </div>
-                      <div className="flex items-start gap-4">
-                        <Icon name="clock" className="h-5 w-5 shrink-0 text-blue-700" />
-                        <span>{recruitment.employmentType}</span>
-                      </div>
-                      {recruitment.salary ? (
-                        <div className="flex items-start gap-4">
-                          <Icon name="payment" className="h-5 w-5 shrink-0 text-blue-700" />
-                          <span>{recruitment.salary}</span>
-                        </div>
-                      ) : null}
-                      {deadline ? (
-                        <div className="flex items-start gap-4">
-                          <Icon name="clock" className="h-5 w-5 shrink-0 text-blue-700" />
-                          <span>{deadline}</span>
-                        </div>
-                      ) : null}
-                      {typeof recruitment.openings === "number" ? (
-                        <div className="flex items-start gap-4">
-                          <Icon name="users" className="h-5 w-5 shrink-0 text-blue-700" />
-                          <span>{recruitment.openings} vị trí</span>
-                        </div>
-                      ) : null}
-                    </div>
-
+                    <IconList items={positionItems} layout="compact" />
                     <ActionLink href={recruitment.applyUrl ?? "/lien-he"} className="mt-4 justify-center">
                       Ứng tuyển vị trí này
                     </ActionLink>
