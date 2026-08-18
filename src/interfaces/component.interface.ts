@@ -5,7 +5,7 @@ type ComponentItemBase<Name extends ComponentName> = {
   enabled?: boolean;
 };
 
-type ComponentItemFor<Name extends ComponentName> = {} extends ComponentPropsMap[Name]
+type ComponentItemFor<Name extends ComponentName> = Record<never, never> extends ComponentPropsMap[Name]
   ? ComponentItemBase<Name> & { props?: ComponentPropsMap[Name] }
   : ComponentItemBase<Name> & { props: ComponentPropsMap[Name] };
 
