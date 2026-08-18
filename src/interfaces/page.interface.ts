@@ -27,12 +27,6 @@ export interface PageBoxIconProps {
   iconTone?: PageBoxIconTone;
   titleSize?: PageBoxIconTitleSize;
   descriptionSize?: PageBoxIconDescriptionSize;
-  /** @deprecated Use iconTone. */
-  iconClassName?: string;
-  /** @deprecated Use titleSize. */
-  titleClassName?: string;
-  /** @deprecated Use descriptionSize. */
-  descriptionClassName?: string;
 }
 
 export interface PageColumnPayload {
@@ -60,10 +54,6 @@ export interface StackSectionPayload extends PageSectionBase {
     variant: "surface" | "primary";
     spacing?: PageSectionSpacingPreset;
     rowLayout?: PageRowLayoutPreset;
-    /** @deprecated Use spacing. */
-    sectionClassName?: string;
-    /** @deprecated Use rowLayout. */
-    rowClassName?: string;
   };
   columns: PageColumnPayload[];
 }
@@ -75,10 +65,6 @@ export interface CardGridSectionPayload extends PageSectionBase {
     template: CardTemplate;
     gridLayout?: PageGridLayoutPreset;
     spacing?: PageSectionSpacingPreset;
-    /** @deprecated Use gridLayout. */
-    gridClassName?: string;
-    /** @deprecated Use spacing. */
-    sectionClassName?: string;
     source: {
       type: "category";
       categoryType: CategoryType;
@@ -92,8 +78,6 @@ export interface LayoutColumnPayload {
   props?: {
     layout?: PageColumnLayoutPreset;
     grow?: boolean;
-    /** @deprecated Use layout. */
-    className?: string;
   };
   blocks: PageBlockPayload[];
 }
@@ -102,8 +86,6 @@ export interface LayoutRowPayload {
   _id: string;
   props?: {
     layout?: PageRowLayoutPreset;
-    /** @deprecated Use layout. */
-    className?: string;
   };
   columns: LayoutColumnPayload[];
 }
@@ -113,9 +95,6 @@ export interface LayoutSectionPayload extends PageSectionBase {
   props: {
     sectionTemplate?: SectionTemplate;
     spacing?: PageSectionSpacingPreset;
-    /** @deprecated Use spacing. */
-    sectionClassName?: string;
-    containerClassName?: string;
   };
   rows: LayoutRowPayload[];
 }
