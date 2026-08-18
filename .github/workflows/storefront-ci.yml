@@ -76,38 +76,50 @@ jobs:
           NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
         run: npm run build
 
-      - name: Verify JSON and Mongo page summary parity
+      - name: Verify JSON and Mongo public API parity
         env:
           MONGODB_URI: mongodb://127.0.0.1:27017
           MONGODB_DB_NAME: bikesport_ci
         run: |
-          node scripts/seed-ci-pages.mjs
+          node scripts/seed-ci-public-data.mjs
+          mkdir -p /tmp/parity-json /tmp/parity-mongo
+          ENDPOINTS="pages products categories brands promotions banners stores posts events combos payment-methods"
 
           DATA_SOURCE=json NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3000 npm start > /tmp/bikesport-parity-json.log 2>&1 &
           JSON_PID=$!
           for attempt in {1..30}; do
-            if curl --silent --fail --output /tmp/pages-json.json http://127.0.0.1:3000/api/v1/pages; then
+            if curl --silent --fail http://127.0.0.1:3000/api/v1/pages > /dev/null; then
               break
             fi
             sleep 1
           done
+          for endpoint in $ENDPOINTS; do
+            curl --silent --fail --output "/tmp/parity-json/${endpoint}.json" "http://127.0.0.1:3000/api/v1/${endpoint}" || {
+              cat /tmp/bikesport-parity-json.log
+              exit 1
+            }
+          done
           kill "$JSON_PID" 2>/dev/null || true
           wait "$JSON_PID" 2>/dev/null || true
-          test -s /tmp/pages-json.json || { cat /tmp/bikesport-parity-json.log; exit 1; }
 
           DATA_SOURCE=mongodb MONGODB_URI=mongodb://127.0.0.1:27017 MONGODB_DB_NAME=bikesport_ci NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3000 npm start > /tmp/bikesport-parity-mongo.log 2>&1 &
           MONGO_PID=$!
           for attempt in {1..30}; do
-            if curl --silent --fail --output /tmp/pages-mongo.json http://127.0.0.1:3000/api/v1/pages; then
+            if curl --silent --fail http://127.0.0.1:3000/api/v1/pages > /dev/null; then
               break
             fi
             sleep 1
           done
+          for endpoint in $ENDPOINTS; do
+            curl --silent --fail --output "/tmp/parity-mongo/${endpoint}.json" "http://127.0.0.1:3000/api/v1/${endpoint}" || {
+              cat /tmp/bikesport-parity-mongo.log
+              exit 1
+            }
+          done
           kill "$MONGO_PID" 2>/dev/null || true
           wait "$MONGO_PID" 2>/dev/null || true
-          test -s /tmp/pages-mongo.json || { cat /tmp/bikesport-parity-mongo.log; exit 1; }
 
-          node scripts/verify-page-datasource-parity.mjs /tmp/pages-json.json /tmp/pages-mongo.json
+          node scripts/verify-public-datasource-parity.mjs /tmp/parity-json /tmp/parity-mongo
 
       - name: Install browser test tools
         run: |
