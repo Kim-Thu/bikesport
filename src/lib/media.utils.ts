@@ -1,8 +1,9 @@
+import { MEDIA_PLACEHOLDER } from "@/constants/media.constant";
 import { dataSources } from "@/data-access/data-sources";
 import type { MediaItem } from "@/interfaces/media.interface";
 import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 
-export const PLACEHOLDER_MEDIA_ID = "66bf4e8c9f2a4d7b8c1e3702";
+export const PLACEHOLDER_MEDIA_ID = MEDIA_PLACEHOLDER.id;
 
 function isSafeLocalMediaUrl(src: string): boolean {
   return src.startsWith("/") && !src.startsWith("//");
