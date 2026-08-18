@@ -1,7 +1,7 @@
 import type { PageDataSource } from "@/data-access/contracts/page-data-source.interface";
 import type { MongoDatabaseProvider } from "@/data-access/mongodb/mongodb-driver.interface";
 import { MONGODB_COLLECTIONS } from "@/data-access/mongodb/mongodb-collection";
-import type { PageRecord } from "@/interfaces/page.interface";
+import type { PageRecord, PageSummary } from "@/interfaces/page.interface";
 
 export function createMongoPageDataSource(getDatabase: MongoDatabaseProvider): PageDataSource {
   return {
@@ -11,6 +11,27 @@ export function createMongoPageDataSource(getDatabase: MongoDatabaseProvider): P
         .collection<PageRecord>(MONGODB_COLLECTIONS.pages)
         .find({ status: "published" })
         .sort({ path: 1 })
+        .toArray();
+    },
+
+    async getPublishedSummaries() {
+      const database = await getDatabase();
+      return database
+        .collection<PageRecord>(MONGODB_COLLECTIONS.pages)
+        .aggregate<PageSummary>([
+          { $match: { status: "published" } },
+          {
+            $project: {
+              _id: 1,
+              title: 1,
+              slug: 1,
+              path: 1,
+              status: 1,
+              updatedAt: 1,
+            },
+          },
+          { $sort: { path: 1 } },
+        ])
         .toArray();
     },
 
