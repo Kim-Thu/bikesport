@@ -6,6 +6,7 @@ import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { TabsSlider } from "@/components/slider/TabsSlider";
 import type { ProductSliderBlockPayload } from "@/interfaces/page-block.interface";
 import { resolveProductSliderBlock } from "@/lib/product-slider-block.utils";
+import { resolvePageSliderSlide, resolvePageSliderTrack } from "@/variants/page-layout.variant";
 
 const LAYOUT_TEMPLATES = {
   default: DefaultTemplate,
@@ -14,6 +15,8 @@ const LAYOUT_TEMPLATES = {
 
 export async function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload }) {
   const viewModel = await resolveProductSliderBlock(block);
+  const trackClassName = resolvePageSliderTrack(block.props.trackLayout, block.props.trackClassName);
+  const slideClassName = resolvePageSliderSlide(block.props.slideLayout, block.props.slideClassName);
 
   if (viewModel.kind === "tabs") {
     return (
@@ -29,8 +32,8 @@ export async function ProductSliderBlock({ block }: { block: ProductSliderBlockP
         tabTemplate={viewModel.tabTemplate}
         layoutTemplate={viewModel.layoutTemplate}
         actionTone={viewModel.actionTone}
-        trackClassName={block.props.trackClassName}
-        slideClassName={block.props.slideClassName}
+        trackClassName={trackClassName}
+        slideClassName={slideClassName}
       />
     );
   }
@@ -56,8 +59,8 @@ export async function ProductSliderBlock({ block }: { block: ProductSliderBlockP
       items={viewModel.items}
       template={block.props.template}
       ariaLabel={block.props.ariaLabel ?? block.props.title ?? "Danh sách sản phẩm"}
-      trackClassName={block.props.trackClassName}
-      slideClassName={block.props.slideClassName}
+      trackClassName={trackClassName}
+      slideClassName={slideClassName}
     />
   );
 
