@@ -141,7 +141,7 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-gray-200 bg-blue-50 p-6">
+                <div className="rounded-xl border border-blue-700 bg-blue-700/5 p-6">
                   <div className="flex flex-col gap-4">
                     <Heading level={2} className="text-lg font-bold uppercase text-gray-950">
                       Thông tin BikeSport
