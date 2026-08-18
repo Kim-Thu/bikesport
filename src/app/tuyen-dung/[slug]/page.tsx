@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/breadcrumb/Breadcrumb";
+import { CardGrid } from "@/components/grid/CardGrid";
 import { Heading } from "@/components/heading/Heading";
 import { Icon } from "@/components/icon/Icon";
-import { Container } from "@/components/layout/Container";
 import { ActionLink } from "@/components/link/ActionLink";
+import { CLink } from "@/components/link/CLink";
+import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/section/Section";
-import { formatRecruitmentDeadline, getRecruitmentBySlug } from "@/lib/recruitment.utils";
+import { SectionHeader } from "@/components/section-header/SectionHeader";
+import { getSiteOptions } from "@/lib/options.utils";
+import {
+  formatRecruitmentDeadline,
+  getRecruitmentBySlug,
+  getRelatedRecruitments,
+  mapRecruitmentPostToCard,
+} from "@/lib/recruitment.utils";
 
 export const revalidate = 300;
 
@@ -52,8 +61,13 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
 
   if (!post?.recruitment) notFound();
 
+  const [options, relatedPosts] = await Promise.all([
+    getSiteOptions(),
+    getRelatedRecruitments(post),
+  ]);
   const recruitment = post.recruitment;
   const deadline = formatRecruitmentDeadline(recruitment.deadline);
+  const relatedCards = relatedPosts.map(mapRecruitmentPostToCard);
 
   return (
     <main aria-label={post.title}>
@@ -85,50 +99,104 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
                 <DetailList title="Quyền lợi" items={recruitment.benefits} />
               </article>
 
-              <aside className="h-fit rounded-xl border border-gray-200 bg-white p-6 lg:sticky lg:top-24">
-                <div className="flex flex-col gap-4">
-                  <Heading level={2} className="text-lg font-bold uppercase text-gray-950">
-                    Thông tin vị trí
-                  </Heading>
+              <aside className="flex h-fit flex-col gap-4 lg:sticky lg:top-24">
+                <div className="rounded-xl border border-gray-200 bg-white p-6">
+                  <div className="flex flex-col gap-4">
+                    <Heading level={2} className="text-lg font-bold uppercase text-gray-950">
+                      Thông tin vị trí
+                    </Heading>
 
-                  <div className="flex flex-col gap-4 text-sm text-gray-600">
-                    <div className="flex items-start gap-4">
-                      <Icon name="location" className="h-5 w-5 shrink-0 text-blue-700" />
-                      <span>{recruitment.location}</span>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <Icon name="clock" className="h-5 w-5 shrink-0 text-blue-700" />
-                      <span>{recruitment.employmentType}</span>
-                    </div>
-                    {recruitment.salary ? (
+                    <div className="flex flex-col gap-4 text-sm text-gray-600">
                       <div className="flex items-start gap-4">
-                        <Icon name="payment" className="h-5 w-5 shrink-0 text-blue-700" />
-                        <span>{recruitment.salary}</span>
+                        <Icon name="location" className="h-5 w-5 shrink-0 text-blue-700" />
+                        <span>{recruitment.location}</span>
                       </div>
-                    ) : null}
-                    {deadline ? (
                       <div className="flex items-start gap-4">
                         <Icon name="clock" className="h-5 w-5 shrink-0 text-blue-700" />
-                        <span>{deadline}</span>
+                        <span>{recruitment.employmentType}</span>
                       </div>
-                    ) : null}
-                    {typeof recruitment.openings === "number" ? (
-                      <div className="flex items-start gap-4">
-                        <Icon name="users" className="h-5 w-5 shrink-0 text-blue-700" />
-                        <span>{recruitment.openings} vị trí</span>
-                      </div>
-                    ) : null}
-                  </div>
+                      {recruitment.salary ? (
+                        <div className="flex items-start gap-4">
+                          <Icon name="payment" className="h-5 w-5 shrink-0 text-blue-700" />
+                          <span>{recruitment.salary}</span>
+                        </div>
+                      ) : null}
+                      {deadline ? (
+                        <div className="flex items-start gap-4">
+                          <Icon name="clock" className="h-5 w-5 shrink-0 text-blue-700" />
+                          <span>{deadline}</span>
+                        </div>
+                      ) : null}
+                      {typeof recruitment.openings === "number" ? (
+                        <div className="flex items-start gap-4">
+                          <Icon name="users" className="h-5 w-5 shrink-0 text-blue-700" />
+                          <span>{recruitment.openings} vị trí</span>
+                        </div>
+                      ) : null}
+                    </div>
 
-                  <ActionLink href={recruitment.applyUrl ?? "/lien-he"} className="mt-4 justify-center">
-                    Ứng tuyển vị trí này
-                  </ActionLink>
+                    <ActionLink href={recruitment.applyUrl ?? "/lien-he"} className="mt-4 justify-center">
+                      Ứng tuyển vị trí này
+                    </ActionLink>
+                  </div>
+                </div>
+
+                <div className="rounded-xl border border-gray-200 bg-blue-50 p-6">
+                  <div className="flex flex-col gap-4">
+                    <Heading level={2} className="text-lg font-bold uppercase text-gray-950">
+                      Thông tin BikeSport
+                    </Heading>
+                    <p className="text-sm font-semibold text-gray-950">{options.organization.legalName}</p>
+                    <div className="flex flex-col gap-4 text-sm text-gray-600">
+                      {options.organization.headquarters ? (
+                        <div className="flex items-start gap-4">
+                          <Icon name="location" className="h-5 w-5 shrink-0 text-blue-700" />
+                          <span>{options.organization.headquarters}</span>
+                        </div>
+                      ) : null}
+                      <div className="flex items-start gap-4">
+                        <Icon name="mail" className="h-5 w-5 shrink-0 text-blue-700" />
+                        <CLink href={options.contact.email.href ?? `mailto:${options.contact.email.value}`} className="hover:text-blue-700">
+                          {options.contact.email.value}
+                        </CLink>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <Icon name="phone" className="h-5 w-5 shrink-0 text-blue-700" />
+                        <CLink href={options.contact.hotline.href ?? `tel:${options.contact.hotline.value}`} className="hover:text-blue-700">
+                          {options.contact.hotline.value}
+                        </CLink>
+                      </div>
+                    </div>
+                    <CLink href="/lien-he" className="text-sm font-semibold text-blue-700">
+                      Xem thông tin liên hệ →
+                    </CLink>
+                  </div>
                 </div>
               </aside>
             </div>
           </div>
         </Container>
       </Section>
+
+      {relatedCards.length > 0 ? (
+        <Section>
+          <Container>
+            <div className="flex flex-col gap-8">
+              <SectionHeader title="Các vị trí khác bạn có thể quan tâm" />
+              <CardGrid
+                items={relatedCards}
+                template="listing"
+                gridClassName="grid grid-cols-1 gap-4 lg:grid-cols-3"
+              />
+              <div>
+                <CLink href="/tuyen-dung#vi-tri-dang-tuyen" className="text-sm font-semibold text-blue-700">
+                  Xem tất cả vị trí tuyển dụng →
+                </CLink>
+              </div>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
     </main>
   );
 }
