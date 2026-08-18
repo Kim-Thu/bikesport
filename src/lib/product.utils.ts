@@ -52,6 +52,16 @@ export async function getPublishedProductsByCategoryIds(
   );
 }
 
+async function getPublishedProductSkus(categoryIds?: string[]): Promise<string[]> {
+  const uniqueCategoryIds = categoryIds?.length ? [...new Set(categoryIds)].sort() : [];
+  return cachedDomain(
+    "product",
+    ["published-skus", ...(uniqueCategoryIds.length ? uniqueCategoryIds : ["all"])],
+    () => dataSources.product.getPublishedSkus(uniqueCategoryIds.length ? uniqueCategoryIds : undefined),
+    uniqueCategoryIds.map((categoryId) => CACHE_TAG.entity("category", categoryId)),
+  );
+}
+
 export async function getFeaturedProducts(limit?: number): Promise<ProductRecord[]> {
   return cachedDomain(
     "product",
@@ -60,41 +70,35 @@ export async function getFeaturedProducts(limit?: number): Promise<ProductRecord
   );
 }
 
-const getBestSellerProductsCached = cache(async (categoryId?: string | null): Promise<ProductRecord[]> => {
-  const categoryIds = categoryId ? await getCategoryTreeIds(categoryId) : null;
-  const rankedSales = await getRankedProductSalesStats();
-  if (!rankedSales.length) return [];
+const getBestSellerProductsCached = cache(
+  async (categoryId?: string | null, limit?: number): Promise<ProductRecord[]> => {
+    if (typeof limit === "number" && limit <= 0) return [];
 
-  const rankedSkus = rankedSales.map((row) => row.sku);
-  const products = await dataSources.product.getPublishedByFilter({
-    skus: rankedSkus,
-    ...(categoryIds?.length ? { categoryIds, match: "all" as const } : {}),
-  });
-  const salesBySku = new Map(rankedSales.map((row) => [row.sku, row]));
+    const categoryIds = categoryId ? await getCategoryTreeIds(categoryId) : undefined;
+    const publishedSkus = await getPublishedProductSkus(categoryIds ?? undefined);
+    if (!publishedSkus.length) return [];
 
-  return products.sort((a, b) => {
-    const aSales = salesBySku.get(a.sku);
-    const bSales = salesBySku.get(b.sku);
-    const quantityDifference = (bSales?.quantity ?? 0) - (aSales?.quantity ?? 0);
+    const rankedSales = await getRankedProductSalesStats(publishedSkus, limit);
+    if (!rankedSales.length) return [];
 
-    if (quantityDifference !== 0) return quantityDifference;
+    const rankedSkus = rankedSales.map((row) => row.sku);
+    const products = await dataSources.product.getPublishedByFilter(
+      { skus: rankedSkus },
+      rankedSkus.length,
+    );
+    const productBySku = new Map(products.map((product) => [product.sku, product]));
 
-    const purchaseRecencyDifference =
-      new Date(bSales?.lastPurchasedAt ?? 0).getTime() -
-      new Date(aSales?.lastPurchasedAt ?? 0).getTime();
-
-    if (purchaseRecencyDifference !== 0) return purchaseRecencyDifference;
-
-    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
-  });
-});
+    return rankedSkus
+      .map((sku) => productBySku.get(sku))
+      .filter((product): product is ProductRecord => Boolean(product));
+  },
+);
 
 export async function getBestSellerProducts(
   categoryId?: string | null,
   limit?: number,
 ): Promise<ProductRecord[]> {
-  const items = await getBestSellerProductsCached(categoryId);
-  return typeof limit === "number" ? items.slice(0, limit) : items;
+  return getBestSellerProductsCached(categoryId, limit);
 }
 
 export function getProductDiscountPercentage(product: ProductRecord) {
