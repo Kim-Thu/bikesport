@@ -34,6 +34,13 @@ export function createMongoProductDataSource(getDatabase: MongoDatabaseProvider)
       if (typeof limit === "number") cursor = cursor.limit(limit);
       return cursor.toArray();
     },
+    async getPublishedBySlug(slug) {
+      const db = await getDatabase();
+      return db.collection<ProductRecord>(MONGODB_COLLECTIONS.products).findOne({
+        slug,
+        status: "published",
+      });
+    },
     async getPublishedSkus(categoryIds) {
       const db = await getDatabase();
       const match = categoryIds?.length
