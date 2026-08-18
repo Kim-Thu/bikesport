@@ -1,4 +1,4 @@
-import { createElement, type ElementType } from "react";
+import { createElement, type ComponentType } from "react";
 import { AccountLoader } from "@/components/account/AccountLoader";
 import { Announcement } from "@/components/announcement/Announcement";
 import { Button } from "@/components/button/Button";
@@ -13,9 +13,13 @@ import { Payment } from "@/components/payment/Payment";
 import { SearchForm } from "@/components/search/SearchForm";
 import { SocialLoader } from "@/components/social/SocialLoader";
 import type { ComponentItem } from "@/interfaces/component.interface";
-import type { ComponentName } from "@/types/component.type";
+import type { ComponentName, ComponentPropsMap } from "@/types/component.type";
 
-export const COMPONENT_REGISTRY: Record<ComponentName, ElementType> = {
+type ComponentRegistry = {
+  [Name in ComponentName]: ComponentType<ComponentPropsMap[Name]>;
+};
+
+export const COMPONENT_REGISTRY = {
   announcement: Announcement,
   button: Button,
   icon: Icon,
@@ -29,12 +33,12 @@ export const COMPONENT_REGISTRY: Record<ComponentName, ElementType> = {
   "mobile-menu": MobileMenuLoader,
   payment: Payment,
   social: SocialLoader,
-};
+} satisfies ComponentRegistry;
 
 export function renderComponent(item: ComponentItem, index: number) {
   if (item.enabled === false) return null;
 
-  const Component = COMPONENT_REGISTRY[item.component];
+  const Component = COMPONENT_REGISTRY[item.component] as ComponentType<Record<string, unknown>>;
 
   return createElement(Component, {
     key: `${item.component}-${index}`,
