@@ -10,4 +10,9 @@ export const jsonPostDataSource: PostDataSource = {
   async getLatestPublished(limit) {
     return typeof limit === "number" ? publishedPosts.slice(0, limit) : publishedPosts;
   },
+
+  async getLatestPublishedByType(type, limit) {
+    const posts = publishedPosts.filter((post) => post.type === type);
+    return typeof limit === "number" ? posts.slice(0, limit) : posts;
+  },
 };
