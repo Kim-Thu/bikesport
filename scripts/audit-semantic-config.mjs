@@ -1,7 +1,8 @@
 import { readdir, readFile } from "node:fs/promises";
 import { extname, join, relative } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const dataRoot = new URL("../src/data/", import.meta.url);
+const dataRoot = fileURLToPath(new URL("../src/data/", import.meta.url));
 const violations = [];
 
 async function walk(directory) {
@@ -16,7 +17,7 @@ async function walk(directory) {
 
     if (extname(entry.name) !== ".json") continue;
     const document = JSON.parse(await readFile(path, "utf8"));
-    visit(document, relative(dataRoot.pathname, path), "$" );
+    visit(document, relative(dataRoot, path), "$");
   }
 }
 
