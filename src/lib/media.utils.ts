@@ -1,5 +1,6 @@
 import { dataSources } from "@/data-access/data-sources";
 import type { MediaItem } from "@/interfaces/media.interface";
+import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 
 export const PLACEHOLDER_MEDIA_ID = "66bf4e8c9f2a4d7b8c1e3702";
 
@@ -9,13 +10,25 @@ function isSafeLocalMediaUrl(src: string): boolean {
 
 export async function getMediaById(mediaId?: string | null): Promise<MediaItem | null> {
   if (!mediaId) return null;
-  return dataSources.media.getById(mediaId);
+
+  return cachedDomain(
+    "media",
+    ["by-id", mediaId],
+    () => dataSources.media.getById(mediaId),
+    [CACHE_TAG.entity("media", mediaId)],
+  );
 }
 
 export async function getMediaByIds(mediaIds: string[]): Promise<MediaItem[]> {
-  const uniqueMediaIds = [...new Set(mediaIds.filter(Boolean))];
+  const uniqueMediaIds = [...new Set(mediaIds.filter(Boolean))].sort();
   if (!uniqueMediaIds.length) return [];
-  return dataSources.media.getByIds(uniqueMediaIds);
+
+  return cachedDomain(
+    "media",
+    ["by-ids", ...uniqueMediaIds],
+    () => dataSources.media.getByIds(uniqueMediaIds),
+    uniqueMediaIds.map((mediaId) => CACHE_TAG.entity("media", mediaId)),
+  );
 }
 
 export async function getMediaUrl(mediaId?: string | null): Promise<string | undefined> {
