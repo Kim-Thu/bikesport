@@ -21,14 +21,12 @@ import {
 export async function StackSection({ section }: { section: StackSectionPayload }) {
   const mediaIds = section.columns.flatMap((column) => (column.props.mediaId ? [column.props.mediaId] : []));
   const mediaById = await getMediaWithFallbackByIds(mediaIds);
-  const sectionClassName = cn(
-    section.props.spacing ? PAGE_SECTION_SPACING_CLASS[section.props.spacing] : undefined,
-    section.props.sectionClassName,
-  );
+  const sectionClassName = section.props.spacing
+    ? PAGE_SECTION_SPACING_CLASS[section.props.spacing]
+    : undefined;
   const rowClassName = cn(
     "flex-col items-stretch lg:flex-row",
     section.props.rowLayout ? PAGE_ROW_LAYOUT_CLASS[section.props.rowLayout] : undefined,
-    section.props.rowClassName,
   );
 
   return (
@@ -49,20 +47,13 @@ export async function StackSection({ section }: { section: StackSectionPayload }
                   iconMediaUrl={column.props.mediaId ? mediaById[column.props.mediaId]?.src : undefined}
                   title={column.props.title}
                   description={column.props.description}
-                  iconClassName={cn(
-                    column.props.iconTone ? PAGE_BOX_ICON_TONE_CLASS[column.props.iconTone] : undefined,
-                    column.props.iconClassName,
-                  )}
-                  titleClassName={cn(
-                    column.props.titleSize ? PAGE_BOX_ICON_TITLE_SIZE_CLASS[column.props.titleSize] : undefined,
-                    column.props.titleClassName,
-                  )}
-                  descriptionClassName={cn(
+                  iconClassName={column.props.iconTone ? PAGE_BOX_ICON_TONE_CLASS[column.props.iconTone] : undefined}
+                  titleClassName={column.props.titleSize ? PAGE_BOX_ICON_TITLE_SIZE_CLASS[column.props.titleSize] : undefined}
+                  descriptionClassName={
                     column.props.descriptionSize
                       ? PAGE_BOX_ICON_DESCRIPTION_SIZE_CLASS[column.props.descriptionSize]
-                      : undefined,
-                    column.props.descriptionClassName,
-                  )}
+                      : undefined
+                  }
                 />
               </Column>
             ))}
