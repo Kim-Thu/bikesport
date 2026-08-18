@@ -1,4 +1,4 @@
-export const BANNER_VARIANTS = ["promo-left", "centered", "image-only"] as const;
+export const BANNER_VARIANTS = ["promo-left", "content-left", "centered", "image-only"] as const;
 export type BannerVariant = (typeof BANNER_VARIANTS)[number];
 
 export const BANNER_OVERLAY_VARIANTS = ["blue-left", "blue-center"] as const;
