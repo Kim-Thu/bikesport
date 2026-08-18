@@ -1,17 +1,23 @@
 import { dataSources } from "@/data-access/data-sources";
 import type { CampaignRecord } from "@/interfaces/campaign.interface";
 import type { ProductRecord } from "@/interfaces/product.interface";
+import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 import { getCategoryTreeIds } from "@/lib/category.utils";
 import { getActivePromotionById, getPromotionProducts } from "@/lib/promotion.utils";
 
 export async function getCampaigns(): Promise<CampaignRecord[]> {
-  return dataSources.campaign.getAll();
+  return cachedDomain("campaign", ["all"], () => dataSources.campaign.getAll());
 }
 
 export async function getActiveCampaignById(
   campaignId: string,
 ): Promise<CampaignRecord | null> {
-  const campaign = await dataSources.campaign.getById(campaignId);
+  const campaign = await cachedDomain(
+    "campaign",
+    ["id", campaignId],
+    () => dataSources.campaign.getById(campaignId),
+    [CACHE_TAG.entity("campaign", campaignId)],
+  );
   return campaign?.status === "active" ? campaign : null;
 }
 
