@@ -1,0 +1,61 @@
+name: One-shot Gap Scale
+
+on:
+  push:
+    branches:
+      - security/post-merge-hardening
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: security/post-merge-hardening
+
+      - name: Normalize gap spacing scale
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              'gap-3': 'gap-4',
+              'gap-x-3': 'gap-x-4',
+              'gap-y-3': 'gap-y-4',
+          }
+
+          for path in Path('src').rglob('*'):
+              if not path.is_file() or path.suffix not in {'.ts', '.tsx', '.js', '.jsx', '.css', '.json'}:
+                  continue
+              text = path.read_text(encoding='utf-8')
+              updated = text
+              for old, new in replacements.items():
+                  updated = updated.replace(old, new)
+              if updated != text:
+                  path.write_text(updated, encoding='utf-8')
+          PY
+
+          if grep -RInE 'gap(-x|-y)?-3([^0-9]|$)' src; then
+            echo 'Found disallowed gap scale 3 in src/' >&2
+            exit 1
+          fi
+
+          rm .github/workflows/one-shot-gap-scale.yml
+
+      - name: Commit spacing migration
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src .github/workflows/one-shot-gap-scale.yml
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'style(spacing): normalize gap scale to multiples of four'
+          git push origin HEAD:security/post-merge-hardening
