@@ -6,10 +6,17 @@ export const PAGE_SECTION_SPACING_CLASS = {
 
 export type PageSectionSpacingPreset = keyof typeof PAGE_SECTION_SPACING_CLASS;
 
+export const PAGE_SECTION_SURFACE_CLASS = {
+  panel: "rounded-xl border border-gray-200 bg-white p-4",
+} as const;
+
+export type PageSectionSurfacePreset = keyof typeof PAGE_SECTION_SURFACE_CLASS;
+
 export const PAGE_ROW_LAYOUT_CLASS = {
   "stack-responsive": "flex-col items-stretch gap-4 lg:flex-row",
   "stack-responsive-start": "flex-col items-start gap-4 lg:flex-row",
   "stack-responsive-wide": "flex-col items-stretch gap-6 lg:flex-row",
+  "split-equal": "grid grid-cols-1 gap-4 lg:grid-cols-2",
   "wrap-stretch": "flex-wrap items-stretch",
 } as const;
 
@@ -22,6 +29,8 @@ export const PAGE_COLUMN_LAYOUT_CLASS = {
   "sidebar-quarter": "w-full space-y-8 lg:w-1/4",
   half: "w-full lg:w-1/2",
   "half-panel": "w-full space-y-6 rounded-xl bg-blue-50 p-6 lg:w-1/2",
+  "half-panel-soft": "w-full space-y-6 rounded-lg bg-blue-50 p-6",
+  "half-media": "w-full overflow-hidden rounded-lg",
 } as const;
 
 export type PageColumnLayoutPreset = keyof typeof PAGE_COLUMN_LAYOUT_CLASS;
@@ -51,6 +60,10 @@ export type PageSliderSlidePreset = keyof typeof PAGE_SLIDER_SLIDE_CLASS;
 
 export function resolvePageSectionSpacing(preset?: PageSectionSpacingPreset) {
   return preset ? PAGE_SECTION_SPACING_CLASS[preset] : undefined;
+}
+
+export function resolvePageSectionSurface(preset?: PageSectionSurfacePreset) {
+  return preset ? PAGE_SECTION_SURFACE_CLASS[preset] : undefined;
 }
 
 export function resolvePageRowLayout(preset?: PageRowLayoutPreset) {
