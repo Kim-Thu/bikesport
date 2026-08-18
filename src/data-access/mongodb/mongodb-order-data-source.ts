@@ -49,10 +49,11 @@ export function createMongoOrderDataSource(
         .toArray();
     },
 
-    async getCompletedProductSalesStats(skus) {
+    async getCompletedProductSalesStats(skus, limit) {
       const database = await getDatabase();
+      const skuFilter = skus?.length ? { "items.sku": { $in: skus } } : {};
       const pipeline: Record<string, unknown>[] = [
-        { $match: { status: "completed" } },
+        { $match: { status: "completed", ...skuFilter } },
         { $unwind: "$items" },
       ];
 
@@ -70,6 +71,10 @@ export function createMongoOrderDataSource(
         },
         { $sort: { quantity: -1, lastPurchasedAt: -1 } },
       );
+
+      if (typeof limit === "number") {
+        pipeline.push({ $limit: Math.max(0, limit) });
+      }
 
       const rows = await database
         .collection<OrderRecord>(MONGODB_COLLECTIONS.orders)
