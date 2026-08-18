@@ -83,7 +83,34 @@ jobs:
         run: |
           node scripts/seed-ci-public-data.mjs
           mkdir -p /tmp/parity-json /tmp/parity-mongo
-          ENDPOINTS="pages products categories brands promotions banners stores posts events combos payment-methods"
+
+          capture_endpoint() {
+            target_dir="$1"
+            name="$2"
+            path="$3"
+            echo "Capturing ${target_dir##*/}: /api/v1/${path}"
+            status="$(curl --silent --show-error --output "${target_dir}/${name}.json" --write-out '%{http_code}' "http://127.0.0.1:3000/api/v1/${path}")"
+            if [ "$status" -lt 200 ] || [ "$status" -ge 300 ]; then
+              echo "Endpoint /api/v1/${path} returned HTTP ${status}"
+              cat "${target_dir}/${name}.json" || true
+              return 1
+            fi
+          }
+
+          capture_all() {
+            target_dir="$1"
+            capture_endpoint "$target_dir" pages pages
+            capture_endpoint "$target_dir" products products
+            capture_endpoint "$target_dir" categories categories
+            capture_endpoint "$target_dir" brands brands
+            capture_endpoint "$target_dir" promotions promotions
+            capture_endpoint "$target_dir" banners "banners?groupId=66bf4e8c9f2a4d7b8c1e3b01"
+            capture_endpoint "$target_dir" stores stores
+            capture_endpoint "$target_dir" posts posts
+            capture_endpoint "$target_dir" events events
+            capture_endpoint "$target_dir" combos combos
+            capture_endpoint "$target_dir" payment-methods payment-methods
+          }
 
           DATA_SOURCE=json NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3000 npm start > /tmp/bikesport-parity-json.log 2>&1 &
           JSON_PID=$!
@@ -93,12 +120,10 @@ jobs:
             fi
             sleep 1
           done
-          for endpoint in $ENDPOINTS; do
-            curl --silent --fail --output "/tmp/parity-json/${endpoint}.json" "http://127.0.0.1:3000/api/v1/${endpoint}" || {
-              cat /tmp/bikesport-parity-json.log
-              exit 1
-            }
-          done
+          capture_all /tmp/parity-json || {
+            cat /tmp/bikesport-parity-json.log
+            exit 1
+          }
           kill "$JSON_PID" 2>/dev/null || true
           wait "$JSON_PID" 2>/dev/null || true
 
@@ -110,12 +135,10 @@ jobs:
             fi
             sleep 1
           done
-          for endpoint in $ENDPOINTS; do
-            curl --silent --fail --output "/tmp/parity-mongo/${endpoint}.json" "http://127.0.0.1:3000/api/v1/${endpoint}" || {
-              cat /tmp/bikesport-parity-mongo.log
-              exit 1
-            }
-          done
+          capture_all /tmp/parity-mongo || {
+            cat /tmp/bikesport-parity-mongo.log
+            exit 1
+          }
           kill "$MONGO_PID" 2>/dev/null || true
           wait "$MONGO_PID" 2>/dev/null || true
 
