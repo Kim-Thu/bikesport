@@ -74,6 +74,7 @@ async function resolvePostCards(
         return {
           title: post.title,
           eyebrow: recruitment.department,
+          icon: "users",
           href: recruitment.applyUrl ?? "/lien-he",
           description: post.excerpt,
           metaItems: [
