@@ -1,0 +1,44 @@
+{
+  "paymentMethods": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3601",
+      "name": "mastercard",
+      "label": "Mastercard",
+      "mediaId": "66bf4e8c9f2a4d7b8c1e3702",
+      "enabled": true,
+      "order": 1
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3602",
+      "name": "zalopay",
+      "label": "ZaloPay",
+      "mediaId": "66bf4e8c9f2a4d7b8c1e3702",
+      "enabled": true,
+      "order": 2
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3603",
+      "name": "momo",
+      "label": "MoMo",
+      "mediaId": "66bf4e8c9f2a4d7b8c1e3702",
+      "enabled": true,
+      "order": 3
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3604",
+      "name": "vnpay",
+      "label": "VNPay",
+      "mediaId": "66bf4e8c9f2a4d7b8c1e3702",
+      "enabled": true,
+      "order": 4
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3605",
+      "name": "cod",
+      "label": "COD",
+      "mediaId": "66bf4e8c9f2a4d7b8c1e3702",
+      "enabled": true,
+      "order": 5
+    }
+  ]
+}

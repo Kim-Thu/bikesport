@@ -1,0 +1,87 @@
+{
+  "combos": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4701",
+      "name": "Combo xe đạp giá tốt",
+      "slug": "combo-xe-dap-gia-tot",
+      "description": "Xe đạp thành phố kèm mũ bảo hiểm và gọng bình nước, phù hợp nhu cầu đi lại hằng ngày với chi phí tiết kiệm.",
+      "status": "active",
+      "items": [
+        { "productId": "66bf4e8c9f2a4d7b8c1e4503", "quantity": 1 },
+        { "productId": "66bf4e8c9f2a4d7b8c1e4510", "quantity": 1 },
+        { "productId": "66bf4e8c9f2a4d7b8c1e4511", "quantity": 1 }
+      ],
+      "price": 11770000,
+      "comboPrice": 9990000,
+      "mediaId": null,
+      "featured": true,
+      "order": 1,
+      "campaignId": "66bf4e8c9f2a4d7b8c1e3801",
+      "promotionId": null,
+      "createdAt": "2026-08-17T07:44:00+07:00",
+      "updatedAt": "2026-08-17T07:44:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4702",
+      "name": "Combo đi phố tiện dụng",
+      "slug": "combo-di-pho-tien-dung",
+      "description": "Giant Escape 1 kết hợp mũ bảo hiểm và phụ kiện mang bình nước, dành cho đi làm, dạo phố và vận động nhẹ.",
+      "status": "active",
+      "items": [
+        { "productId": "66bf4e8c9f2a4d7b8c1e4506", "quantity": 1 },
+        { "productId": "66bf4e8c9f2a4d7b8c1e4510", "quantity": 1 },
+        { "productId": "66bf4e8c9f2a4d7b8c1e4511", "quantity": 1 }
+      ],
+      "price": 12770000,
+      "comboPrice": 11490000,
+      "mediaId": null,
+      "featured": true,
+      "order": 2,
+      "campaignId": "66bf4e8c9f2a4d7b8c1e3801",
+      "promotionId": null,
+      "createdAt": "2026-08-17T07:44:00+07:00",
+      "updatedAt": "2026-08-17T07:44:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4703",
+      "name": "Combo vận động nhẹ cho người lớn tuổi",
+      "slug": "combo-van-dong-nhe-nguoi-lon-tuoi",
+      "description": "Bộ xe đạp thành phố dễ sử dụng kèm mũ bảo hiểm và phụ kiện cơ bản, hướng tới nhu cầu vận động nhẹ và đi lại gần nhà.",
+      "status": "active",
+      "items": [
+        { "productId": "66bf4e8c9f2a4d7b8c1e4503", "quantity": 1 },
+        { "productId": "66bf4e8c9f2a4d7b8c1e4510", "quantity": 1 }
+      ],
+      "price": 11280000,
+      "comboPrice": 9490000,
+      "mediaId": null,
+      "featured": true,
+      "order": 3,
+      "campaignId": "66bf4e8c9f2a4d7b8c1e3801",
+      "promotionId": null,
+      "createdAt": "2026-08-17T07:44:00+07:00",
+      "updatedAt": "2026-08-17T07:44:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4704",
+      "name": "Combo bắt đầu đạp thể thao",
+      "slug": "combo-bat-dau-dap-the-thao",
+      "description": "Xe đạp địa hình Giant ATX 610 đi cùng mũ bảo hiểm và pedal Shimano, phù hợp người mới bắt đầu tập luyện cuối tuần.",
+      "status": "active",
+      "items": [
+        { "productId": "66bf4e8c9f2a4d7b8c1e4501", "quantity": 1 },
+        { "productId": "66bf4e8c9f2a4d7b8c1e4510", "quantity": 1 },
+        { "productId": "66bf4e8c9f2a4d7b8c1e4520", "quantity": 1 }
+      ],
+      "price": 20970000,
+      "comboPrice": 18490000,
+      "mediaId": null,
+      "featured": true,
+      "order": 4,
+      "campaignId": "66bf4e8c9f2a4d7b8c1e3801",
+      "promotionId": null,
+      "createdAt": "2026-08-17T07:44:00+07:00",
+      "updatedAt": "2026-08-17T07:44:00+07:00"
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "_id": "66bf4e8c9f2a4d7b8c1e3201",
+  "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+  "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+  "createdAt": "2026-08-15T14:30:00+07:00",
+  "updatedAt": "2026-08-17T13:23:00+07:00",
+  "site": {
+    "siteTitle": "BikeSport",
+    "tagLine": "",
+    "logoMediaId": "66bf4e8c9f2a4d7b8c1e3701",
+    "showSiteTitle": false,
+    "showTagLine": false,
+    "theme": {
+      "themeColor": "#FFFFFF",
+      "backgroundColor": "#FFFFFF"
+    },
+    "icons": {
+      "faviconMediaId": "66bf4e8c9f2a4d7b8c1e3708",
+      "favicon32MediaId": "66bf4e8c9f2a4d7b8c1e3709",
+      "appleTouchIconMediaId": "66bf4e8c9f2a4d7b8c1e3710",
+      "pwa192MediaId": "66bf4e8c9f2a4d7b8c1e3711",
+      "pwa512MediaId": "66bf4e8c9f2a4d7b8c1e3712"
+    }
+  },
+  "seo": {
+    "titleFormat": "%title% | %siteName%",
+    "defaultDescription": "Hệ thống bán lẻ xe đạp và phụ kiện thể thao uy tín hàng đầu Việt Nam.",
+    "canonicalBaseUrl": "",
+    "robots": {
+      "index": true,
+      "follow": true
+    },
+    "openGraph": {
+      "type": "website",
+      "locale": "vi_VN",
+      "defaultImageMediaId": "66bf4e8c9f2a4d7b8c1e3701"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "defaultImageMediaId": "66bf4e8c9f2a4d7b8c1e3701"
+    }
+  },
+  "organization": {
+    "legalName": "Công Ty Cổ Phần BikeSport",
+    "businessRegistration": {
+      "number": "031XXXXXXX",
+      "issuedBy": "Sở KH&ĐT TP.HCM",
+      "issuedDate": "01/01/2026"
+    },
+    "headquarters": "TP. Hồ Chí Minh",
+    "verificationAssets": [
+      {
+        "label": "Đã thông báo Bộ Công Thương",
+        "mediaId": "66bf4e8c9f2a4d7b8c1e3702",
+        "enabled": true
+      }
+    ]
+  },
+  "contact": {
+    "email": {
+      "label": "Email",
+      "value": "info@bikesport.vn",
+      "href": "mailto:info@bikesport.vn"
+    },
+    "hotline": {
+      "label": "Hotline",
+      "value": "1900 633 022",
+      "href": "tel:1900633022"
+    },
+    "social": [
+      {
+        "name": "facebook",
+        "label": "Facebook",
+        "iconMediaId": "66bf4e8c9f2a4d7b8c1e3703",
+        "href": "#facebook"
+      },
+      {
+        "name": "instagram",
+        "label": "Instagram",
+        "iconMediaId": "66bf4e8c9f2a4d7b8c1e3704",
+        "href": "#instagram"
+      },
+      {
+        "name": "youtube",
+        "label": "YouTube",
+        "iconMediaId": "66bf4e8c9f2a4d7b8c1e3705",
+        "href": "#youtube"
+      },
+      {
+        "name": "tiktok",
+        "label": "TikTok",
+        "iconMediaId": "66bf4e8c9f2a4d7b8c1e3706",
+        "href": "#tiktok"
+      }
+    ]
+  },
+  "account": {
+    "label": "Tài khoản",
+    "href": "#account"
+  },
+  "cart": {
+    "label": "Giỏ hàng",
+    "href": "#cart"
+  },
+  "header": {
+    "name": "Header",
+    "template": "default",
+    "payload": [
+      {
+        "slot": "top",
+        "enabled": true,
+        "rows": [
+          {
+            "columns": [
+              {
+                "grow": true,
+                "items": [
+                  {
+                    "component": "announcement",
+                    "enabled": true,
+                    "props": {
+                      "announcementId": "66bf4e8c9f2a4d7b8c1e3901"
+                    }
+                  }
+                ],
+                "layout": "centered-spaced"
+              }
+            ],
+            "layout": "centered"
+          }
+        ]
+      },
+      {
+        "slot": "main",
+        "enabled": true,
+        "rows": [
+          {
+            "columns": [
+              {
+                "items": [
+                  {
+                    "component": "logo",
+                    "props": {
+                      "href": "/"
+                    }
+                  }
+                ],
+                "layout": "shrink-spaced"
+              },
+              {
+                "grow": true,
+                "items": [
+                  {
+                    "component": "search-form",
+                    "props": {
+                      "variant": "desktop",
+                      "placeholder": "Tìm kiếm xe đạp, phụ kiện..."
+                    }
+                  }
+                ],
+                "layout": "desktop-grow"
+              },
+              {
+                "items": [
+                  {
+                    "component": "contact"
+                  },
+                  {
+                    "component": "account"
+                  },
+                  {
+                    "component": "mini-cart"
+                  }
+                ],
+                "layout": "trailing-actions"
+              }
+            ],
+            "layout": "responsive-wrap-spaced"
+          }
+        ]
+      },
+      {
+        "slot": "bottom",
+        "enabled": true,
+        "rows": [
+          {
+            "columns": [
+              {
+                "grow": true,
+                "items": [
+                  {
+                    "component": "mobile-menu",
+                    "props": {
+                      "menuId": "66bf4e8c9f2a4d7b8c1e3301"
+                    }
+                  },
+                  {
+                    "component": "search-form",
+                    "props": {
+                      "variant": "mobile",
+                      "placeholder": "Tìm kiếm xe đạp, phụ kiện..."
+                    }
+                  },
+                  {
+                    "component": "nav-menu",
+                    "props": {
+                      "menuId": "66bf4e8c9f2a4d7b8c1e3301"
+                    }
+                  }
+                ],
+                "layout": "responsive-nav"
+              }
+            ],
+            "layout": "responsive-compact"
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "name": "Footer",
+    "template": "default",
+    "description": "Hệ thống bán lẻ xe đạp và phụ kiện thể thao uy tín hàng đầu Việt Nam.",
+    "menuIds": [
+      "66bf4e8c9f2a4d7b8c1e3501",
+      "66bf4e8c9f2a4d7b8c1e3503",
+      "66bf4e8c9f2a4d7b8c1e3502",
+      "66bf4e8c9f2a4d7b8c1e3504"
+    ]
+  }
+}

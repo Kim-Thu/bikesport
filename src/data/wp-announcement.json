@@ -1,0 +1,18 @@
+{
+  "announcements": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3901",
+      "name": "Ưu đãi mùa hè",
+      "status": "active",
+      "type": "text",
+      "content": "ƯU ĐÃI MÙA HÈ - GIẢM ĐẾN 30% + QUÀ TẶNG HẤP DẪN",
+      "iconMediaId": "66bf4e8c9f2a4d7b8c1e3707",
+      "href": "#promotions",
+      "ctaLabel": "Xem chi tiết",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T16:49:00+07:00",
+      "updatedAt": "2026-08-16T16:49:00+07:00"
+    }
+  ]
+}

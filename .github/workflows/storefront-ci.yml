@@ -1,0 +1,86 @@
+name: Storefront CI
+
+on:
+  push:
+    branches:
+      - feat/issue-1-storefront-header
+  pull_request:
+    paths:
+      - "src/**"
+      - "public/**"
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig.json"
+      - "next.config.ts"
+      - ".github/workflows/storefront-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports:
+          - 27017:27017
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Keep upstream Next.js transitive advisories visible without skipping lint/build.
+      # A framework major-version migration should be handled separately rather than via npm audit fix --force.
+      - name: Audit production dependencies
+        continue-on-error: true
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Audit semantic config
+        run: npm run audit:semantic-config
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Smoke test MongoDB runtime
+        env:
+          DATA_SOURCE: mongodb
+          MONGODB_URI: mongodb://127.0.0.1:27017
+          MONGODB_DB_NAME: bikesport_ci
+          NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
+        run: |
+          npm start > /tmp/bikesport-next.log 2>&1 &
+          APP_PID=$!
+          cleanup() {
+            kill "$APP_PID" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          for attempt in {1..30}; do
+            if RESPONSE="$(curl --silent --fail http://127.0.0.1:3000/api/v1/health)"; then
+              echo "$RESPONSE"
+              node -e '
+                const body = JSON.parse(process.argv[1]);
+                if (body?.data?.status !== "ready" || body?.data?.dataSource !== "mongodb" || body?.data?.mongoRuntimeReady !== true) {
+                  process.exit(1);
+                }
+              ' "$RESPONSE"
+              exit 0
+            fi
+            sleep 1
+          done
+
+          cat /tmp/bikesport-next.log
+          exit 1

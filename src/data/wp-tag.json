@@ -1,0 +1,18 @@
+{
+  "tags": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4601",
+      "type": "product",
+      "name": "Ưu đãi",
+      "slug": "uu-dai",
+      "status": "active"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4602",
+      "type": "product",
+      "name": "Bán chạy",
+      "slug": "ban-chay",
+      "status": "active"
+    }
+  ]
+}

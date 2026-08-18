@@ -1,0 +1,30 @@
+{
+  "attributes": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4401",
+      "type": "product",
+      "name": "Màu sắc",
+      "slug": "mau-sac",
+      "display": "swatch",
+      "options": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e4411", "label": "Đen", "value": "black" },
+        { "_id": "66bf4e8c9f2a4d7b8c1e4412", "label": "Trắng", "value": "white" },
+        { "_id": "66bf4e8c9f2a4d7b8c1e4413", "label": "Xám", "value": "gray" }
+      ],
+      "status": "active"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4402",
+      "type": "product",
+      "name": "Kích thước",
+      "slug": "kich-thuoc",
+      "display": "select",
+      "options": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e4421", "label": "S", "value": "s" },
+        { "_id": "66bf4e8c9f2a4d7b8c1e4422", "label": "M", "value": "m" },
+        { "_id": "66bf4e8c9f2a4d7b8c1e4423", "label": "L", "value": "l" }
+      ],
+      "status": "active"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "menus": [
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3301",
+      "name": "Main Menu",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-15T14:30:00+07:00",
+      "updatedAt": "2026-08-16T20:37:00+07:00",
+      "items": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e3401", "label": "XE ĐẠP", "href": "#bikes", "display": "text", "hasDropdown": true, "parentId": null, "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3411", "label": "Xe đạp địa hình", "href": "#mountain-bikes", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3401", "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3412", "label": "Xe đạp đường phố", "href": "#city-bikes", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3401", "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3413", "label": "Xe đạp touring", "href": "#touring-bikes", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3401", "order": 3 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3414", "label": "Xe đạp trẻ em", "href": "#kids-bikes", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3401", "order": 4 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3402", "label": "PHỤ KIỆN", "href": "#accessories", "display": "text", "hasDropdown": true, "parentId": null, "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3421", "label": "Mũ bảo hiểm", "href": "#helmets", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3402", "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3422", "label": "Đèn xe", "href": "#bike-lights", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3402", "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3423", "label": "Bình nước", "href": "#bottles", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3402", "order": 3 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3424", "label": "Túi và balo", "href": "#bags", "display": "text", "parentId": "66bf4e8c9f2a4d7b8c1e3402", "order": 4 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3408", "label": "THƯƠNG HIỆU", "href": "#brands", "display": "text", "hasDropdown": true, "source": { "type": "brand", "featured": true, "display": "image-text", "limit": 8 }, "parentId": null, "order": 3 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3403", "label": "KHUYẾN MÃI", "href": "#promotions", "display": "text", "highlight": true, "parentId": null, "order": 4 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3404", "label": "SỰ KIỆN", "href": "#events", "display": "text", "parentId": null, "order": 5 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3405", "label": "DỊCH VỤ", "href": "#services", "display": "text", "parentId": null, "order": 6 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3406", "label": "BLOG", "href": "#blog", "display": "text", "parentId": null, "order": 7 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3407", "label": "CỬA HÀNG", "href": "#stores", "display": "text", "parentId": null, "order": 8 }
+      ]
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3501",
+      "name": "Về BikeSport",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T14:38:00+07:00",
+      "updatedAt": "2026-08-17T12:18:00+07:00",
+      "items": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e3511", "label": "Giới thiệu", "href": "/gioi-thieu", "parentId": null, "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3512", "label": "Hệ thống cửa hàng", "href": "#stores", "parentId": null, "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3513", "label": "Tin tức & sự kiện", "href": "#blog", "parentId": null, "order": 3 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3514", "label": "Liên hệ", "href": "#contact", "parentId": null, "order": 4 }
+      ]
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3502",
+      "name": "Hỗ trợ khách hàng",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T14:38:00+07:00",
+      "updatedAt": "2026-08-16T14:38:00+07:00",
+      "items": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e3521", "label": "Hướng dẫn mua hàng", "href": "#shopping-guide", "parentId": null, "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3522", "label": "Hướng dẫn thanh toán", "href": "#payment-guide", "parentId": null, "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3523", "label": "Tra cứu đơn hàng", "href": "#order-tracking", "parentId": null, "order": 3 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3524", "label": "Câu hỏi thường gặp", "href": "#faq", "parentId": null, "order": 4 }
+      ]
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3503",
+      "name": "Chính sách",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T14:38:00+07:00",
+      "updatedAt": "2026-08-16T14:38:00+07:00",
+      "items": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e3531", "label": "Chính sách bảo hành", "href": "#warranty-policy", "parentId": null, "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3532", "label": "Chính sách đổi trả", "href": "#return-policy", "parentId": null, "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3533", "label": "Chính sách vận chuyển", "href": "#shipping-policy", "parentId": null, "order": 3 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3534", "label": "Chính sách bảo mật", "href": "#privacy-policy", "parentId": null, "order": 4 }
+      ]
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e3504",
+      "name": "Hệ thống cửa hàng",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-16T15:06:00+07:00",
+      "updatedAt": "2026-08-16T15:06:00+07:00",
+      "items": [
+        { "_id": "66bf4e8c9f2a4d7b8c1e3541", "label": "Tìm cửa hàng", "href": "#store-finder", "parentId": null, "order": 1 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3542", "label": "Hệ thống cửa hàng", "href": "#stores", "parentId": null, "order": 2 },
+        { "_id": "66bf4e8c9f2a4d7b8c1e3543", "label": "Trung tâm bảo hành", "href": "#service-centers", "parentId": null, "order": 3 }
+      ]
+    }
+  ]
+}

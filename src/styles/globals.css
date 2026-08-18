@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: 0.875rem;
+
+  --aspect-hero-mobile: 4 / 3;
+  --aspect-hero-tablet: 16 / 9;
+  --aspect-hero: 4 / 1;
+  --aspect-product: 4 / 3;
+  --aspect-event: 16 / 9;
+  --aspect-card-media: 4 / 3;
+  --aspect-cta-media: 5 / 4;
+}
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html,
+  body {
+    @apply m-0 max-w-full overflow-x-clip p-0;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .site-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-blue-600) var(--color-gray-100);
+  }
+
+  .site-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .site-scrollbar::-webkit-scrollbar-track {
+    background: var(--color-gray-100);
+    border-radius: 9999px;
+  }
+
+  .site-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-blue-600);
+    border-radius: 9999px;
+  }
+
+  .site-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-blue-700);
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
