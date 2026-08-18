@@ -1,14 +1,28 @@
 import { dataSources } from "@/data-access/data-sources";
 import type { BrandRecord } from "@/interfaces/brand.interface";
+import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 
 export async function getBrandById(brandId: string): Promise<BrandRecord | null> {
-  return dataSources.brand.getActiveById(brandId);
+  return cachedDomain(
+    "brand",
+    ["active-by-id", brandId],
+    () => dataSources.brand.getActiveById(brandId),
+    [CACHE_TAG.entity("brand", brandId)],
+  );
 }
 
 export async function getActiveBrands(limit?: number): Promise<BrandRecord[]> {
-  return dataSources.brand.getActive(limit);
+  return cachedDomain(
+    "brand",
+    ["active", String(limit ?? "all")],
+    () => dataSources.brand.getActive(limit),
+  );
 }
 
 export async function getFeaturedBrands(limit?: number): Promise<BrandRecord[]> {
-  return dataSources.brand.getFeatured(limit);
+  return cachedDomain(
+    "brand",
+    ["featured", String(limit ?? "all")],
+    () => dataSources.brand.getFeatured(limit),
+  );
 }
