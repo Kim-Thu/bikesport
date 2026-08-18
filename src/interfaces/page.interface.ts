@@ -3,8 +3,10 @@ import type { CategoryType } from "@/interfaces/category.interface";
 import type { PageBlockPayload } from "@/interfaces/page-block.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { SectionTemplate } from "@/interfaces/section.interface";
+import type { StackVariant } from "@/interfaces/stack.interface";
 import type {
   PageBoxIconDescriptionSize,
+  PageBoxIconLayoutPreset,
   PageBoxIconTitleSize,
   PageBoxIconTone,
 } from "@/variants/box-icon.variant";
@@ -24,6 +26,7 @@ export interface PageBoxIconProps {
   mediaId?: string;
   title: string;
   description?: string;
+  layout?: PageBoxIconLayoutPreset;
   iconTone?: PageBoxIconTone;
   titleSize?: PageBoxIconTitleSize;
   descriptionSize?: PageBoxIconDescriptionSize;
@@ -51,7 +54,7 @@ export interface BannerSectionPayload extends PageSectionBase {
 export interface StackSectionPayload extends PageSectionBase {
   component: "stack";
   props: {
-    variant: "surface" | "primary";
+    variant: StackVariant;
     spacing?: PageSectionSpacingPreset;
     rowLayout?: PageRowLayoutPreset;
   };
