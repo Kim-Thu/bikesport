@@ -68,6 +68,40 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Smoke test public page summary API
+        env:
+          DATA_SOURCE: json
+          NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
+        run: |
+          npm start > /tmp/bikesport-pages.log 2>&1 &
+          APP_PID=$!
+          cleanup() {
+            kill "$APP_PID" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          for attempt in {1..30}; do
+            if curl --silent --fail --dump-header /tmp/pages.headers --output /tmp/pages.json http://127.0.0.1:3000/api/v1/pages; then
+              cat /tmp/pages.json
+              node -e '
+                const fs = require("fs");
+                const body = JSON.parse(fs.readFileSync("/tmp/pages.json", "utf8"));
+                if (!Array.isArray(body?.data) || body.data.length === 0) process.exit(1);
+                const first = body.data[0];
+                if ("payload" in first) process.exit(1);
+                for (const key of ["_id", "title", "slug", "path", "status", "updatedAt"]) {
+                  if (!(key in first)) process.exit(1);
+                }
+              '
+              grep -qi '^cache-control: .*s-maxage=300' /tmp/pages.headers
+              exit 0
+            fi
+            sleep 1
+          done
+
+          cat /tmp/bikesport-pages.log
+          exit 1
+
       - name: Smoke test MongoDB runtime
         env:
           DATA_SOURCE: mongodb
