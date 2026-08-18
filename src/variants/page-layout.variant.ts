@@ -27,6 +27,7 @@ export const PAGE_COLUMN_LAYOUT_CLASS = {
 export type PageColumnLayoutPreset = keyof typeof PAGE_COLUMN_LAYOUT_CLASS;
 
 export const PAGE_GRID_LAYOUT_CLASS = {
+  "one-two": "grid-cols-1 lg:grid-cols-2",
   "two-three-four": "grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
   "four-xl": "xl:grid-cols-4",
 } as const;
