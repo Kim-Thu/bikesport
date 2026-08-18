@@ -88,7 +88,10 @@ export interface CardGridBlockPayload extends PageBlockBase {
   props: SectionHeadingConfig & {
     title: string;
     template: CardTemplate;
+    presentation?: "grid" | "slider";
     gridLayout?: PageGridLayoutPreset;
+    trackLayout?: PageSliderTrackPreset;
+    slideLayout?: PageSliderSlidePreset;
     source:
       | { type: "category"; categoryType: CategoryType; limit?: number }
       | { type: "event"; limit?: number }
