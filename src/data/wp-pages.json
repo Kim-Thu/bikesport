@@ -1274,84 +1274,129 @@
       "payload": {
         "sections": [
           {
-            "_id": "66bf4e8c9f2a4d7b8c1e4410",
-            "name": "Career introduction",
+            "_id": "66bf4e8c9f2a4d7b8c1e4411",
+            "name": "Core values",
             "order": 1,
-            "status": "active",
-            "component": "layout",
-            "props": {
-              "spacing": "comfortable"
-            },
-            "rows": [
-              {
-                "_id": "66bf4e8c9f2a4d7b8c1e4411",
-                "columns": [
-                  {
-                    "_id": "66bf4e8c9f2a4d7b8c1e4412",
-                    "props": {
-                      "layout": "full"
-                    },
-                    "blocks": [
-                      {
-                        "_id": "66bf4e8c9f2a4d7b8c1e4413",
-                        "status": "active",
-                        "component": "content",
-                        "props": {
-                          "eyebrow": "Cơ hội nghề nghiệp",
-                          "title": "Cùng BikeSport tạo nên những hành trình tốt hơn",
-                          "paragraphs": [
-                            "BikeSport kết nối sản phẩm, dịch vụ và cộng đồng yêu xe đạp. Chúng tôi tìm kiếm những người chủ động, có tinh thần học hỏi và muốn tạo ra trải nghiệm tốt hơn cho khách hàng.",
-                            "Khám phá các vị trí đang mở và chọn cơ hội phù hợp với thế mạnh của bạn."
-                          ],
-                          "align": "center"
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "_id": "66bf4e8c9f2a4d7b8c1e4420",
-            "name": "Career values",
-            "order": 2,
             "status": "active",
             "component": "stack",
             "props": {
-              "variant": "surface",
+              "variant": "cards",
               "spacing": "comfortable",
               "rowLayout": "wrap-stretch"
             },
             "columns": [
               {
-                "_id": "66bf4e8c9f2a4d7b8c1e4421",
+                "_id": "66bf4e8c9f2a4d7b8c1e4412",
                 "component": "box-icon",
                 "props": {
                   "icon": "users",
-                  "title": "Làm việc cùng đội ngũ thực chiến",
-                  "description": "Phối hợp trực tiếp giữa cửa hàng, vận hành, kỹ thuật và marketing để giải quyết nhu cầu thật của khách hàng.",
-                  "iconTone": "primary"
+                  "title": "Con người là trọng tâm",
+                  "description": "Chúng tôi tôn trọng sự khác biệt, đề cao tinh thần hợp tác và phát triển cá nhân.",
+                  "layout": "centered",
+                  "iconTone": "primary",
+                  "descriptionSize": "sm"
                 }
               },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4413",
+                "component": "box-icon",
+                "props": {
+                  "icon": "target",
+                  "title": "Đam mê & cam kết",
+                  "description": "BikeSport đề cao tinh thần đam mê và cam kết mang đến giá trị tốt nhất cho khách hàng.",
+                  "layout": "centered",
+                  "iconTone": "primary",
+                  "descriptionSize": "sm"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4414",
+                "component": "box-icon",
+                "props": {
+                  "icon": "growth",
+                  "title": "Phát triển bền vững",
+                  "description": "Chúng tôi tạo môi trường để mỗi thành viên phát triển lâu dài và đạt được mục tiêu.",
+                  "layout": "centered",
+                  "iconTone": "primary",
+                  "descriptionSize": "sm"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4415",
+                "component": "box-icon",
+                "props": {
+                  "icon": "values",
+                  "title": "Lan tỏa giá trị",
+                  "description": "Cùng nhau lan tỏa lối sống khỏe mạnh, tích cực và trách nhiệm với cộng đồng.",
+                  "layout": "centered",
+                  "iconTone": "primary",
+                  "descriptionSize": "sm"
+                }
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4421",
+            "name": "Company metrics",
+            "order": 2,
+            "status": "active",
+            "component": "stack",
+            "props": {
+              "variant": "primary",
+              "spacing": "compact",
+              "rowLayout": "wrap-stretch"
+            },
+            "columns": [
               {
                 "_id": "66bf4e8c9f2a4d7b8c1e4422",
                 "component": "box-icon",
                 "props": {
-                  "icon": "wrench",
-                  "title": "Học từ sản phẩm và trải nghiệm",
-                  "description": "Tiếp cận sản phẩm xe đạp, phụ kiện và quy trình dịch vụ để phát triển năng lực qua công việc hàng ngày.",
-                  "iconTone": "primary"
+                  "icon": "users",
+                  "title": "10+",
+                  "description": "Năm phát triển",
+                  "layout": "inline",
+                  "iconTone": "inverse",
+                  "titleSize": "metric",
+                  "descriptionSize": "sm"
                 }
               },
               {
                 "_id": "66bf4e8c9f2a4d7b8c1e4423",
                 "component": "box-icon",
                 "props": {
-                  "icon": "arrow-right",
-                  "title": "Cùng cải tiến mỗi ngày",
-                  "description": "Ưu tiên cách làm rõ ràng, chủ động và liên tục cải thiện trải nghiệm mua sắm, vận hành và dịch vụ.",
-                  "iconTone": "primary"
+                  "icon": "location",
+                  "title": "30+",
+                  "description": "Cửa hàng toàn quốc",
+                  "layout": "inline",
+                  "iconTone": "inverse",
+                  "titleSize": "metric",
+                  "descriptionSize": "sm"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4424",
+                "component": "box-icon",
+                "props": {
+                  "icon": "growth",
+                  "title": "200+",
+                  "description": "Nhân sự tài năng",
+                  "layout": "inline",
+                  "iconTone": "inverse",
+                  "titleSize": "metric",
+                  "descriptionSize": "sm"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4425",
+                "component": "box-icon",
+                "props": {
+                  "icon": "settings",
+                  "title": "100%",
+                  "description": "Môi trường chuyên nghiệp",
+                  "layout": "inline",
+                  "iconTone": "inverse",
+                  "titleSize": "metric",
+                  "descriptionSize": "sm"
                 }
               }
             ]
