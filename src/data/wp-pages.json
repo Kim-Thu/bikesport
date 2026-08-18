@@ -1264,6 +1264,182 @@
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
       "updatedAt": "2026-08-16T20:02:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4401",
+      "title": "Tuyển dụng",
+      "slug": "tuyen-dung",
+      "path": "/tuyen-dung",
+      "status": "published",
+      "payload": {
+        "sections": [
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4410",
+            "name": "Career introduction",
+            "order": 1,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "comfortable"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4411",
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4412",
+                    "props": {
+                      "layout": "full"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4413",
+                        "status": "active",
+                        "component": "content",
+                        "props": {
+                          "eyebrow": "Cơ hội nghề nghiệp",
+                          "title": "Cùng BikeSport tạo nên những hành trình tốt hơn",
+                          "paragraphs": [
+                            "BikeSport kết nối sản phẩm, dịch vụ và cộng đồng yêu xe đạp. Chúng tôi tìm kiếm những người chủ động, có tinh thần học hỏi và muốn tạo ra trải nghiệm tốt hơn cho khách hàng.",
+                            "Khám phá các vị trí đang mở và chọn cơ hội phù hợp với thế mạnh của bạn."
+                          ],
+                          "align": "center"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4420",
+            "name": "Career values",
+            "order": 2,
+            "status": "active",
+            "component": "stack",
+            "props": {
+              "variant": "surface",
+              "spacing": "comfortable",
+              "rowLayout": "wrap-stretch"
+            },
+            "columns": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4421",
+                "component": "box-icon",
+                "props": {
+                  "icon": "users",
+                  "title": "Làm việc cùng đội ngũ thực chiến",
+                  "description": "Phối hợp trực tiếp giữa cửa hàng, vận hành, kỹ thuật và marketing để giải quyết nhu cầu thật của khách hàng.",
+                  "iconTone": "primary"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4422",
+                "component": "box-icon",
+                "props": {
+                  "icon": "wrench",
+                  "title": "Học từ sản phẩm và trải nghiệm",
+                  "description": "Tiếp cận sản phẩm xe đạp, phụ kiện và quy trình dịch vụ để phát triển năng lực qua công việc hàng ngày.",
+                  "iconTone": "primary"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4423",
+                "component": "box-icon",
+                "props": {
+                  "icon": "arrow-right",
+                  "title": "Cùng cải tiến mỗi ngày",
+                  "description": "Ưu tiên cách làm rõ ràng, chủ động và liên tục cải thiện trải nghiệm mua sắm, vận hành và dịch vụ.",
+                  "iconTone": "primary"
+                }
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4430",
+            "name": "Open positions",
+            "order": 3,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "comfortable"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4431",
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4432",
+                    "props": {
+                      "layout": "full"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4433",
+                        "status": "active",
+                        "component": "card-grid",
+                        "props": {
+                          "title": "Vị trí đang tuyển",
+                          "template": "listing",
+                          "gridLayout": "one-two",
+                          "source": {
+                            "type": "post",
+                            "postType": "recruitment",
+                            "limit": 12
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4440",
+            "name": "Career closing",
+            "order": 4,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "comfortable"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4441",
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4442",
+                    "props": {
+                      "layout": "full"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4443",
+                        "status": "active",
+                        "component": "content",
+                        "props": {
+                          "eyebrow": "Kết nối với BikeSport",
+                          "title": "Chưa thấy vị trí phù hợp?",
+                          "paragraphs": [
+                            "Bạn vẫn có thể gửi thông tin qua trang Liên hệ. Khi có vị trí phù hợp, đội ngũ BikeSport có thể chủ động kết nối lại."
+                          ],
+                          "align": "center"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T10:00:00+07:00",
+      "updatedAt": "2026-08-18T10:00:00+07:00"
     }
   ]
 }
