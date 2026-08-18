@@ -66,15 +66,17 @@ export default async function RecruitmentPage({ searchParams }: RecruitmentPageP
       <Section>
         <Container>
           <div className="flex flex-col gap-8">
-            <SectionHeader title="Vị trí đang tuyển" />
+            <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
+              <SectionHeader title="Vị trí đang tuyển" />
 
-            <div className="max-w-2xl">
-              <SearchForm
-                action="/tuyen-dung"
-                defaultValue={query}
-                placeholder="Tìm theo vị trí, phòng ban, địa điểm..."
-                submitLabel="Tìm vị trí tuyển dụng"
-              />
+              <div className="w-full md:max-w-2xl">
+                <SearchForm
+                  action="/tuyen-dung"
+                  defaultValue={query}
+                  placeholder="Tìm theo vị trí, phòng ban, địa điểm..."
+                  submitLabel="Tìm vị trí tuyển dụng"
+                />
+              </div>
             </div>
 
             <CardGrid
