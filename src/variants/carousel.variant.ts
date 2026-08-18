@@ -12,7 +12,7 @@ export const CAROUSEL_CLASS = {
   previousButton: "pointer-events-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 transition-colors hover:border-blue-200 hover:text-blue-700",
   nextButton: "pointer-events-auto mr-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 transition-colors hover:border-blue-200 hover:text-blue-700",
   dots: "absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2",
-  dot: "block h-2 rounded-full bg-white/70 transition-[width,background-color]",
+  dot: "block h-2 rounded-full bg-white/70 transition-colors",
   dotActive: "w-8 bg-white",
   dotInactive: "w-2",
 } as const;
