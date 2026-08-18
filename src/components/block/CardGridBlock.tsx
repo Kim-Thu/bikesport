@@ -16,7 +16,7 @@ export async function CardGridBlock({ block }: { block: CardGridBlockPayload }) 
       href={block.props.href}
       actionLabel={block.props.actionLabel}
       headingTemplate={block.props.headingTemplate}
-      gridClassName={resolvePageGridLayout(block.props.gridLayout, block.props.gridClassName)}
+      gridClassName={resolvePageGridLayout(block.props.gridLayout)}
     />
   );
 }
