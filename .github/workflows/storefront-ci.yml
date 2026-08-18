@@ -59,6 +59,9 @@ jobs:
       - name: Audit design rules
         run: npm run audit:design-rules
 
+      - name: Audit public asset references
+        run: npm run audit:assets
+
       - name: Apply MongoDB index migration
         env:
           MONGODB_URI: mongodb://127.0.0.1:27017
@@ -70,6 +73,68 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Verify JSON and Mongo page summary parity
+        env:
+          MONGODB_URI: mongodb://127.0.0.1:27017
+          MONGODB_DB_NAME: bikesport_ci
+        run: |
+          node scripts/seed-ci-pages.mjs
+
+          DATA_SOURCE=json NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3000 npm start > /tmp/bikesport-parity-json.log 2>&1 &
+          JSON_PID=$!
+          for attempt in {1..30}; do
+            if curl --silent --fail --output /tmp/pages-json.json http://127.0.0.1:3000/api/v1/pages; then
+              break
+            fi
+            sleep 1
+          done
+          kill "$JSON_PID" 2>/dev/null || true
+          wait "$JSON_PID" 2>/dev/null || true
+          test -s /tmp/pages-json.json || { cat /tmp/bikesport-parity-json.log; exit 1; }
+
+          DATA_SOURCE=mongodb MONGODB_URI=mongodb://127.0.0.1:27017 MONGODB_DB_NAME=bikesport_ci NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3000 npm start > /tmp/bikesport-parity-mongo.log 2>&1 &
+          MONGO_PID=$!
+          for attempt in {1..30}; do
+            if curl --silent --fail --output /tmp/pages-mongo.json http://127.0.0.1:3000/api/v1/pages; then
+              break
+            fi
+            sleep 1
+          done
+          kill "$MONGO_PID" 2>/dev/null || true
+          wait "$MONGO_PID" 2>/dev/null || true
+          test -s /tmp/pages-mongo.json || { cat /tmp/bikesport-parity-mongo.log; exit 1; }
+
+          node scripts/verify-page-datasource-parity.mjs /tmp/pages-json.json /tmp/pages-mongo.json
+
+      - name: Install browser test tools
+        run: |
+          npm install --no-save --package-lock=false playwright@1.60.0 axe-core@4.12.1
+          npx playwright install --with-deps chromium
+
+      - name: Browser E2E, responsive and accessibility
+        env:
+          DATA_SOURCE: json
+          NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
+          E2E_BASE_URL: http://127.0.0.1:3000
+        run: |
+          npm start > /tmp/bikesport-browser.log 2>&1 &
+          APP_PID=$!
+          cleanup() {
+            kill "$APP_PID" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          for attempt in {1..30}; do
+            if curl --silent --fail http://127.0.0.1:3000/ > /dev/null; then
+              npm run test:browser
+              exit 0
+            fi
+            sleep 1
+          done
+
+          cat /tmp/bikesport-browser.log
+          exit 1
 
       - name: Smoke test public page summary API
         env:
