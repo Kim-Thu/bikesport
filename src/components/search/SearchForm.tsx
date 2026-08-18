@@ -1,4 +1,4 @@
-import { Icon } from "@/components/icon/Icon";
+import { SearchFormView } from "@/components/search/SearchFormView";
 import type { SearchFormProps } from "@/interfaces/search.interface";
 import { cn } from "@/lib/classname.utils";
 
@@ -18,33 +18,16 @@ export function SearchForm({
   const inputId = `site-search-${variant}`;
 
   return (
-    <form
+    <SearchFormView
       action={action}
       method="get"
-      className={cn(
-        VARIANT_CLASS[variant],
-        "h-11 min-w-0 overflow-hidden rounded-md border border-gray-300 bg-white",
-      )}
-      role="search"
-    >
-      <label htmlFor={inputId} className="sr-only">
-        {submitLabel}
-      </label>
-      <input
-        id={inputId}
-        name="q"
-        type="search"
-        defaultValue={defaultValue}
-        placeholder={placeholder}
-        className="min-w-0 flex-1 border-0 px-4 outline-none placeholder:text-gray-400"
-      />
-      <button
-        type="submit"
-        className="inline-flex w-12 items-center justify-center bg-blue-700 text-white"
-        aria-label={submitLabel}
-      >
-        <Icon name="search" size={24} />
-      </button>
-    </form>
+      inputId={inputId}
+      submitLabel={submitLabel}
+      className={cn(VARIANT_CLASS[variant])}
+      inputProps={{
+        defaultValue,
+        placeholder,
+      }}
+    />
   );
 }
