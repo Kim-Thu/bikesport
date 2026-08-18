@@ -1,18 +1,12 @@
 import type { ApiResponse } from "@/interfaces/api-response.interface";
 import type { CategoryRecord, CategoryType } from "@/interfaces/category.interface";
+import { parseApiBoolean, parseApiLimit } from "@/lib/api-query.utils";
 import {
   getCategoriesByType,
   getFeaturedCategoriesByType,
 } from "@/lib/category.utils";
 
 const CATEGORY_TYPES = new Set<CategoryType>(["product", "post"]);
-
-function parseLimit(value: string | null): number | undefined {
-  if (!value) return undefined;
-  const parsed = Number.parseInt(value, 10);
-  if (!Number.isFinite(parsed) || parsed < 1) return undefined;
-  return Math.min(parsed, 100);
-}
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -26,8 +20,8 @@ export async function GET(request: Request) {
   }
 
   const type = typeParam as CategoryType;
-  const featured = searchParams.get("featured") === "true";
-  const limit = parseLimit(searchParams.get("limit"));
+  const featured = parseApiBoolean(searchParams.get("featured"));
+  const limit = parseApiLimit(searchParams.get("limit"));
   const categories = featured
     ? await getFeaturedCategoriesByType(type, limit)
     : await getCategoriesByType(type);
