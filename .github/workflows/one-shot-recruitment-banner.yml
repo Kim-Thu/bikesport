@@ -1,0 +1,60 @@
+name: One-shot Recruitment Banner
+
+on:
+  push:
+    branches:
+      - security/post-merge-hardening
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: security/post-merge-hardening
+
+      - name: Add recruitment banner section
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'src/data/wp-pages.json';
+          const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const page = data.pages.find((item) => item.slug === 'tuyen-dung');
+          if (!page) throw new Error('Recruitment page not found.');
+
+          const bannerId = '66bf4e8c9f2a4d7b8c1e3a20';
+          const existing = page.payload.sections.filter(
+            (section) => !(section.component === 'banner' && section.props?.bannerId === bannerId),
+          );
+
+          page.payload.sections = [
+            {
+              _id: '66bf4e8c9f2a4d7b8c1e4400',
+              name: 'Recruitment hero',
+              order: 1,
+              status: 'active',
+              component: 'banner',
+              props: { bannerId },
+            },
+            ...existing.map((section, index) => ({ ...section, order: index + 2 })),
+          ];
+
+          fs.writeFileSync(path, `${JSON.stringify(data, null, 2)}\n`);
+          NODE
+
+          rm .github/workflows/one-shot-recruitment-banner.yml
+
+      - name: Commit recruitment banner
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/wp-pages.json .github/workflows/one-shot-recruitment-banner.yml
+          git commit -m 'feat(recruitment): add hero banner section'
+          git push origin HEAD:security/post-merge-hardening
