@@ -85,10 +85,44 @@ const indexManifest = {
       name: "combos_status_featured_order",
     },
   ],
+  ads: [
+    {
+      key: { status: 1, placement: 1, priority: -1 },
+      name: "ads_status_placement_priority",
+    },
+  ],
+  campaigns: [
+    { key: { status: 1 }, name: "campaigns_status" },
+  ],
+  payments: [
+    { key: { order: 1 }, name: "payments_order" },
+  ],
+  seo: [
+    { key: { objectType: 1, objectId: 1 }, name: "seo_object_type_object_id" },
+    { key: { path: 1 }, name: "seo_path" },
+  ],
+  meta_categories: [
+    {
+      key: { status: 1, type: 1, name: 1 },
+      name: "meta_categories_status_type_name",
+    },
+    {
+      key: { status: 1, type: 1, slug: 1 },
+      name: "meta_categories_status_type_slug",
+    },
+  ],
+  attributes: [
+    { key: { status: 1, name: 1 }, name: "attributes_status_name" },
+    { key: { status: 1, slug: 1 }, name: "attributes_status_slug" },
+  ],
   orders: [
+    { key: { createdAt: -1 }, name: "orders_created_at" },
     { key: { status: 1, createdAt: -1 }, name: "orders_status_created_at" },
     { key: { status: 1, "items.sku": 1 }, name: "orders_status_item_sku" },
     { key: { orderNumber: 1 }, name: "orders_order_number" },
+  ],
+  reviews: [
+    { key: { status: 1, sku: 1 }, name: "reviews_status_sku" },
   ],
 };
 
