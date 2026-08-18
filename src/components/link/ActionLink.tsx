@@ -6,7 +6,7 @@ import type { ActionLinkSize, ActionLinkTone } from "@/variants/action-link.vari
 
 const TONES: Record<ActionLinkTone, string> = {
   primary: "border-transparent bg-blue-700 text-white hover:bg-blue-700",
-  danger: "border-transparent bg-red-500 text-white hover:bg-red-600",
+  danger: "border-transparent bg-red-700 text-white hover:bg-red-800",
   outline: "border-blue-200 bg-white text-blue-700 hover:border-blue-300 hover:bg-blue-50",
 };
 
