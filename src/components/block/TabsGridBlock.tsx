@@ -42,7 +42,7 @@ export async function TabsGridBlock({ block }: { block: TabsGridBlockPayload }) 
       layoutTemplate={block.props.layoutTemplate}
       backgroundMediaId={block.props.backgroundMediaId}
       backgroundMedia={block.props.backgroundMediaId ? mediaById[block.props.backgroundMediaId] ?? null : null}
-      gridClassName={resolvePageGridLayout(block.props.gridLayout, block.props.gridClassName)}
+      gridClassName={resolvePageGridLayout(block.props.gridLayout)}
       mobilePageSize={block.props.mobilePageSize}
     />
   );
