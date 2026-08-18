@@ -30,7 +30,7 @@ export const PAGE_COLUMN_LAYOUT_CLASS = {
   half: "w-full lg:w-1/2",
   "half-panel": "w-full space-y-6 rounded-xl bg-blue-50 p-6 lg:w-1/2",
   "half-panel-soft": "w-full space-y-6 rounded-lg bg-blue-50 p-6 lg:w-1/2",
-  "half-media": "w-full overflow-hidden rounded-lg lg:w-1/2",
+  "half-media": "flex w-full items-center overflow-hidden rounded-lg lg:w-1/2",
 } as const;
 
 export type PageColumnLayoutPreset = keyof typeof PAGE_COLUMN_LAYOUT_CLASS;
