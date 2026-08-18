@@ -3,13 +3,20 @@ import { BannerBackground } from "@/components/banner/BannerBackground";
 import { CLink } from "@/components/link/CLink";
 import { Heading } from "@/components/heading/Heading";
 import type { BannerRecord } from "@/interfaces/banner.interface";
+import { cn } from "@/lib/classname.utils";
+import { resolveBannerSizeClass } from "@/variants/banner.variant";
 
 export function ContentLeftBanner({ banner }: { banner: BannerRecord }) {
   const breadcrumbs = banner.breadcrumbs ?? [];
   const actions = banner.actions ?? [];
 
   return (
-    <div className="relative flex min-h-72 w-full overflow-hidden rounded-xl border border-blue-100 bg-white sm:min-h-80 lg:min-h-96">
+    <div
+      className={cn(
+        "relative flex w-full overflow-hidden rounded-xl border border-blue-100 bg-white",
+        resolveBannerSizeClass(banner.size ?? "page"),
+      )}
+    >
       <BannerBackground banner={banner} imageClassName="object-cover lg:object-right" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/10 lg:via-white/75" />
 
