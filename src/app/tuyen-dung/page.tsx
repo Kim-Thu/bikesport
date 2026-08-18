@@ -98,14 +98,13 @@ export default async function RecruitmentPage({ searchParams }: RecruitmentPageP
               items={cards}
               template="listing"
               gridClassName="grid grid-cols-1 gap-4 lg:grid-cols-3"
-              emptyMessage={query ? "Không tìm thấy vị trí phù hợp." : "Hiện chưa có vị trí tuyển dụng."}
             />
 
             <Pagination
               variant="numbered"
-              currentPage={page}
+              page={page}
               totalPages={totalPages}
-              basePath="/tuyen-dung"
+              pathname="/tuyen-dung"
               query={query}
               anchor={OPEN_POSITIONS_ANCHOR}
             />
