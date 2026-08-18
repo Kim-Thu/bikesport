@@ -4,25 +4,24 @@ import type {
   MongoConnectionFactory,
   MongoDatabaseLike,
 } from "@/data-access/mongodb/mongodb-driver.interface";
+import { createMongoRuntimeDatabase } from "@/data-access/mongodb/mongodb-runtime";
 
-let connectionFactory: MongoConnectionFactory | null = null;
+let connectionFactory: MongoConnectionFactory = createMongoRuntimeDatabase;
 
 export function registerMongoConnectionFactory(factory: MongoConnectionFactory) {
   connectionFactory = factory;
 }
 
-export function isMongoRuntimeReady(): boolean {
-  return connectionFactory !== null;
-}
-
 export async function getMongoDatabase(): Promise<MongoDatabaseLike> {
   const config = getMongoDataSourceConfig();
-
-  if (!connectionFactory) {
-    throw new Error(
-      "MongoDB query adapters are ready, but the runtime MongoDB connection factory is not registered. Keep DATA_SOURCE=json while building the storefront, or register MongoClient later when MongoDB is enabled.",
-    );
-  }
-
   return connectionFactory(config);
+}
+
+export async function checkMongoRuntime(): Promise<boolean> {
+  try {
+    await getMongoDatabase();
+    return true;
+  } catch {
+    return false;
+  }
 }
