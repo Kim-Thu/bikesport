@@ -37,6 +37,24 @@ export async function getMediaUrl(mediaId?: string | null): Promise<string | und
   return media.src;
 }
 
+export async function getMediaUrlsByIds(
+  mediaIds: Array<string | null | undefined>,
+): Promise<Record<string, string>> {
+  const requestedIds = [...new Set(mediaIds.filter((mediaId): mediaId is string => Boolean(mediaId)))];
+  if (!requestedIds.length) return {};
+
+  const mediaItems = await getMediaByIds(requestedIds);
+  const urlsById: Record<string, string> = {};
+
+  for (const media of mediaItems) {
+    if (media.src && isSafeLocalMediaUrl(media.src)) {
+      urlsById[media._id] = media.src;
+    }
+  }
+
+  return urlsById;
+}
+
 export async function getMediaWithFallback(mediaId?: string | null): Promise<MediaItem | null> {
   const mediaById = await getMediaWithFallbackByIds(mediaId ? [mediaId] : []);
   return mediaId ? mediaById[mediaId] ?? null : mediaById[PLACEHOLDER_MEDIA_ID] ?? null;
