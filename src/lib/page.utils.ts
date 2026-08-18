@@ -2,6 +2,14 @@ import { dataSources } from "@/data-access/data-sources";
 import type { PageRecord } from "@/interfaces/page.interface";
 import { CACHE_TAG, cachedByTags } from "@/lib/cache.utils";
 
+export async function getPublishedPages(): Promise<PageRecord[]> {
+  return cachedByTags(
+    ["published-pages"],
+    [CACHE_TAG.pages],
+    () => dataSources.page.getPublished(),
+  );
+}
+
 export async function getPublishedPageByPath(path: string): Promise<PageRecord | null> {
   return cachedByTags(
     ["published-page-by-path", path],
