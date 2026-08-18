@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CardGrid } from "@/components/grid/CardGrid";
 import { Container } from "@/components/layout/Container";
@@ -12,6 +13,7 @@ import {
   RECRUITMENT_PAGE_SIZE,
   searchRecruitments,
 } from "@/lib/recruitment.utils";
+import { resolveSeoMetadata } from "@/lib/seo.utils";
 
 export const revalidate = 300;
 
@@ -22,6 +24,16 @@ interface RecruitmentPageProps {
     q?: string | string[];
     page?: string | string[];
   }>;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const pageRecord = await getPublishedPageBySlug("tuyen-dung");
+  return resolveSeoMetadata({
+    path: "/tuyen-dung",
+    objectType: "page",
+    objectId: pageRecord?._id,
+    title: pageRecord?.title ?? "Tuyển dụng",
+  });
 }
 
 function getSingleSearchParam(value?: string | string[]): string {
@@ -78,7 +90,6 @@ export default async function RecruitmentPage({ searchParams }: RecruitmentPageP
                   placeholder="Tìm theo vị trí, phòng ban, địa điểm..."
                   submitLabel="Tìm vị trí tuyển dụng"
                   anchor={OPEN_POSITIONS_ANCHOR}
-                  debounceMs={300}
                 />
               </div>
             </div>
@@ -87,13 +98,14 @@ export default async function RecruitmentPage({ searchParams }: RecruitmentPageP
               items={cards}
               template="listing"
               gridClassName="grid grid-cols-1 gap-4 lg:grid-cols-3"
+              emptyMessage={query ? "Không tìm thấy vị trí phù hợp." : "Hiện chưa có vị trí tuyển dụng."}
             />
 
             <Pagination
               variant="numbered"
-              page={page}
+              currentPage={page}
               totalPages={totalPages}
-              pathname="/tuyen-dung"
+              basePath="/tuyen-dung"
               query={query}
               anchor={OPEN_POSITIONS_ANCHOR}
             />
