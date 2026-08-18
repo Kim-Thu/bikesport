@@ -104,7 +104,7 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
             />
 
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-              <article className="flex min-w-0 flex-col gap-4 lg:col-span-2">
+              <article className="flex min-w-0 flex-col gap-8 lg:col-span-2">
                 <header className="flex flex-col gap-4 border-b border-gray-200 pb-4">
                   <p className="text-sm font-semibold uppercase text-blue-700">{recruitment.department}</p>
                   <Heading level={1} className="text-3xl font-bold text-gray-950 sm:text-4xl">
@@ -126,11 +126,9 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
                   </div>
                 </header>
 
-                <div className="flex flex-col gap-8">
-                  <DetailList title="Mô tả công việc" items={recruitment.responsibilities} />
-                  <DetailList title="Yêu cầu ứng viên" items={recruitment.requirements} />
-                  <DetailList title="Quyền lợi" items={recruitment.benefits} />
-                </div>
+                <DetailList title="Mô tả công việc" items={recruitment.responsibilities} />
+                <DetailList title="Yêu cầu ứng viên" items={recruitment.requirements} />
+                <DetailList title="Quyền lợi" items={recruitment.benefits} />
               </article>
 
               <aside className="flex h-fit flex-col gap-4 lg:sticky lg:top-24">
