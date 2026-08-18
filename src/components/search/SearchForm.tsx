@@ -8,7 +8,13 @@ const VARIANT_CLASS = {
   mobile: "flex w-full lg:hidden",
 } as const;
 
-export function SearchForm({ action = "/search", placeholder = "Tìm kiếm...", variant = "default" }: SearchFormProps) {
+export function SearchForm({
+  action = "/search",
+  placeholder = "Tìm kiếm...",
+  variant = "default",
+  defaultValue,
+  submitLabel = "Tìm kiếm",
+}: SearchFormProps) {
   const inputId = `site-search-${variant}`;
 
   return (
@@ -22,19 +28,20 @@ export function SearchForm({ action = "/search", placeholder = "Tìm kiếm...",
       role="search"
     >
       <label htmlFor={inputId} className="sr-only">
-        Tìm kiếm
+        {submitLabel}
       </label>
       <input
         id={inputId}
         name="q"
         type="search"
+        defaultValue={defaultValue}
         placeholder={placeholder}
         className="min-w-0 flex-1 border-0 px-4 outline-none placeholder:text-gray-400"
       />
       <button
         type="submit"
         className="inline-flex w-12 items-center justify-center bg-blue-700 text-white"
-        aria-label="Tìm kiếm"
+        aria-label={submitLabel}
       >
         <Icon name="search" size={24} />
       </button>
