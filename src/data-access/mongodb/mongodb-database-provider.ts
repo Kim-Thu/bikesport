@@ -11,6 +11,10 @@ export function registerMongoConnectionFactory(factory: MongoConnectionFactory) 
   connectionFactory = factory;
 }
 
+export function isMongoRuntimeReady(): boolean {
+  return connectionFactory !== null;
+}
+
 export async function getMongoDatabase(): Promise<MongoDatabaseLike> {
   const config = getMongoDataSourceConfig();
 
