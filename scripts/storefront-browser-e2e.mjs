@@ -49,8 +49,10 @@ async function assertSeoRuntime(page, route, viewportName) {
   const description = await page.locator('meta[name="description"]').getAttribute("content");
   assert(description?.trim(), `${viewportName} ${route}: missing meta description`);
 
-  const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
-  assert(canonical, `${viewportName} ${route}: missing canonical link`);
+  const canonicalLocator = page.locator('link[rel="canonical"]');
+  assert(await canonicalLocator.count() === 1, `${viewportName} ${route}: expected exactly one canonical link`);
+  const canonical = await canonicalLocator.first().getAttribute("href");
+  assert(canonical, `${viewportName} ${route}: canonical link has no href`);
   const canonicalUrl = new URL(canonical, BASE_URL);
   assert(canonicalUrl.pathname === route, `${viewportName} ${route}: canonical path is ${canonicalUrl.pathname}`);
 
