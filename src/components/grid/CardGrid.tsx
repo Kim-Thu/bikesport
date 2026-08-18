@@ -30,8 +30,8 @@ export function CardGrid({
 
       {items.length ? (
         <div className={cn(defaultGridClassName, gridClassName)}>
-          {items.map((item) => (
-            <Card key={item.href} template={template} {...item} />
+          {items.map(({ _key, ...item }) => (
+            <Card key={_key} template={template} {...item} />
           ))}
         </div>
       ) : (
