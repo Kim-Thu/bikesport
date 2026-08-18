@@ -1418,19 +1418,20 @@
             "status": "active",
             "component": "layout",
             "props": {
-              "spacing": "comfortable"
+              "spacing": "comfortable",
+              "surface": "panel"
             },
             "rows": [
               {
                 "_id": "66bf4e8c9f2a4d7b8c1e4451",
                 "props": {
-                  "layout": "stack-responsive-wide"
+                  "layout": "split-equal"
                 },
                 "columns": [
                   {
                     "_id": "66bf4e8c9f2a4d7b8c1e4452",
                     "props": {
-                      "layout": "half"
+                      "layout": "half-panel-soft"
                     },
                     "blocks": [
                       {
@@ -1486,7 +1487,7 @@
                   {
                     "_id": "66bf4e8c9f2a4d7b8c1e4455",
                     "props": {
-                      "layout": "half"
+                      "layout": "half-media"
                     },
                     "blocks": [
                       {
@@ -1645,7 +1646,7 @@
                           "source": {
                             "type": "post",
                             "postType": "testimonial",
-                            "limit": 3
+                            "limit": 6
                           },
                           "presentation": "slider",
                           "trackLayout": "standard",
@@ -1701,7 +1702,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-18T10:00:00+07:00",
-      "updatedAt": "2026-08-18T11:08:00+07:00"
+      "updatedAt": "2026-08-18T11:24:00+07:00"
     }
   ]
 }

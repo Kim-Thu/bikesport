@@ -258,6 +258,66 @@
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-18T08:10:00+07:00",
       "updatedAt": "2026-08-18T08:10:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5104",
+      "type": "testimonial",
+      "title": "Lê Ngọc Mai",
+      "slug": "le-ngoc-mai-bikesporter",
+      "status": "published",
+      "excerpt": "BikeSport cho tôi cơ hội học hỏi từ đồng đội và chủ động thử nghiệm những cách làm mới để phục vụ khách hàng tốt hơn.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "testimonial": {
+        "role": "Chuyên viên Chăm sóc khách hàng"
+      },
+      "publishedAt": "2026-08-18T08:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T08:00:00+07:00",
+      "updatedAt": "2026-08-18T08:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5105",
+      "type": "testimonial",
+      "title": "Võ Quốc Huy",
+      "slug": "vo-quoc-huy-bikesporter",
+      "status": "published",
+      "excerpt": "Điều tôi thích nhất là tinh thần phối hợp giữa các bộ phận, mọi người luôn cùng nhau tìm cách giải quyết vấn đề nhanh và rõ ràng.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "testimonial": {
+        "role": "Nhân viên Vận hành"
+      },
+      "publishedAt": "2026-08-18T07:50:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T07:50:00+07:00",
+      "updatedAt": "2026-08-18T07:50:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5106",
+      "type": "testimonial",
+      "title": "Đặng Khánh Vy",
+      "slug": "dang-khanh-vy-bikesporter",
+      "status": "published",
+      "excerpt": "Tôi có không gian để phát triển chuyên môn, nhận phản hồi thẳng thắn và nhìn thấy đóng góp của mình tạo ra kết quả thực tế.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "testimonial": {
+        "role": "Thiết kế nội dung"
+      },
+      "publishedAt": "2026-08-18T07:40:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T07:40:00+07:00",
+      "updatedAt": "2026-08-18T07:40:00+07:00"
     }
   ]
 }
