@@ -126,9 +126,11 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
                   </div>
                 </header>
 
-                <DetailList title="Mô tả công việc" items={recruitment.responsibilities} />
-                <DetailList title="Yêu cầu ứng viên" items={recruitment.requirements} />
-                <DetailList title="Quyền lợi" items={recruitment.benefits} />
+                <div className="flex flex-col gap-8">
+                  <DetailList title="Mô tả công việc" items={recruitment.responsibilities} />
+                  <DetailList title="Yêu cầu ứng viên" items={recruitment.requirements} />
+                  <DetailList title="Quyền lợi" items={recruitment.benefits} />
+                </div>
               </article>
 
               <aside className="flex h-fit flex-col gap-4 lg:sticky lg:top-24">
