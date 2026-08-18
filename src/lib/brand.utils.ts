@@ -20,8 +20,12 @@ export async function getActiveBrands(limit?: number): Promise<BrandRecord[]> {
 }
 
 export async function getActiveBrandBySlug(slug: string): Promise<BrandRecord | null> {
-  const brands = await getActiveBrands();
-  return brands.find((brand) => brand.slug === slug) ?? null;
+  return cachedDomain(
+    "brand",
+    ["active-by-slug", slug],
+    () => dataSources.brand.getActiveBySlug(slug),
+    [CACHE_TAG.domain("brand")],
+  );
 }
 
 export async function getFeaturedBrands(limit?: number): Promise<BrandRecord[]> {
