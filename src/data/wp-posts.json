@@ -2,6 +2,7 @@
   "posts": [
     {
       "_id": "66bf4e8c9f2a4d7b8c1e5201",
+      "type": "article",
       "title": "Kinh nghiệm chọn size xe đạp phù hợp với chiều cao",
       "slug": "kinh-nghiem-chon-size-xe-dap-phu-hop-voi-chieu-cao",
       "status": "published",
@@ -18,6 +19,7 @@
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e5202",
+      "type": "article",
       "title": "5 mẹo bảo dưỡng xe đạp tại nhà đơn giản",
       "slug": "5-meo-bao-duong-xe-dap-tai-nha-don-gian",
       "status": "published",
@@ -34,6 +36,7 @@
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e5203",
+      "type": "article",
       "title": "Top 10 cung đường đạp xe đẹp nhất Việt Nam",
       "slug": "top-10-cung-duong-dap-xe-dep-nhat-viet-nam",
       "status": "published",
@@ -50,6 +53,7 @@
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e5204",
+      "type": "article",
       "title": "Hướng dẫn đạp xe đúng cách cho người mới bắt đầu",
       "slug": "huong-dan-dap-xe-dung-cach-cho-nguoi-moi-bat-dau",
       "status": "published",
@@ -66,6 +70,7 @@
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e5205",
+      "type": "article",
       "title": "Cách kiểm tra lốp và áp suất trước mỗi chuyến đi",
       "slug": "cach-kiem-tra-lop-va-ap-suat-truoc-moi-chuyen-di",
       "status": "published",
@@ -79,6 +84,110 @@
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-08T08:45:00+07:00",
       "updatedAt": "2026-08-08T09:15:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5301",
+      "type": "recruitment",
+      "title": "Nhân viên Kinh doanh xe đạp",
+      "slug": "nhan-vien-kinh-doanh-xe-dap",
+      "status": "published",
+      "excerpt": "Tư vấn sản phẩm, đồng hành cùng khách hàng lựa chọn xe phù hợp và chăm sóc trải nghiệm tại cửa hàng.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Kinh doanh bán lẻ",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "12 - 18 triệu",
+        "deadline": "2026-09-15T23:59:59+07:00",
+        "openings": 3,
+        "applyUrl": "/lien-he"
+      },
+      "publishedAt": "2026-08-18T09:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T08:30:00+07:00",
+      "updatedAt": "2026-08-18T09:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5302",
+      "type": "recruitment",
+      "title": "Kỹ thuật viên xe đạp",
+      "slug": "ky-thuat-vien-xe-dap",
+      "status": "published",
+      "excerpt": "Kiểm tra, lắp ráp, bảo dưỡng và xử lý các vấn đề kỹ thuật để đảm bảo xe luôn ở trạng thái vận hành tốt.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Kỹ thuật - Dịch vụ",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "12 - 17 triệu",
+        "deadline": "2026-09-20T23:59:59+07:00",
+        "openings": 2,
+        "applyUrl": "/lien-he"
+      },
+      "publishedAt": "2026-08-18T08:30:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T08:10:00+07:00",
+      "updatedAt": "2026-08-18T08:30:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5303",
+      "type": "recruitment",
+      "title": "Nhân viên Digital Marketing",
+      "slug": "nhan-vien-digital-marketing",
+      "status": "published",
+      "excerpt": "Triển khai nội dung và chiến dịch digital cho các sản phẩm, chương trình khuyến mãi và hoạt động cộng đồng của BikeSport.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Marketing",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "Thỏa thuận",
+        "deadline": "2026-09-25T23:59:59+07:00",
+        "openings": 1,
+        "applyUrl": "/lien-he"
+      },
+      "publishedAt": "2026-08-17T15:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T14:30:00+07:00",
+      "updatedAt": "2026-08-17T15:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5304",
+      "type": "recruitment",
+      "title": "Nhân viên Kho và Điều phối",
+      "slug": "nhan-vien-kho-va-dieu-phoi",
+      "status": "published",
+      "excerpt": "Theo dõi nhập xuất hàng, phối hợp cửa hàng và vận chuyển để đảm bảo sản phẩm được luân chuyển chính xác, đúng thời gian.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Vận hành",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "10 - 14 triệu",
+        "deadline": "2026-09-18T23:59:59+07:00",
+        "openings": 2,
+        "applyUrl": "/lien-he"
+      },
+      "publishedAt": "2026-08-17T14:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T13:30:00+07:00",
+      "updatedAt": "2026-08-17T14:00:00+07:00"
     }
   ]
 }
