@@ -75,6 +75,10 @@ const indexManifest = {
       key: { status: 1, type: 1, publishedAt: -1 },
       name: "posts_status_type_published_at",
     },
+    {
+      key: { status: 1, type: 1, slug: 1 },
+      name: "posts_status_type_slug",
+    },
   ],
   events: [
     {
