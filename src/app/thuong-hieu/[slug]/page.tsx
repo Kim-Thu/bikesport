@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/breadcrumb/Breadcrumb";
+import { Heading } from "@/components/heading/Heading";
 import { Container } from "@/components/layout/Container";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { getActiveBrandBySlug, getActiveBrands } from "@/lib/brand.utils";
@@ -50,7 +51,9 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         />
 
         <header className="space-y-4">
-          <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">{brand.name}</h1>
+          <Heading level={1} className="text-2xl font-bold text-gray-900 sm:text-3xl">
+            {brand.name}
+          </Heading>
           {brand.description ? <p className="max-w-3xl text-gray-600">{brand.description}</p> : null}
         </header>
 
