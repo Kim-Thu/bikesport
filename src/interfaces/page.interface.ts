@@ -15,6 +15,7 @@ import type {
   PageGridLayoutPreset,
   PageRowLayoutPreset,
   PageSectionSpacingPreset,
+  PageSectionSurfacePreset,
 } from "@/variants/page-layout.variant";
 
 export type PageStatus = "draft" | "published";
@@ -98,6 +99,7 @@ export interface LayoutSectionPayload extends PageSectionBase {
   props: {
     sectionTemplate?: SectionTemplate;
     spacing?: PageSectionSpacingPreset;
+    surface?: PageSectionSurfacePreset;
   };
   rows: LayoutRowPayload[];
 }
