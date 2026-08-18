@@ -28,7 +28,7 @@ export type PageColumnLayoutPreset = keyof typeof PAGE_COLUMN_LAYOUT_CLASS;
 
 export const PAGE_GRID_LAYOUT_CLASS = {
   "one-two": "grid-cols-1 lg:grid-cols-2",
-  "one-two-three": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+  "one-two-three": "grid-cols-1 md:grid-cols-2 xl:grid-cols-3",
   "two-three-four": "grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
   "four-xl": "xl:grid-cols-4",
 } as const;
@@ -44,6 +44,7 @@ export type PageSliderTrackPreset = keyof typeof PAGE_SLIDER_TRACK_CLASS;
 export const PAGE_SLIDER_SLIDE_CLASS = {
   compact: "basis-48 pl-4 sm:basis-52 lg:basis-1/5",
   "compact-four": "basis-48 pl-4 sm:basis-52 lg:basis-1/4",
+  "responsive-three": "basis-full pl-4 md:basis-1/2 lg:basis-1/3",
 } as const;
 
 export type PageSliderSlidePreset = keyof typeof PAGE_SLIDER_SLIDE_CLASS;
