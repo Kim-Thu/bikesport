@@ -1,5 +1,6 @@
 import { dataSources } from "@/data-access/data-sources";
 import type { NavMenuData, NavMenuItem } from "@/interfaces/navigation.interface";
+import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 import { getActiveBrands, getFeaturedBrands } from "@/lib/brand.utils";
 
 async function resolveSourceItems(item: NavMenuItem): Promise<NavMenuItem[]> {
@@ -27,6 +28,13 @@ async function resolveMenu(menu: NavMenuData): Promise<NavMenuData> {
 }
 
 export async function getMenuById(menuId: string): Promise<NavMenuData | null> {
-  const menu = await dataSources.menu.getById(menuId);
-  return menu ? resolveMenu(menu) : null;
+  return cachedDomain(
+    "menu",
+    ["resolved-by-id", menuId],
+    async () => {
+      const menu = await dataSources.menu.getById(menuId);
+      return menu ? resolveMenu(menu) : null;
+    },
+    [CACHE_TAG.entity("menu", menuId), CACHE_TAG.domain("brand")],
+  );
 }
