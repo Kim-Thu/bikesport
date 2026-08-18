@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "audit:semantic-config": "node scripts/audit-semantic-config.mjs"
   },
   "dependencies": {
     "embla-carousel-react": "^8.6.0",
