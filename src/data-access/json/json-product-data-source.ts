@@ -46,6 +46,14 @@ export const jsonProductDataSource: ProductDataSource = {
   async getPublished(limit) {
     return takeLimit(publishedProducts, limit);
   },
+  async getPublishedSkus(categoryIds) {
+    if (!categoryIds?.length) return publishedProducts.map((product) => product.sku);
+
+    const categoryIdSet = new Set(categoryIds);
+    return publishedProducts
+      .filter((product) => product.categoryIds.some((categoryId) => categoryIdSet.has(categoryId)))
+      .map((product) => product.sku);
+  },
   async getFeatured(limit) {
     return takeLimit(featuredProducts, limit);
   },
