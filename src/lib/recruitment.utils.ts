@@ -6,6 +6,7 @@ import {
 } from "@/lib/post.utils";
 
 export const RECRUITMENT_PAGE_SIZE = 6;
+const RELATED_RECRUITMENT_CANDIDATE_LIMIT = 24;
 
 export function formatRecruitmentDeadline(deadline?: string): string | undefined {
   if (!deadline) return undefined;
@@ -67,4 +68,30 @@ export async function searchRecruitments(
 
 export async function getRecruitmentBySlug(slug: string): Promise<PostRecord | null> {
   return getPublishedPostBySlugAndType(slug, "recruitment");
+}
+
+export async function getRelatedRecruitments(
+  currentPost: PostRecord,
+  limit = 3,
+): Promise<PostRecord[]> {
+  const candidates = await searchPublishedPosts({
+    type: "recruitment",
+    query: "",
+    offset: 0,
+    limit: RELATED_RECRUITMENT_CANDIDATE_LIMIT,
+  });
+
+  const available = candidates.items.filter((item) => item.slug !== currentPost.slug);
+  const department = currentPost.recruitment?.department;
+
+  if (!department) return available.slice(0, limit);
+
+  const sameDepartment = available.filter(
+    (item) => item.recruitment?.department === department,
+  );
+  const otherDepartments = available.filter(
+    (item) => item.recruitment?.department !== department,
+  );
+
+  return [...sameDepartment, ...otherDepartments].slice(0, limit);
 }
