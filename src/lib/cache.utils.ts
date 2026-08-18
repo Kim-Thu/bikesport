@@ -31,13 +31,17 @@ export function cachedDomain<T>(
   );
 }
 
+function revalidateContentTag(tag: string) {
+  revalidateTag(tag, "max");
+}
+
 export function invalidateDomainCache(domain: CacheDomain) {
-  revalidateTag(CACHE_TAG.domain(domain));
+  revalidateContentTag(CACHE_TAG.domain(domain));
 }
 
 export function invalidateEntityCache(domain: CacheDomain, id: string) {
-  revalidateTag(CACHE_TAG.domain(domain));
-  revalidateTag(CACHE_TAG.entity(domain, id));
+  revalidateContentTag(CACHE_TAG.domain(domain));
+  revalidateContentTag(CACHE_TAG.entity(domain, id));
 }
 
 export function invalidatePagesCache() {
@@ -48,10 +52,10 @@ export function invalidatePageCache(input: { slug?: string; path?: string }) {
   invalidateDomainCache("page");
 
   if (input.slug) {
-    revalidateTag(CACHE_TAG.pageBySlug(input.slug));
+    revalidateContentTag(CACHE_TAG.pageBySlug(input.slug));
   }
 
   if (input.path) {
-    revalidateTag(CACHE_TAG.pageByPath(input.path));
+    revalidateContentTag(CACHE_TAG.pageByPath(input.path));
   }
 }
