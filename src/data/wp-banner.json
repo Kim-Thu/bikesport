@@ -68,6 +68,7 @@
       "name": "About BikeSport Hero",
       "status": "active",
       "variant": "promo-left",
+      "size": "page",
       "overlay": { "variant": "blue-left" },
       "eyebrow": "GIỚI THIỆU BIKESPORT",
       "title": "Đam mê xe đạp",
@@ -95,6 +96,7 @@
       "name": "Recruitment Hero",
       "status": "active",
       "variant": "content-left",
+      "size": "page",
       "breadcrumbs": [
         { "label": "Trang chủ", "href": "/" },
         { "label": "Tuyển dụng" }
