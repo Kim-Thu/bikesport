@@ -127,8 +127,8 @@
                             "promotionId": "66bf4e8c9f2a4d7b8c1e3906",
                             "limit": 5
                           },
-                          "track": "standard",
-                          "slide": "compact"
+                          "trackLayout": "standard",
+                          "slideLayout": "compact"
                         }
                       }
                     ]
@@ -191,8 +191,8 @@
                             "promotionId": "66bf4e8c9f2a4d7b8c1e3901",
                             "limit": 5
                           },
-                          "track": "standard",
-                          "slide": "compact"
+                          "trackLayout": "standard",
+                          "slideLayout": "compact"
                         }
                       }
                     ]
@@ -258,8 +258,8 @@
                             "categoryId": "66bf4e8c9f2a4d7b8c1e3c02",
                             "limit": 5
                           },
-                          "track": "standard",
-                          "slide": "compact"
+                          "trackLayout": "standard",
+                          "slideLayout": "compact"
                         }
                       }
                     ]
@@ -318,8 +318,8 @@
                               }
                             ]
                           },
-                          "track": "standard",
-                          "slide": "compact-four"
+                          "trackLayout": "standard",
+                          "slideLayout": "compact-four"
                         }
                       },
                       {
@@ -499,8 +499,8 @@
                               }
                             ]
                           },
-                          "track": "standard",
-                          "slide": "compact"
+                          "trackLayout": "standard",
+                          "slideLayout": "compact"
                         }
                       }
                     ]
