@@ -56,7 +56,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         />
 
         <div className="grid gap-8 lg:grid-cols-2">
-          <Panel padding="comfortable">
+          <Panel className="p-8">
             <div className="flex min-h-64 items-center justify-center">
               <MediaImage
                 mediaId={mediaId}
@@ -77,7 +77,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
             <Price price={product.price} salePrice={product.salePrice} />
 
-            <Panel padding="compact">
+            <Panel className="p-4">
               <dl className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <dt className="text-sm font-medium text-gray-600">Tình trạng</dt>
