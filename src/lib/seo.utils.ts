@@ -6,6 +6,7 @@ import type {
   SeoRecord,
 } from "@/interfaces/seo.interface";
 import type { SiteIdentityOptions } from "@/interfaces/options.interface";
+import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 import { getHomeUrl } from "@/lib/link.utils";
 import { getMediaUrl } from "@/lib/media.utils";
 import { getSiteOptions } from "@/lib/options.utils";
@@ -19,11 +20,18 @@ function normalizePath(path: string): string {
 
 async function getSeoRecord(input: ResolveSeoInput): Promise<SeoRecord | null> {
   if (input.objectType && input.objectId) {
-    const byEntity = await dataSources.seo.getByEntity(input.objectType, input.objectId);
+    const byEntity = await cachedDomain(
+      "seo",
+      ["entity", input.objectType, input.objectId],
+      () => dataSources.seo.getByEntity(input.objectType!, input.objectId!),
+      [CACHE_TAG.entity("seo", `${input.objectType}:${input.objectId}`)],
+    );
     if (byEntity) return byEntity;
   }
 
-  return input.path ? dataSources.seo.getByPath(input.path) : null;
+  if (!input.path) return null;
+  const path = normalizePath(input.path);
+  return cachedDomain("seo", ["path", path], () => dataSources.seo.getByPath(path));
 }
 
 function applyTitleFormat(
