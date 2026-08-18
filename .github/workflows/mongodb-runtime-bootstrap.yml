@@ -36,6 +36,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add package.json package-lock.json .github/workflows/mongodb-runtime-bootstrap.yml
+          git add package.json package-lock.json
+          git add -u .github/workflows/mongodb-runtime-bootstrap.yml
           git commit -m "build(mongodb): add official runtime driver"
           git push
