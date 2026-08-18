@@ -8,10 +8,25 @@ export interface RecruitmentPostMeta {
   deadline?: string;
   openings?: number;
   applyUrl?: string;
+  responsibilities?: string[];
+  requirements?: string[];
+  benefits?: string[];
 }
 
 export interface TestimonialPostMeta {
   role: string;
+}
+
+export interface PostSearchQuery {
+  type: PostType;
+  query?: string;
+  offset?: number;
+  limit?: number;
+}
+
+export interface PostSearchResult {
+  items: PostRecord[];
+  total: number;
 }
 
 export interface PostRecord {
