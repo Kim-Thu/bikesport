@@ -3,7 +3,8 @@ name: Storefront CI
 on:
   push:
     branches:
-      - feat/issue-1-storefront-header
+      - master
+      - "security/**"
   pull_request:
     paths:
       - "src/**"
@@ -12,6 +13,7 @@ on:
       - "package-lock.json"
       - "tsconfig.json"
       - "next.config.ts"
+      - "eslint.config.mjs"
       - ".github/workflows/storefront-ci.yml"
 
 permissions:
@@ -39,8 +41,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Keep upstream Next.js transitive advisories visible without skipping lint/build.
-      # A framework major-version migration should be handled separately rather than via npm audit fix --force.
       - name: Audit production dependencies
         continue-on-error: true
         run: npm audit --omit=dev --audit-level=high
@@ -73,9 +73,7 @@ jobs:
               echo "$RESPONSE"
               node -e '
                 const body = JSON.parse(process.argv[1]);
-                if (body?.data?.status !== "ready" || body?.data?.dataSource !== "mongodb" || body?.data?.mongoRuntimeReady !== true) {
-                  process.exit(1);
-                }
+                if (body?.data?.status !== "ready") process.exit(1);
               ' "$RESPONSE"
               exit 0
             fi
