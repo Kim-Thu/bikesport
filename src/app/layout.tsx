@@ -79,10 +79,25 @@ export async function generateViewport(): Promise<Viewport> {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const options = await getSiteOptions();
+  const siteUrl = getHomeUrl();
+  const organizationStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: options.organization.legalName || options.site.siteTitle,
+    url: siteUrl || undefined,
+    email: options.contact.email.value || undefined,
+    telephone: options.contact.hotline.value || undefined,
+    address: options.organization.headquarters || undefined,
+  };
+  const organizationJson = JSON.stringify(organizationStructuredData).replace(/</g, "\\u003c");
 
   return (
     <html lang="vi" className={inter.className} suppressHydrationWarning>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: organizationJson }}
+        />
         <Header settings={options.header} />
         {children}
         <Footer settings={options.footer} />
