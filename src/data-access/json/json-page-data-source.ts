@@ -11,6 +11,9 @@ const publishedSlugs = publishedPages
   .map((page) => page.slug);
 
 export const jsonPageDataSource: PageDataSource = {
+  async getPublished() {
+    return publishedPages;
+  },
   async getPublishedByPath(path) {
     return publishedPageByPath.get(path) ?? null;
   },
