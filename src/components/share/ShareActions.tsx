@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Icon } from "@/components/icon/Icon";
 import { cn } from "@/lib/classname.utils";
 
 interface ShareActionsProps {
@@ -34,19 +35,25 @@ export function ShareActions({ title, className }: ShareActionsProps) {
   };
 
   const buttonClass =
-    "rounded-md border border-gray-200 bg-white px-3 py-2 text-xs font-semibold text-gray-700 transition-colors hover:border-blue-700 hover:text-blue-700";
+    "inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 bg-white text-gray-600 transition-colors hover:border-blue-700 hover:text-blue-700";
 
   return (
     <div className={cn("flex flex-wrap items-center gap-2", className)} aria-label="Chia sẻ">
       <span className="text-xs font-medium text-gray-500">Chia sẻ:</span>
-      <button type="button" onClick={shareZalo} className={buttonClass}>
-        Zalo
+      <button type="button" onClick={shareZalo} className={buttonClass} aria-label="Chia sẻ qua Zalo" title="Zalo">
+        <Icon name="message-circle" size={18} />
       </button>
-      <button type="button" onClick={shareFacebook} className={buttonClass}>
-        Facebook
+      <button type="button" onClick={shareFacebook} className={buttonClass} aria-label="Chia sẻ qua Facebook" title="Facebook">
+        <Icon name="share-2" size={18} />
       </button>
-      <button type="button" onClick={copyLink} className={buttonClass}>
-        {copied ? "Đã sao chép" : "Copy link"}
+      <button
+        type="button"
+        onClick={copyLink}
+        className={buttonClass}
+        aria-label={copied ? "Đã sao chép liên kết" : "Sao chép liên kết"}
+        title={copied ? "Đã sao chép" : "Copy link"}
+      >
+        <Icon name={copied ? "check" : "link"} size={18} />
       </button>
     </div>
   );
