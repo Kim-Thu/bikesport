@@ -16,7 +16,7 @@ export const PAGE_ROW_LAYOUT_CLASS = {
   "stack-responsive": "flex-col items-stretch gap-4 lg:flex-row",
   "stack-responsive-start": "flex-col items-start gap-4 lg:flex-row",
   "stack-responsive-wide": "flex-col items-stretch gap-6 lg:flex-row",
-  "split-equal": "grid grid-cols-1 gap-4 lg:grid-cols-2",
+  "split-equal": "flex-col items-stretch gap-4 lg:flex-row",
   "wrap-stretch": "flex-wrap items-stretch",
 } as const;
 
@@ -29,8 +29,8 @@ export const PAGE_COLUMN_LAYOUT_CLASS = {
   "sidebar-quarter": "w-full space-y-8 lg:w-1/4",
   half: "w-full lg:w-1/2",
   "half-panel": "w-full space-y-6 rounded-xl bg-blue-50 p-6 lg:w-1/2",
-  "half-panel-soft": "w-full space-y-6 rounded-lg bg-blue-50 p-6",
-  "half-media": "w-full overflow-hidden rounded-lg",
+  "half-panel-soft": "w-full space-y-6 rounded-lg bg-blue-50 p-6 lg:w-1/2",
+  "half-media": "w-full overflow-hidden rounded-lg lg:w-1/2",
 } as const;
 
 export type PageColumnLayoutPreset = keyof typeof PAGE_COLUMN_LAYOUT_CLASS;
