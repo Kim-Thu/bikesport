@@ -7,15 +7,19 @@ import { Icon } from "@/components/icon/Icon";
 import { ActionLink } from "@/components/link/ActionLink";
 import { CLink } from "@/components/link/CLink";
 import { Container } from "@/components/layout/Container";
+import { PageSections } from "@/components/page/PageSections";
 import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
+import { ShareActions } from "@/components/share/ShareActions";
 import { getSiteOptions } from "@/lib/options.utils";
+import { getPublishedPageBySlug } from "@/lib/page.utils";
 import {
   formatRecruitmentDeadline,
   getRecruitmentBySlug,
   getRelatedRecruitments,
   mapRecruitmentPostToCard,
 } from "@/lib/recruitment.utils";
+import { getUserById } from "@/lib/user.utils";
 
 export const revalidate = 300;
 
@@ -35,6 +39,17 @@ export async function generateMetadata({ params }: RecruitmentDetailPageProps): 
   };
 }
 
+function formatPublishedDate(value: string): string {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+
+  return new Intl.DateTimeFormat("vi-VN", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(date);
+}
+
 function DetailList({ title, items }: { title: string; items?: string[] }) {
   if (!items?.length) return null;
 
@@ -43,7 +58,7 @@ function DetailList({ title, items }: { title: string; items?: string[] }) {
       <Heading level={2} className="text-xl font-bold uppercase text-gray-950">
         {title}
       </Heading>
-      <ul className="flex flex-col gap-4 text-sm leading-7 text-gray-600 sm:text-base">
+      <ul className="flex flex-col gap-1 text-sm leading-7 text-gray-600 sm:text-base">
         {items.map((item) => (
           <li key={item} className="flex items-start gap-4">
             <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-700" />
@@ -61,13 +76,19 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
 
   if (!post?.recruitment) notFound();
 
-  const [options, relatedPosts] = await Promise.all([
+  const [options, relatedPosts, author, recruitmentPage] = await Promise.all([
     getSiteOptions(),
     getRelatedRecruitments(post),
+    getUserById(post.authorId),
+    getPublishedPageBySlug("tuyen-dung"),
   ]);
   const recruitment = post.recruitment;
   const deadline = formatRecruitmentDeadline(recruitment.deadline);
+  const publishedDate = formatPublishedDate(post.publishedAt);
   const relatedCards = relatedPosts.map(mapRecruitmentPostToCard);
+  const recruitmentCtaSection = recruitmentPage?.payload.sections.find(
+    (section) => section.name === "Recruitment CTA",
+  );
 
   return (
     <main aria-label={post.title}>
@@ -92,6 +113,17 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
                   {post.excerpt ? (
                     <p className="max-w-3xl text-base leading-7 text-gray-600">{post.excerpt}</p>
                   ) : null}
+
+                  <div className="flex flex-col items-start gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 sm:text-sm">
+                      <span>
+                        Người đăng: <strong className="font-semibold text-gray-700">{author?.displayName ?? options.site.siteTitle}</strong>
+                      </span>
+                      {publishedDate ? <span aria-hidden="true">•</span> : null}
+                      {publishedDate ? <time dateTime={post.publishedAt}>{publishedDate}</time> : null}
+                    </div>
+                    <ShareActions title={post.title} />
+                  </div>
                 </header>
 
                 <DetailList title="Mô tả công việc" items={recruitment.responsibilities} />
@@ -198,6 +230,8 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
           </Container>
         </Section>
       ) : null}
+
+      {recruitmentCtaSection ? <PageSections sections={[recruitmentCtaSection]} /> : null}
     </main>
   );
 }
