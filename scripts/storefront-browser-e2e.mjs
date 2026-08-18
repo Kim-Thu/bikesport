@@ -17,6 +17,20 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+function reportAccessibilityViolations(viewportName, route, violations) {
+  if (!violations.length) return;
+
+  console.error(`Accessibility failures for ${viewportName} ${route}:`);
+  for (const violation of violations) {
+    console.error(`\n[${violation.id}] ${violation.help} - ${violation.helpUrl}`);
+    for (const node of violation.nodes) {
+      console.error(`  target: ${node.target.join(" > ")}`);
+      console.error(`  html: ${node.html}`);
+      if (node.failureSummary) console.error(`  reason: ${node.failureSummary.replace(/\n/g, " ")}`);
+    }
+  }
+}
+
 async function assertPageBasics(page, route, viewportName) {
   const response = await page.goto(`${BASE_URL}${route}`, { waitUntil: "networkidle" });
   assert(response && response.status() < 400, `${viewportName} ${route}: HTTP ${response?.status()}`);
@@ -37,6 +51,7 @@ async function assertPageBasics(page, route, viewportName) {
   const blockingViolations = axeResult.violations.filter((violation) =>
     violation.impact === "critical" || violation.impact === "serious"
   );
+  reportAccessibilityViolations(viewportName, route, blockingViolations);
   assert(
     blockingViolations.length === 0,
     `${viewportName} ${route}: accessibility violations: ${blockingViolations.map((item) => `${item.id} (${item.nodes.length})`).join(", ")}`,
