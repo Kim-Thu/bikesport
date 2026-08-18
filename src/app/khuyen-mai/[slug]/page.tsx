@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   return resolveSeoMetadata({
     path: `/khuyen-mai/${promotion.slug}`,
-    objectType: "promotion",
+    objectType: "custom",
     objectId: promotion._id,
     title: getPromotionTitle(promotion),
     description: getPromotionDescription(promotion) ?? promotion.name,
