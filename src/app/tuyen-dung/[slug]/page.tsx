@@ -8,6 +8,7 @@ import { ActionLink } from "@/components/link/ActionLink";
 import { CLink } from "@/components/link/CLink";
 import { Container } from "@/components/layout/Container";
 import { PageSections } from "@/components/page/PageSections";
+import { Panel } from "@/components/panel/Panel";
 import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { ShareActions } from "@/components/share/ShareActions";
@@ -132,7 +133,7 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
               </article>
 
               <aside className="flex h-fit flex-col gap-4 lg:sticky lg:top-24">
-                <div className="rounded-xl border border-gray-200 bg-white p-6">
+                <Panel>
                   <div className="flex flex-col gap-4">
                     <Heading level={2} className="text-lg font-bold uppercase text-gray-950">
                       Thông tin vị trí
@@ -171,9 +172,9 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
                       Ứng tuyển vị trí này
                     </ActionLink>
                   </div>
-                </div>
+                </Panel>
 
-                <div className="rounded-xl border border-blue-700 bg-blue-700/5 p-6">
+                <Panel variant="primary-soft">
                   <div className="flex flex-col gap-4">
                     <Heading level={2} className="text-lg font-bold uppercase text-gray-950">
                       Thông tin BikeSport
@@ -203,7 +204,7 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
                       Xem thông tin liên hệ →
                     </CLink>
                   </div>
-                </div>
+                </Panel>
               </aside>
             </div>
           </div>
