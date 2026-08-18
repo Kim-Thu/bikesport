@@ -1,4 +1,4 @@
-import type { ComponentType } from "react";
+import { createElement, type ComponentType } from "react";
 import { AccountLoader } from "@/components/account/AccountLoader";
 import { Announcement } from "@/components/announcement/Announcement";
 import { Button } from "@/components/button/Button";
@@ -46,31 +46,31 @@ export function renderComponent(item: ComponentItem, index: number) {
 
   switch (item.component) {
     case "announcement":
-      return <Announcement key={key} {...item.props} />;
+      return createElement(Announcement, { key, ...(item.props ?? {}) });
     case "button":
-      return <Button key={key} {...item.props} />;
+      return createElement(Button, { key, ...(item.props ?? {}) });
     case "icon":
-      return <Icon key={key} {...item.props} />;
+      return createElement(Icon, { key, ...(item.props ?? {}) });
     case "link":
-      return <CLink key={key} {...item.props} />;
+      return createElement(CLink, { key, ...(item.props ?? {}) });
     case "logo":
-      return <LogoLoader key={key} {...item.props} />;
+      return createElement(LogoLoader, { key, ...(item.props ?? {}) });
     case "search-form":
-      return <SearchForm key={key} {...item.props} />;
+      return createElement(SearchForm, { key, ...(item.props ?? {}) });
     case "contact":
-      return <ContactLoader key={key} {...item.props} />;
+      return createElement(ContactLoader, { key, ...(item.props ?? {}) });
     case "account":
-      return <AccountLoader key={key} {...item.props} />;
+      return createElement(AccountLoader, { key, ...(item.props ?? {}) });
     case "mini-cart":
-      return <MiniCartLoader key={key} {...item.props} />;
+      return createElement(MiniCartLoader, { key, ...(item.props ?? {}) });
     case "nav-menu":
-      return <NavMenu key={key} {...item.props} />;
+      return createElement(NavMenu, { key, ...(item.props ?? {}) });
     case "mobile-menu":
-      return <MobileMenuLoader key={key} {...item.props} />;
+      return createElement(MobileMenuLoader, { key, ...(item.props ?? {}) });
     case "payment":
-      return <Payment key={key} {...item.props} />;
+      return createElement(Payment, { key, ...(item.props ?? {}) });
     case "social":
-      return <SocialLoader key={key} {...item.props} />;
+      return createElement(SocialLoader, { key, ...(item.props ?? {}) });
     default:
       return assertNever(item);
   }
