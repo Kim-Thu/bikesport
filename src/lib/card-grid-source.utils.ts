@@ -8,6 +8,7 @@ import {
   getFeaturedCombos,
 } from "@/lib/combo.utils";
 import { getFeaturedEvents } from "@/lib/event.utils";
+import { getMediaByIds } from "@/lib/media.utils";
 import { getLatestPosts, getLatestPostsByType } from "@/lib/post.utils";
 import { formatStoreAddress, getFeaturedStores } from "@/lib/store.utils";
 import { getUserById } from "@/lib/user.utils";
@@ -66,6 +67,11 @@ async function resolvePostCards(
   const posts = source.postType
     ? await getLatestPostsByType(source.postType, source.limit)
     : await getLatestPosts(source.limit);
+  const testimonialMediaIds = posts.flatMap((post) =>
+    post.type === "testimonial" && post.mediaId ? [post.mediaId] : [],
+  );
+  const testimonialMedia = await getMediaByIds(testimonialMediaIds);
+  const testimonialMediaById = new Map(testimonialMedia.map((media) => [media._id, media]));
 
   return Promise.all(
     posts.map(async (post) => {
@@ -90,6 +96,18 @@ async function resolvePostCards(
               : []),
           ],
           actionLabel: "Ứng tuyển",
+        };
+      }
+
+      if (post.type === "testimonial" && post.testimonial) {
+        return {
+          _key: post._id,
+          title: post.title,
+          eyebrow: post.testimonial.role,
+          href: "/tuyen-dung#cau-chuyen-bikesporter",
+          mediaId: post.mediaId,
+          media: post.mediaId ? testimonialMediaById.get(post.mediaId) ?? null : null,
+          description: post.excerpt,
         };
       }
 
