@@ -51,7 +51,7 @@ export async function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
       >
         <BannerBackground banner={banner} imageClassName="lg:object-right" />
 
-        <div className="relative z-20 grid w-full flex-1 gap-6 p-5 sm:p-7 lg:grid-cols-12 lg:items-stretch lg:gap-6 lg:p-8">
+        <div className="relative z-20 grid w-full flex-1 gap-8 p-4 sm:p-8 lg:grid-cols-12 lg:items-stretch lg:p-8">
           <div className="order-1 flex items-center lg:col-span-10">
             <div className="max-w-xl">
               {banner.eyebrow ? (
@@ -70,11 +70,12 @@ export async function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
               ) : null}
 
               {features.length ? (
-                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
                   {features.map((feature, index) => (
                     <FeatureItem
                       key={`${feature.title}-${index}`}
-                      {...feature}
+                      title={feature.title}
+                      description={feature.description}
                       iconMediaUrl={feature.iconMediaId ? featureMediaById[feature.iconMediaId]?.src : undefined}
                     />
                   ))}
@@ -96,7 +97,7 @@ export async function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
       </div>
 
       {promotionCards.length ? (
-        <div className="mt-3 grid gap-2 sm:hidden">
+        <div className="mt-4 grid gap-2 sm:hidden">
           {promotionCards.map((card) => (
             <PromotionInfoCard key={card.promotionId} card={card} />
           ))}
