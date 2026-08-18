@@ -1,21 +1,45 @@
 import { Heading } from "@/components/heading/Heading";
 import { Icon } from "@/components/icon/Icon";
 import { CLink } from "@/components/link/CLink";
-import type { SectionHeaderProps } from "@/interfaces/section-header.interface";
+import type { SectionHeaderAlign, SectionHeaderProps } from "@/interfaces/section-header.interface";
 import { cn } from "@/lib/classname.utils";
+
+const ALIGN_CLASS: Record<SectionHeaderAlign, { root: string; title: string; spacer: string }> = {
+  left: {
+    root: "",
+    title: "",
+    spacer: "",
+  },
+  center: {
+    root: "justify-center text-center",
+    title: "mx-auto text-center",
+    spacer: "hidden",
+  },
+  right: {
+    root: "justify-end text-right",
+    title: "ml-auto text-right",
+    spacer: "hidden",
+  },
+};
 
 export function DefaultTemplate({
   title,
   href,
   actionLabel = "Xem tất cả",
+  align = "left",
   className,
   children,
 }: SectionHeaderProps) {
+  const alignment = ALIGN_CLASS[align];
+
   return (
-    <div className={cn("flex flex-wrap items-center gap-x-6 gap-y-2", className)}>
+    <div className={cn("flex flex-wrap items-center gap-x-6 gap-y-2", alignment.root, className)}>
       <Heading
         level={2}
-        className="min-w-0 flex-1 text-lg font-bold uppercase leading-tight text-gray-900 sm:flex-none sm:shrink-0 sm:text-xl lg:text-2xl"
+        className={cn(
+          "min-w-0 flex-1 text-lg font-bold uppercase leading-tight text-gray-900 sm:flex-none sm:shrink-0 sm:text-xl lg:text-2xl",
+          alignment.title,
+        )}
       >
         {title}
       </Heading>
@@ -23,7 +47,7 @@ export function DefaultTemplate({
       {children ? (
         <div className="order-3 min-w-0 basis-full sm:order-none sm:flex-1 sm:basis-auto">{children}</div>
       ) : (
-        <div className="hidden flex-1 sm:block" />
+        <div className={cn("hidden flex-1 sm:block", alignment.spacer)} />
       )}
 
       {href ? (
