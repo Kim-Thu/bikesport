@@ -6,7 +6,7 @@ import { getMediaPresentation } from "@/lib/media-presentation.utils";
 export async function MediaBlock({ block }: { block: MediaBlockPayload }) {
   const presentation = await getMediaPresentation(block.props.mediaId, block.props.aspect);
   const media = (
-    <div className={`${presentation.aspectClassName} h-full w-full overflow-hidden rounded-lg`}>
+    <div className={`${presentation.aspectClassName} w-full overflow-hidden rounded-lg`}>
       <MediaImage
         mediaId={block.props.mediaId}
         alt={block.props.alt}
@@ -18,7 +18,7 @@ export async function MediaBlock({ block }: { block: MediaBlockPayload }) {
   );
 
   return block.props.href ? (
-    <CLink href={block.props.href} aria-label={block.props.alt} className="block h-full cursor-pointer">
+    <CLink href={block.props.href} aria-label={block.props.alt} className="block w-full cursor-pointer">
       {media}
     </CLink>
   ) : (
