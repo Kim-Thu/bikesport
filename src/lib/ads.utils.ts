@@ -1,5 +1,6 @@
 import { dataSources } from "@/data-access/data-sources";
 import type { AdsRecord, AdsSchedule } from "@/interfaces/ads.interface";
+import { cachedDomain } from "@/lib/cache.utils";
 import { getEventById } from "@/lib/event.utils";
 import { getPromotionById } from "@/lib/promotion.utils";
 
@@ -37,7 +38,11 @@ export async function getActiveAdByPlacement(
   placement: string,
   now = new Date(),
 ): Promise<AdsRecord | null> {
-  const ads = await dataSources.ads.getActiveByPlacement(placement);
+  const ads = await cachedDomain(
+    "ads",
+    ["active-by-placement", placement],
+    () => dataSources.ads.getActiveByPlacement(placement),
+  );
 
   for (const ad of ads) {
     if (await isScheduleActive(ad.schedule, now)) return ad;
