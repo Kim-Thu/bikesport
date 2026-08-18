@@ -15,8 +15,8 @@ const LAYOUT_TEMPLATES = {
 
 export async function ProductSliderBlock({ block }: { block: ProductSliderBlockPayload }) {
   const viewModel = await resolveProductSliderBlock(block);
-  const trackClassName = resolvePageSliderTrack(block.props.trackLayout, block.props.trackClassName);
-  const slideClassName = resolvePageSliderSlide(block.props.slideLayout, block.props.slideClassName);
+  const trackClassName = resolvePageSliderTrack(block.props.trackLayout);
+  const slideClassName = resolvePageSliderSlide(block.props.slideLayout);
 
   if (viewModel.kind === "tabs") {
     return (
