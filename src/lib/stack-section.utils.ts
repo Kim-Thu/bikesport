@@ -7,7 +7,7 @@ export function getStackRowClass(variant: StackVariant) {
 
 export function getStackColumnClass(variant: StackVariant) {
   return variant === "cards"
-    ? "rounded-xl border border-gray-200 bg-white px-5 py-6 shadow-sm lg:px-6"
+    ? "rounded-xl border border-gray-200 bg-white px-5 py-6 lg:px-6"
     : "px-5 py-5 lg:px-6";
 }
 
