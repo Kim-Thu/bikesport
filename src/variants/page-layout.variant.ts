@@ -45,3 +45,27 @@ export const PAGE_SLIDER_SLIDE_CLASS = {
 } as const;
 
 export type PageSliderSlidePreset = keyof typeof PAGE_SLIDER_SLIDE_CLASS;
+
+export function resolvePageSectionSpacing(preset?: PageSectionSpacingPreset, fallback?: string) {
+  return preset ? PAGE_SECTION_SPACING_CLASS[preset] : fallback;
+}
+
+export function resolvePageRowLayout(preset?: PageRowLayoutPreset, fallback?: string) {
+  return preset ? PAGE_ROW_LAYOUT_CLASS[preset] : fallback;
+}
+
+export function resolvePageColumnLayout(preset?: PageColumnLayoutPreset, fallback?: string) {
+  return preset ? PAGE_COLUMN_LAYOUT_CLASS[preset] : fallback;
+}
+
+export function resolvePageGridLayout(preset?: PageGridLayoutPreset, fallback?: string) {
+  return preset ? PAGE_GRID_LAYOUT_CLASS[preset] : fallback;
+}
+
+export function resolvePageSliderTrack(preset?: PageSliderTrackPreset, fallback?: string) {
+  return preset ? PAGE_SLIDER_TRACK_CLASS[preset] : fallback;
+}
+
+export function resolvePageSliderSlide(preset?: PageSliderSlidePreset, fallback?: string) {
+  return preset ? PAGE_SLIDER_SLIDE_CLASS[preset] : fallback;
+}
