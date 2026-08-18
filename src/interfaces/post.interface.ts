@@ -1,4 +1,4 @@
-export type PostType = "article" | "recruitment";
+export type PostType = "article" | "recruitment" | "testimonial";
 
 export interface RecruitmentPostMeta {
   department: string;
@@ -8,6 +8,10 @@ export interface RecruitmentPostMeta {
   deadline?: string;
   openings?: number;
   applyUrl?: string;
+}
+
+export interface TestimonialPostMeta {
+  role: string;
 }
 
 export interface PostRecord {
@@ -22,6 +26,7 @@ export interface PostRecord {
   authorId: string;
   mediaId?: string | null;
   recruitment?: RecruitmentPostMeta;
+  testimonial?: TestimonialPostMeta;
   publishedAt: string;
   createdBy: string;
   updatedBy: string;
