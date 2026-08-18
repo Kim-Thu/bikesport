@@ -7,17 +7,24 @@ interface PaginationLinksProps {
   totalPages: number;
   pathname: string;
   query?: string;
+  anchor?: string;
   className?: string;
 }
 
 const MAX_VISIBLE_PAGES = 5;
 
-function buildPageHref(pathname: string, page: number, query?: string): string {
+function buildPageHref(
+  pathname: string,
+  page: number,
+  query?: string,
+  anchor?: string,
+): string {
   const params = new URLSearchParams();
   if (query) params.set("q", query);
   if (page > 1) params.set("page", String(page));
   const search = params.toString();
-  return search ? `${pathname}?${search}` : pathname;
+  const href = search ? `${pathname}?${search}` : pathname;
+  return anchor ? `${href}#${anchor}` : href;
 }
 
 function getVisiblePages(page: number, totalPages: number): number[] {
@@ -39,6 +46,7 @@ export function PaginationLinks({
   totalPages,
   pathname,
   query,
+  anchor,
   className,
 }: PaginationLinksProps) {
   if (totalPages <= 1) return null;
@@ -54,7 +62,7 @@ export function PaginationLinks({
     >
       {page > 1 ? (
         <CLink
-          href={buildPageHref(pathname, page - 1, query)}
+          href={buildPageHref(pathname, page - 1, query, anchor)}
           aria-label="Trang trước"
           className={cn(
             controlClass,
@@ -86,7 +94,7 @@ export function PaginationLinks({
         ) : (
           <CLink
             key={pageNumber}
-            href={buildPageHref(pathname, pageNumber, query)}
+            href={buildPageHref(pathname, pageNumber, query, anchor)}
             aria-label={`Trang ${pageNumber}`}
             className={cn(
               controlClass,
@@ -100,7 +108,7 @@ export function PaginationLinks({
 
       {page < totalPages ? (
         <CLink
-          href={buildPageHref(pathname, page + 1, query)}
+          href={buildPageHref(pathname, page + 1, query, anchor)}
           aria-label="Trang sau"
           className={cn(
             controlClass,
