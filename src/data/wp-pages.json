@@ -1497,7 +1497,7 @@
                         "props": {
                           "mediaId": null,
                           "alt": "Đội ngũ BikeSport",
-                          "aspect": "landscape"
+                          "aspect": "video"
                         }
                       }
                     ]
@@ -1702,7 +1702,7 @@
       "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-18T10:00:00+07:00",
-      "updatedAt": "2026-08-18T11:24:00+07:00"
+      "updatedAt": "2026-08-18T11:32:00+07:00"
     }
   ]
 }
