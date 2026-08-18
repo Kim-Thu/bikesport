@@ -1,5 +1,5 @@
 import { dataSources } from "@/data-access/data-sources";
-import type { PostRecord } from "@/interfaces/post.interface";
+import type { PostRecord, PostType } from "@/interfaces/post.interface";
 import { cachedDomain } from "@/lib/cache.utils";
 
 export async function getLatestPosts(limit?: number): Promise<PostRecord[]> {
@@ -7,5 +7,13 @@ export async function getLatestPosts(limit?: number): Promise<PostRecord[]> {
     "post",
     ["latest-published", String(limit ?? "all")],
     () => dataSources.post.getLatestPublished(limit),
+  );
+}
+
+export async function getLatestPostsByType(type: PostType, limit?: number): Promise<PostRecord[]> {
+  return cachedDomain(
+    "post",
+    ["latest-published-by-type", type, String(limit ?? "all")],
+    () => dataSources.post.getLatestPublishedByType(type, limit),
   );
 }
