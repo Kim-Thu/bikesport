@@ -5,9 +5,11 @@ import { Countdown } from "@/components/countdown/Countdown";
 import { FeatureItem } from "@/components/feature/FeatureItem";
 import { Heading } from "@/components/heading/Heading";
 import type { BannerRecord } from "@/interfaces/banner.interface";
+import { cn } from "@/lib/classname.utils";
 import { getMediaWithFallbackByIds } from "@/lib/media.utils";
 import { getPromotionBenefitLabel } from "@/lib/promotion-presentation.utils";
 import { getActivePromotionById } from "@/lib/promotion.utils";
+import { resolveBannerSizeClass } from "@/variants/banner.variant";
 
 async function PromotionInfoCard({ card }: { card: NonNullable<BannerRecord["promotionCards"]>[number] }) {
   const promotion = await getActivePromotionById(card.promotionId);
@@ -41,7 +43,12 @@ export async function PromoLeftBanner({ banner }: { banner: BannerRecord }) {
 
   return (
     <div className="w-full min-w-0">
-      <div className="relative flex w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent sm:aspect-hero-tablet lg:aspect-8/3">
+      <div
+        className={cn(
+          "relative flex w-full overflow-hidden rounded-xl border border-blue-100 bg-transparent",
+          resolveBannerSizeClass(banner.size),
+        )}
+      >
         <BannerBackground banner={banner} imageClassName="lg:object-right" />
 
         <div className="relative z-20 grid w-full flex-1 gap-6 p-5 sm:p-7 lg:grid-cols-12 lg:items-stretch lg:gap-6 lg:p-8">
