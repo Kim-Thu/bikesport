@@ -3,8 +3,7 @@
 import { useEffect, useId, useRef, useState, useTransition } from "react";
 import type { FormEvent } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Icon } from "@/components/icon/Icon";
-import { cn } from "@/lib/classname.utils";
+import { SearchFormView } from "@/components/search/SearchFormView";
 
 interface LiveSearchFormProps {
   defaultValue?: string;
@@ -73,35 +72,18 @@ export function LiveSearchForm({
   };
 
   return (
-    <form
+    <SearchFormView
       onSubmit={handleSubmit}
-      className={cn(
-        "flex h-11 w-full min-w-0 overflow-hidden rounded-md border border-gray-300 bg-white",
-        className,
-      )}
-      role="search"
+      inputId={inputId}
+      submitLabel={submitLabel}
+      className={className}
       aria-busy={isPending}
-    >
-      <label htmlFor={inputId} className="sr-only">
-        {submitLabel}
-      </label>
-      <input
-        id={inputId}
-        name="q"
-        type="search"
-        value={value}
-        onChange={(event) => setValue(event.target.value)}
-        placeholder={placeholder}
-        className="min-w-0 flex-1 border-0 px-4 outline-none placeholder:text-gray-400"
-        autoComplete="off"
-      />
-      <button
-        type="submit"
-        className="inline-flex w-12 items-center justify-center bg-blue-700 text-white"
-        aria-label={submitLabel}
-      >
-        <Icon name="search" size={24} />
-      </button>
-    </form>
+      inputProps={{
+        value,
+        onChange: (event) => setValue(event.target.value),
+        placeholder,
+        autoComplete: "off",
+      }}
+    />
   );
 }
