@@ -28,6 +28,7 @@ const indexManifest = {
   ],
   brands: [
     { key: { status: 1, order: 1 }, name: "brands_status_order" },
+    { key: { status: 1, slug: 1 }, name: "brands_status_slug" },
     {
       key: { status: 1, featured: 1, order: 1 },
       name: "brands_status_featured_order",
@@ -138,10 +139,11 @@ const client = new MongoClient(uri);
 
 try {
   await client.connect();
-  const database = client.db(databaseName);
+  const db = client.db(databaseName);
 
   for (const [collectionName, indexes] of Object.entries(indexManifest)) {
-    await database.collection(collectionName).createIndexes(indexes);
+    if (!indexes.length) continue;
+    await db.collection(collectionName).createIndexes(indexes);
     console.log(`Applied ${indexes.length} indexes to ${collectionName}.`);
   }
 } finally {
