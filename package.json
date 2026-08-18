@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "audit:semantic-config": "node scripts/audit-semantic-config.mjs"
+    "audit:semantic-config": "node scripts/audit-semantic-config.mjs",
+    "db:indexes": "node scripts/apply-mongodb-indexes.mjs"
   },
   "dependencies": {
     "embla-carousel-react": "^8.6.0",
