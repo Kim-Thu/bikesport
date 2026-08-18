@@ -9,7 +9,7 @@ export async function CardGridSection({ section }: { section: CardGridSectionPay
   const items = await getCardGridItems(section.props.source);
 
   return (
-    <Section className={resolvePageSectionSpacing(section.props.spacing, section.props.sectionClassName)}>
+    <Section className={resolvePageSectionSpacing(section.props.spacing)}>
       <Container>
         <CardGrid
           items={items}
@@ -20,7 +20,7 @@ export async function CardGridSection({ section }: { section: CardGridSectionPay
           href={section.props.href}
           actionLabel={section.props.actionLabel}
           headingTemplate={section.props.headingTemplate}
-          gridClassName={resolvePageGridLayout(section.props.gridLayout, section.props.gridClassName)}
+          gridClassName={resolvePageGridLayout(section.props.gridLayout)}
           defaultGridClassName="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6"
         />
       </Container>
