@@ -13,6 +13,15 @@ export async function getPublishedProducts(limit?: number): Promise<ProductRecor
   );
 }
 
+export async function getPublishedProductBySlug(slug: string): Promise<ProductRecord | null> {
+  return cachedDomain(
+    "product",
+    ["published-by-slug", slug],
+    () => dataSources.product.getPublishedBySlug(slug),
+    [CACHE_TAG.domain("product")],
+  );
+}
+
 export async function getPublishedProductsByIds(ids: string[], limit?: number): Promise<ProductRecord[]> {
   const uniqueIds = [...new Set(ids)].sort();
   if (!uniqueIds.length) return [];
