@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { AccentTemplate } from "@/components/card/templates/AccentTemplate";
 import { FlashSaleTemplate } from "@/components/card/templates/FlashSaleTemplate";
+import { ListingTemplate } from "@/components/card/templates/ListingTemplate";
 import { MediaActionTemplate } from "@/components/card/templates/MediaActionTemplate";
 import { MediaDetailsTemplate } from "@/components/card/templates/MediaDetailsTemplate";
 import { MediaFooterTemplate } from "@/components/card/templates/MediaFooterTemplate";
@@ -16,6 +17,7 @@ const CARD_TEMPLATES: Record<CardTemplate, (props: CardProps) => ReactNode> = {
   "flash-sale": FlashSaleTemplate,
   accent: AccentTemplate,
   overlay: OverlayTemplate,
+  listing: ListingTemplate,
 };
 
 export function Card({ template = "media-footer", ...props }: CardProps) {
