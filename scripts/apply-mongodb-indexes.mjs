@@ -17,6 +17,7 @@ const indexManifest = {
     { key: { status: 1, brandId: 1 }, name: "products_status_brand" },
     { key: { status: 1, categoryIds: 1 }, name: "products_status_categories" },
     { key: { status: 1, sku: 1 }, name: "products_status_sku" },
+    { key: { status: 1, slug: 1 }, name: "products_status_slug" },
   ],
   categories: [
     { key: { status: 1, order: 1 }, name: "categories_status_order" },
