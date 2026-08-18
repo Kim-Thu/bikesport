@@ -15,6 +15,8 @@ import {
 
 export const revalidate = 300;
 
+const OPEN_POSITIONS_ANCHOR = "vi-tri-dang-tuyen";
+
 interface RecruitmentPageProps {
   searchParams: Promise<{
     q?: string | string[];
@@ -65,13 +67,13 @@ export default async function RecruitmentPage({ searchParams }: RecruitmentPageP
 
       <Section>
         <Container>
-          <div className="flex flex-col gap-8">
+          <div id={OPEN_POSITIONS_ANCHOR} className="scroll-mt-24 flex flex-col gap-8">
             <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
               <SectionHeader title="Vị trí đang tuyển" />
 
               <div className="w-full md:max-w-2xl">
                 <SearchForm
-                  action="/tuyen-dung"
+                  action={`/tuyen-dung#${OPEN_POSITIONS_ANCHOR}`}
                   defaultValue={query}
                   placeholder="Tìm theo vị trí, phòng ban, địa điểm..."
                   submitLabel="Tìm vị trí tuyển dụng"
@@ -90,6 +92,7 @@ export default async function RecruitmentPage({ searchParams }: RecruitmentPageP
               totalPages={totalPages}
               pathname="/tuyen-dung"
               query={query}
+              anchor={OPEN_POSITIONS_ANCHOR}
             />
           </div>
         </Container>
