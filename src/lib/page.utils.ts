@@ -1,35 +1,37 @@
 import { dataSources } from "@/data-access/data-sources";
 import type { PageRecord } from "@/interfaces/page.interface";
-import { CACHE_TAG, cachedByTags } from "@/lib/cache.utils";
+import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 
 export async function getPublishedPages(): Promise<PageRecord[]> {
-  return cachedByTags(
+  return cachedDomain(
+    "page",
     ["published-pages"],
-    [CACHE_TAG.pages],
     () => dataSources.page.getPublished(),
   );
 }
 
 export async function getPublishedPageByPath(path: string): Promise<PageRecord | null> {
-  return cachedByTags(
+  return cachedDomain(
+    "page",
     ["published-page-by-path", path],
-    [CACHE_TAG.pages, CACHE_TAG.pageByPath(path)],
     () => dataSources.page.getPublishedByPath(path),
+    [CACHE_TAG.pageByPath(path)],
   );
 }
 
 export async function getPublishedPageBySlug(slug: string): Promise<PageRecord | null> {
-  return cachedByTags(
+  return cachedDomain(
+    "page",
     ["published-page-by-slug", slug],
-    [CACHE_TAG.pages, CACHE_TAG.pageBySlug(slug)],
     () => dataSources.page.getPublishedBySlug(slug),
+    [CACHE_TAG.pageBySlug(slug)],
   );
 }
 
 export async function getPublishedPageSlugs(): Promise<string[]> {
-  return cachedByTags(
+  return cachedDomain(
+    "page",
     ["published-page-slugs"],
-    [CACHE_TAG.pages],
     () => dataSources.page.getPublishedSlugs(),
   );
 }
