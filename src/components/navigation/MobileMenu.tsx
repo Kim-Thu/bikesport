@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/button/Button";
 import { Contact } from "@/components/contact/Contact";
@@ -14,6 +14,8 @@ import type { MobileMenuClientProps } from "@/interfaces/navigation.interface";
 import { createMenuIndex, getMenuHref } from "@/lib/menu-presentation.utils";
 import { useUiStore } from "@/stores/ui.store";
 
+const subscribeToHydration = () => () => {};
+
 export function MobileMenu({
   menu,
   site,
@@ -26,7 +28,7 @@ export function MobileMenu({
   const isOpen = useUiStore((state) => state.isMobileMenuOpen);
   const openMobileMenu = useUiStore((state) => state.openMobileMenu);
   const closeMobileMenu = useUiStore((state) => state.closeMobileMenu);
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useSyncExternalStore(subscribeToHydration, () => true, () => false);
   const [isVisible, setIsVisible] = useState(false);
   const [expandedItemId, setExpandedItemId] = useState<string | null>(null);
   const { rootItems, childrenByParentId } = useMemo(
@@ -35,30 +37,25 @@ export function MobileMenu({
   );
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isOpen) {
-      setIsVisible(false);
-      setExpandedItemId(null);
-      return;
-    }
+    if (!isOpen) return;
 
     const frame = window.requestAnimationFrame(() => setIsVisible(true));
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     const desktopQuery = window.matchMedia("(min-width: 1024px)");
+    const closeImmediately = () => {
+      setIsVisible(false);
+      setExpandedItemId(null);
+      closeMobileMenu();
+    };
     const handleDesktopChange = (event: MediaQueryListEvent) => {
-      if (event.matches) {
-        setIsVisible(false);
-        closeMobileMenu();
-      }
+      if (event.matches) closeImmediately();
     };
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsVisible(false);
+        setExpandedItemId(null);
         window.setTimeout(closeMobileMenu, 300);
       }
     };
@@ -80,6 +77,11 @@ export function MobileMenu({
     setIsVisible(false);
     setExpandedItemId(null);
     window.setTimeout(closeMobileMenu, 300);
+  };
+
+  const handleOpenMenu = () => {
+    setExpandedItemId(null);
+    openMobileMenu();
   };
 
   const drawer = isOpen ? (
@@ -165,7 +167,7 @@ export function MobileMenu({
         aria-label="Mở menu"
         aria-expanded={isOpen}
         aria-controls="mobile-navigation"
-        onClick={openMobileMenu}
+        onClick={handleOpenMenu}
       />
 
       {isMounted && drawer ? createPortal(drawer, document.body) : null}
