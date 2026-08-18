@@ -11,7 +11,17 @@ export function createMongoPostDataSource(getDatabase: MongoDatabaseProvider): P
         .collection<PostRecord>(MONGODB_COLLECTIONS.posts)
         .find({ status: "published" })
         .sort({ publishedAt: -1 });
-      if (typeof limit === "number") cursor = cursor.limit(limit);
+      if (typeof limit === "number" && limit > 0) cursor = cursor.limit(limit);
+      return cursor.toArray();
+    },
+
+    async getLatestPublishedByType(type, limit) {
+      const db = await getDatabase();
+      let cursor = db
+        .collection<PostRecord>(MONGODB_COLLECTIONS.posts)
+        .find({ status: "published", type })
+        .sort({ publishedAt: -1 });
+      if (typeof limit === "number" && limit > 0) cursor = cursor.limit(limit);
       return cursor.toArray();
     },
   };
