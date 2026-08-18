@@ -4,20 +4,23 @@ import { CLink } from "@/components/link/CLink";
 import type { SectionHeaderAlign, SectionHeaderProps } from "@/interfaces/section-header.interface";
 import { cn } from "@/lib/classname.utils";
 
-const ALIGN_CLASS: Record<SectionHeaderAlign, { root: string; title: string; spacer: string }> = {
+const ALIGN_CLASS: Record<
+  SectionHeaderAlign,
+  { root: string; title: string; spacer: string }
+> = {
   left: {
     root: "",
-    title: "",
+    title: "flex-1 sm:flex-none sm:shrink-0",
     spacer: "",
   },
   center: {
     root: "justify-center text-center",
-    title: "mx-auto text-center",
+    title: "flex-none mx-auto text-center",
     spacer: "hidden",
   },
   right: {
     root: "justify-end text-right",
-    title: "ml-auto text-right",
+    title: "flex-none ml-auto text-right",
     spacer: "hidden",
   },
 };
@@ -37,7 +40,7 @@ export function DefaultTemplate({
       <Heading
         level={2}
         className={cn(
-          "min-w-0 flex-1 text-lg font-bold uppercase leading-tight text-gray-900 sm:flex-none sm:shrink-0 sm:text-xl lg:text-2xl",
+          "min-w-0 text-lg font-bold uppercase leading-tight text-gray-900 sm:text-xl lg:text-2xl",
           alignment.title,
         )}
       >
