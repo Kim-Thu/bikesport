@@ -34,8 +34,11 @@ export function createMongoPageDataSource(getDatabase: MongoDatabaseProvider): P
       const database = await getDatabase();
       const pages = await database
         .collection<PageRecord>(MONGODB_COLLECTIONS.pages)
-        .find({ status: "published", path: { $ne: "/" } })
-        .sort({ path: 1 })
+        .aggregate<{ slug: string }>([
+          { $match: { status: "published", path: { $ne: "/" } } },
+          { $sort: { path: 1 } },
+          { $project: { _id: 0, slug: 1 } },
+        ])
         .toArray();
 
       return pages.map((page) => page.slug);
