@@ -76,6 +76,7 @@ async function resolvePostCards(
           href: recruitment.applyUrl ?? "/lien-he",
           description: post.excerpt,
           metaItems: [
+            { icon: "tag", text: recruitment.department },
             { icon: "location", text: recruitment.location },
             { icon: "clock", text: recruitment.employmentType },
             ...(recruitment.salary ? [{ icon: "payment", text: recruitment.salary }] : []),
