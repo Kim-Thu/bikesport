@@ -1,9 +1,11 @@
+import Image from "next/image";
 import { CLink } from "@/components/link/CLink";
 import { CList } from "@/components/list/CList";
 import { Column } from "@/components/layout/Column";
 import { MediaImage } from "@/components/media/MediaImage";
 import { Row } from "@/components/layout/Row";
 import type { ContactOptions, OrganizationOptions } from "@/interfaces/options.interface";
+import { resolveVerificationBrandAsset } from "@/variants/brand-asset.variant";
 
 export function CompanyInfo({
   organization,
@@ -79,14 +81,27 @@ export function CompanyInfo({
       {verificationAssets.length ? (
         <Column className="w-full sm:w-auto sm:min-w-40">
           <div className="flex flex-wrap items-center gap-4 sm:justify-end">
-            {verificationAssets.map((asset) => (
-              <MediaImage
-                key={asset.mediaId}
-                mediaId={asset.mediaId}
-                alt={asset.label}
-                className="h-auto max-h-12 w-auto object-contain"
-              />
-            ))}
+            {verificationAssets.map((asset) => {
+              const brandAsset = resolveVerificationBrandAsset(asset.label);
+
+              return brandAsset ? (
+                <Image
+                  key={asset.mediaId}
+                  src={brandAsset.src}
+                  alt={asset.label}
+                  width={brandAsset.width}
+                  height={brandAsset.height}
+                  className="h-auto max-h-12 w-auto object-contain"
+                />
+              ) : (
+                <MediaImage
+                  key={asset.mediaId}
+                  mediaId={asset.mediaId}
+                  alt={asset.label}
+                  className="h-auto max-h-12 w-auto object-contain"
+                />
+              );
+            })}
           </div>
         </Column>
       ) : null}
