@@ -3,7 +3,7 @@ import { CardGrid } from "@/components/grid/CardGrid";
 import { Container } from "@/components/layout/Container";
 import { PageSections } from "@/components/page/PageSections";
 import { PaginationLinks } from "@/components/pagination/PaginationLinks";
-import { SearchForm } from "@/components/search/SearchForm";
+import { LiveSearchForm } from "@/components/search/LiveSearchForm";
 import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section-header/SectionHeader";
 import { getPublishedPageBySlug } from "@/lib/page.utils";
@@ -72,11 +72,12 @@ export default async function RecruitmentPage({ searchParams }: RecruitmentPageP
               <SectionHeader title="Vị trí đang tuyển" />
 
               <div className="w-full md:max-w-2xl">
-                <SearchForm
-                  action={`/tuyen-dung#${OPEN_POSITIONS_ANCHOR}`}
+                <LiveSearchForm
                   defaultValue={query}
                   placeholder="Tìm theo vị trí, phòng ban, địa điểm..."
                   submitLabel="Tìm vị trí tuyển dụng"
+                  anchor={OPEN_POSITIONS_ANCHOR}
+                  debounceMs={300}
                 />
               </div>
             </div>
