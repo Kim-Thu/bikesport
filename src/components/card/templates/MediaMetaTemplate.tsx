@@ -9,7 +9,7 @@ export function MediaMetaTemplate({ title, href, media, description, publishedAt
       <div className="relative">
         <CLink href={href} className="block">
           <div className="aspect-video w-full overflow-hidden">
-            {media ? <MediaImageView media={media} alt={title} width={480} height={270} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" /> : null}
+            <MediaImageView media={media} alt={title} width={480} height={270} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
           </div>
         </CLink>
         {categoryName && categoryHref ? <CLink href={categoryHref} className="absolute left-4 top-4 rounded-md bg-blue-600/10 px-2 py-2 text-xs font-medium text-blue-600">{categoryName}</CLink> : null}
