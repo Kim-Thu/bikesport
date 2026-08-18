@@ -8,7 +8,7 @@ import {
   getFeaturedCombos,
 } from "@/lib/combo.utils";
 import { getFeaturedEvents } from "@/lib/event.utils";
-import { getLatestPosts } from "@/lib/post.utils";
+import { getLatestPosts, getLatestPostsByType } from "@/lib/post.utils";
 import { formatStoreAddress, getFeaturedStores } from "@/lib/store.utils";
 import { getUserById } from "@/lib/user.utils";
 
@@ -46,13 +46,48 @@ async function resolveComboCards(
   );
 }
 
+function formatRecruitmentDeadline(deadline?: string): string | undefined {
+  if (!deadline) return undefined;
+  const date = new Date(deadline);
+  if (Number.isNaN(date.getTime())) return undefined;
+
+  return `Hạn ${new Intl.DateTimeFormat("vi-VN", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(date)}`;
+}
+
 async function resolvePostCards(
   source: Extract<CardGridSource, { type: "post" }>,
 ): Promise<CardProps[]> {
-  const posts = await getLatestPosts(source.limit);
+  const posts = source.postType
+    ? await getLatestPostsByType(source.postType, source.limit)
+    : await getLatestPosts(source.limit);
 
   return Promise.all(
     posts.map(async (post) => {
+      if (post.type === "recruitment" && post.recruitment) {
+        const recruitment = post.recruitment;
+        const deadline = formatRecruitmentDeadline(recruitment.deadline);
+
+        return {
+          title: post.title,
+          href: recruitment.applyUrl ?? "/lien-he",
+          description: post.excerpt,
+          metaItems: [
+            { icon: "location", text: recruitment.location },
+            { icon: "clock", text: recruitment.employmentType },
+            ...(recruitment.salary ? [{ icon: "payment", text: recruitment.salary }] : []),
+            ...(deadline ? [{ icon: "clock", text: deadline }] : []),
+            ...(typeof recruitment.openings === "number"
+              ? [{ icon: "users", text: `${recruitment.openings} vị trí` }]
+              : []),
+          ],
+          actionLabel: "Ứng tuyển",
+        };
+      }
+
       const [category, author] = await Promise.all([
         post.categoryIds[0] ? getCategoryById(post.categoryIds[0]) : Promise.resolve(null),
         getUserById(post.authorId),
