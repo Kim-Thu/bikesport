@@ -26,7 +26,7 @@ export function CollectionShowcase({
   actionTone = "primary",
   backgroundMedia,
   containerClassName,
-  headerClassName = "mb-5",
+  headerClassName = "mb-4",
 }: CollectionShowcaseProps) {
   return (
     <div className={cn("relative overflow-hidden", containerClassName)}>
@@ -35,8 +35,6 @@ export function CollectionShowcase({
           <MediaImageView
             media={backgroundMedia}
             alt=""
-            width={1440}
-            height={480}
             className="h-full w-full object-cover"
           />
         </div>
@@ -47,7 +45,7 @@ export function CollectionShowcase({
         {content}
         {footer}
         {href ? (
-          <div className="mt-6 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <ActionLink href={href} tone={actionTone}>{actionLabel}</ActionLink>
           </div>
         ) : null}
