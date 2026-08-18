@@ -109,7 +109,7 @@ jobs:
         env:
           DATA_SOURCE: mongodb
           MONGODB_URI: mongodb://127.0.0.1:27017
-          MONGODB_DB_NAME=bikesport_ci
+          MONGODB_DB_NAME: bikesport_ci
           NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
         run: |
           npm start > /tmp/bikesport-next.log 2>&1 &
