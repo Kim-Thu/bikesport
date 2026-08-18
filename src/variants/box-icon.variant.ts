@@ -19,14 +19,14 @@ export type PageBoxIconDescriptionSize = keyof typeof PAGE_BOX_ICON_DESCRIPTION_
 
 export const PAGE_BOX_ICON_LAYOUT_CLASS = {
   inline: {
-    root: "items-stretch justify-center gap-3",
+    root: "items-stretch justify-center gap-8",
     icon: "h-auto w-9 self-stretch",
     content: "flex-none self-center",
     title: "",
     description: "",
   },
   centered: {
-    root: "flex-col items-center gap-3 text-center",
+    root: "flex-col items-center gap-4 text-center",
     icon: "h-10 w-10",
     content: "items-center",
     title: "normal-case",
