@@ -31,7 +31,7 @@ export async function Banner({ bannerId }: BannerProps) {
     : [initialBanner];
 
   return (
-    <Section className="py-4 sm:py-6">
+    <Section className="py-4 sm:py-8">
       <Container>
         <Carousel ariaLabel="Banner nổi bật" autoHeight>
           {slides.map((banner) => <BannerSlide key={banner._id} banner={banner} />)}
