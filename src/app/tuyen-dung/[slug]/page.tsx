@@ -22,6 +22,7 @@ import {
   getRelatedRecruitments,
   mapRecruitmentPostToCard,
 } from "@/lib/recruitment.utils";
+import { resolveSeoMetadata } from "@/lib/seo.utils";
 import { getUserById } from "@/lib/user.utils";
 
 export const revalidate = 300;
@@ -36,10 +37,13 @@ export async function generateMetadata({ params }: RecruitmentDetailPageProps): 
 
   if (!post) return {};
 
-  return {
+  return resolveSeoMetadata({
+    path: `/tuyen-dung/${slug}`,
+    objectType: "post",
+    objectId: post._id,
     title: `${post.title} | Tuyển dụng BikeSport`,
     description: post.excerpt,
-  };
+  });
 }
 
 function formatPublishedDate(value: string): string {
