@@ -30,10 +30,6 @@ export function LiveSearchForm({
   const [isPending, startTransition] = useTransition();
   const didMount = useRef(false);
 
-  useEffect(() => {
-    setValue(defaultValue);
-  }, [defaultValue]);
-
   const navigate = (nextValue: string) => {
     const normalizedValue = nextValue.trim();
     const currentValue = searchParams.get("q")?.trim() ?? "";
