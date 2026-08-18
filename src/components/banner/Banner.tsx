@@ -33,7 +33,7 @@ export async function Banner({ bannerId }: BannerProps) {
   return (
     <Section className="py-4 sm:py-8">
       <Container>
-        <Carousel ariaLabel="Banner nổi bật" autoHeight>
+        <Carousel ariaLabel="Banner nổi bật">
           {slides.map((banner) => <BannerSlide key={banner._id} banner={banner} />)}
         </Carousel>
       </Container>
