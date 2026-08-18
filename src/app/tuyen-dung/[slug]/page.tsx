@@ -94,7 +94,7 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
     <main aria-label={post.title}>
       <Section>
         <Container>
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-4">
             <Breadcrumb
               items={[
                 { label: "Trang chủ", href: "/" },
@@ -103,9 +103,9 @@ export default async function RecruitmentDetailPage({ params }: RecruitmentDetai
               ]}
             />
 
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
-              <article className="flex min-w-0 flex-col gap-8">
-                <header className="flex flex-col gap-4 border-b border-gray-200 pb-8">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+              <article className="flex min-w-0 flex-col gap-4 lg:col-span-2">
+                <header className="flex flex-col gap-4 border-b border-gray-200 pb-4">
                   <p className="text-sm font-semibold uppercase text-blue-700">{recruitment.department}</p>
                   <Heading level={1} className="text-3xl font-bold text-gray-950 sm:text-4xl">
                     {post.title}
