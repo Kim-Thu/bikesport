@@ -11,5 +11,8 @@ export interface OrderDataSource {
   getByOrderNumber(orderNumber: string): Promise<OrderRecord | null>;
   getByStatus(status: OrderStatus): Promise<OrderRecord[]>;
   getRecent(limit?: number): Promise<OrderRecord[]>;
-  getCompletedProductSalesStats(skus?: string[]): Promise<ProductSalesStatsRecord[]>;
+  getCompletedProductSalesStats(
+    skus?: string[],
+    limit?: number,
+  ): Promise<ProductSalesStatsRecord[]>;
 }

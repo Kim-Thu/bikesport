@@ -35,43 +35,12 @@ export const COMPONENT_REGISTRY = {
   social: SocialLoader,
 } satisfies ComponentRegistry;
 
-function assertNever(value: never): never {
-  throw new Error(`Unsupported component config: ${JSON.stringify(value)}`);
-}
-
 export function renderComponent(item: ComponentItem, index: number) {
   if (item.enabled === false) return null;
 
-  const key = `${item.component}-${index}`;
-
-  switch (item.component) {
-    case "announcement":
-      return createElement(Announcement, { key, ...(item.props ?? {}) });
-    case "button":
-      return createElement(Button, { key, ...(item.props ?? {}) });
-    case "icon":
-      return createElement(Icon, { key, ...(item.props ?? {}) });
-    case "link":
-      return createElement(CLink, { key, ...(item.props ?? {}) });
-    case "logo":
-      return createElement(LogoLoader, { key, ...(item.props ?? {}) });
-    case "search-form":
-      return createElement(SearchForm, { key, ...(item.props ?? {}) });
-    case "contact":
-      return createElement(ContactLoader, { key, ...(item.props ?? {}) });
-    case "account":
-      return createElement(AccountLoader, { key, ...(item.props ?? {}) });
-    case "mini-cart":
-      return createElement(MiniCartLoader, { key, ...(item.props ?? {}) });
-    case "nav-menu":
-      return createElement(NavMenu, { key, ...(item.props ?? {}) });
-    case "mobile-menu":
-      return createElement(MobileMenuLoader, { key, ...(item.props ?? {}) });
-    case "payment":
-      return createElement(Payment, { key, ...(item.props ?? {}) });
-    case "social":
-      return createElement(SocialLoader, { key, ...(item.props ?? {}) });
-    default:
-      return assertNever(item);
-  }
+  const Component = COMPONENT_REGISTRY[item.component] as ComponentType<Record<string, unknown>>;
+  return createElement(Component, {
+    key: `${item.component}-${index}`,
+    ...(item.props ?? {}),
+  });
 }

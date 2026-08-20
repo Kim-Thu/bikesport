@@ -8,6 +8,7 @@ import { FlashSaleTemplate } from "@/components/tabs/templates/FlashSaleTemplate
 import { ImageTemplate } from "@/components/tabs/templates/ImageTemplate";
 import type { TabItem, TabTemplateProps } from "@/interfaces/tabs.interface";
 import { cn } from "@/lib/classname.utils";
+import { TABS_LAYOUT_CLASS } from "@/variants/tabs.variant";
 import type { TabsTemplate } from "@/variants/tabs.variant";
 
 export type { TabItem } from "@/interfaces/tabs.interface";
@@ -25,13 +26,6 @@ const TAB_TEMPLATES: Record<TabsTemplate, ComponentType<TabTemplateProps>> = {
   image: ImageTemplate,
   featured: FeaturedTemplate,
   "flash-sale": FlashSaleTemplate,
-};
-
-const TEMPLATE_GAPS: Record<TabsTemplate, string> = {
-  default: "gap-5",
-  image: "gap-3",
-  featured: "gap-2",
-  "flash-sale": "gap-1",
 };
 
 const DRAG_THRESHOLD = 4;
@@ -111,10 +105,7 @@ export function Tabs({ items, value, onChange, className, template = "default" }
       ref={containerRef}
       className={cn(
         "scrollbar-none flex min-w-0 overflow-x-auto overscroll-x-contain scroll-smooth select-none",
-        TEMPLATE_GAPS[template],
-        template === "flash-sale"
-          ? "mx-auto w-fit max-w-full items-stretch rounded-xl border border-red-100 bg-white p-1"
-          : "items-center",
+        TABS_LAYOUT_CLASS[template],
         isDragging ? "cursor-grabbing" : "cursor-grab",
         className,
       )}

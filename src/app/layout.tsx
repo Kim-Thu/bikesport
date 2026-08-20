@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer/Footer";
 import { Header } from "@/components/header/Header";
 import { ToastViewport } from "@/components/toast/ToastViewport";
 import { getHomeUrl } from "@/lib/link.utils";
-import { getMediaUrl } from "@/lib/media.utils";
+import { getMediaUrlsByIds } from "@/lib/media.utils";
 import { getSiteOptions } from "@/lib/options.utils";
 import "@/styles/globals.css";
 
@@ -19,13 +19,25 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteIcons = options.site.icons;
   const siteUrl = getHomeUrl();
   const metadataBase = siteUrl ? new URL(siteUrl) : undefined;
-  const [faviconUrl, favicon32Url, appleTouchIconUrl, defaultOgImageUrl, defaultTwitterImageUrl] = await Promise.all([
-    getMediaUrl(siteIcons.faviconMediaId),
-    getMediaUrl(siteIcons.favicon32MediaId),
-    getMediaUrl(siteIcons.appleTouchIconMediaId),
-    getMediaUrl(globalSeo.openGraph?.defaultImageMediaId),
-    getMediaUrl(globalSeo.twitter?.defaultImageMediaId),
-  ]);
+  const mediaIds = [
+    siteIcons.faviconMediaId,
+    siteIcons.favicon32MediaId,
+    siteIcons.appleTouchIconMediaId,
+    globalSeo.openGraph?.defaultImageMediaId,
+    globalSeo.twitter?.defaultImageMediaId,
+  ];
+  const mediaUrlById = await getMediaUrlsByIds(mediaIds);
+  const faviconUrl = siteIcons.faviconMediaId ? mediaUrlById[siteIcons.faviconMediaId] : undefined;
+  const favicon32Url = siteIcons.favicon32MediaId ? mediaUrlById[siteIcons.favicon32MediaId] : undefined;
+  const appleTouchIconUrl = siteIcons.appleTouchIconMediaId
+    ? mediaUrlById[siteIcons.appleTouchIconMediaId]
+    : undefined;
+  const defaultOgImageUrl = globalSeo.openGraph?.defaultImageMediaId
+    ? mediaUrlById[globalSeo.openGraph.defaultImageMediaId]
+    : undefined;
+  const defaultTwitterImageUrl = globalSeo.twitter?.defaultImageMediaId
+    ? mediaUrlById[globalSeo.twitter.defaultImageMediaId]
+    : undefined;
 
   return {
     metadataBase,
@@ -67,10 +79,25 @@ export async function generateViewport(): Promise<Viewport> {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const options = await getSiteOptions();
+  const siteUrl = getHomeUrl();
+  const organizationStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: options.organization.legalName || options.site.siteTitle,
+    url: siteUrl || undefined,
+    email: options.contact.email.value || undefined,
+    telephone: options.contact.hotline.value || undefined,
+    address: options.organization.headquarters || undefined,
+  };
+  const organizationJson = JSON.stringify(organizationStructuredData).replace(/</g, "\\u003c");
 
   return (
     <html lang="vi" className={inter.className} suppressHydrationWarning>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: organizationJson }}
+        />
         <Header settings={options.header} />
         {children}
         <Footer settings={options.footer} />

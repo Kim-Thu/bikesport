@@ -30,11 +30,11 @@ export function FlashSaleTemplate({ item, active, onClick }: TabTemplateProps) {
       className={cn(
         "flex min-w-32 shrink-0 self-stretch cursor-pointer flex-col items-center justify-center rounded-lg px-3 py-2 text-center transition-colors sm:min-w-36 sm:px-4",
         active
-          ? "bg-red-500 text-white"
+          ? "bg-red-700 text-white"
           : "text-gray-700 hover:bg-red-50 hover:text-red-600",
       )}
     >
-      <span className={cn("text-xs font-medium", active ? "text-white/90" : "text-gray-500")}>{statusLabel}</span>
+      <span className={cn("text-xs font-medium", active ? "text-white" : "text-gray-500")}>{statusLabel}</span>
 
       {item.status === "upcoming" ? (
         <span className="mt-0.5 text-sm font-semibold sm:text-base">{item.label}</span>

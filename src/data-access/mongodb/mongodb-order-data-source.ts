@@ -40,19 +40,23 @@ export function createMongoOrderDataSource(
     },
 
     async getRecent(limit = 20) {
+      if (limit <= 0) return [];
       const database = await getDatabase();
       return database
         .collection<OrderRecord>(MONGODB_COLLECTIONS.orders)
         .find()
         .sort({ createdAt: -1 })
-        .limit(Math.max(0, limit))
+        .limit(limit)
         .toArray();
     },
 
-    async getCompletedProductSalesStats(skus) {
+    async getCompletedProductSalesStats(skus, limit) {
+      if (typeof limit === "number" && limit <= 0) return [];
+
       const database = await getDatabase();
+      const skuFilter = skus?.length ? { "items.sku": { $in: skus } } : {};
       const pipeline: Record<string, unknown>[] = [
-        { $match: { status: "completed" } },
+        { $match: { status: "completed", ...skuFilter } },
         { $unwind: "$items" },
       ];
 
@@ -70,6 +74,10 @@ export function createMongoOrderDataSource(
         },
         { $sort: { quantity: -1, lastPurchasedAt: -1 } },
       );
+
+      if (typeof limit === "number") {
+        pipeline.push({ $limit: limit });
+      }
 
       const rows = await database
         .collection<OrderRecord>(MONGODB_COLLECTIONS.orders)

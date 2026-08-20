@@ -10,6 +10,7 @@ import { SocialLoader } from "@/components/social/SocialLoader";
 import type { FooterSettings } from "@/interfaces/footer.interface";
 import { getMediaWithFallbackByIds } from "@/lib/media.utils";
 import { getMenuById } from "@/lib/menu-data.utils";
+import { FOOTER_LAYOUT_CLASS } from "@/variants/footer.variant";
 
 export async function FooterMain({ settings }: { settings: FooterSettings }) {
   const menuIds = settings.menuIds ?? [];
@@ -20,33 +21,34 @@ export async function FooterMain({ settings }: { settings: FooterSettings }) {
     menu.items.flatMap((item) => (item.mediaId ? [item.mediaId] : [])),
   );
   const mediaById = await getMediaWithFallbackByIds(mediaIds);
+  const styles = FOOTER_LAYOUT_CLASS;
 
   return (
-    <Container className="py-8 sm:py-10 lg:py-12">
-      <Row className="flex-col items-stretch gap-8 md:gap-10 xl:flex-row xl:items-start xl:gap-12">
-        <Column className="w-full xl:w-auto xl:basis-112">
-          <div className="space-y-4">
+    <Container className={styles.container}>
+      <Row className={styles.mainRow}>
+        <Column className={styles.brandColumn}>
+          <div className={styles.brandContent}>
             <LogoLoader href="/" />
             {settings.description ? (
-              <p className="max-w-sm text-sm leading-6 text-gray-600">{settings.description}</p>
+              <p className={styles.description}>{settings.description}</p>
             ) : null}
             <SocialLoader />
           </div>
         </Column>
 
-        <Column grow className="w-full">
-          <Row className="flex-wrap items-start gap-x-8 gap-y-8 sm:gap-x-10 xl:justify-between">
+        <Column grow className={styles.menusColumn}>
+          <Row className={styles.menusRow}>
             {menus.map((menu) => (
-              <Column key={menu._id} className="w-full sm:w-auto sm:min-w-48 sm:flex-1 xl:min-w-0">
+              <Column key={menu._id} className={styles.menuColumn}>
                 <Section>
-                  <Heading level={4} className="mb-4 text-sm font-bold uppercase tracking-wide text-gray-900">
+                  <Heading level={4} className={styles.menuHeading}>
                     {menu.name}
                   </Heading>
                   <CMenu
                     menu={menu}
                     mediaById={mediaById}
-                    listClassName="space-y-3 text-sm text-gray-600"
-                    linkClassName="transition hover:text-blue-600 focus:text-blue-600"
+                    listClassName={styles.menuList}
+                    linkClassName={styles.menuLink}
                   />
                 </Section>
               </Column>
@@ -55,7 +57,7 @@ export async function FooterMain({ settings }: { settings: FooterSettings }) {
         </Column>
       </Row>
 
-      <div className="mt-8 border-t border-gray-100 pt-6 sm:mt-10 sm:pt-8">
+      <div className={styles.companyInfo}>
         <CompanyInfoLoader />
       </div>
     </Container>

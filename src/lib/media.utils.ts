@@ -1,8 +1,9 @@
+import { MEDIA_PLACEHOLDER } from "@/constants/media.constant";
 import { dataSources } from "@/data-access/data-sources";
 import type { MediaItem } from "@/interfaces/media.interface";
 import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 
-export const PLACEHOLDER_MEDIA_ID = "66bf4e8c9f2a4d7b8c1e3702";
+export const PLACEHOLDER_MEDIA_ID = MEDIA_PLACEHOLDER.id;
 
 function isSafeLocalMediaUrl(src: string): boolean {
   return src.startsWith("/") && !src.startsWith("//");
@@ -35,6 +36,24 @@ export async function getMediaUrl(mediaId?: string | null): Promise<string | und
   const media = await getMediaById(mediaId);
   if (!media?.src || !isSafeLocalMediaUrl(media.src)) return undefined;
   return media.src;
+}
+
+export async function getMediaUrlsByIds(
+  mediaIds: Array<string | null | undefined>,
+): Promise<Record<string, string>> {
+  const requestedIds = [...new Set(mediaIds.filter((mediaId): mediaId is string => Boolean(mediaId)))];
+  if (!requestedIds.length) return {};
+
+  const mediaItems = await getMediaByIds(requestedIds);
+  const urlsById: Record<string, string> = {};
+
+  for (const media of mediaItems) {
+    if (media.src && isSafeLocalMediaUrl(media.src)) {
+      urlsById[media._id] = media.src;
+    }
+  }
+
+  return urlsById;
 }
 
 export async function getMediaWithFallback(mediaId?: string | null): Promise<MediaItem | null> {

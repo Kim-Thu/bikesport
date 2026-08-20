@@ -7,7 +7,9 @@ export type CardTemplate =
   | "media-details"
   | "flash-sale"
   | "accent"
-  | "overlay";
+  | "overlay"
+  | "listing"
+  | "testimonial";
 
 export interface CardMetaItem {
   icon?: string;
@@ -17,6 +19,8 @@ export interface CardMetaItem {
 export interface CardProps {
   title: string;
   href: string;
+  eyebrow?: string;
+  icon?: string;
   mediaId?: string | null;
   media?: MediaItem | null;
   template?: CardTemplate;

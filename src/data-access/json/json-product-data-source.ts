@@ -9,6 +9,7 @@ const publishedProducts = (productData.products as ProductRecord[]).filter(
   (product) => product.status === "published",
 );
 const featuredProducts = publishedProducts.filter((product) => product.featured === true);
+const publishedBySlug = new Map(publishedProducts.map((product) => [product.slug, product]));
 const publishedByBrandId = new Map<string, ProductRecord[]>();
 
 for (const product of publishedProducts) {
@@ -45,6 +46,17 @@ function matchesFilter(product: ProductRecord, filter: ProductDataFilter): boole
 export const jsonProductDataSource: ProductDataSource = {
   async getPublished(limit) {
     return takeLimit(publishedProducts, limit);
+  },
+  async getPublishedBySlug(slug) {
+    return publishedBySlug.get(slug) ?? null;
+  },
+  async getPublishedSkus(categoryIds) {
+    if (!categoryIds?.length) return publishedProducts.map((product) => product.sku);
+
+    const categoryIdSet = new Set(categoryIds);
+    return publishedProducts
+      .filter((product) => product.categoryIds.some((categoryId) => categoryIdSet.has(categoryId)))
+      .map((product) => product.sku);
   },
   async getFeatured(limit) {
     return takeLimit(featuredProducts, limit);

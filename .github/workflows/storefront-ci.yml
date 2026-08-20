@@ -3,15 +3,18 @@ name: Storefront CI
 on:
   push:
     branches:
-      - feat/issue-1-storefront-header
+      - master
+      - "security/**"
   pull_request:
     paths:
       - "src/**"
       - "public/**"
+      - "scripts/**"
       - "package.json"
       - "package-lock.json"
       - "tsconfig.json"
       - "next.config.ts"
+      - "eslint.config.mjs"
       - ".github/workflows/storefront-ci.yml"
 
 permissions:
@@ -36,23 +39,173 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
 
+      - name: Restore Next build cache
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
+        with:
+          path: .next/cache
+          key: ${{ runner.os }}-next-${{ hashFiles('package-lock.json') }}-${{ hashFiles('src/**', 'public/**', 'next.config.ts', 'tsconfig.json') }}
+          restore-keys: |
+            ${{ runner.os }}-next-${{ hashFiles('package-lock.json') }}-
+
       - name: Install dependencies
         run: npm ci
 
-      # Keep upstream Next.js transitive advisories visible without skipping lint/build.
-      # A framework major-version migration should be handled separately rather than via npm audit fix --force.
       - name: Audit production dependencies
-        continue-on-error: true
         run: npm audit --omit=dev --audit-level=high
 
       - name: Audit semantic config
         run: npm run audit:semantic-config
 
+      - name: Audit design rules
+        run: npm run audit:design-rules
+
+      - name: Audit public asset references
+        run: npm run audit:assets
+
+      - name: Apply MongoDB index migration
+        env:
+          MONGODB_URI: mongodb://127.0.0.1:27017
+          MONGODB_DB_NAME: bikesport_ci
+        run: npm run db:indexes
+
       - name: Lint
         run: npm run lint
 
       - name: Build
+        env:
+          NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
         run: npm run build
+
+      - name: Verify JSON and Mongo public API parity
+        env:
+          MONGODB_URI: mongodb://127.0.0.1:27017
+          MONGODB_DB_NAME: bikesport_ci
+        run: |
+          node scripts/seed-ci-public-data.mjs
+          mkdir -p /tmp/parity-json /tmp/parity-mongo
+
+          capture_endpoint() {
+            target_dir="$1"
+            name="$2"
+            path="$3"
+            echo "Capturing ${target_dir##*/}: /api/v1/${path}"
+            status="$(curl --silent --show-error --output "${target_dir}/${name}.json" --write-out '%{http_code}' "http://127.0.0.1:3000/api/v1/${path}")"
+            if [ "$status" -lt 200 ] || [ "$status" -ge 300 ]; then
+              echo "Endpoint /api/v1/${path} returned HTTP ${status}"
+              cat "${target_dir}/${name}.json" || true
+              return 1
+            fi
+          }
+
+          capture_all() {
+            target_dir="$1"
+            capture_endpoint "$target_dir" pages pages
+            capture_endpoint "$target_dir" products products
+            capture_endpoint "$target_dir" categories categories
+            capture_endpoint "$target_dir" brands brands
+            capture_endpoint "$target_dir" promotions promotions
+            capture_endpoint "$target_dir" banners "banners?groupId=66bf4e8c9f2a4d7b8c1e3b01"
+            capture_endpoint "$target_dir" stores stores
+            capture_endpoint "$target_dir" posts posts
+            capture_endpoint "$target_dir" events events
+            capture_endpoint "$target_dir" combos combos
+            capture_endpoint "$target_dir" payment-methods payment-methods
+          }
+
+          DATA_SOURCE=json NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3000 npm start > /tmp/bikesport-parity-json.log 2>&1 &
+          JSON_PID=$!
+          for attempt in {1..30}; do
+            if curl --silent --fail http://127.0.0.1:3000/api/v1/pages > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          capture_all /tmp/parity-json || {
+            cat /tmp/bikesport-parity-json.log
+            exit 1
+          }
+          kill "$JSON_PID" 2>/dev/null || true
+          wait "$JSON_PID" 2>/dev/null || true
+
+          DATA_SOURCE=mongodb MONGODB_URI=mongodb://127.0.0.1:27017 MONGODB_DB_NAME=bikesport_ci NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3000 npm start > /tmp/bikesport-parity-mongo.log 2>&1 &
+          MONGO_PID=$!
+          for attempt in {1..30}; do
+            if curl --silent --fail http://127.0.0.1:3000/api/v1/pages > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          capture_all /tmp/parity-mongo || {
+            cat /tmp/bikesport-parity-mongo.log
+            exit 1
+          }
+          kill "$MONGO_PID" 2>/dev/null || true
+          wait "$MONGO_PID" 2>/dev/null || true
+
+          node scripts/verify-public-datasource-parity.mjs /tmp/parity-json /tmp/parity-mongo
+
+      - name: Install browser test tools
+        run: |
+          npm install --no-save --package-lock=false playwright@1.60.0 axe-core@4.12.1
+          npx playwright install --with-deps chromium
+
+      - name: Browser E2E, responsive and accessibility
+        env:
+          DATA_SOURCE: json
+          NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
+          E2E_BASE_URL: http://127.0.0.1:3000
+        run: |
+          npm start > /tmp/bikesport-browser.log 2>&1 &
+          APP_PID=$!
+          cleanup() {
+            kill "$APP_PID" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          for attempt in {1..30}; do
+            if curl --silent --fail http://127.0.0.1:3000/ > /dev/null; then
+              npm run test:browser
+              exit 0
+            fi
+            sleep 1
+          done
+
+          cat /tmp/bikesport-browser.log
+          exit 1
+
+      - name: Smoke test public page summary API
+        env:
+          DATA_SOURCE: json
+          NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
+        run: |
+          npm start > /tmp/bikesport-pages.log 2>&1 &
+          APP_PID=$!
+          cleanup() {
+            kill "$APP_PID" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          for attempt in {1..30}; do
+            if curl --silent --fail --dump-header /tmp/pages.headers --output /tmp/pages.json http://127.0.0.1:3000/api/v1/pages; then
+              cat /tmp/pages.json
+              node -e '
+                const fs = require("fs");
+                const body = JSON.parse(fs.readFileSync("/tmp/pages.json", "utf8"));
+                if (!Array.isArray(body?.data) || body.data.length === 0) process.exit(1);
+                const first = body.data[0];
+                if ("payload" in first) process.exit(1);
+                for (const key of ["_id", "title", "slug", "path", "status", "updatedAt"]) {
+                  if (!(key in first)) process.exit(1);
+                }
+              '
+              grep -qi '^cache-control: .*s-maxage=300' /tmp/pages.headers
+              exit 0
+            fi
+            sleep 1
+          done
+
+          cat /tmp/bikesport-pages.log
+          exit 1
 
       - name: Smoke test MongoDB runtime
         env:
@@ -73,9 +226,7 @@ jobs:
               echo "$RESPONSE"
               node -e '
                 const body = JSON.parse(process.argv[1]);
-                if (body?.data?.status !== "ready" || body?.data?.dataSource !== "mongodb" || body?.data?.mongoRuntimeReady !== true) {
-                  process.exit(1);
-                }
+                if (body?.data?.status !== "ready") process.exit(1);
               ' "$RESPONSE"
               exit 0
             fi

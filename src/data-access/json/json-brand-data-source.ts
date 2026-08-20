@@ -7,6 +7,7 @@ const activeBrands = (brandData.brands as BrandRecord[])
   .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 const featuredBrands = activeBrands.filter((brand) => brand.featured === true);
 const activeById = new Map(activeBrands.map((brand) => [brand._id, brand]));
+const activeBySlug = new Map(activeBrands.map((brand) => [brand.slug, brand]));
 
 export const jsonBrandDataSource: BrandDataSource = {
   async getActive(limit) {
@@ -17,5 +18,8 @@ export const jsonBrandDataSource: BrandDataSource = {
   },
   async getActiveById(brandId) {
     return activeById.get(brandId) ?? null;
+  },
+  async getActiveBySlug(slug) {
+    return activeBySlug.get(slug) ?? null;
   },
 };

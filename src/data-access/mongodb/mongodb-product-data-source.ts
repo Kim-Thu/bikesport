@@ -34,6 +34,27 @@ export function createMongoProductDataSource(getDatabase: MongoDatabaseProvider)
       if (typeof limit === "number") cursor = cursor.limit(limit);
       return cursor.toArray();
     },
+    async getPublishedBySlug(slug) {
+      const db = await getDatabase();
+      return db.collection<ProductRecord>(MONGODB_COLLECTIONS.products).findOne({
+        slug,
+        status: "published",
+      });
+    },
+    async getPublishedSkus(categoryIds) {
+      const db = await getDatabase();
+      const match = categoryIds?.length
+        ? { status: "published", categoryIds: { $in: categoryIds } }
+        : { status: "published" };
+      const rows = await db
+        .collection<ProductRecord>(MONGODB_COLLECTIONS.products)
+        .aggregate<{ sku: string }>([
+          { $match: match },
+          { $project: { _id: 0, sku: 1 } },
+        ])
+        .toArray();
+      return rows.map((row) => row.sku);
+    },
     async getFeatured(limit) {
       const db = await getDatabase();
       let cursor = db

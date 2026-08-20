@@ -1,5 +1,5 @@
 import { dataSources } from "@/data-access/data-sources";
-import type { PageRecord } from "@/interfaces/page.interface";
+import type { PageRecord, PageSummary } from "@/interfaces/page.interface";
 import { CACHE_TAG, cachedDomain } from "@/lib/cache.utils";
 
 export async function getPublishedPages(): Promise<PageRecord[]> {
@@ -7,6 +7,14 @@ export async function getPublishedPages(): Promise<PageRecord[]> {
     "page",
     ["published-pages"],
     () => dataSources.page.getPublished(),
+  );
+}
+
+export async function getPublishedPageSummaries(): Promise<PageSummary[]> {
+  return cachedDomain(
+    "page",
+    ["published-page-summaries"],
+    () => dataSources.page.getPublishedSummaries(),
   );
 }
 

@@ -17,15 +17,15 @@ export function TimelineBlock({ block }: { block: TimelineBlockPayload }) {
               <span className={cn("h-px flex-1", index === 0 ? "bg-transparent" : "bg-blue-300")} />
               <span
                 className={cn(
-                  "h-3 w-3 shrink-0 rounded-full border-2 border-blue-600",
-                  index === lastIndex ? "bg-blue-600" : "bg-white",
+                  "h-3 w-3 shrink-0 rounded-full border-2 border-blue-700",
+                  index === lastIndex ? "bg-blue-700" : "bg-white",
                 )}
               />
               <span className={cn("h-px flex-1", index === lastIndex ? "bg-transparent" : "bg-blue-300")} />
             </div>
 
             <div className="flex w-full flex-col items-center px-3">
-              <p className="text-sm font-bold text-blue-600">{item.label}</p>
+              <p className="text-sm font-bold text-blue-700">{item.label}</p>
               <h3 className="mt-2 text-sm font-semibold text-gray-950">{item.title}</h3>
               {item.description ? (
                 <p className="mt-2 text-sm leading-6 text-gray-600">{item.description}</p>

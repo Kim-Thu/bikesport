@@ -23,7 +23,7 @@ export function Rating({ value, count, className }: RatingProps) {
         ))}
       </div>
       <span className="text-xs font-medium text-gray-700">{value.toFixed(1)}</span>
-      {typeof count === "number" ? <span className="text-xs text-gray-400">({count})</span> : null}
+      {typeof count === "number" ? <span className="text-xs text-gray-600">({count})</span> : null}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { BoxIcon } from "@/components/box/BoxIcon";
 import { Panel } from "@/components/panel/Panel";
 import type { IconListItem, IconListProps } from "@/interfaces/icon-list.interface";
+import { ICON_LIST_CLASS } from "@/variants/icon-list.variant";
 
 function IconListItemContent({ item, mediaUrlById }: { item: IconListItem; mediaUrlById: Record<string, string> }) {
   return (
@@ -9,7 +10,7 @@ function IconListItemContent({ item, mediaUrlById }: { item: IconListItem; media
       iconMediaUrl={item.mediaId ? mediaUrlById[item.mediaId] : undefined}
       title={item.title}
       description={item.description}
-      iconClassName="h-8 w-8 text-blue-600"
+      iconClassName="h-8 w-8 text-blue-700"
       titleClassName="text-sm normal-case text-gray-900"
       descriptionClassName="text-sm text-gray-500 opacity-100"
     />
@@ -17,25 +18,16 @@ function IconListItemContent({ item, mediaUrlById }: { item: IconListItem; media
 }
 
 export function IconList({ items, layout = "list", mediaUrlById = {} }: IconListProps) {
-  if (layout === "grid") {
-    return (
-      <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-        {items.map((item, index) => (
-          <div key={`${item.title}-${index}`} className="min-w-0">
-            <IconListItemContent item={item} mediaUrlById={mediaUrlById} />
-          </div>
-        ))}
-      </div>
-    );
+  const styles = ICON_LIST_CLASS[layout];
+  const content = items.map((item, index) => (
+    <div key={`${item.title}-${index}`} className={styles.item}>
+      <IconListItemContent item={item} mediaUrlById={mediaUrlById} />
+    </div>
+  ));
+
+  if (layout === "list") {
+    return <Panel className={styles.root}>{content}</Panel>;
   }
 
-  return (
-    <Panel className="divide-y divide-gray-100 p-4">
-      {items.map((item, index) => (
-        <div key={`${item.title}-${index}`} className="py-3 first:pt-0 last:pb-0">
-          <IconListItemContent item={item} mediaUrlById={mediaUrlById} />
-        </div>
-      ))}
-    </Panel>
-  );
+  return <div className={styles.root}>{content}</div>;
 }

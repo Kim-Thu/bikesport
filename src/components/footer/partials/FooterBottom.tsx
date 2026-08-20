@@ -12,13 +12,13 @@ export async function FooterBottom() {
   return (
     <div className="border-t border-gray-200">
       <Container className="py-4">
-        <Row className="flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <Row className="flex-col items-center gap-4 sm:flex-row sm:justify-between">
           <Column grow className="text-xs text-gray-500">
             © {currentYear} {siteTitle}. All rights reserved.
           </Column>
 
           <Column className="w-full sm:w-auto">
-            <Payment className="sm:justify-end" />
+            <Payment className="justify-center sm:justify-end" />
           </Column>
         </Row>
       </Container>

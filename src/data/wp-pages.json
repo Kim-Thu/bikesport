@@ -1264,6 +1264,484 @@
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-16T20:02:00+07:00",
       "updatedAt": "2026-08-16T20:02:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e4401",
+      "title": "Tuyển dụng",
+      "slug": "tuyen-dung",
+      "path": "/tuyen-dung",
+      "status": "published",
+      "payload": {
+        "sections": [
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4400",
+            "name": "Recruitment hero",
+            "order": 1,
+            "status": "active",
+            "component": "banner",
+            "props": {
+              "bannerId": "66bf4e8c9f2a4d7b8c1e3a20"
+            }
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4490",
+            "name": "Recruitment introduction",
+            "order": 2,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "comfortable"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4491",
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4492",
+                    "props": {
+                      "layout": "full"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4493",
+                        "status": "active",
+                        "component": "content",
+                        "props": {
+                          "eyebrow": "Gia nhập BikeSport",
+                          "title": "Cùng nhau tạo nên những hành trình tốt hơn",
+                          "align": "center",
+                          "paragraphs": [
+                            "BikeSport không chỉ xây dựng nơi làm việc cho những người yêu xe đạp. Chúng tôi tìm những người muốn học hỏi, chủ động và cùng tạo ra trải nghiệm tốt hơn cho khách hàng.",
+                            "Mỗi vị trí đều là một phần của hành trình đưa lối sống năng động đến gần hơn với cộng đồng."
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4411",
+            "name": "Core values",
+            "order": 3,
+            "status": "active",
+            "component": "stack",
+            "props": {
+              "variant": "cards",
+              "spacing": "comfortable",
+              "rowLayout": "wrap-stretch"
+            },
+            "columns": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4412",
+                "component": "box-icon",
+                "props": {
+                  "icon": "users",
+                  "title": "Con người là trọng tâm",
+                  "description": "Chúng tôi tôn trọng sự khác biệt, đề cao tinh thần hợp tác và phát triển cá nhân.",
+                  "layout": "centered",
+                  "iconTone": "primary",
+                  "descriptionSize": "sm"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4413",
+                "component": "box-icon",
+                "props": {
+                  "icon": "target",
+                  "title": "Đam mê & cam kết",
+                  "description": "BikeSport đề cao tinh thần đam mê và cam kết mang đến giá trị tốt nhất cho khách hàng.",
+                  "layout": "centered",
+                  "iconTone": "primary",
+                  "descriptionSize": "sm"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4414",
+                "component": "box-icon",
+                "props": {
+                  "icon": "growth",
+                  "title": "Phát triển bền vững",
+                  "description": "Chúng tôi tạo môi trường để mỗi thành viên phát triển lâu dài và đạt được mục tiêu.",
+                  "layout": "centered",
+                  "iconTone": "primary",
+                  "descriptionSize": "sm"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4415",
+                "component": "box-icon",
+                "props": {
+                  "icon": "values",
+                  "title": "Lan tỏa giá trị",
+                  "description": "Cùng nhau lan tỏa lối sống khỏe mạnh, tích cực và trách nhiệm với cộng đồng.",
+                  "layout": "centered",
+                  "iconTone": "primary",
+                  "descriptionSize": "sm"
+                }
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4421",
+            "name": "Company metrics",
+            "order": 4,
+            "status": "active",
+            "component": "stack",
+            "props": {
+              "variant": "primary",
+              "spacing": "compact",
+              "rowLayout": "wrap-stretch"
+            },
+            "columns": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4422",
+                "component": "box-icon",
+                "props": {
+                  "icon": "users",
+                  "title": "10+",
+                  "description": "Năm phát triển",
+                  "layout": "inline",
+                  "iconTone": "inverse",
+                  "titleSize": "metric",
+                  "descriptionSize": "sm"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4423",
+                "component": "box-icon",
+                "props": {
+                  "icon": "location",
+                  "title": "30+",
+                  "description": "Cửa hàng toàn quốc",
+                  "layout": "inline",
+                  "iconTone": "inverse",
+                  "titleSize": "metric",
+                  "descriptionSize": "sm"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4424",
+                "component": "box-icon",
+                "props": {
+                  "icon": "growth",
+                  "title": "200+",
+                  "description": "Nhân sự tài năng",
+                  "layout": "inline",
+                  "iconTone": "inverse",
+                  "titleSize": "metric",
+                  "descriptionSize": "sm"
+                }
+              },
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4425",
+                "component": "box-icon",
+                "props": {
+                  "icon": "settings",
+                  "title": "100%",
+                  "description": "Môi trường chuyên nghiệp",
+                  "layout": "inline",
+                  "iconTone": "inverse",
+                  "titleSize": "metric",
+                  "descriptionSize": "sm"
+                }
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4450",
+            "name": "Why join BikeSport",
+            "order": 5,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "comfortable",
+              "surface": "panel"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4451",
+                "props": {
+                  "layout": "split-equal"
+                },
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4452",
+                    "props": {
+                      "layout": "half-panel-soft"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4453",
+                        "status": "active",
+                        "component": "section-header",
+                        "props": {
+                          "title": "Vì sao bạn nên gia nhập BikeSport?"
+                        }
+                      },
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4454",
+                        "status": "active",
+                        "component": "icon-list",
+                        "props": {
+                          "layout": "grid",
+                          "items": [
+                            {
+                              "icon": "payment",
+                              "title": "Thu nhập cạnh tranh",
+                              "description": "Lương thưởng xứng đáng với năng lực và hiệu quả công việc."
+                            },
+                            {
+                              "icon": "package",
+                              "title": "Phúc lợi toàn diện",
+                              "description": "BHXH, BHYT, du lịch, teambuilding, quà tặng và nhiều phúc lợi khác."
+                            },
+                            {
+                              "icon": "users",
+                              "title": "Môi trường năng động",
+                              "description": "Không khí trẻ trung, cởi mở, khuyến khích sáng tạo và chủ động."
+                            },
+                            {
+                              "icon": "values",
+                              "title": "Cân bằng cuộc sống",
+                              "description": "Thời gian làm việc linh hoạt, quan tâm đến sức khỏe nhân viên."
+                            },
+                            {
+                              "icon": "growth",
+                              "title": "Đào tạo & phát triển",
+                              "description": "Được hỗ trợ học tập, nâng cao kỹ năng và phát triển sự nghiệp."
+                            },
+                            {
+                              "icon": "target",
+                              "title": "Sản phẩm truyền cảm hứng",
+                              "description": "Làm việc với sản phẩm giúp nâng cao sức khỏe và kết nối cộng đồng."
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4455",
+                    "props": {
+                      "layout": "half-media"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4456",
+                        "status": "active",
+                        "component": "media",
+                        "props": {
+                          "mediaId": null,
+                          "alt": "Đội ngũ BikeSport",
+                          "aspect": "video"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4460",
+            "name": "Recruitment process",
+            "order": 6,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "comfortable"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4461",
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4462",
+                    "props": {
+                      "layout": "full"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4463",
+                        "status": "active",
+                        "component": "section-header",
+                        "props": {
+                          "title": "Quy trình tuyển dụng",
+                          "description": "Quy trình rõ ràng, minh bạch để ứng viên chủ động trong từng bước.",
+                          "align": "center"
+                        }
+                      },
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4464",
+                        "status": "active",
+                        "component": "timeline",
+                        "props": {
+                          "items": [
+                            {
+                              "label": "Bước 01",
+                              "title": "Gửi hồ sơ ứng tuyển",
+                              "description": "Chọn vị trí phù hợp và gửi CV cùng thông tin liên hệ."
+                            },
+                            {
+                              "label": "Bước 02",
+                              "title": "Sàng lọc hồ sơ",
+                              "description": "Đội ngũ tuyển dụng đánh giá kinh nghiệm và mức độ phù hợp."
+                            },
+                            {
+                              "label": "Bước 03",
+                              "title": "Phỏng vấn",
+                              "description": "Trao đổi với HR và bộ phận chuyên môn về năng lực, công việc và kỳ vọng."
+                            },
+                            {
+                              "label": "Bước 04",
+                              "title": "Đề nghị nhận việc",
+                              "description": "Thống nhất vị trí, thu nhập, phúc lợi và thời gian bắt đầu."
+                            },
+                            {
+                              "label": "Bước 05",
+                              "title": "Gia nhập BikeSport",
+                              "description": "Hoàn tất thủ tục và bắt đầu chương trình hội nhập cùng đội ngũ."
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4430",
+            "name": "Open positions",
+            "order": 7,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "comfortable"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4431",
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4432",
+                    "props": {
+                      "layout": "full"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4433",
+                        "status": "active",
+                        "component": "card-grid",
+                        "props": {
+                          "title": "Vị trí đang tuyển",
+                          "template": "listing",
+                          "gridLayout": "one-two",
+                          "source": {
+                            "type": "post",
+                            "postType": "recruitment",
+                            "limit": 12
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4470",
+            "name": "Bikesporter stories",
+            "order": 8,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "comfortable"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4471",
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4472",
+                    "props": {
+                      "layout": "full"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4473",
+                        "status": "active",
+                        "component": "card-grid",
+                        "props": {
+                          "title": "Câu chuyện từ BikeSporter",
+                          "href": "/tuyen-dung#cau-chuyen-bikesporter",
+                          "actionLabel": "Xem tất cả",
+                          "template": "testimonial",
+                          "source": {
+                            "type": "post",
+                            "postType": "testimonial",
+                            "limit": 6
+                          },
+                          "presentation": "slider",
+                          "trackLayout": "standard",
+                          "slideLayout": "responsive-three"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "_id": "66bf4e8c9f2a4d7b8c1e4440",
+            "name": "Recruitment CTA",
+            "order": 9,
+            "status": "active",
+            "component": "layout",
+            "props": {
+              "spacing": "compact"
+            },
+            "rows": [
+              {
+                "_id": "66bf4e8c9f2a4d7b8c1e4481",
+                "columns": [
+                  {
+                    "_id": "66bf4e8c9f2a4d7b8c1e4482",
+                    "props": {
+                      "layout": "full"
+                    },
+                    "blocks": [
+                      {
+                        "_id": "66bf4e8c9f2a4d7b8c1e4483",
+                        "status": "active",
+                        "component": "media-cta",
+                        "props": {
+                          "variant": "primary-inline",
+                          "title": "Sẵn sàng gia nhập đội ngũ BikeSport?",
+                          "description": "Cùng chúng tôi tạo nên những hành trình ý nghĩa mỗi ngày.",
+                          "href": "/tuyen-dung#vi-tri-dang-tuyen",
+                          "actionLabel": "Ứng tuyển ngay",
+                          "mediaId": null
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T10:00:00+07:00",
+      "updatedAt": "2026-08-18T12:00:00+07:00"
     }
   ]
 }

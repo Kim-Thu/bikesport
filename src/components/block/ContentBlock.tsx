@@ -21,7 +21,7 @@ export function ContentBlock({ block }: { block: ContentBlockPayload }) {
       )}
     >
       {block.props.eyebrow ? (
-        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-blue-600">
+        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-blue-700">
           {block.props.eyebrow}
         </p>
       ) : null}

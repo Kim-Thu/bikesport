@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { MediaItem } from "@/interfaces/media.interface";
 
 export type SectionHeaderTemplate = "default" | "flash-sale" | "featured";
+export type SectionHeaderAlign = "left" | "center" | "right";
 
 export interface SectionHeaderProps {
   title?: string;
@@ -11,6 +12,7 @@ export interface SectionHeaderProps {
   href?: string;
   actionLabel?: string;
   template?: SectionHeaderTemplate;
+  align?: SectionHeaderAlign;
   countdownAt?: string;
   className?: string;
   children?: ReactNode;

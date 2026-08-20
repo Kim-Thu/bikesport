@@ -1,7 +1,7 @@
 import type { ProductCollectionItem } from "@/interfaces/product-collection-item.interface";
 import type { ProductRecord } from "@/interfaces/product.interface";
 import type { PromotionRecord } from "@/interfaces/promotion.interface";
-import { getMediaWithFallbackByIds } from "@/lib/media.utils";
+import { getMediaByIds } from "@/lib/media.utils";
 import { getProductDiscountPercentage, getProductPrimaryMediaId } from "@/lib/product.utils";
 import {
   findActivePromotionForProduct,
@@ -20,10 +20,11 @@ export async function mapProductsToCollectionItems(
     const productBadge = promotion?.productBadges?.find((item) => item.sku === product.sku);
     return [getProductPrimaryMediaId(product), productBadge?.mediaId].filter((mediaId): mediaId is string => Boolean(mediaId));
   });
-  const [mediaById, reviewStatsBySku] = await Promise.all([
-    getMediaWithFallbackByIds(mediaIds),
+  const [mediaItems, reviewStatsBySku] = await Promise.all([
+    getMediaByIds(mediaIds),
     getProductReviewStatsBySku(products.map((product) => product.sku)),
   ]);
+  const mediaById = new Map(mediaItems.map((media) => [media._id, media]));
 
   return products.map((product) => {
     const promotion = explicitPromotion ?? findActivePromotionForProduct(product, activePromotions);
@@ -44,14 +45,14 @@ export async function mapProductsToCollectionItems(
       title: product.name,
       href: `/san-pham/${product.slug}`,
       mediaId,
-      media: mediaId ? mediaById[mediaId] ?? null : null,
+      media: mediaId ? mediaById.get(mediaId) ?? null : null,
       price: product.price,
       salePrice: pricing.salePrice,
       discountPercentage: pricing.discountPercentage,
       stockRemaining: inventory ? Math.min(product.stock, inventory.total) : undefined,
       stockTotal: inventory?.total,
       promotionBadgeMediaId,
-      promotionBadgeMedia: promotionBadgeMediaId ? mediaById[promotionBadgeMediaId] ?? null : null,
+      promotionBadgeMedia: promotionBadgeMediaId ? mediaById.get(promotionBadgeMediaId) ?? null : null,
       promotionBadgeAlt: productBadge?.alt,
       rating: reviewStats?.averageRating,
       reviewCount: reviewStats?.reviewCount,

@@ -3,8 +3,10 @@ import type { CategoryType } from "@/interfaces/category.interface";
 import type { PageBlockPayload } from "@/interfaces/page-block.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
 import type { SectionTemplate } from "@/interfaces/section.interface";
+import type { StackVariant } from "@/interfaces/stack.interface";
 import type {
   PageBoxIconDescriptionSize,
+  PageBoxIconLayoutPreset,
   PageBoxIconTitleSize,
   PageBoxIconTone,
 } from "@/variants/box-icon.variant";
@@ -13,6 +15,7 @@ import type {
   PageGridLayoutPreset,
   PageRowLayoutPreset,
   PageSectionSpacingPreset,
+  PageSectionSurfacePreset,
 } from "@/variants/page-layout.variant";
 
 export type PageStatus = "draft" | "published";
@@ -24,6 +27,7 @@ export interface PageBoxIconProps {
   mediaId?: string;
   title: string;
   description?: string;
+  layout?: PageBoxIconLayoutPreset;
   iconTone?: PageBoxIconTone;
   titleSize?: PageBoxIconTitleSize;
   descriptionSize?: PageBoxIconDescriptionSize;
@@ -51,7 +55,7 @@ export interface BannerSectionPayload extends PageSectionBase {
 export interface StackSectionPayload extends PageSectionBase {
   component: "stack";
   props: {
-    variant: "surface" | "primary";
+    variant: StackVariant;
     spacing?: PageSectionSpacingPreset;
     rowLayout?: PageRowLayoutPreset;
   };
@@ -95,6 +99,7 @@ export interface LayoutSectionPayload extends PageSectionBase {
   props: {
     sectionTemplate?: SectionTemplate;
     spacing?: PageSectionSpacingPreset;
+    surface?: PageSectionSurfacePreset;
   };
   rows: LayoutRowPayload[];
 }
@@ -125,3 +130,8 @@ export interface PageRecord {
   createdAt: string;
   updatedAt: string;
 }
+
+export type PageSummary = Pick<
+  PageRecord,
+  "_id" | "title" | "slug" | "path" | "status" | "updatedAt"
+>;

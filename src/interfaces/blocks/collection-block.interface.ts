@@ -1,5 +1,6 @@
 import type { CardTemplate } from "@/interfaces/card.interface";
 import type { CategoryType } from "@/interfaces/category.interface";
+import type { PostType } from "@/interfaces/post.interface";
 import type { ProductSource } from "@/interfaces/product-source.interface";
 import type { SectionHeaderTemplate } from "@/interfaces/section-header.interface";
 import type { SectionHeadingConfig } from "@/interfaces/section-heading.interface";
@@ -87,11 +88,14 @@ export interface CardGridBlockPayload extends PageBlockBase {
   props: SectionHeadingConfig & {
     title: string;
     template: CardTemplate;
+    presentation?: "grid" | "slider";
     gridLayout?: PageGridLayoutPreset;
+    trackLayout?: PageSliderTrackPreset;
+    slideLayout?: PageSliderSlidePreset;
     source:
       | { type: "category"; categoryType: CategoryType; limit?: number }
       | { type: "event"; limit?: number }
-      | { type: "post"; limit?: number }
+      | { type: "post"; postType?: PostType; limit?: number }
       | { type: "store"; limit?: number }
       | { type: "combo"; featured?: boolean; limit?: number };
   };

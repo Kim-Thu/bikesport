@@ -23,7 +23,7 @@ export function MediaActionTemplate({
       <CLink href={href} className="relative block p-4">
         {discountPercentage ? <Badge className="absolute left-4 top-4 z-10">-{discountPercentage}%</Badge> : null}
         <div className="aspect-product w-full overflow-hidden">
-          {media ? <MediaImageView media={media} alt={title} width={320} height={240} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" /> : null}
+          <MediaImageView media={media ?? null} alt={title} width={320} height={240} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
         </div>
       </CLink>
       <div className="flex flex-1 flex-col gap-2 px-4 pb-4">
@@ -31,7 +31,7 @@ export function MediaActionTemplate({
         {typeof rating === "number" && rating > 0 ? <Rating value={rating} count={reviewCount} /> : null}
         <div className="mt-auto flex items-end justify-between gap-2">
           {typeof price === "number" ? <Price price={price} salePrice={salePrice} /> : null}
-          <Button variant="icon" icon="cart" iconSize={18} aria-label={`Thêm ${title} vào giỏ hàng`} className="h-9 w-9 shrink-0 rounded-md bg-blue-600 text-white hover:bg-blue-700" />
+          <Button variant="icon" icon="cart" iconSize={18} aria-label={`Thêm ${title} vào giỏ hàng`} className="h-9 w-9 shrink-0 rounded-md bg-blue-700 text-white hover:bg-blue-700" />
         </div>
       </div>
     </article>

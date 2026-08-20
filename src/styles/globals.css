@@ -11,11 +11,18 @@
   --aspect-event: 16 / 9;
   --aspect-card-media: 4 / 3;
   --aspect-cta-media: 5 / 4;
+
+  --site-scrollbar-width: 0.375rem;
+  --site-scrollbar-radius: 9999px;
 }
 
 @layer base {
   * {
     @apply box-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   html,
@@ -31,30 +38,47 @@
     @apply text-inherit no-underline;
   }
 
+  a[href],
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
   button,
   input {
     font: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
 @layer components {
   .site-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-blue-600) var(--color-gray-100);
+    scrollbar-color: var(--color-blue-700) var(--color-gray-100);
   }
 
   .site-scrollbar::-webkit-scrollbar {
-    width: 6px;
+    width: var(--site-scrollbar-width);
   }
 
   .site-scrollbar::-webkit-scrollbar-track {
     background: var(--color-gray-100);
-    border-radius: 9999px;
+    border-radius: var(--site-scrollbar-radius);
   }
 
   .site-scrollbar::-webkit-scrollbar-thumb {
-    background: var(--color-blue-600);
-    border-radius: 9999px;
+    background: var(--color-blue-700);
+    border-radius: var(--site-scrollbar-radius);
   }
 
   .site-scrollbar::-webkit-scrollbar-thumb:hover {

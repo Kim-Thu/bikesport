@@ -19,7 +19,7 @@ export function CenteredBanner({ banner }: { banner: BannerRecord }) {
           {banner.title ? (
             <Heading level={1} className="text-4xl font-black uppercase leading-tight tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">
               <span>{banner.title}</span>
-              {banner.titleHighlight ? <span className="ml-2 text-blue-600">{banner.titleHighlight}</span> : null}
+              {banner.titleHighlight ? <span className="ml-2 text-blue-700">{banner.titleHighlight}</span> : null}
             </Heading>
           ) : null}
 

@@ -34,9 +34,9 @@ export function FlashSaleTemplate({
     >
       <CLink href={href} className="relative block p-4">
         <div className="absolute left-4 top-4 z-10 flex items-center gap-2">
-          <Badge className="bg-red-600 text-white">HOT</Badge>
+          <Badge className="bg-red-700 text-white">HOT</Badge>
           {discountPercentage ? (
-            <Badge className="bg-red-500 text-white">-{discountPercentage}%</Badge>
+            <Badge className="bg-red-700 text-white">-{discountPercentage}%</Badge>
           ) : null}
         </div>
 
@@ -53,15 +53,13 @@ export function FlashSaleTemplate({
         ) : null}
 
         <div className="aspect-product w-full overflow-hidden rounded-md bg-red-50">
-          {media ? (
-            <MediaImageView
-              media={media}
-              alt={title}
-              width={320}
-              height={240}
-              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          ) : null}
+          <MediaImageView
+            media={media ?? null}
+            alt={title}
+            width={320}
+            height={240}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
         </div>
       </CLink>
 
@@ -73,8 +71,8 @@ export function FlashSaleTemplate({
         {hasStockProgress ? (
           <div className="space-y-2">
             <div className="flex items-center justify-between gap-2 text-xs">
-              <span className="font-medium text-red-600">Còn {stockRemaining} sản phẩm</span>
-              <span className="text-gray-500">{stockRemaining}/{stockTotal}</span>
+              <span className="font-medium text-red-700">Còn {stockRemaining} sản phẩm</span>
+              <span className="text-gray-600">{stockRemaining}/{stockTotal}</span>
             </div>
             <div
               className="h-2 overflow-hidden rounded-full bg-red-100"
@@ -86,7 +84,7 @@ export function FlashSaleTemplate({
             >
               <div
                 className={cn(
-                  "h-full rounded-full bg-red-500",
+                  "h-full rounded-full bg-red-700",
                   stockPercentage >= 75
                     ? "w-full"
                     : stockPercentage >= 50
@@ -109,7 +107,7 @@ export function FlashSaleTemplate({
             icon="cart"
             iconSize={18}
             aria-label={`Thêm ${title} vào giỏ hàng`}
-            className="h-9 w-9 shrink-0 rounded-md bg-red-500 text-white hover:bg-red-600"
+            className="h-8 w-8 shrink-0 rounded-md bg-red-700 text-white hover:bg-red-800"
           />
         </div>
       </div>

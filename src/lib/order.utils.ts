@@ -6,10 +6,17 @@ export interface ProductSalesStats {
   lastPurchasedAt: string;
 }
 
+export async function getRankedProductSalesStats(
+  skus?: string[],
+  limit?: number,
+): Promise<ProductSalesStatsRecord[]> {
+  return dataSources.order.getCompletedProductSalesStats(skus, limit);
+}
+
 export async function getProductSalesStatsBySku(
   skus?: string[],
 ): Promise<ReadonlyMap<string, ProductSalesStats>> {
-  const rows: ProductSalesStatsRecord[] = await dataSources.order.getCompletedProductSalesStats(skus);
+  const rows = await getRankedProductSalesStats(skus);
 
   return new Map(
     rows.map((row) => [

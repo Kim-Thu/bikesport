@@ -2,11 +2,14 @@
   "posts": [
     {
       "_id": "66bf4e8c9f2a4d7b8c1e5201",
+      "type": "article",
       "title": "Kinh nghiệm chọn size xe đạp phù hợp với chiều cao",
       "slug": "kinh-nghiem-chon-size-xe-dap-phu-hop-voi-chieu-cao",
       "status": "published",
       "excerpt": "Cách chọn kích thước khung xe phù hợp để đạp thoải mái và kiểm soát tốt hơn.",
-      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3d01"],
+      "categoryIds": [
+        "66bf4e8c9f2a4d7b8c1e3d01"
+      ],
       "tagIds": [],
       "authorId": "66bf4e8c9f2a4d7b8c1e1111",
       "mediaId": null,
@@ -18,11 +21,14 @@
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e5202",
+      "type": "article",
       "title": "5 mẹo bảo dưỡng xe đạp tại nhà đơn giản",
       "slug": "5-meo-bao-duong-xe-dap-tai-nha-don-gian",
       "status": "published",
       "excerpt": "Những bước chăm sóc cơ bản giúp xe vận hành êm và hạn chế hao mòn linh kiện.",
-      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3d02"],
+      "categoryIds": [
+        "66bf4e8c9f2a4d7b8c1e3d02"
+      ],
       "tagIds": [],
       "authorId": "66bf4e8c9f2a4d7b8c1e1111",
       "mediaId": null,
@@ -34,11 +40,14 @@
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e5203",
+      "type": "article",
       "title": "Top 10 cung đường đạp xe đẹp nhất Việt Nam",
       "slug": "top-10-cung-duong-dap-xe-dep-nhat-viet-nam",
       "status": "published",
       "excerpt": "Gợi ý những cung đường đáng trải nghiệm cho người yêu đạp xe và khám phá.",
-      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3d03"],
+      "categoryIds": [
+        "66bf4e8c9f2a4d7b8c1e3d03"
+      ],
       "tagIds": [],
       "authorId": "66bf4e8c9f2a4d7b8c1e1111",
       "mediaId": null,
@@ -50,11 +59,14 @@
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e5204",
+      "type": "article",
       "title": "Hướng dẫn đạp xe đúng cách cho người mới bắt đầu",
       "slug": "huong-dan-dap-xe-dung-cach-cho-nguoi-moi-bat-dau",
       "status": "published",
       "excerpt": "Tư thế, nhịp đạp và cách sử dụng số cơ bản giúp người mới đạp xe hiệu quả hơn.",
-      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3d01"],
+      "categoryIds": [
+        "66bf4e8c9f2a4d7b8c1e3d01"
+      ],
       "tagIds": [],
       "authorId": "66bf4e8c9f2a4d7b8c1e1111",
       "mediaId": null,
@@ -66,11 +78,14 @@
     },
     {
       "_id": "66bf4e8c9f2a4d7b8c1e5205",
+      "type": "article",
       "title": "Cách kiểm tra lốp và áp suất trước mỗi chuyến đi",
       "slug": "cach-kiem-tra-lop-va-ap-suat-truoc-moi-chuyen-di",
       "status": "published",
       "excerpt": "Kiểm tra nhanh lốp xe và áp suất giúp tăng độ bám đường và giảm nguy cơ thủng lốp.",
-      "categoryIds": ["66bf4e8c9f2a4d7b8c1e3d02"],
+      "categoryIds": [
+        "66bf4e8c9f2a4d7b8c1e3d02"
+      ],
       "tagIds": [],
       "authorId": "66bf4e8c9f2a4d7b8c1e1111",
       "mediaId": null,
@@ -79,6 +94,618 @@
       "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
       "createdAt": "2026-08-08T08:45:00+07:00",
       "updatedAt": "2026-08-08T09:15:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5301",
+      "type": "recruitment",
+      "title": "Nhân viên Kinh doanh xe đạp",
+      "slug": "nhan-vien-kinh-doanh-xe-dap",
+      "status": "published",
+      "excerpt": "Tư vấn sản phẩm, đồng hành cùng khách hàng lựa chọn xe phù hợp và chăm sóc trải nghiệm tại cửa hàng.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Kinh doanh bán lẻ",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "12 - 18 triệu",
+        "deadline": "2026-09-15T23:59:59+07:00",
+        "openings": 3,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Tư vấn xe đạp và phụ kiện theo nhu cầu thực tế của khách hàng.",
+          "Theo dõi khách hàng từ lúc tư vấn đến sau bán hàng.",
+          "Phối hợp cùng cửa hàng triển khai chương trình bán hàng và trưng bày sản phẩm."
+        ],
+        "requirements": [
+          "Giao tiếp tốt, chủ động và có tinh thần phục vụ khách hàng.",
+          "Ưu tiên ứng viên yêu thích xe đạp, thể thao hoặc bán lẻ.",
+          "Có thể làm việc theo ca và cuối tuần theo lịch cửa hàng."
+        ],
+        "benefits": [
+          "Thu nhập theo năng lực và hiệu quả bán hàng.",
+          "Được đào tạo kiến thức sản phẩm và kỹ năng tư vấn.",
+          "Chính sách mua sản phẩm nội bộ và hoạt động đội nhóm."
+        ]
+      },
+      "publishedAt": "2026-08-18T09:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T08:30:00+07:00",
+      "updatedAt": "2026-08-18T09:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5302",
+      "type": "recruitment",
+      "title": "Kỹ thuật viên xe đạp",
+      "slug": "ky-thuat-vien-xe-dap",
+      "status": "published",
+      "excerpt": "Kiểm tra, lắp ráp, bảo dưỡng và xử lý các vấn đề kỹ thuật để đảm bảo xe luôn ở trạng thái vận hành tốt.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Kỹ thuật - Dịch vụ",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "12 - 17 triệu",
+        "deadline": "2026-09-20T23:59:59+07:00",
+        "openings": 2,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Lắp ráp, kiểm tra và bàn giao xe theo tiêu chuẩn kỹ thuật.",
+          "Bảo dưỡng, sửa chữa và chẩn đoán lỗi xe đạp.",
+          "Tư vấn khách hàng về bảo quản và sử dụng xe an toàn."
+        ],
+        "requirements": [
+          "Có kiến thức cơ khí hoặc kinh nghiệm sửa chữa xe đạp là lợi thế.",
+          "Cẩn thận, có trách nhiệm và yêu thích công việc kỹ thuật.",
+          "Sẵn sàng học quy trình kỹ thuật và sản phẩm mới."
+        ],
+        "benefits": [
+          "Được đào tạo kỹ thuật từ cơ bản đến nâng cao.",
+          "Môi trường thực hành với nhiều dòng xe và linh kiện.",
+          "Thưởng hiệu quả và đầy đủ chế độ theo chính sách công ty."
+        ]
+      },
+      "publishedAt": "2026-08-18T08:30:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T08:10:00+07:00",
+      "updatedAt": "2026-08-18T08:30:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5303",
+      "type": "recruitment",
+      "title": "Nhân viên Digital Marketing",
+      "slug": "nhan-vien-digital-marketing",
+      "status": "published",
+      "excerpt": "Triển khai nội dung và chiến dịch digital cho các sản phẩm, chương trình khuyến mãi và hoạt động cộng đồng của BikeSport.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Marketing",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "Thỏa thuận",
+        "deadline": "2026-09-25T23:59:59+07:00",
+        "openings": 1,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Lập kế hoạch và triển khai nội dung trên các kênh digital.",
+          "Phối hợp chạy chiến dịch sản phẩm, khuyến mãi và sự kiện.",
+          "Theo dõi chỉ số, báo cáo và đề xuất tối ưu hiệu quả nội dung."
+        ],
+        "requirements": [
+          "Có khả năng viết nội dung và tư duy hình ảnh tốt.",
+          "Hiểu các nền tảng social, quảng cáo hoặc analytics là lợi thế.",
+          "Chủ động, có khả năng phối hợp nhiều bộ phận."
+        ],
+        "benefits": [
+          "Có không gian thử nghiệm ý tưởng và chiến dịch thực tế.",
+          "Được tiếp cận sản phẩm, sự kiện và cộng đồng xe đạp.",
+          "Lộ trình phát triển theo năng lực và kết quả công việc."
+        ]
+      },
+      "publishedAt": "2026-08-17T15:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T14:30:00+07:00",
+      "updatedAt": "2026-08-17T15:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5304",
+      "type": "recruitment",
+      "title": "Nhân viên Kho và Điều phối",
+      "slug": "nhan-vien-kho-va-dieu-phoi",
+      "status": "published",
+      "excerpt": "Theo dõi nhập xuất hàng, phối hợp cửa hàng và vận chuyển để đảm bảo sản phẩm được luân chuyển chính xác, đúng thời gian.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Vận hành",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "10 - 14 triệu",
+        "deadline": "2026-09-18T23:59:59+07:00",
+        "openings": 2,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Theo dõi nhập, xuất và tồn kho theo chứng từ hệ thống.",
+          "Điều phối hàng giữa kho, cửa hàng và đơn vị vận chuyển.",
+          "Kiểm tra tình trạng hàng và phối hợp xử lý chênh lệch."
+        ],
+        "requirements": [
+          "Cẩn thận, có khả năng tổ chức và theo dõi số liệu.",
+          "Ưu tiên có kinh nghiệm kho, logistics hoặc bán lẻ.",
+          "Có thể sử dụng công cụ văn phòng và hệ thống quản lý kho."
+        ],
+        "benefits": [
+          "Quy trình vận hành rõ ràng và được hướng dẫn khi nhận việc.",
+          "Thưởng theo hiệu quả công việc và chính sách phúc lợi.",
+          "Cơ hội phát triển trong mảng vận hành bán lẻ."
+        ]
+      },
+      "publishedAt": "2026-08-17T14:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-17T13:30:00+07:00",
+      "updatedAt": "2026-08-17T14:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5101",
+      "type": "testimonial",
+      "title": "Nguyễn Minh Hoàng",
+      "slug": "nguyen-minh-hoang-bikesporter",
+      "status": "published",
+      "excerpt": "BikeSport là nơi tôi được trao cơ hội để phát triển bản thân và chinh phục những thử thách mới mỗi ngày.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "testimonial": {
+        "role": "Trưởng nhóm Kinh doanh"
+      },
+      "publishedAt": "2026-08-18T08:30:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T08:30:00+07:00",
+      "updatedAt": "2026-08-18T08:30:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5102",
+      "type": "testimonial",
+      "title": "Phạm Thùy Linh",
+      "slug": "pham-thuy-linh-bikesporter",
+      "status": "published",
+      "excerpt": "Môi trường trẻ trung, đồng nghiệp thân thiện và luôn hỗ trợ nhau để cùng tạo ra những chiến dịch ý nghĩa.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "testimonial": {
+        "role": "Nhân viên Marketing"
+      },
+      "publishedAt": "2026-08-18T08:20:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T08:20:00+07:00",
+      "updatedAt": "2026-08-18T08:20:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5103",
+      "type": "testimonial",
+      "title": "Trần Đức Anh",
+      "slug": "tran-duc-anh-bikesporter",
+      "status": "published",
+      "excerpt": "Tôi yêu thích công việc của mình vì được làm việc với sản phẩm chất lượng và giúp khách hàng có trải nghiệm tốt nhất.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "testimonial": {
+        "role": "Kỹ thuật viên"
+      },
+      "publishedAt": "2026-08-18T08:10:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T08:10:00+07:00",
+      "updatedAt": "2026-08-18T08:10:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5104",
+      "type": "testimonial",
+      "title": "Lê Ngọc Mai",
+      "slug": "le-ngoc-mai-bikesporter",
+      "status": "published",
+      "excerpt": "BikeSport cho tôi cơ hội học hỏi từ đồng đội và chủ động thử nghiệm những cách làm mới để phục vụ khách hàng tốt hơn.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "testimonial": {
+        "role": "Chuyên viên Chăm sóc khách hàng"
+      },
+      "publishedAt": "2026-08-18T08:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T08:00:00+07:00",
+      "updatedAt": "2026-08-18T08:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5105",
+      "type": "testimonial",
+      "title": "Võ Quốc Huy",
+      "slug": "vo-quoc-huy-bikesporter",
+      "status": "published",
+      "excerpt": "Điều tôi thích nhất là tinh thần phối hợp giữa các bộ phận, mọi người luôn cùng nhau tìm cách giải quyết vấn đề nhanh và rõ ràng.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "testimonial": {
+        "role": "Nhân viên Vận hành"
+      },
+      "publishedAt": "2026-08-18T07:50:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T07:50:00+07:00",
+      "updatedAt": "2026-08-18T07:50:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5106",
+      "type": "testimonial",
+      "title": "Đặng Khánh Vy",
+      "slug": "dang-khanh-vy-bikesporter",
+      "status": "published",
+      "excerpt": "Tôi có không gian để phát triển chuyên môn, nhận phản hồi thẳng thắn và nhìn thấy đóng góp của mình tạo ra kết quả thực tế.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "testimonial": {
+        "role": "Thiết kế nội dung"
+      },
+      "publishedAt": "2026-08-18T07:40:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-18T07:40:00+07:00",
+      "updatedAt": "2026-08-18T07:40:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5305",
+      "type": "recruitment",
+      "title": "Nhân viên Chăm sóc khách hàng",
+      "slug": "nhan-vien-cham-soc-khach-hang",
+      "status": "published",
+      "excerpt": "Tiếp nhận và hỗ trợ khách hàng trước, trong và sau quá trình mua sắm.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Chăm sóc khách hàng",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "10 - 15 triệu",
+        "deadline": "2026-09-28T23:59:59+07:00",
+        "openings": 1,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Thực hiện các công việc chính của vị trí Nhân viên Chăm sóc khách hàng.",
+          "Phối hợp với các bộ phận liên quan để hoàn thành mục tiêu công việc.",
+          "Theo dõi kết quả và chủ động đề xuất cải tiến khi cần."
+        ],
+        "requirements": [
+          "Chủ động, có trách nhiệm và khả năng phối hợp tốt.",
+          "Có kinh nghiệm phù hợp là lợi thế; sẵn sàng học hỏi nếu chưa có đầy đủ kinh nghiệm.",
+          "Phù hợp với môi trường bán lẻ năng động và định hướng khách hàng."
+        ],
+        "benefits": [
+          "Thu nhập cạnh tranh theo năng lực.",
+          "Đầy đủ chính sách phúc lợi và hoạt động nội bộ.",
+          "Cơ hội học hỏi sản phẩm và phát triển cùng hệ thống BikeSport."
+        ]
+      },
+      "publishedAt": "2026-08-15T10:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-15T09:30:00+07:00",
+      "updatedAt": "2026-08-15T10:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5306",
+      "type": "recruitment",
+      "title": "Nhân viên Content Creator",
+      "slug": "nhan-vien-content-creator",
+      "status": "published",
+      "excerpt": "Sản xuất nội dung hình ảnh, video và câu chuyện sản phẩm cho các kênh truyền thông.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Marketing",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "12 - 18 triệu",
+        "deadline": "2026-09-30T23:59:59+07:00",
+        "openings": 1,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Thực hiện các công việc chính của vị trí Nhân viên Content Creator.",
+          "Phối hợp với các bộ phận liên quan để hoàn thành mục tiêu công việc.",
+          "Theo dõi kết quả và chủ động đề xuất cải tiến khi cần."
+        ],
+        "requirements": [
+          "Chủ động, có trách nhiệm và khả năng phối hợp tốt.",
+          "Có kinh nghiệm phù hợp là lợi thế; sẵn sàng học hỏi nếu chưa có đầy đủ kinh nghiệm.",
+          "Phù hợp với môi trường bán lẻ năng động và định hướng khách hàng."
+        ],
+        "benefits": [
+          "Thu nhập cạnh tranh theo năng lực.",
+          "Đầy đủ chính sách phúc lợi và hoạt động nội bộ.",
+          "Cơ hội học hỏi sản phẩm và phát triển cùng hệ thống BikeSport."
+        ]
+      },
+      "publishedAt": "2026-08-14T10:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-14T09:30:00+07:00",
+      "updatedAt": "2026-08-14T10:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5307",
+      "type": "recruitment",
+      "title": "Nhân viên Mua hàng",
+      "slug": "nhan-vien-mua-hang",
+      "status": "published",
+      "excerpt": "Theo dõi kế hoạch mua hàng, nhà cung cấp và tiến độ hàng hóa.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Mua hàng",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "12 - 17 triệu",
+        "deadline": "2026-10-02T23:59:59+07:00",
+        "openings": 1,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Thực hiện các công việc chính của vị trí Nhân viên Mua hàng.",
+          "Phối hợp với các bộ phận liên quan để hoàn thành mục tiêu công việc.",
+          "Theo dõi kết quả và chủ động đề xuất cải tiến khi cần."
+        ],
+        "requirements": [
+          "Chủ động, có trách nhiệm và khả năng phối hợp tốt.",
+          "Có kinh nghiệm phù hợp là lợi thế; sẵn sàng học hỏi nếu chưa có đầy đủ kinh nghiệm.",
+          "Phù hợp với môi trường bán lẻ năng động và định hướng khách hàng."
+        ],
+        "benefits": [
+          "Thu nhập cạnh tranh theo năng lực.",
+          "Đầy đủ chính sách phúc lợi và hoạt động nội bộ.",
+          "Cơ hội học hỏi sản phẩm và phát triển cùng hệ thống BikeSport."
+        ]
+      },
+      "publishedAt": "2026-08-13T10:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-13T09:30:00+07:00",
+      "updatedAt": "2026-08-13T10:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5308",
+      "type": "recruitment",
+      "title": "Nhân viên E-commerce",
+      "slug": "nhan-vien-ecommerce",
+      "status": "published",
+      "excerpt": "Vận hành nội dung, sản phẩm và chương trình bán hàng trên các kênh trực tuyến.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Thương mại điện tử",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "13 - 19 triệu",
+        "deadline": "2026-10-05T23:59:59+07:00",
+        "openings": 2,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Thực hiện các công việc chính của vị trí Nhân viên E-commerce.",
+          "Phối hợp với các bộ phận liên quan để hoàn thành mục tiêu công việc.",
+          "Theo dõi kết quả và chủ động đề xuất cải tiến khi cần."
+        ],
+        "requirements": [
+          "Chủ động, có trách nhiệm và khả năng phối hợp tốt.",
+          "Có kinh nghiệm phù hợp là lợi thế; sẵn sàng học hỏi nếu chưa có đầy đủ kinh nghiệm.",
+          "Phù hợp với môi trường bán lẻ năng động và định hướng khách hàng."
+        ],
+        "benefits": [
+          "Thu nhập cạnh tranh theo năng lực.",
+          "Đầy đủ chính sách phúc lợi và hoạt động nội bộ.",
+          "Cơ hội học hỏi sản phẩm và phát triển cùng hệ thống BikeSport."
+        ]
+      },
+      "publishedAt": "2026-08-12T10:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-12T09:30:00+07:00",
+      "updatedAt": "2026-08-12T10:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5309",
+      "type": "recruitment",
+      "title": "Nhân viên Kế toán bán hàng",
+      "slug": "nhan-vien-ke-toan-ban-hang",
+      "status": "published",
+      "excerpt": "Kiểm soát chứng từ bán hàng, đối soát và hỗ trợ báo cáo doanh thu cửa hàng.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Tài chính - Kế toán",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "11 - 16 triệu",
+        "deadline": "2026-10-08T23:59:59+07:00",
+        "openings": 1,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Thực hiện các công việc chính của vị trí Nhân viên Kế toán bán hàng.",
+          "Phối hợp với các bộ phận liên quan để hoàn thành mục tiêu công việc.",
+          "Theo dõi kết quả và chủ động đề xuất cải tiến khi cần."
+        ],
+        "requirements": [
+          "Chủ động, có trách nhiệm và khả năng phối hợp tốt.",
+          "Có kinh nghiệm phù hợp là lợi thế; sẵn sàng học hỏi nếu chưa có đầy đủ kinh nghiệm.",
+          "Phù hợp với môi trường bán lẻ năng động và định hướng khách hàng."
+        ],
+        "benefits": [
+          "Thu nhập cạnh tranh theo năng lực.",
+          "Đầy đủ chính sách phúc lợi và hoạt động nội bộ.",
+          "Cơ hội học hỏi sản phẩm và phát triển cùng hệ thống BikeSport."
+        ]
+      },
+      "publishedAt": "2026-08-11T10:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-11T09:30:00+07:00",
+      "updatedAt": "2026-08-11T10:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5310",
+      "type": "recruitment",
+      "title": "Nhân viên Visual Merchandising",
+      "slug": "nhan-vien-visual-merchandising",
+      "status": "published",
+      "excerpt": "Triển khai trưng bày sản phẩm và hình ảnh cửa hàng theo định hướng thương hiệu.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Bán lẻ",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "Thỏa thuận",
+        "deadline": "2026-10-10T23:59:59+07:00",
+        "openings": 1,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Thực hiện các công việc chính của vị trí Nhân viên Visual Merchandising.",
+          "Phối hợp với các bộ phận liên quan để hoàn thành mục tiêu công việc.",
+          "Theo dõi kết quả và chủ động đề xuất cải tiến khi cần."
+        ],
+        "requirements": [
+          "Chủ động, có trách nhiệm và khả năng phối hợp tốt.",
+          "Có kinh nghiệm phù hợp là lợi thế; sẵn sàng học hỏi nếu chưa có đầy đủ kinh nghiệm.",
+          "Phù hợp với môi trường bán lẻ năng động và định hướng khách hàng."
+        ],
+        "benefits": [
+          "Thu nhập cạnh tranh theo năng lực.",
+          "Đầy đủ chính sách phúc lợi và hoạt động nội bộ.",
+          "Cơ hội học hỏi sản phẩm và phát triển cùng hệ thống BikeSport."
+        ]
+      },
+      "publishedAt": "2026-08-10T10:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-10T09:30:00+07:00",
+      "updatedAt": "2026-08-10T10:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5311",
+      "type": "recruitment",
+      "title": "Chuyên viên Tuyển dụng",
+      "slug": "chuyen-vien-tuyen-dung",
+      "status": "published",
+      "excerpt": "Phụ trách nguồn ứng viên, phỏng vấn và phối hợp tuyển dụng cho hệ thống cửa hàng.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Nhân sự",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "13 - 18 triệu",
+        "deadline": "2026-10-12T23:59:59+07:00",
+        "openings": 1,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Thực hiện các công việc chính của vị trí Chuyên viên Tuyển dụng.",
+          "Phối hợp với các bộ phận liên quan để hoàn thành mục tiêu công việc.",
+          "Theo dõi kết quả và chủ động đề xuất cải tiến khi cần."
+        ],
+        "requirements": [
+          "Chủ động, có trách nhiệm và khả năng phối hợp tốt.",
+          "Có kinh nghiệm phù hợp là lợi thế; sẵn sàng học hỏi nếu chưa có đầy đủ kinh nghiệm.",
+          "Phù hợp với môi trường bán lẻ năng động và định hướng khách hàng."
+        ],
+        "benefits": [
+          "Thu nhập cạnh tranh theo năng lực.",
+          "Đầy đủ chính sách phúc lợi và hoạt động nội bộ.",
+          "Cơ hội học hỏi sản phẩm và phát triển cùng hệ thống BikeSport."
+        ]
+      },
+      "publishedAt": "2026-08-09T10:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-09T09:30:00+07:00",
+      "updatedAt": "2026-08-09T10:00:00+07:00"
+    },
+    {
+      "_id": "66bf4e8c9f2a4d7b8c1e5312",
+      "type": "recruitment",
+      "title": "Nhân viên Tổ chức sự kiện",
+      "slug": "nhan-vien-to-chuc-su-kien",
+      "status": "published",
+      "excerpt": "Phối hợp tổ chức hoạt động cộng đồng, workshop và sự kiện trải nghiệm xe đạp.",
+      "categoryIds": [],
+      "tagIds": [],
+      "authorId": "66bf4e8c9f2a4d7b8c1e1111",
+      "mediaId": null,
+      "recruitment": {
+        "department": "Marketing - Sự kiện",
+        "location": "TP. Hồ Chí Minh",
+        "employmentType": "Toàn thời gian",
+        "salary": "12 - 18 triệu",
+        "deadline": "2026-10-15T23:59:59+07:00",
+        "openings": 1,
+        "applyUrl": "/lien-he",
+        "responsibilities": [
+          "Thực hiện các công việc chính của vị trí Nhân viên Tổ chức sự kiện.",
+          "Phối hợp với các bộ phận liên quan để hoàn thành mục tiêu công việc.",
+          "Theo dõi kết quả và chủ động đề xuất cải tiến khi cần."
+        ],
+        "requirements": [
+          "Chủ động, có trách nhiệm và khả năng phối hợp tốt.",
+          "Có kinh nghiệm phù hợp là lợi thế; sẵn sàng học hỏi nếu chưa có đầy đủ kinh nghiệm.",
+          "Phù hợp với môi trường bán lẻ năng động và định hướng khách hàng."
+        ],
+        "benefits": [
+          "Thu nhập cạnh tranh theo năng lực.",
+          "Đầy đủ chính sách phúc lợi và hoạt động nội bộ.",
+          "Cơ hội học hỏi sản phẩm và phát triển cùng hệ thống BikeSport."
+        ]
+      },
+      "publishedAt": "2026-08-08T10:00:00+07:00",
+      "createdBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "updatedBy": "66bf4e8c9f2a4d7b8c1e1111",
+      "createdAt": "2026-08-08T09:30:00+07:00",
+      "updatedAt": "2026-08-08T10:00:00+07:00"
     }
   ]
 }

@@ -16,7 +16,7 @@ export function BoxIcon({
   descriptionClassName,
 }: BoxIconProps) {
   return (
-    <Row className={cn("gap-3", className)}>
+    <Row className={cn("gap-4", className)}>
       <Icon
         name={icon}
         mediaUrl={iconMediaUrl}
@@ -26,7 +26,7 @@ export function BoxIcon({
       <Column grow className={contentClassName}>
         <div className={cn("text-sm font-bold uppercase leading-tight", titleClassName)}>{title}</div>
         {description ? (
-          <div className={cn("mt-1 text-xs leading-snug opacity-70", descriptionClassName)}>{description}</div>
+          <div className={cn("mt-1 text-xs leading-snug opacity-90", descriptionClassName)}>{description}</div>
         ) : null}
       </Column>
     </Row>

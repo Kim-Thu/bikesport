@@ -21,6 +21,11 @@ export async function getActiveCampaignById(
   return campaign?.status === "active" ? campaign : null;
 }
 
+export async function getActiveCampaignBySlug(slug: string): Promise<CampaignRecord | null> {
+  const campaigns = await getCampaigns();
+  return campaigns.find((campaign) => campaign.status === "active" && campaign.slug === slug) ?? null;
+}
+
 export async function getCampaignProducts(
   campaignId: string,
   categoryId?: string,

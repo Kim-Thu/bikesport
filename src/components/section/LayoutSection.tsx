@@ -9,6 +9,7 @@ import {
   PAGE_COLUMN_LAYOUT_CLASS,
   PAGE_ROW_LAYOUT_CLASS,
   PAGE_SECTION_SPACING_CLASS,
+  PAGE_SECTION_SURFACE_CLASS,
 } from "@/variants/page-layout.variant";
 
 export function LayoutSection({ section }: { section: LayoutSectionPayload }) {
@@ -17,32 +18,37 @@ export function LayoutSection({ section }: { section: LayoutSectionPayload }) {
     ? PAGE_SECTION_SPACING_CLASS[section.props.spacing]
     : undefined;
   const containerClassName = SECTION_CONTAINER_CLASS[sectionTemplate];
+  const surfaceClassName = section.props.surface
+    ? PAGE_SECTION_SURFACE_CLASS[section.props.surface]
+    : undefined;
 
   return (
     <Section template={sectionTemplate} className={sectionClassName}>
       <Container className={containerClassName}>
-        {section.rows.map((row) => (
-          <Row
-            key={row._id}
-            className={row.props?.layout ? PAGE_ROW_LAYOUT_CLASS[row.props.layout] : undefined}
-          >
-            {row.columns.map((column) => (
-              <Column
-                key={column._id}
-                grow={column.props?.grow}
-                className={
-                  column.props?.layout
-                    ? PAGE_COLUMN_LAYOUT_CLASS[column.props.layout]
-                    : undefined
-                }
-              >
-                {column.blocks.map((block) => (
-                  <BlockRenderer key={block._id} block={block} />
-                ))}
-              </Column>
-            ))}
-          </Row>
-        ))}
+        <div className={surfaceClassName}>
+          {section.rows.map((row) => (
+            <Row
+              key={row._id}
+              className={row.props?.layout ? PAGE_ROW_LAYOUT_CLASS[row.props.layout] : undefined}
+            >
+              {row.columns.map((column) => (
+                <Column
+                  key={column._id}
+                  grow={column.props?.grow}
+                  className={
+                    column.props?.layout
+                      ? PAGE_COLUMN_LAYOUT_CLASS[column.props.layout]
+                      : undefined
+                  }
+                >
+                  {column.blocks.map((block) => (
+                    <BlockRenderer key={block._id} block={block} />
+                  ))}
+                </Column>
+              ))}
+            </Row>
+          ))}
+        </div>
       </Container>
     </Section>
   );

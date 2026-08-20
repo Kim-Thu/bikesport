@@ -10,6 +10,7 @@ const contentSecurityPolicy = [
   "frame-ancestors 'none'",
   "object-src 'none'",
   `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
+  "script-src-attr 'none'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
@@ -23,6 +24,10 @@ const securityHeaders = [
   {
     key: "Content-Security-Policy",
     value: contentSecurityPolicy,
+  },
+  {
+    key: "X-Frame-Options",
+    value: "DENY",
   },
   {
     key: "X-Content-Type-Options",

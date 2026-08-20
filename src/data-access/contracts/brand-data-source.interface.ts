@@ -4,4 +4,5 @@ export interface BrandDataSource {
   getActive(limit?: number): Promise<BrandRecord[]>;
   getFeatured(limit?: number): Promise<BrandRecord[]>;
   getActiveById(brandId: string): Promise<BrandRecord | null>;
+  getActiveBySlug(slug: string): Promise<BrandRecord | null>;
 }

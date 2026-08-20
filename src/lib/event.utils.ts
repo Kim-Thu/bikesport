@@ -11,6 +11,22 @@ export async function getEventById(eventId: string): Promise<EventRecord | null>
   );
 }
 
+export async function getPublishedEventBySlug(slug: string): Promise<EventRecord | null> {
+  return cachedDomain(
+    "event",
+    ["slug", slug],
+    () => dataSources.event.getBySlug(slug),
+  );
+}
+
+export async function getPublishedEvents(): Promise<EventRecord[]> {
+  return cachedDomain(
+    "event",
+    ["published"],
+    () => dataSources.event.getPublished(),
+  );
+}
+
 export async function getFeaturedEvents(limit?: number): Promise<EventRecord[]> {
   return cachedDomain(
     "event",

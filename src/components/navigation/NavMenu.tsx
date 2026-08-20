@@ -40,7 +40,7 @@ export async function NavMenu({ menuId }: NavMenuProps) {
                   items={children}
                   mediaById={mediaById}
                   listClassName="invisible absolute left-0 top-full z-50 min-w-56 list-none border border-gray-100 bg-white p-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
-                  itemClassName="flex items-center gap-2 whitespace-nowrap px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 focus:bg-gray-50 focus:text-blue-600"
+                  itemClassName="flex items-center gap-2 whitespace-nowrap px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-700 focus:bg-gray-50 focus:text-blue-700"
                 />
               ) : null}
             </li>
